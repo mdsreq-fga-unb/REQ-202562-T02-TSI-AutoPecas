@@ -1,0 +1,38 @@
+name: Deploy documentation
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: documentation-deployment
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy Material for MkDocs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Configure Git credentials
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install Material for MkDocs
+        run: python -m pip install --upgrade mkdocs-material
+
+      - name: Deploy documentation
+        run: mkdocs gh-deploy --force --strict
