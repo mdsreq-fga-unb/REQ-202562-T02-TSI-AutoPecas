@@ -1,10 +1,13 @@
-site_name: TSI AutoPeças — REQ 2026.2 T02
-site_description: Documentação do projeto TSI AutoPeças para a disciplina de Requisitos de Software.
+site_name: TSI Peças — REQ 2026.2 T02
+site_description: Documentação do projeto TSI Peças para a disciplina de Requisitos de Software.
 site_url: https://mdsreq-fga-unb.github.io/REQ-202562-T02-TSI-AutoPecas/
 
 repo_name: mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas
 repo_url: https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas
 edit_uri: edit/main/docs/
+
+extra_css:
+  - assets/stylesheets/custom.css
 
 theme:
   name: material
