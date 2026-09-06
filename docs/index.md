@@ -10,15 +10,33 @@ Este projeto, desenvolvido pela equipe **Umbra** para a disciplina de **Requisit
 
 ---
 
-## Navegação rápida
+## Navegação 
 
-Explore as seções já publicadas. Esta área será ampliada à medida que novas partes da documentação forem criadas.
+Explore as quatro áreas da documentação do projeto.
 
 <div class="section-grid">
   <a class="section-card" href="visao-produto/">
     <span class="section-card__number" aria-hidden="true">01</span>
     <span class="section-card__title">Visão do Produto e Projeto</span>
     <span class="section-card__description">Conheça o contexto do negócio, o problema, a solução proposta, o planejamento e a especificação inicial do produto.</span>
+    <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
+  </a>
+  <a class="section-card" href="requisitos-e-planejamento/">
+    <span class="section-card__number" aria-hidden="true">02</span>
+    <span class="section-card__title">Requisitos e Planejamento</span>
+    <span class="section-card__description">Espaço para o detalhamento dos requisitos, a priorização do backlog e o planejamento do produto.</span>
+    <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
+  </a>
+  <a class="section-card" href="atas/">
+    <span class="section-card__number" aria-hidden="true">03</span>
+    <span class="section-card__title">Atas</span>
+    <span class="section-card__description">Espaço para as atas de reuniões, decisões e alinhamentos da equipe, organizados da sprint 0 à sprint 6.</span>
+    <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
+  </a>
+  <a class="section-card" href="entregas/">
+    <span class="section-card__number" aria-hidden="true">04</span>
+    <span class="section-card__title">Entregas</span>
+    <span class="section-card__description">Vídeos de apresentação e alterações na documentação das quatro entregas do projeto.</span>
     <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
   </a>
 </div>

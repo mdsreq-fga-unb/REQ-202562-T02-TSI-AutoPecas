@@ -73,3 +73,20 @@ nav:
           - Backlog de produto: visao-produto/backlog-de-produto.md
       - Evolução do Projeto:
           - Lições aprendidas: visao-produto/licoes-aprendidas.md
+  - Requisitos e Planejamento:
+      - requisitos-e-planejamento/index.md
+  - Atas:
+      - atas/index.md
+      - Sprint 0: atas/sprint-0.md
+      - Sprint 1: atas/sprint-1.md
+      - Sprint 2: atas/sprint-2.md
+      - Sprint 3: atas/sprint-3.md
+      - Sprint 4: atas/sprint-4.md
+      - Sprint 5: atas/sprint-5.md
+      - Sprint 6: atas/sprint-6.md
+  - Entregas:
+      - entregas/index.md
+      - Entrega 1: entregas/entrega-1.md
+      - Entrega 2: entregas/entrega-2.md
+      - Entrega 3: entregas/entrega-3.md
+      - Entrega 4: entregas/entrega-4.md

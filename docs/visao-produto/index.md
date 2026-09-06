@@ -1,3 +1,7 @@
+---
+icon: material/file-document-outline
+---
+
 # Visão do Produto e Projeto
 
 ## Versionamento
