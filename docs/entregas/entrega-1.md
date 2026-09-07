@@ -13,3 +13,4 @@ _Link do YouTube a adicionar._
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 06/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
+ 
