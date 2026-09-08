@@ -75,6 +75,40 @@
   font-weight: 700;
 }
 
+.section-card--group {
+  min-height: 250px;
+}
+
+.section-card--group:hover {
+  transform: translateY(-0.2rem);
+}
+
+.section-card__links {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section-card__links a {
+  color: var(--md-primary-fg-color);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.section-card__links a::before {
+  margin-right: 0.35rem;
+  content: "→";
+}
+
+.section-card__links a:hover,
+.section-card__links a:focus-visible {
+  text-decoration: underline;
+}
+
 /* Entregas: estado dos cards de navegação. */
 .md-typeset .delivery-status {
   display: inline-flex;
