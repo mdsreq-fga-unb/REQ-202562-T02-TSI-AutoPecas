@@ -2,50 +2,83 @@
 
 ## 4 Estratégias de engenharia de software
 
-A estratégia foi definida considerando o porte reduzido da equipe, o prazo semestral, o acesso direto ao proprietário da TSI Peças e a necessidade de validar gradualmente uma solução para cadastro de peças e controle de estoque.
+A estratégia considera o porte reduzido da equipe, o prazo semestral, o acesso ao proprietário da TSI Peças e a necessidade de validar gradualmente o cadastro de peças e o controle de estoque.
 
 ### 4.1 Estratégia priorizada
 
 - **Abordagem:** ágil.
-- **Ciclo de vida:** ágil, iterativo e incremental.
-- **Processo:** ScrumXP.
+- **Ciclo de vida:** iterativo e incremental.
+- **Processo adotado:** combinação adaptada de Scrum e XP.
 
 ### 4.2 Quadro comparativo
 
-| Característica | OpenUP | ScrumXP |
+| Aspecto | OpenUP | Combinação adaptada de Scrum e XP |
 | --- | --- | --- |
-| Abordagem geral | Processo leve, iterativo e incremental, com desenvolvimento orientado à arquitetura, aos riscos e ao valor para os stakeholders. | Combina o framework Scrum com práticas técnicas do XP, priorizando entregas frequentes, qualidade e feedback contínuo. |
-| Foco em arquitetura | Dá ênfase à definição e à validação da arquitetura desde as primeiras fases, reduzindo riscos estruturais do projeto. | Adota design simples e evolução contínua da arquitetura, ajustando-a conforme surgem necessidades e aprendizados. |
-| Estrutura do processo | Organiza o projeto nas fases de concepção, elaboração, construção e transição, cada uma contendo uma ou mais iterações. | Organiza o trabalho em sprints curtas, com planejamento, acompanhamento, revisão e retrospectiva a cada ciclo. |
-| Flexibilidade de requisitos | Refina os requisitos progressivamente, priorizando risco e valor e incorporando o feedback nas iterações seguintes. | Mantém o Product Backlog em refinamento contínuo, com prioridades revistas conforme o feedback, os riscos e a capacidade da equipe. |
-| Colaboração com o cliente | Promove colaboração direta e validação contínua com os stakeholders, por meio de revisões, demonstrações e testes. | Favorece a participação do cliente nas revisões de sprint e o esclarecimento frequente de requisitos durante o desenvolvimento. |
-| Complexidade do processo | Oferece um conjunto mínimo e adaptável de atividades e artefatos, mantendo a organização por fases do Processo Unificado. | Combina uma estrutura gerencial simples com práticas técnicas que exigem disciplina e colaboração contínuas da equipe. |
-| Qualidade técnica | A qualidade é tratada continuamente por meio de versões testadas e integradas, revisões e atenção à arquitetura. | Utiliza desenvolvimento orientado a testes (TDD), integração contínua, refatoração, design simples e programação em pares. |
-| Documentação | Mantém documentação essencial, como visão, casos de uso ou histórias de usuário e requisitos técnicos, detalhada conforme a necessidade. | Prioriza backlog, critérios de aceitação e definição de concluído (DoD), com os registros necessários de decisões e testes. |
-| Adequação à equipe | Adequado a equipes pequenas, com comunicação direta e interesse em combinar agilidade com orientação arquitetural. | Adequado a equipes pequenas e colaborativas, com disponibilidade para feedback frequente e aplicação das práticas do XP. |
-| Adequação à TSI Peças | Também é viável para o MVP: a orientação a riscos e arquitetura pode apoiar a modelagem do catálogo e a substituição das planilhas. | Ajusta-se às sprints quinzenais, ao contato com o proprietário e à experiência da equipe, associando gestão do trabalho e qualidade técnica. |
+| Natureza | Processo leve derivado do UP, iterativo, incremental e adaptável. Abrange as principais disciplinas do desenvolvimento. | **Scrum:** framework ágil de gerenciamento. **XP:** processo com foco em práticas técnicas. A combinação reúne gestão e desenvolvimento sem transformar os dois em um único processo. |
+| Organização do trabalho | Quatro fases: concepção, elaboração, construção e transição. Cada fase contém uma ou mais iterações e produz versões testadas e integradas. | **Scrum:** Product Backlog, planejamento, acompanhamento, revisão e retrospectiva. **XP:** desenvolvimento em pequenos incrementos com feedback técnico frequente. |
+| Organização dos requisitos | Visão, casos de uso ou histórias de usuário, requisitos técnicos e requisitos não funcionais. | **Scrum:** Visão do Produto, Product Backlog, épicos, histórias, tarefas e Definition of Done. **XP:** histórias de usuário, critérios e testes de aceitação. |
+| Elicitação e refinamento | Elicitação concentrada inicialmente na concepção e na elaboração, com detalhamento progressivo. Requisitos de maior risco ou prioridade são tratados primeiro. | **Scrum:** refinamento contínuo do Product Backlog e priorização pelo Product Owner. **XP:** detalhes esclarecidos por conversas com o cliente próximo ao momento da implementação. |
+| Validação e mudanças | Revisões, demonstrações e testes contínuos. O feedback é incorporado nas iterações seguintes por um controle de mudanças leve. | **Scrum:** inspeção do incremento na Sprint Review e atualização do backlog. **XP:** testes de aceitação e ciclos curtos de feedback apoiam mudanças frequentes. |
+| Qualidade técnica | Orientação à arquitetura e aos riscos, com verificação contínua da qualidade e incrementos integrados. | O Scrum não define práticas técnicas. O **XP** fornece TDD, integração contínua, refatoração, design simples, programação em pares e propriedade coletiva do código. |
+| Participação do cliente | Requer colaboração direta e regular com os stakeholders. | **Scrum:** o Product Owner ordena o trabalho e os stakeholders participam das revisões. **XP:** pressupõe envolvimento frequente do cliente para requisitos, prioridades e aceitação. |
+| Forças | Documentação enxuta, equilíbrio entre disciplina e agilidade, atenção a riscos e adaptação a equipes pequenas. | Alta adaptabilidade, transparência do trabalho, validação frequente e apoio técnico para entregas incrementais confiáveis. |
+| Limitações | Pode oferecer pouca orientação a equipes inexperientes e ser insuficiente para sistemas críticos ou de grande escala. | Depende da atuação efetiva do Product Owner e do envolvimento do cliente. As práticas do XP exigem disciplina, colaboração e automação; sua aplicação integral é difícil em equipes distribuídas. |
+| Adequação à TSI Peças | É uma alternativa viável por ser leve, favorecer comunicação direta e tratar riscos de arquitetura e requisitos progressivamente. | Ajusta-se melhor à experiência declarada da equipe: **Scrum** organiza prioridade e feedback; **XP** apoia a confiabilidade das regras de cadastro e estoque. As práticas selecionadas e suas adaptações devem ser explicitadas e evidenciadas. |
+
+*Fonte da comparação: MARSICANO, George. Requisitos de Software — Comunicação é tudo!, versão 1.1 (draft), 2026, capítulos 3 e 4, especialmente as seções sobre OpenUP, XP e Scrum.*
 
 ### 4.3 Justificativa
 
-De acordo com as características e os aspectos analisados do projeto, a equipe optou por utilizar ScrumXP pelos seguintes motivos.
+- **Scrum — feedback e escopo:** o contato com Antônio Marcos permite revisar entregas e ajustar prioridades. O backlog priorizará cadastro e movimentações de estoque, incluindo a baixa por venda. Leitor de código de barras e integração automática com o Mercado Livre permanecem fora do MVP.
+- **XP — confiabilidade:** testes, integração frequente e refatoração apoiarão a evolução das regras de estoque. O design simples manterá o desenvolvimento concentrado nas necessidades atuais da loja.
+- **Escolha da equipe:** a familiaridade com ScrumXP favorece sua aplicação no semestre. OpenUP também seria viável; a preferência considera a experiência da equipe e as práticas selecionadas para este projeto.
 
-#### Feedback direto e requisitos evolutivos
+### 4.4 Scrum — organização do trabalho
 
-A equipe tem acesso presencial e por WhatsApp a Antônio Marcos, principal stakeholder, usuário administrador e homologador. As sprints de duas semanas permitem validar a linguagem do domínio de autopeças, o fluxo de trabalho e a simplicidade da interface. Revisões quinzenais e esclarecimentos pontuais respeitam a rotina do proprietário, que opera a loja sozinho, e reduzem interpretações incorretas e retrabalho.
+#### 4.4.1 Papéis e responsabilidades
 
-#### Entrega prioritária de valor e controle do escopo
+- **Product Owner — João G. A. de Melo:** responsável pelo valor do produto e pela ordenação do Product Backlog. A autoridade proposta abrange priorizar itens dentro do MVP acordado e detalhar requisitos com a equipe. Mudanças nos objetivos, no escopo do MVP e nas regras de negócio dependerão de validação de Antônio Marcos, proprietário e principal referência de negócio. A delegação deverá ser confirmada e registrada com o cliente; até isso ocorrer, as decisões de prioridade serão validadas com ele. A coordenação das entregas acadêmicas é uma função adicional de João, justificada pelo porte da equipe; não é um papel do Scrum.
+- **Scrum Master — Luiz Henrique Tomaz Moreira:** apoiará a aplicação do processo, a efetividade da equipe e a remoção de impedimentos. O acúmulo com backend pode reduzir o tempo de facilitação. O planejamento reservará capacidade para essa responsabilidade e distribuirá tarefas técnicas conforme a disponibilidade; a retrospectiva avaliará sobrecargas.
+- **Developers:** integrantes responsáveis pelo incremento, incluindo requisitos, frontend, backend e testes. Em diálogo com o PO, selecionarão o trabalho viável para cada ciclo e definirão sua execução, compartilhando a responsabilidade pela qualidade.
 
-O Product Backlog permite priorizar o cadastro padronizado de peças e as movimentações de estoque, incluindo a baixa na venda, e desenvolver gradualmente as demais características do produto. O leitor de código de barras e a integração automática com o Mercado Livre permanecem como evoluções futuras. Assim, o feedback orienta ajustes de prioridade sem ampliar automaticamente o escopo do MVP.
+#### 4.4.2 Eventos e acompanhamento
 
-#### Confiabilidade técnica
+- **Sprint Planning:** no início do ciclo, definir a Meta da Sprint e selecionar itens e tarefas conforme prioridade e capacidade.
+- **Acompanhamento diário assíncrono:** registrar no WhatsApp o progresso em direção à meta, os impedimentos e os ajustes no plano. Essa adaptação à disponibilidade acadêmica difere da Daily Scrum de 15 minutos prevista no guia.
+- **Sprint Review:** ao final do ciclo, inspecionar o incremento com o proprietário e atualizar o backlog a partir do feedback. A revisão não se limita à homologação nem impede entregas antecipadas.
+- **Sprint Retrospective:** após a revisão e antes do próximo planejamento, avaliar o trabalho e definir ações de melhoria com responsáveis.
 
-Como a dor central é a divergência de estoque, as regras de entrada, saída e venda devem ser protegidas por testes automatizados. TDD, integração contínua e refatoração ajudam a prevenir regressões; a programação em pares contribui para a revisão contínua dos trechos críticos. Essas práticas apoiam os testes internos e os critérios de conclusão das entregas.
+#### 4.4.3 Artefatos e critérios
 
-#### Adequação ao porte, ao prazo e à experiência da equipe
+- **Product Backlog:** lista ordenada do trabalho necessário, vinculada à Meta do Produto; será mantida no Jira e referenciada na documentação.
+- **Sprint Backlog:** Meta da Sprint, itens selecionados e plano de execução, atualizados pelos Developers durante o ciclo.
+- **Incremento:** resultado utilizável e integrado aos anteriores, atendendo à Definition of Done (DoD), que estabelece os critérios comuns de qualidade para conclusão.
 
-A experiência prévia da equipe com ScrumXP favorece sua aplicação no prazo semestral. O OpenUP também seria adequado ao porte do projeto, pois admite documentação enxuta, adaptação e feedback frequente. A preferência pelo ScrumXP se fundamenta na familiaridade da equipe e na combinação entre sprints quinzenais e práticas técnicas do XP, mantendo a documentação e as evidências de validação exigidas pela disciplina.
+A Definition of Ready (DoR) será um acordo complementar sobre a preparação dos itens; não é um artefato obrigatório do Scrum nem um critério de conclusão do incremento. Os critérios de aceitação detalharão o comportamento esperado de cada item.
 
-A estratégia mantém, portanto, o ciclo de vida ágil, com refinamento e entregas incrementais, e combina o framework de gerenciamento Scrum com práticas técnicas do XP.
+### 4.5 XP — práticas de desenvolvimento
+
+As práticas abaixo são compromissos para o desenvolvimento do produto. Sua previsão no documento não comprova execução; a aplicação será registrada em cada ciclo.
+
+| Prática | Aplicação prevista | Evidência esperada |
+| --- | --- | --- |
+| **TDD seletivo** | Nas regras críticas de cadastro e estoque: escrever e executar um teste que falha, implementar o mínimo para passar e refatorar. Priorizar saldo, entradas, saídas e baixa por venda, conforme regras validadas com o cliente. | Testes e registro do ciclo teste–implementação–refatoração nos commits ou PRs. Testes escritos somente após o código não caracterizam TDD. |
+| **Integração contínua (CI)** | Integrar mudanças pequenas à branch principal, buscando integração diária nos dias de desenvolvimento. Automatizar testes e build no GitHub Actions em PRs e na branch principal, tratando falhas antes de acumular novas mudanças. | Histórico de integrações e execuções dos testes e do build da aplicação. |
+| **Refatoração** | Melhorar a estrutura do código durante a implementação, preservando o comportamento e mantendo os testes aprovados. Correção de bugs é uma atividade distinta. | PRs com a melhoria descrita e testes aprovados. |
+| **Propriedade coletiva** | Permitir que os desenvolvedores evoluam qualquer parte do código, compartilhando conhecimento e seguindo padrões comuns de implementação e revisão. | Contribuições e revisões distribuídas entre integrantes. |
+| **Design simples** | Implementar a solução suficiente para os requisitos atuais, evitando funcionalidades futuras e abstrações sem necessidade. | Decisões técnicas relacionadas ao MVP e verificadas nas revisões. |
+| **Programação em pares** | Não será exigida no cotidiano pela dificuldade de conciliar horários. Sessões pontuais poderão apoiar regras complexas ou compartilhamento de conhecimento. | Quando ocorrerem, registrar participantes e objetivo; não apresentar a prática como contínua. |
+| **Cliente presente — adaptação** | Esclarecer regras e exemplos de uso com Antônio Marcos por WhatsApp ou encontros combinados, considerando sua rotina na loja. | Decisões e critérios de aceitação registrados junto aos itens do backlog. |
+
+**Prática complementar — revisão de código:** os PRs deverão ser revisados por outro desenvolvedor. Essa revisão apoia a qualidade e a troca de conhecimento, mas não equivale à programação em pares, em que duas pessoas desenvolvem juntas. A seleção considera essa diferença, descrita na [referência de XP de Ron Jeffries](https://ronjeffries.com/xprog/what-is-extreme-programming/).
+
+#### 4.5.1 Aplicação nos ciclos de desenvolvimento
+
+- **Preparação do código:** configurar testes, build, padrões de código e CI antes das primeiras integrações da aplicação. O workflow existente publica a documentação e não comprova a CI do produto.
+- **Em cada ciclo com implementação:** incluir testes, integração e refatoração nas tarefas das funcionalidades; registrar nos PRs a aplicação de TDD e vincular as execuções da CI.
+- **Critério técnico de conclusão proposto:** código revisado, integrado, com testes e build aprovados e critérios de aceitação atendidos. Esses requisitos deverão ser consolidados na DoD do produto.
+
+Os testes unitários e de integração previstos no cronograma serão complementados por essas atividades. As evidências permitirão verificar quais práticas de XP foram executadas.
 
 ## Versionamento
 
@@ -53,3 +86,5 @@ A estratégia mantém, portanto, o ciclo de vida ágil, com refinamento e entreg
 | :----: | :--: | --- | --- |
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Transposição do tópico 4 do PDF e revisão textual | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.2 | 12/09/2026 | Correção conceitual da abordagem, ciclo de vida e processo; detalhamento dos elementos adotados de Scrum e XP e justificativa da adaptação técnica | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.3 | 15/09/2026 | Revisão da issue #6: separação de Scrum e XP, responsabilidades, práticas adotadas e quadro comparativo baseado no livro da disciplina | [Thiago Gomes](https://github.com/thgomxs) |
