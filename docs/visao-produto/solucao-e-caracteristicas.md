@@ -23,23 +23,23 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
 
 | ID | Característica | OE principal | Contribuição secundária |
 | --- | --- | :---: | :---: |
-| CP1 | Cadastro de peças | OE1 | OE3 |
-| CP2 | Classificação e busca de peças | OE1 | OE2 |
-| CP3 | Controle de movimentação de estoque | OE2 | OE4 |
-| CP4 | Consulta de disponibilidade e alertas | OE2 | OE3 |
-| CP5 | Agilização do cadastro e da consulta | OE3 | OE1 |
-| CP6 | Relatórios de movimentação | OE4 | OE3 |
+| CP1 | Cadastro de peças com aplicação por veículo | OE1 | OE3 |
+| CP2 | Busca de peças por código, categoria ou veículo | OE1 | OE2 |
+| CP3 | Registro de entrada, saída e baixa automática | OE2 | OE4 |
+| CP4 | Consulta de disponibilidade e alerta de estoque baixo | OE2 | OE3 |
+| CP5 | Cadastro e consulta rápidos de peças | OE3 | OE1 |
+| CP6 | Relatórios de entradas, saídas e vendas do estoque | OE4 | OE3 |
 
 #### Descrição e valor de negócio
 
 | ID | Descrição resumida | Valor de negócio principal |
 | --- | --- | --- |
 | CP1 | Permitir o cadastro de peças com o código do fabricante e a aplicação por veículo, organizando e padronizando o catálogo. | Catálogo organizado e padronizado, com menor risco de erro na identificação das peças. |
-| CP2 | Permitir a classificação e a localização de peças por critérios como código, aplicação e categoria, facilitando a consulta ao catálogo. | Localização rápida e correta das peças, reduzindo a confusão entre itens semelhantes. |
+| CP2 | Permitir a localização de peças por código, categoria ou aplicação por veículo, facilitando a consulta ao catálogo. | Localização rápida e correta das peças, reduzindo a confusão entre itens semelhantes. |
 | CP3 | Registrar entradas e saídas e efetuar a baixa das peças conforme as vendas, mantendo o estoque atualizado. | Estoque fiel à realidade, reduzindo as perdas de vendas por divergências. |
 | CP4 | Permitir a consulta à disponibilidade das peças e emitir alertas de estoque baixo. | Informações confiáveis sobre a disponibilidade das peças e apoio à reposição no momento certo. |
 | CP5 | Oferecer meios ágeis de cadastro e consulta de peças, reduzindo o tempo gasto em tarefas repetitivas. | Menor tempo operacional, liberando o proprietário para o atendimento. |
-| CP6 | Disponibilizar relatórios da movimentação do estoque, apresentando entradas, saídas e vendas. | Visão organizada da operação, apoiando as decisões do proprietário. |
+| CP6 | Gerar relatórios das movimentações do estoque em um período, apresentando entradas, saídas e vendas. | Visão clara da operação, apoiando as decisões do proprietário. |
 
 ### 2.4 Tecnologias a serem utilizadas
 
@@ -99,3 +99,4 @@ Como evolução futura, a integração automática com o Mercado Livre poderá a
 | :----: | :--: | --- | --- |
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Preenchimento do tópico 2 e revisão textual | [João Melo](https://github.com/jot4-ge) |
+| 1.2 | 09/09/2026 | Revisão dos nomes e descrições das características de produto (2.3) | [João Melo](https://github.com/jot4-ge) |

@@ -24,9 +24,22 @@ A empresa comercializa exclusivamente peças de automóveis, sem prestação de 
 
 O controle da operação é feito manualmente, com apoio de planilhas parciais do Excel, sem automação entre o registro de vendas e a atualização do estoque.
 
+## Validação do cliente
+
+O conteúdo da Visão de Produto e Projeto foi validado pelo cliente, Antônio Marcos, em dois momentos: na revisão dos desafios do projeto e na análise do documento completo, que foi aprovado pelo proprietário.
+
+![Confirmação do cliente sobre os desafios do projeto.](../assets/images/visao-produto/validacao-cliente-desafios.png)
+
+*Figura — Validação dos desafios do projeto pelo cliente.*
+
+![Aprovação do documento de Visão de Produto e Projeto pelo cliente.](../assets/images/visao-produto/validacao-cliente-documento.png)
+
+*Figura — Aprovação do documento completo pelo cliente.*
+
 ## Versionamento
 
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Preenchimento dos itens 1.1 e 1.2 e revisão textual | [João Melo](https://github.com/jot4-ge) |
+| 1.2 | 09/09/2026 | Inclusão das evidências de validação do cliente | [João Melo](https://github.com/jot4-ge) |
