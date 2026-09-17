@@ -72,7 +72,7 @@ A proposta é considerada viável no contexto da disciplina, levando em conta o 
 - **Acesso ao cliente:** o proprietário da TSI Peças procurou a equipe e se dispôs a colaborar ao longo do desenvolvimento, favorecendo a elicitação e a validação frequentes de requisitos.
 - **Escopo delimitado:** a solução concentra-se no cadastro organizado de peças e no controle confiável do estoque. Funcionalidades de maior complexidade, como a integração automática com o Mercado Livre, são tratadas como evoluções futuras, fora do MVP. Esse recorte mantém o projeto compatível com o prazo e o tamanho da equipe.
 - **Conhecimento técnico:** a equipe optou por tecnologias amplamente difundidas e com as quais possui familiaridade — React, Python com FastAPI e PostgreSQL por meio do Supabase —, reduzindo o risco associado à curva de aprendizado.
-- **Risco de domínio e mitigação:** o principal ponto de atenção está na modelagem do cadastro de peças, considerando as particularidades dos códigos dos fabricantes e da aplicação por veículo. O acesso direto ao proprietário, que conhece o domínio, e as entregas incrementais nos ciclos previstos no [cronograma](cronograma-e-entregas.md), com validação contínua, contribuem para mitigar esse risco.
+- **Risco de domínio e mitigação:** o principal ponto de atenção está na modelagem do cadastro de peças, considerando as particularidades dos códigos dos fabricantes e da aplicação por veículo. O acesso direto ao proprietário, que conhece o domínio, e as entregas incrementais em sprints de duas semanas, com validação contínua, contribuem para mitigar esse risco.
 
 A viabilidade depende de manter o escopo do MVP controlado, preservar as prioridades e realizar validações frequentes com o cliente ao longo do desenvolvimento.
 
@@ -100,4 +100,3 @@ Como evolução futura, a integração automática com o Mercado Livre poderá a
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Preenchimento do tópico 2 e revisão textual | [João Melo](https://github.com/jot4-ge) |
 | 1.2 | 09/09/2026 | Revisão dos nomes e descrições das características de produto (2.3) | [João Melo](https://github.com/jot4-ge) |
-| 1.3 | 15/09/2026 | Issue #6: referência aos ciclos adaptados do cronograma na análise de viabilidade | [Thiago Gomes](https://github.com/thgomxs) |
