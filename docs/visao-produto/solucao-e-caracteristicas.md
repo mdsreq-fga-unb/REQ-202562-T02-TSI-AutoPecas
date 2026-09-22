@@ -57,13 +57,24 @@ Para a construção da solução, foram definidas tecnologias amplamente utiliza
 
 ### 2.5 Pesquisa de mercado e análise competitiva
 
-A análise de mercado apresentada no projeto identifica os ERPs Bling, Omie, Soften e ERPClass como referências concorrentes no segmento de gestão para autopeças. Essa análise caracteriza a oferta desses sistemas como mais abrangente, com recursos como controle de estoque com aplicação por veículo, ponto de venda (PDV), emissão de notas fiscais, módulo financeiro e integração com marketplaces, voltados a operações de médio e grande porte com equipe dedicada.
+O mercado de sistemas de gestão para autopeças conta com soluções consolidadas, que podem ser divididas em dois grupos: ERPs generalistas voltados a pequenas e médias empresas (como Bling e Tiny/Olist) e sistemas especializados no setor automotivo (como AtacadistaPro, VendaSimples e ERPClass). A análise a seguir compara essas soluções segundo critérios relevantes para o contexto da TSI Peças.
 
-A solução proposta para a TSI Peças não pretende competir em amplitude, mas em foco e simplicidade. Em vez de reproduzir a extensão dos módulos de um ERP, concentra-se na necessidade central do cliente: cadastro organizado de peças e estoque confiável. Para isso, propõe uma interface enxuta, adequada a um operador único, sem o excesso de funcionalidades que pode dificultar a adoção por uma microempresa.
+| Critério | Bling | Tiny (Olist) | Sistemas de autopeças¹ | Solução TSI Peças (proposta) |
+| --- | --- | --- | --- | --- |
+| Foco | ERP generalista para PMEs de e-commerce | ERP generalista para sellers online | Especializados no setor automotivo | Sob medida para a operação da TSI Peças |
+| Preço (entrada) | A partir de ~R$ 55/mês, crescente por módulos e volume | A partir de ~R$ 49/mês (anual), por faixas | A partir de ~R$ 85/mês | Sem custo de licença; usa serviços de camada gratuita no MVP |
+| Modelo | Assinatura mensal recorrente | Assinatura mensal recorrente | Assinatura mensal recorrente | Projeto acadêmico, sem assinatura |
+| Catálogo por aplicação veicular | Não nativo | Não nativo | Sim (nativo) | Sim (foco do projeto) |
+| Amplitude | Alta (fiscal, financeiro, PDV, marketplaces) | Alta (fiscal, expedição, marketplaces) | Alta (referência cruzada, curva ABC, ICMS-ST) | Enxuta (núcleo: catálogo, estoque e vendas) |
+| Público-alvo | Micro a médias empresas | Sellers em crescimento | Autopeças estruturadas (balcão e atacado B2B) | Microempresa de operador único |
 
-A proposta também prevê uma solução sem custo recorrente de assinatura.
+<small>¹ Representados por AtacadistaPro, VendaSimples e ERPClass.</small>
 
-A integração com o Mercado Livre, apontada na análise como parte da oferta dos concorrentes, é reconhecida como uma evolução futura da solução, fora do escopo do MVP.
+As soluções analisadas são robustas, porém direcionadas a operações mais estruturadas do que a da TSI Peças. Fontes independentes confirmam essa característica: o Bling é descrito como podendo ser "overkill" para uma operação enxuta que busca apenas vender e manter o estoque atualizado, além de apresentar limitações para perfis fora do e-commerce com emissão fiscal frequente. Os sistemas especializados em autopeças, por sua vez, são desenhados para lojas que atuam também no atacado B2B e com equipe de vendas, incorporando módulos (referência cruzada, curva ABC, substituição tributária, múltiplos depósitos) que excedem a necessidade de um operador único.
+
+A solução proposta para a TSI Peças não pretende competir em amplitude, mas em foco e adequação. Concentra-se no núcleo que resolve a dor real do cliente — catálogo organizado, controle de estoque confiável e registro de vendas — com uma interface enxuta para um operador que trabalha sozinho, sem o custo recorrente de assinatura nem a complexidade de configurar módulos não essenciais.
+
+Cabe ressaltar que a ausência de custo de licença não significa ausência total de custos de operação: serviços de hospedagem e infraestrutura possuem planos gratuitos com limites, e a operação em escala pode exigir custos futuros. A integração automática com o Mercado Livre, presente em vários concorrentes, é reconhecida como evolução futura da solução.
 
 ### 2.6 Viabilidade da proposta
 
@@ -100,3 +111,4 @@ Como evolução futura, a integração automática com o Mercado Livre poderá a
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Preenchimento do tópico 2 e revisão textual | [João Melo](https://github.com/jot4-ge) |
 | 1.2 | 09/09/2026 | Revisão dos nomes e descrições das características de produto (2.3) | [João Melo](https://github.com/jot4-ge) |
+| 1.3 | 22/09/2026 | Revisão da pesquisa de mercado (2.5): tabela comparativa com critérios e fontes, e correção da afirmação sobre custos, conforme issue #4 | [João Melo](https://github.com/jot4-ge) |
