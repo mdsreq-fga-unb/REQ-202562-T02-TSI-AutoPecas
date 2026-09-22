@@ -75,6 +75,7 @@ nav:
           - Lições aprendidas: visao-produto/licoes-aprendidas.md
   - Requisitos e Planejamento:
       - requisitos-e-planejamento/index.md
+      - Requisitos: requisitos-e-planejamento/requisitos.md
   - Atas:
       - atas/index.md
       - Sprint 0: atas/sprint-0.md

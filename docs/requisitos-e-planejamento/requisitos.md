@@ -2,14 +2,7 @@
 
 Este documento apresenta os requisitos funcionais (RF) e não funcionais (RNF) do sistema TSI Peças, derivados das características de produto definidas na etapa de elicitação. Os requisitos estão organizados por característica de produto de origem e serão utilizados como base para o planejamento das sprints e para a validação com o cliente.
 
-## Histórico de Versão
 
-| Versão | Data | Descrição | Autor |
-|:---:|:---:|---|---|
-| 1.0 | 21/09/2026 | Versão inicial com 46 RFs e 8 RNFs derivados das CPs | Equipe TSI Peças |
-| 1.1 | 21/09/2026 | Reclassificação de RF46 para RNF09; correção de RNF06 e RNF08; refinamento de RNF04 e RNF07 | Equipe TSI Peças |
-
----
 
 ## Requisitos Funcionais
 
@@ -376,3 +369,9 @@ O sistema deve registrar automaticamente o identificador do usuário responsáve
 Classificação: suportabilidade/auditabilidade (URPS+) / produto — segurança da informação (Sommerville).
 *Critério: toda movimentação, venda ou ajuste registrado deve conter, de forma não editável, o identificador do usuário, a data e a hora da operação.*
 *Rastreabilidade: CP10*
+
+## Versionamento
+
+| Versão | Data | Descrição | Autor(es/as) |
+| :----: | :--: | --- | --- |
+| 1.0 | 21/09/2026 | Versão inicial do requisitos do projeto | [Bruno Ferreira](https://github.com/brunnf) |
