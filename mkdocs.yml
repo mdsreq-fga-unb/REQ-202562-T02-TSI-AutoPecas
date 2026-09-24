@@ -32,6 +32,7 @@ theme:
     - navigation.tracking
     - navigation.sections
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.indexes
     - search.suggest
     - search.highlight
