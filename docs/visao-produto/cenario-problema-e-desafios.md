@@ -58,7 +58,7 @@ A aquisição do equipamento representa um custo adicional. Por envolver um disp
 
 #### Emissão fiscal
 
-Atualmente, a emissão de notas é feita manualmente e em mais de um sistema, com redigitação de dados. A automação completa da emissão fiscal envolve regras específicas (por exemplo, obrigações legais e integração com sistemas externos) que extrapolam o núcleo do problema. Por isso, a emissão fiscal totalmente automatizada é tratada como **evolução futura**, fora do escopo do MVP, podendo o produto, na fase atual, apenas apoiar a atividade a partir do reaproveitamento dos dados já cadastrados.
+Atualmente, a emissão de notas é feita manualmente e em mais de um sistema, com redigitação de dados. No escopo do MVP, a solução **não realiza a emissão fiscal** — esta continua sendo feita no emissor externo. O sistema atua como apoio: mantém os dados necessários à emissão, reaproveitando o cadastro das peças, e registra a nota emitida e o envio associados a cada venda. A automação completa da emissão fiscal, que envolve regras específicas (obrigações legais e integração com sistemas externos), permanece como **evolução futura**, fora do escopo do MVP.
 
 #### Desafios operacionais
 
@@ -79,3 +79,4 @@ Delimitar esse escopo é, por si só, um desafio de priorização.
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Preenchimento dos itens 1.3 a 1.5, inclusão dos diagramas e revisão textual | [João Melo](https://github.com/jot4-ge) |
 | 1.2 | 18/09/2026 | Correções da issue #3: novo Rich Picture, Ishikawa reclassificado, indicadores do problema, declaração do problema revisada e emissão fiscal declarada fora do escopo | [João Melo](https://github.com/jot4-ge) |
+| 1.3 | 24/09/2026 | Refinamento da subseção de emissão fiscal, alinhada à decisão de escopo da CP7 (o sistema apoia, mas não emite nota fiscal) | [João Melo](https://github.com/jot4-ge) |
