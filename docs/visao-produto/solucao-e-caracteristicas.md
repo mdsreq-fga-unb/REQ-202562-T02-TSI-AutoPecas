@@ -103,18 +103,20 @@ A viabilidade depende de manter o escopo do MVP controlado, preservar as priorid
 
 #### Para o cliente: TSI Peças
 
-- Redução das perdas de vendas causadas por divergências entre o estoque real e o registrado, com informações mais confiáveis sobre a disponibilidade das peças.
-- Organização e padronização do cadastro de peças, diminuindo os erros de identificação e localização dos itens.
+- Redução das perdas de vendas causadas por divergências entre o estoque real e o registrado, incluindo a diminuição dos cancelamentos no Mercado Livre e a preservação da reputação da loja.
+- Organização e padronização do cadastro de peças, com um catálogo único que serve de referência para o estoque, os anúncios e os documentos fiscais.
+- Maior previsibilidade financeira, com acompanhamento da necessidade de capital de giro e substituição do fechamento manual entre planilhas.
+- Apoio às decisões de compra e de precificação, baseado no desempenho do estoque e das vendas.
 - Redução do tempo gasto em tarefas operacionais repetitivas, liberando o proprietário para o atendimento e a gestão do negócio.
-- Maior visibilidade sobre a movimentação do estoque — entradas, saídas e vendas —, apoiando as decisões do dia a dia.
 
 #### Para o usuário: proprietário e operador
 
-- Substituição do controle manual em planilhas por uma ferramenta simples e adequada à sua rotina, com menor esforço operacional.
-- Consulta rápida à disponibilidade das peças e alertas de estoque baixo, apoiando a reposição no momento certo.
-- Menor risco de erro no controle, com a centralização das informações que atualmente estão dispersas.
+- Substituição do controle manual em planilhas por uma ferramenta única e adequada à sua rotina, com menor esforço operacional.
+- Estoque confiável e atualizado a cada venda, com prevenção de vendas acima do saldo disponível.
+- Reaproveitamento dos dados no apoio às rotinas fiscais e de expedição, eliminando o cadastro duplicado entre o marketplace e o emissor de notas.
+- Menor risco de erro no controle, com a centralização das informações que hoje estão dispersas.
 
-Como evolução futura, a integração automática com o Mercado Livre poderá ampliar esses benefícios ao sincronizar o estoque do sistema com o canal de vendas on-line e reduzir o esforço de atualização. Essa funcionalidade é desejável, mas permanece fora do escopo do MVP.
+Como evolução futura, a integração automática com o Mercado Livre poderá ampliar esses benefícios ao sincronizar o estoque do sistema com o canal de vendas on-line, reduzindo o esforço de atualização. Essa funcionalidade é desejável, mas permanece fora do escopo do MVP.
 
 ## Versionamento
 
@@ -124,4 +126,4 @@ Como evolução futura, a integração automática com o Mercado Livre poderá a
 | 1.1 | 07/09/2026 | Preenchimento do tópico 2 e revisão textual | [João Melo](https://github.com/jot4-ge) |
 | 1.2 | 09/09/2026 | Revisão dos nomes e descrições das características de produto (2.3) | [João Melo](https://github.com/jot4-ge) |
 | 1.3 | 22/09/2026 | Revisão da pesquisa de mercado (2.5): tabela comparativa com critérios e fontes, e correção da afirmação sobre custos, conforme issue #4 | [João Melo](https://github.com/jot4-ge) |
-| 1.4 | 24/09/2026 | Revisão dos objetivos específicos (2.2) e características de produto (2.3) conforme feedback da monitoria: 5 OEs, 9 CPs no padrão de capacidade, rastreabilidade e notas de escopo | [João Melo](https://github.com/jot4-ge) |
+| 1.4 | 24/09/2026 | Revisão dos objetivos específicos (2.2), características de produto (2.3) e benefícios esperados (2.7) conforme feedback da monitoria: 5 OEs, 9 CPs no padrão de capacidade, rastreabilidade, notas de escopo e alinhamento dos benefícios ao novo escopo | [João Melo](https://github.com/jot4-ge) |
