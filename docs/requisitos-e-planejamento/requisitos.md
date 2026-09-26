@@ -264,5 +264,5 @@ O sistema deve registrar automaticamente o identificador do usuário responsáve
 
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
-| 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.0 | 21/09/2026 | Versão inicial do requisitos do projeto | [Bruno Ferreira](https://github.com/brunnf) |
 | 1.1 | 24/09/2026 | Formatação dos requisitos funcionais em tabelas e dos não funcionais em cartões | [Thiago Gomes](https://github.com/thgomxs) |
