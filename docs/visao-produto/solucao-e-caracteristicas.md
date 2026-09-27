@@ -15,6 +15,7 @@ A solução visa reduzir as perdas de vendas causadas por informações de estoq
 - **OE3:** reduzir o tempo gasto em tarefas operacionais repetitivas.
 - **OE4:** facilitar as decisões de compra e de precificação, com base no desempenho do estoque e das vendas.
 - **OE5:** aumentar a previsibilidade financeira do negócio, facilitando o controle da necessidade de caixa.
+- **OE6:** centralizar as informações da operação hoje dispersas em planilhas, estabelecendo o sistema como fonte única de dados.
 
 ### 2.3 Características de produto mapeadas com os objetivos específicos
 
@@ -24,9 +25,9 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
 
 | ID | Característica | OE principal | Contribuição secundária |
 | --- | --- | :---: | :---: |
-| CP1 | Cadastro e Catálogo de Peças | OE1 | OE3 |
+| CP1 | Cadastro e Catálogo de Peças | OE1 | OE3, OE6 |
 | CP2 | Controle e Movimentação de Estoque | OE2 | OE4 |
-| CP3 | Vínculo de Estoque e Anúncios | OE2 | OE3 |
+| CP3 | Vínculo de Estoque e Anúncios | OE2 | OE3, OE6 |
 | CP4 | Registro de Vendas e Recebimentos | OE2 | OE5 |
 | CP5 | Análise e Planejamento de Compras | OE4 | OE2, OE5 |
 | CP6 | Controle Financeiro e Capital de Giro | OE5 | OE3 |
@@ -127,3 +128,4 @@ Como evolução futura, a integração automática com o Mercado Livre poderá a
 | 1.2 | 09/09/2026 | Revisão dos nomes e descrições das características de produto (2.3) | [João Melo](https://github.com/jot4-ge) |
 | 1.3 | 22/09/2026 | Revisão da pesquisa de mercado (2.5): tabela comparativa com critérios e fontes, e correção da afirmação sobre custos, conforme issue #4 | [João Melo](https://github.com/jot4-ge) |
 | 1.4 | 24/09/2026 | Revisão dos objetivos específicos (2.2), características de produto (2.3) e benefícios esperados (2.7) conforme feedback da monitoria: 5 OEs, 9 CPs no padrão de capacidade, rastreabilidade, notas de escopo e alinhamento dos benefícios ao novo escopo | [João Melo](https://github.com/jot4-ge) |
+| 1.5 | 27/09/2026 | Inclusão do OE6 (centralização de dados como fonte única), sustentado pelas CP1 e CP3, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
