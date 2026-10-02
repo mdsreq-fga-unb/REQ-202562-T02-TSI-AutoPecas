@@ -126,11 +126,7 @@ A interface web do sistema deve ser responsiva e operável por toque em disposit
 
 **Classificação:** usabilidade (URPS+) / produto — usabilidade (Sommerville).
 
-**Critério verificável:** nas telas de consulta de saldo, registro de movimentações e consulta de vendas, testadas nas larguras de viewport de 360px, 390px e 414px CSS em orientação retrato:
-
-1. Nenhum elemento visual ou textual deve se sobrepor a outro;
-2. Nenhuma rolagem horizontal deve ser exibida ou necessária;
-3. Todos os botões, campos de entrada e links interativos devem apresentar área de toque mínima de 44 × 44 pixels CSS (WCAG 2.1 AA), acionáveis por toque sem necessidade de aproximação (_zoom_).
+**Critério verificável:** Conformidade com **WCAG 2.1 AA** — área de toque mínima de **44×44 pixels CSS** para todos os elementos interativos, nas larguras de viewport de 360px, 390px e 414px CSS em orientação retrato.
 
 </article>
 
@@ -138,15 +134,11 @@ A interface web do sistema deve ser responsiva e operável por toque em disposit
 
 #### RNF02 — Tolerância a Falhas de Conexão
 
-Em caso de perda de conexão de rede durante o processamento de uma operação entre cliente e servidor, o sistema deve garantir a recuperabilidade do estado e a tolerância a falhas sem perda ou duplicidade de dados: se a transação foi confirmada no servidor antes da queda de conexão, o resultado persistido deve ser mantido e exibido após a reconexão; se não foi confirmada, nenhum dado parcial deve permanecer no estoque.
+Em caso de perda de conexão de rede durante o processamento de uma operação entre cliente e servidor, o sistema deve garantir a recuperabilidade do estado e a tolerância a falhas sem perda ou duplicidade de dados.
 
 **Classificação:** confiabilidade (URPS+) / produto — confiabilidade (Sommerville).
 
-**Critério verificável:** interrompida a conexão no envio de uma movimentação ou venda:
-
-1. Caso a requisição tenha sido confirmada no servidor antes da queda de rede, ao restabelecer a conexão o sistema deve identificar o estado e exibir a confirmação da operação com o saldo atualizado correspondente;
-2. Caso a transação não tenha sido completada no servidor, o saldo deve permanecer inalterado;
-3. O reenvio da mesma operação pelo usuário deve ser protegido por chave de idempotência de requisição, impedindo que a mesma saída ou venda seja gravada em duplicidade após a reconexão.
+**Critério verificável:** **0% de perda ou duplicidade de dados** em operações interrompidas por queda de conexão, garantido por chave de idempotência de requisição.
 
 </article>
 
@@ -158,7 +150,7 @@ O sistema deve operar corretamente nos navegadores web modernos Google Chrome, M
 
 **Classificação:** suportabilidade/compatibilidade (URPS+) / produto — portabilidade (Sommerville).
 
-**Critério verificável:** a conformidade deve ser validada pela execução com sucesso do fluxo principal de aceitação (autenticação de usuário, busca de peças no catálogo, registro de movimentação de estoque e registro de venda) nas duas versões mais recentes dos quatro navegadores listados, sem erros bloqueantes no console, sem quebras de layout e com persistência íntegra dos dados.
+**Critério verificável:** Execução sem erros bloqueantes nas **2 versões mais recentes** de Chrome, Firefox, Edge e Safari — sem quebras de layout e com persistência íntegra dos dados.
 
 </article>
 
@@ -170,11 +162,7 @@ As consultas ao catálogo, ao saldo de estoque e aos relatórios devem apresenta
 
 **Classificação:** desempenho (URPS+) / produto — eficiência (Sommerville).
 
-**Critério verificável:** executada uma bateria de testes de desempenho com a volumetria e concorrência especificadas, avaliada separadamente para cada categoria de consulta:
-
-1. **Consultas ao catálogo:** 100 requisições consecutivas de busca por código, nome ou aplicação — ao menos 95 devem responder em até 3 segundos;
-2. **Consultas de saldo de estoque:** 100 requisições consecutivas de consulta pontual de saldo — ao menos 95 devem responder em até 3 segundos;
-3. **Relatórios analíticos:** 100 requisições consecutivas de geração de relatórios de movimentações e vendas com filtros por período — ao menos 95 devem responder em até 3 segundos.
+**Critério verificável:** **P95 ≤ 3 segundos** para consultas ao catálogo, saldo de estoque e relatórios analíticos, sob carga de 2 usuários simultâneos e conexão mínima de 10 Mbps.
 
 </article>
 
@@ -186,28 +174,11 @@ As senhas dos usuários devem ser armazenadas obrigatoriamente utilizando funç�
 
 **Classificação:** segurança (URPS+) / produto — segurança da informação (Sommerville).
 
-**Critério verificável:**
-
-1. 100% das senhas salvas no banco de dados devem utilizar hash criptográfico com salt (bcrypt), sendo verificada a ausência de senhas em texto simples no banco ou em logs da aplicação;
-2. Tentativas de requisição não criptografadas (HTTP) devem ser rejeitadas ou redirecionadas automaticamente para HTTPS;
-3. Todas as rotas autenticadas da aplicação devem trafegar exclusivamente sobre HTTPS com certificado digital válido.
+**Critério verificável:** **100% das senhas** armazenadas com hash bcrypt com salt; todo o tráfego protegido por **TLS 1.2 ou superior**, sem fallback para HTTP.
 
 </article>
 
-<article class="requirement-card" markdown="1">
 
-#### RNF06 — Tolerância a Falhas na Integração (Mercado Livre)
-
-Em caso de indisponibilidade ou instabilidade da API do Mercado Livre, o sistema deve registrar o erro, notificar o operador e manter os registros operacionais locais intactos, retomando a sincronização e operações dependentes automaticamente quando a API estiver restabelecida, sem causar travamentos no sistema interno.
-
-**Classificação:** confiabilidade (URPS+) / produto — confiabilidade (Sommerville).
-
-**Critério verificável:**
-
-1. Ao simular queda de resposta da API do Mercado Livre, as funções internas do sistema devem continuar operando sem interrupção.
-2. Nenhuma perda de dados local deve ocorrer devido a timeouts na integração.
-
-</article>
 
 ## Versionamento
 
@@ -216,3 +187,4 @@ Em caso de indisponibilidade ou instabilidade da API do Mercado Livre, o sistema
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 24/09/2026 | Formatação dos requisitos funcionais em tabelas e dos não funcionais em cartões | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.2 | 30/09/2026 | Atualização dos RFs e RNFs conforme a versão atual dos requisitos | Equipe |
+
