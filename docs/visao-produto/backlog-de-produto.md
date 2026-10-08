@@ -1199,15 +1199,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 
 #### Matriz de Valor de negócio × Esforço técnico
 
-<iframe
-  title="Matriz de valor de negócio e esforço técnico da TSI Peças"
-  width="100%"
-  height="620"
-  src="https://miro.com/app/live-embed/uXjVEfU_HbE=/?embedMode=view_only_without_ui"
-  loading="lazy"
-  allow="fullscreen"
-  allowfullscreen>
-</iframe>
+<iframe width="100%" height="900" src="https://miro.com/app/live-embed/uXjVEfU_HbE=/?embedMode=view_only_without_ui&moveToViewport=5543,1432,3508,3730&embedId=91070939469" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
 ## Versionamento
 
