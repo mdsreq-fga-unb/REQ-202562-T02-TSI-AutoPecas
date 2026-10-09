@@ -28,7 +28,7 @@ A equipe de desenvolvimento é composta pelos seguintes membros. Todos os integr
 
 #### Métodos e frequência de reuniões
 
-- **Revisão de sprint:** ao final de cada [sprint de 14 dias](cronograma-e-entregas.md), o grupo organizará uma videochamada no Google Meet com o cliente para demonstrar as soluções construídas. É o momento dedicado para que o proprietário avalie o sistema e direcione as próximas necessidades. Todas essas sessões são documentadas em ata, registrada na pasta de atas do repositório e linkada à entrega correspondente, garantindo a rastreabilidade exigida na disciplina.
+- **Revisão de sprint:** ao final de cada [sprint de 14 dias](cronograma-e-entregas.md), o grupo organizará uma videochamada no Google Meet com o cliente para demonstrar as soluções construídas. É o momento dedicado para que o proprietário avalie o sistema e direcione as próximas necessidades. Todas essas sessões são documentadas em ata, registrada na [pasta de atas do repositório](../atas/index.md) e linkada à entrega correspondente, garantindo a rastreabilidade exigida na disciplina.
 - **Planejamento de sprint:** imediatamente após a reunião com o cliente, os membros do grupo farão o mapeamento da próxima iteração, reavaliando o repositório de requisitos e selecionando as tarefas prioritárias para o ciclo seguinte, com base no último feedback recebido.
 - **Retrospectiva:** fechando o período da sprint, o time fará uma avaliação interna, refletindo sobre as práticas adotadas, identificando gargalos técnicos ou de comunicação e definindo ações corretivas.
 
@@ -45,6 +45,19 @@ O processo ocorre em três etapas, cobrindo tanto a qualidade interna do requisi
 2. **Definition of Done (DoD) — verificação interna:** a funcionalidade é considerada concluída após finalização do código, integração com o banco e testes internos sem bugs críticos. O deploy no ambiente de homologação é parte da DoD e antecede a validação externa; o deploy em produção ocorre após o aceite do cliente.
 3. **Testes de aceitação com o cliente — validação externa:** ao final de cada sprint, o cliente valida se a entrega cumpre os critérios de aceitação definidos no DoR e atende à necessidade real do negócio. Divergências identificadas resultam em ajustes no backlog da sprint seguinte.
 
+### 7.4 Rastreabilidade das atas
+
+Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alinhamento interno da equipe) é registrada em ata, com feedback, decisões, Change Requests (CR) e ações, publicada na [pasta de atas do repositório](../atas/index.md) e linkada abaixo, garantindo a rastreabilidade exigida na disciplina.
+
+| Sprint | Data | Tipo | Ata |
+| --- | --- | --- | --- |
+| Sprint 0 | 03/09/2026 | Reunião interna — revisão do feedback do professor sobre a entrega inicial | [Sprint 0](../atas/sprint-0.md) |
+| Sprint 1 | 17/09/2026 | Entrevista com o cliente + planejamento interno da equipe | [Sprint 1](../atas/sprint-1.md) |
+| Sprint 2 | 30/09/2026 | Definição do valor de negócio dos requisitos com o cliente | [Sprint 2](../atas/sprint-2.md) |
+| Sprint 3 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP | [Sprint 3](../atas/sprint-3.md) |
+
+> Histórico completo, incluindo as atas das próximas sprints à medida que forem realizadas, em [Atas](../atas/index.md).
+
 ## Versionamento
 
 | Versão | Data | Descrição | Autor(es/as) |
@@ -53,3 +66,4 @@ O processo ocorre em três etapas, cobrindo tanto a qualidade interna do requisi
 | 1.1 | 07/09/2026 | Preenchimento do tópico 7 e revisão textual | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.2 | 07/09/2026 | Correção dos papéis da equipe e refinamento do processo de validação | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.3 | 27/09/2026 | Correção da issue 9: justificativa da acumulação de papéis, alinhamento das sprints a 14 dias, uso do GitHub Issues como ferramenta única de backlog, registro de evidências do WhatsApp e distinção entre DoR/DoD e validação externa | [Luiz Moreira](https://github.com/luizhtmoreira) |
+| 1.4 | 09/10/2026 | Adição da rastreabilidade das atas (tópico 7.4), linkando as atas de cada sprint | [Luiz Moreira](https://github.com/luizhtmoreira) |
