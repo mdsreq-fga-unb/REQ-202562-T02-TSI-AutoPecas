@@ -124,6 +124,18 @@
   line-height: 1.5;
 }
 
+.md-typeset .delivery-status--done {
+  color: #166534;
+  border-color: #a7d9b4;
+  background-color: #eaf7ee;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .delivery-status--done {
+  color: #9ae6b4;
+  border-color: #316b46;
+  background-color: #183426;
+}
+
 .video-embed {
   position: relative;
   width: 100%;
