@@ -72,7 +72,7 @@ O mercado de sistemas de gestão para autopeças conta com soluções consolidad
 | Critério | Bling | Tiny (Olist) | Sistemas de autopeças¹ | Solução TSI Peças (proposta) |
 | --- | --- | --- | --- | --- |
 | Foco | ERP generalista para PMEs de e-commerce | ERP generalista para sellers online | Especializados no setor automotivo | Sob medida para a operação da TSI Peças |
-| Preço (entrada) | A partir de ~R$ 55/mês, crescente por módulos e volume | A partir de ~R$ 49/mês (anual), por faixas | A partir de ~R$ 85/mês | Sem custo de licença; usa serviços de camada gratuita no MVP |
+| Preço (entrada) | A partir de ~R$ 60/mês, crescente por módulos e volume | A partir de ~R$ 66/mês (com desconto no plano anual), por faixas | A partir de ~R$ 85/mês | Sem custo de licença; usa serviços de camada gratuita no MVP |
 | Modelo | Assinatura mensal recorrente | Assinatura mensal recorrente | Assinatura mensal recorrente | Projeto acadêmico, sem assinatura |
 | Catálogo por aplicação veicular | Não nativo | Não nativo | Sim (nativo) | Sim (foco do projeto) |
 | Amplitude | Alta (fiscal, financeiro, PDV, marketplaces) | Alta (fiscal, expedição, marketplaces) | Alta (referência cruzada, curva ABC, ICMS-ST) | Enxuta (núcleo: catálogo, estoque e vendas) |
@@ -125,4 +125,4 @@ A viabilidade depende de manter o escopo do MVP controlado, preservar as priorid
 | 1.5 | 27/09/2026 | Inclusão do OE6 (centralização de dados como fonte única), sustentado pelas CP1 e CP3, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
 | 1.6 | 02/10/2026 | Remoção da CP3 (Vínculo de Estoque e Anúncios) por saída da vinculação com anúncios do escopo do MVP; renumeração das CPs (agora 8) e dos VNs; remoção da nota de escopo da CP3 e atualização da referência da nota fiscal para a CP6; transferência da contribuição do OE6 para a CP5 (Controle Financeiro), mantendo o OE6 sustentado por CP1 e CP5, conforme validação da monitoria | [João Melo](https://github.com/jot4-ge) |
 | 1.7 | 10/10/2026 | Reescrita do VN da CP de integridade, OE6 como principal da CP2, fragmentação da CP de integridade/usabilidade em duas (Integridade e Consistência dos Dados + Acessibilidade e Responsividade), remapeamento da CP de acesso e renumeração, conforme feedback da monitoria | [João Melo](https://github.com/jot4-ge) |
-| 1.8 | 11/10/2026 | Correção do VN7 (removida a parte de interface, que pertence à CP8), ajuste do VN8 e revisão do parágrafo da pesquisa de mercado (2.5) com citação das referências, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
+| 1.8 | 11/10/2026 | Correção do VN7 (removida a parte de interface, que pertence à CP8), ajuste do VN8 e revisão da pesquisa de mercado (2.5): atualização dos preços de entrada e citação das referências no texto, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
