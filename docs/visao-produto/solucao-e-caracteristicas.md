@@ -30,7 +30,7 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
 | CP4 | Análise e Planejamento de Compras | OE4 | OE2, OE5 |
 | CP5 | Controle Financeiro e Capital de Giro | OE5 | OE3, OE6 |
 | CP6 | Apoio Fiscal e Expedição | OE3 | OE1 |
-| CP7 | Integridade e Consistência dos Dados | OE2 | OE6 |
+| CP7 | Segurança e Integridade dos Dados | OE2 | OE6 |
 | CP8 | Acessibilidade e Responsividade | OE3 | OE2 |
 | CP9 | Gerenciamento e Autenticação de Usuários | OE2 | OE6 |
  
@@ -44,7 +44,7 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
 | CP4 | A solução deverá analisar o desempenho do estoque e das vendas e apoiar o planejamento das compras, permitindo que as decisões de reposição e de precificação sejam tomadas com base em dados. | VN4 | Menor perda de vendas por ruptura de estoque e melhor uso do capital disponível para compras. |
 | CP5 | A solução deverá consolidar as informações financeiras da operação, permitindo acompanhar a necessidade de capital de giro do negócio. | VN5 | Substituição do fechamento manual entre planilhas e previsibilidade da necessidade de caixa. |
 | CP6 | A solução deverá apoiar as rotinas fiscais e de expedição das vendas, permitindo reaproveitar os dados já cadastrados e acompanhar o envio das peças. | VN6 | Eliminação do cadastro duplicado entre o marketplace e o emissor de notas fiscais. |
-| CP7 | A solução deverá garantir a consistência dos dados de estoque, permitindo operar o sistema com segurança durante a rotina de separação e envio. | VN7 | Confiabilidade dos dados em operações simultâneas. |
+| CP7 | A solução deverá garantir a integridade e a consistência dos dados de estoque e protegê-los no armazenamento e na transmissão, permitindo operar o sistema com segurança durante a rotina de separação e envio. | VN7 | Confiabilidade e proteção dos dados da operação. |
 | CP8 | A solução deverá oferecer uma interface acessível e responsiva, adequada ao uso em telas de diferentes tamanhos, permitindo operar o sistema no próprio local de trabalho durante a rotina de separação e envio. | VN8 | Interface acessível e responsiva, adaptável a diferentes tamanhos de tela. |
 | CP9 | A solução deverá controlar o acesso dos usuários e registrar a autoria das operações, permitindo que tarefas operacionais sejam delegadas com segurança. | VN9 | Preparação para a delegação de tarefas operacionais em caso de contratação futura. |
  
@@ -126,3 +126,4 @@ A viabilidade depende de manter o escopo do MVP controlado, preservar as priorid
 | 1.6 | 02/10/2026 | Remoção da CP3 (Vínculo de Estoque e Anúncios) por saída da vinculação com anúncios do escopo do MVP; renumeração das CPs (agora 8) e dos VNs; remoção da nota de escopo da CP3 e atualização da referência da nota fiscal para a CP6; transferência da contribuição do OE6 para a CP5 (Controle Financeiro), mantendo o OE6 sustentado por CP1 e CP5, conforme validação da monitoria | [João Melo](https://github.com/jot4-ge) |
 | 1.7 | 10/10/2026 | Reescrita do VN da CP de integridade, OE6 como principal da CP2, fragmentação da CP de integridade/usabilidade em duas (Integridade e Consistência dos Dados + Acessibilidade e Responsividade), remapeamento da CP de acesso e renumeração, conforme feedback da monitoria | [João Melo](https://github.com/jot4-ge) |
 | 1.8 | 11/10/2026 | Correção do VN7 (removida a parte de interface, que pertence à CP8), ajuste do VN8 e revisão da pesquisa de mercado (2.5): atualização dos preços de entrada e citação das referências no texto, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
+| 1.9 | 12/10/2026 | Renomeação da CP7 para "Segurança e Integridade dos Dados" e ajuste de sua descrição e do VN7, passando a abranger a segurança dos dados, conforme validação da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
