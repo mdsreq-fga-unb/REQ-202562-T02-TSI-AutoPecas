@@ -47,6 +47,14 @@
 .md-typeset .backlog-page .backlog-table--priority th:nth-child(6) { width: 7%; }
 .md-typeset .backlog-page .backlog-table--priority th:nth-child(7) { width: 10%; }
 .md-typeset .backlog-page .backlog-table--priority th:nth-child(8) { width: 14%; }
+.md-typeset .backlog-page .backlog-table--epics th:nth-child(1) { width: 38%; }
+.md-typeset .backlog-page .backlog-table--epics th:nth-child(2) { width: 30%; }
+.md-typeset .backlog-page .backlog-table--epics th:nth-child(3) { width: 32%; }
+.md-typeset .backlog-page .backlog-table--stories th:nth-child(1),
+.md-typeset .backlog-page .backlog-table--stories th:nth-child(2),
+.md-typeset .backlog-page .backlog-table--stories th:nth-child(5) { width: 10%; }
+.md-typeset .backlog-page .backlog-table--stories th:nth-child(3) { width: 22%; }
+.md-typeset .backlog-page .backlog-table--stories th:nth-child(4) { width: 48%; }
 .md-typeset .backlog-page .backlog-rnfs {
   display: block;
   margin-top: .5rem;
@@ -1201,6 +1209,142 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 
 <iframe width="100%" height="900" src="https://miro.com/app/live-embed/uXjVEfU_HbE=/?embedMode=view_only_without_ui&moveToViewport=5543,1432,3508,3730&embedId=91070939469" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
+### 10.3 Épicos
+
+Os épicos agrupam as histórias de usuário do MVP por uma necessidade ampla do produto, mantendo o vínculo com a característica de produto (CP) de origem.
+
+<table class="backlog-table backlog-table--epics">
+<thead><tr>
+<th scope="col">Épico</th>
+<th scope="col">CP de origem</th>
+<th scope="col">US vinculadas</th>
+</tr></thead>
+<tbody>
+<tr>
+<td data-label="Épico"><strong id="ep01">EP01</strong><br>Gestão do catálogo de peças</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a><br>Gestão do catálogo de peças</td>
+<td data-label="US vinculadas"><a href="#us01">US01</a>, <a href="#us02">US02</a>, <a href="#us03">US03</a>, <a href="#us04">US04</a>, <a href="#us05">US05</a>, <a href="#us06">US06</a></td>
+</tr>
+<tr>
+<td data-label="Épico"><strong id="ep02">EP02</strong><br>Controle de movimentações e saldo</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a><br>Controle de movimentações e saldo do estoque</td>
+<td data-label="US vinculadas"><a href="#us08">US08</a>, <a href="#us09">US09</a>, <a href="#us10">US10</a>, <a href="#us12">US12</a>, <a href="#us14">US14</a></td>
+</tr>
+<tr>
+<td data-label="Épico"><strong id="ep03">EP03</strong><br>Registro e cancelamento de vendas</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">CP3</a><br>Registro de vendas e recebimentos</td>
+<td data-label="US vinculadas"><a href="#us15">US15</a>, <a href="#us16">US16</a></td>
+</tr>
+</tbody>
+</table>
+
+### 10.4 Histórias de usuário
+
+As 13 histórias de usuário (US) detalham os requisitos funcionais selecionados para o MVP. A tabela apresenta sua origem, os requisitos não funcionais aplicáveis e as dependências.
+
+<table class="backlog-table backlog-table--stories">
+<thead><tr>
+<th scope="col">US</th>
+<th scope="col">RF de origem</th>
+<th scope="col">RNFs vinculados</th>
+<th scope="col">Dependências</th>
+<th scope="col">CP de origem</th>
+</tr></thead>
+<tbody>
+<tr>
+<td data-label="US"><strong id="us01" title="Cadastrar peça">US01</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF01</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">acesso autenticado com um dos perfis previstos no RF.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us02" title="Importar peças via planilha">US02</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF02</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">dados do cadastro de peças definidos em <a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF01</a>; sua entrada manual não precisa ser executada para cada peça importada.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us03" title="Associar veículo à peça">US03</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF03</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">uma peça cadastrada por <a href="#us01">US01</a> ou <a href="#us02">US02</a>.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us04" title="Buscar peça">US04</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF04</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">catálogo com peças de <a href="#us01">US01</a> ou <a href="#us02">US02</a>; associações de <a href="#us03">US03</a> para a pesquisa por aplicação.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us05" title="Editar peça">US05</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF05</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">uma peça cadastrada por <a href="#us01">US01</a> ou <a href="#us02">US02</a>.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us06" title="Alterar status da peça">US06</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF06</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">uma peça cadastrada por <a href="#us01">US01</a> ou <a href="#us02">US02</a>.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us08" title="Registrar entrada de peças">US08</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF08</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">peça cadastrada em <a href="#us01">US01</a> ou <a href="#us02">US02</a>. A identificação do fornecedor é informada na própria entrada.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us09" title="Registrar saída manual">US09</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF09</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">uma peça cadastrada e um saldo conhecido.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us10" title="Registrar ajuste de inventário">US10</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF10</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">uma peça cadastrada e seu saldo anterior conhecido.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us12" title="Consultar saldo de peça">US12</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF12</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">uma peça cadastrada e seu saldo conhecido; movimentações concluídas fornecem os dados usados na consulta.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us14" title="Filtrar histórico por período">US14</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF14</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">peça cadastrada em <a href="#us01">US01</a> ou <a href="#us02">US02</a> e acesso aos registros das movimentações disponíveis no MVP (<a href="#us08">US08</a>, <a href="#us09">US09</a>, <a href="#us10">US10</a>, <a href="#us15">US15</a> e <a href="#us16">US16</a>), conforme forem entregues. A listagem filtrada integra esta história.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us15" title="Registrar venda">US15</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">RF15</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">peças cadastradas e seus saldos conhecidos.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">CP3</a></td>
+</tr>
+<tr>
+<td data-label="US"><strong id="us16" title="Cancelar venda">US16</strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">RF16</a></td>
+<td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
+<td data-label="Dependências">uma venda registrada por <a href="#us15">US15</a>, com as peças e quantidades que deram origem à baixa de estoque.</td>
+<td data-label="CP de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">CP3</a></td>
+</tr>
+</tbody>
+</table>
+
 ## Versionamento
 
 <table class="backlog-table ">
@@ -1221,6 +1365,12 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="Versão">1.1</td>
 <td data-label="Data">05/10/2026</td>
 <td data-label="Descrição">Backlog com RNFs vinculados, critérios de avaliação, priorização e matriz 2×2.</td>
+<td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
+</tr>
+<tr>
+<td data-label="Versão">1.2</td>
+<td data-label="Data">12/10/2026</td>
+<td data-label="Descrição">Inclusão dos três épicos e da rastreabilidade das 13 histórias de usuário do MVP, com CPs, RFs, RNFs e dependências alinhadas ao escopo selecionado.</td>
 <td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
 </tr>
 </tbody>
