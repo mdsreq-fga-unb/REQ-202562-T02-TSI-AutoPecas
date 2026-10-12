@@ -9,6 +9,7 @@ A estratégia considera o porte da equipe, o prazo semestral, o contato com o pr
 - **Abordagem:** ágil.
 - **Ciclo de vida:** iterativo e incremental.
 - **Processo adotado:** combinação adaptada de Scrum e XP.
+- **Framework complementar de gestão do fluxo:** Kanban.
 
 ### 4.2 Quadro comparativo
 
@@ -31,7 +32,7 @@ A estratégia considera o porte da equipe, o prazo semestral, o contato com o pr
 
 #### 4.4.1 Papéis e responsabilidades
 
-- **Product Owner (João G. A. de Melo):** responde pela ordenação do Product Backlog e pelo valor das entregas dentro do escopo aprovado. A autoridade proposta para João abrange priorizar itens, esclarecer requisitos com a equipe e ajustar a ordem do trabalho sem ampliar o MVP. Antônio, proprietário e principal responsável pelo valor de negócio, decide sobre objetivos, regras da loja e mudanças de escopo. A equipe registrará a confirmação explícita dessa delegação com ele; até lá, João validará com o proprietário as decisões de prioridade. João também acompanha prazos e entregas acadêmicas por causa do porte da equipe; essa função de coordenação não é um papel do Scrum.
+- **Product Owner (João G. A. de Melo):** por decisão da equipe, responde pela ordenação do Product Backlog e pelo valor das entregas dentro do escopo aprovado. Sua autoridade abrange priorizar itens, esclarecer requisitos com a equipe e com o cliente e ajustar a ordem do trabalho sem ampliar o MVP. Antônio, proprietário e principal responsável pelo valor de negócio, decide sobre objetivos, regras da loja e mudanças de escopo. João também coordena prazos e entregas acadêmicas por causa do porte reduzido da equipe; essa função de coordenação não é um papel do Scrum.
 - **Scrum Master (Luiz Henrique Tomaz Moreira):** facilita os eventos, ajuda a remover impedimentos e cuida da efetividade do processo. Como também desenvolve o backend, pode priorizar tarefas técnicas e reduzir o tempo de facilitação. A equipe reservará capacidade para essa responsabilidade no planejamento, redistribuirá tarefas diante de sobrecarga e avaliará o acúmulo nas retrospectivas.
 - **Developers:** integrantes de requisitos, frontend, backend e testes selecionam o trabalho viável para cada sprint, definem como executá-lo e respondem conjuntamente pela qualidade do incremento.
 
@@ -46,11 +47,15 @@ O [cronograma](cronograma-e-entregas.md) prevê **14 dias para cada Sprint 1 a 6
 
 #### 4.4.3 Artefatos e critérios
 
-- **Product Backlog:** lista ordenada do trabalho necessário ao produto, mantida pelo Product Owner e registrada no Jira.
-- **Sprint Backlog:** Meta da Sprint, itens selecionados e plano de execução, atualizados pelos Developers durante o ciclo.
-- **Incremento:** resultado integrado e utilizável que atende à DoD. Para o código da aplicação, a equipe incluirá critérios de aceitação atendidos, testes automatizados e build aprovados na CI, revisão por outra pessoa e ausência de defeitos críticos conhecidos.
+- **Product Backlog:** lista ordenada do trabalho necessário ao produto, mantida pelo Product Owner e centralizada no GitHub Issues. Cada issue registra o item, seus critérios de aceitação e as informações de acompanhamento; o GitHub Projects apresenta essas mesmas issues no quadro Kanban.
+- **Sprint Backlog:** Meta da Sprint, issues selecionadas e plano de execução, atualizados pelos Developers durante o ciclo e acompanhados no quadro do GitHub Projects.
+- **Incremento:** resultado integrado e utilizável que atende à DoD.
 
-A Definition of Ready (DoR) é um acordo complementar para preparar itens; não substitui a DoD nem integra os três artefatos do Scrum.
+A preparação dos itens, a conclusão técnica e a validação externa seguem o [processo de validação da equipe](interacao-equipe-cliente.md#73-processo-de-validacao):
+
+1. **Definition of Ready (DoR) - verificação interna:** antes do início do desenvolvimento, a equipe verifica se as User Stories de uma funcionalidade estão escritas e claras o bastante para a sprint começar, ou seja, se os requisitos, as regras de negócio e os critérios de aceitação já definidos foram registrados e compreendidos pela equipe. Protótipos e regras de negócio críticas são validados com o cliente antes do início da implementação, reduzindo o risco de retrabalho.
+2. **Definition of Done (DoD) - verificação interna:** checklist de qualidade técnica aplicado a cada funcionalidade antes de ser considerada concluída, abrangendo finalização e revisão do código, integração com o banco e testes internos sem bugs críticos. O deploy em ambiente de homologação, instância de pré-produção na Vercel (front-end) e no Render (back-end), conforme a stack definida em [Solução e Características](solucao-e-caracteristicas.md) é parte da DoD e antecede a validação externa; o deploy em produção, usado pelos usuários finais, ocorre somente após o aceite do cliente.
+3. **Testes de aceitação com o cliente - validação externa:** ao final de cada sprint, o cliente valida se a entrega cumpre os critérios de aceitação previamente definidos e verificados no DoR, e se atende à necessidade real do negócio. Divergências identificadas resultam em ajustes no backlog da sprint seguinte.
 
 ### 4.5 XP
 
@@ -63,7 +68,7 @@ A equipe assume as práticas técnicas abaixo para o desenvolvimento da aplicaç
 | **Refatoração**                        | Melhorar a estrutura do código sem mudar seu comportamento, apoiando-se nos testes. Tratar os débitos identificados nas Sprints 4 e 5 e refatorar também durante os ciclos de TDD.                                                                                                                                                                                         | PRs que identifiquem a melhoria estrutural e mostrem os testes aprovados.                                                          |
 | **Propriedade coletiva**               | Permitir que os desenvolvedores modifiquem qualquer parte do código, seguindo padrões comuns e compartilhando conhecimento por revisão de PRs.                                                                                                                                                                                                                             | Contribuições e revisões distribuídas entre integrantes.                                                                           |
 | **Design simples**                     | Implementar a solução suficiente para os requisitos atuais, sem antecipar funcionalidades ou abstrações sem necessidade.                                                                                                                                                                                                                                                   | Decisões técnicas justificadas pelo escopo e verificadas nas revisões de código.                                                   |
-| **Programação em pares — não adotada** | A equipe decidiu não se comprometer com sessões de desenvolvimento simultâneo por considerar inviável conciliá-las de forma consistente com a disponibilidade dos integrantes. Revisão de PRs será usada para compartilhar conhecimento, mas não equivale a programação em pares.                                                                                          | A decisão e sua justificativa ficam registradas neste documento; não haverá evidência de execução exigida.                         |
+| **Programação em pares - não adotada** | A equipe decidiu não se comprometer com sessões de desenvolvimento simultâneo por considerar inviável conciliá-las de forma consistente com a disponibilidade dos integrantes. Revisão de PRs será usada para compartilhar conhecimento, mas não equivale a programação em pares.                                                                                          | A decisão e sua justificativa ficam registradas neste documento; não haverá evidência de execução exigida.                         |
 
 #### 4.5.1 Aplicação nos ciclos
 
@@ -74,6 +79,12 @@ A equipe assume as práticas técnicas abaixo para o desenvolvimento da aplicaç
 
 As evidências serão vinculadas às tarefas e aos PRs. O cronograma descreve o planejamento dessas atividades; a execução será confirmada pelos registros de desenvolvimento.
 
+### 4.6 Kanban
+
+O **GitHub Issues** centraliza o backlog, as tarefas, os critérios de aceitação e os registros de acompanhamento. O **GitHub Projects** organiza essas mesmas issues em um quadro Kanban, permitindo visualizar o estado do trabalho ao longo de cada sprint.
+
+A equipe atualiza o quadro conforme o trabalho avança, identifica bloqueios, controla o trabalho em andamento conforme sua capacidade e acompanha o tempo de conclusão dos itens para melhorar o fluxo. A passagem de uma funcionalidade para concluída exige o atendimento à DoD. O Kanban complementa a organização por sprints do Scrum; as práticas técnicas adotadas de XP permanecem descritas na seção 4.5.
+
 ## Versionamento
 
 | Versão |    Data    | Descrição                                                                                                           | Autor(es/as)                               |
@@ -81,3 +92,4 @@ As evidências serão vinculadas às tarefas e aos PRs. O cronograma descreve o 
 |  1.0   | 04/09/2026 | Iniciação do documento                                                                                              | [Thiago Gomes](https://github.com/thgomxs) |
 |  1.1   | 07/09/2026 | Transposição do tópico 4 do PDF e revisão textual                                                                   | [Thiago Gomes](https://github.com/thgomxs) |
 |  1.2   | 26/09/2026 | Correção da issue 6: elementos adotados de Scrum e XP, TDD, papéis e alinhamento à cadência do cronograma corrigido | [Thiago Gomes](https://github.com/thgomxs) |
+|  1.3   | 11/10/2026 | Melhora coerência da estratégia: responsabilidades definidas, GitHub Issues/Projects, DoR/DoD e Kanban              | [Thiago Gomes](https://github.com/thgomxs) |
