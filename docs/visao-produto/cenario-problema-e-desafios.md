@@ -12,11 +12,11 @@ O Rich Picture apresenta o cenário atual da TSI Peças: o proprietário e únic
 
 ### 1.4 Identificação da oportunidade ou problema
 
-O problema central da TSI Peças é o controle manual e fragmentado do estoque, apoiado em planilhas parciais que não se comunicam com o registro de vendas. Esse modelo produz, sobretudo, ineficiência operacional e, como a baixa de itens não é automática, também divergências ocasionais entre o estoque real e o registrado.
+O problema central da TSI Peças é o tempo excessivo que o proprietário gasta em tarefas operacionais repetitivas e a baixa confiabilidade da informação de estoque. Esses efeitos têm origem no controle manual e fragmentado do estoque, apoiado em planilhas parciais que não se comunicam com o registro de vendas.
 
-O maior impacto está no tempo excessivo que o proprietário gasta em tarefas operacionais repetitivas, como o cadastro de peças e a consulta ao estoque. Como ele atua sozinho, o tempo gasto nessas rotinas reduz sua disponibilidade para o atendimento e a gestão do negócio.
+O primeiro efeito é o tempo excessivo gasto em tarefas operacionais repetitivas, como o cadastro de peças e a consulta ao estoque. Como o proprietário atua sozinho, o tempo gasto nessas rotinas reduz sua disponibilidade para o atendimento e a gestão do negócio.
 
-De forma menos frequente, a divergência entre o estoque real e o registrado leva à perda de vendas em duas situações: o cliente procura uma peça que os registros indicam como disponível, mas que já foi vendida; ou uma peça existente deixa de ser vendida porque não consta corretamente nos registros. No Mercado Livre — canal que concentra a quase totalidade das vendas —, a divergência também gera cancelamentos, o que afeta a reputação da loja.
+O segundo efeito é a informação de estoque pouco confiável: como a baixa de itens não é automática, o estoque registrado diverge, ainda que de forma menos frequente, do estoque real. Essa divergência leva à perda de vendas em duas situações: o cliente procura uma peça que os registros indicam como disponível, mas que já foi vendida; ou uma peça existente deixa de ser vendida porque não consta corretamente nos registros. No Mercado Livre — canal que concentra a quase totalidade das vendas —, a divergência também gera cancelamentos, o que afeta a reputação da loja.
 
 #### Indicadores do problema
 
@@ -32,13 +32,13 @@ Os indicadores a seguir, levantados junto ao proprietário, dimensionam o proble
 | Valor médio da venda perdida por divergência | Cerca de R$ 90,00 |
 | Concentração das vendas por canal | Mercado Livre como canal predominante; balcão e contato direto ocasionais |
 
-Esses números evidenciam que o maior impacto do problema está na **eficiência operacional** — sobretudo no tempo elevado de consulta e de cadastro. As divergências de estoque são pouco frequentes (1 a 2 vezes por mês, cerca de R$ 90,00 cada), mas, como as vendas se concentram no Mercado Livre, geram cancelamentos que afetam a reputação da loja, um efeito que não se resume ao valor da venda perdida.
+Esses números evidenciam os dois efeitos do problema: o **tempo excessivo** nas tarefas operacionais — sobretudo na consulta e no cadastro — e a **informação de estoque pouco confiável**. As divergências são pouco frequentes (1 a 2 vezes por mês, cerca de R$ 90,00 cada), mas, como as vendas se concentram no Mercado Livre, geram cancelamentos que afetam a reputação da loja, um efeito que não se resume ao valor da venda perdida.
 
 #### Análise de causas
 
 O diagrama de Ishikawa organiza as causas do problema segundo os **6M**: Método, Mão de obra, Máquina, Material, Medição e Meio ambiente.
 
-[![Diagrama de Ishikawa da TSI Peças: causas do controle manual e fragmentado do estoque, organizadas nos 6M.](../assets/images/visao-produto/ishikawa.png)](../assets/images/visao-produto/ishikawa.png)
+[![Diagrama de Ishikawa da TSI Peças: causas do tempo excessivo nas tarefas operacionais e da informação de estoque pouco confiável, organizadas nos 6M.](../assets/images/visao-produto/ishikawa.png)](../assets/images/visao-produto/ishikawa.png)
 
 *Figura 2 — Diagrama de Ishikawa da TSI Peças. Imagem extraída do documento de Visão do Produto e Projeto; clique para ampliar.*
 
@@ -58,7 +58,7 @@ A aquisição do equipamento representa um custo adicional. Por envolver um disp
 
 #### Emissão fiscal
 
-Atualmente, a emissão de notas é feita manualmente e em mais de um sistema, com redigitação de dados. No escopo do MVP, a solução **não realiza a emissão fiscal** — esta continua sendo feita no emissor externo. O sistema atua como apoio: mantém os dados necessários à emissão, reaproveitando o cadastro das peças, e registra a nota emitida e o envio associados a cada venda. A automação completa da emissão fiscal, que envolve regras específicas (obrigações legais e integração com sistemas externos), permanece como **evolução futura**, fora do escopo do MVP.
+Atualmente, a emissão de notas é feita manualmente e em mais de um sistema, com redigitação de dados. A automação da emissão fiscal envolve regras específicas, como obrigações legais e integração com sistemas externos, o que a torna um desafio de maior complexidade para o projeto.
 
 #### Desafios operacionais
 
@@ -81,3 +81,4 @@ Delimitar esse escopo é, por si só, um desafio de priorização.
 | 1.2 | 18/09/2026 | Correções da issue #3: novo Rich Picture, Ishikawa reclassificado, indicadores do problema, declaração do problema revisada e emissão fiscal declarada fora do escopo | [João Melo](https://github.com/jot4-ge) |
 | 1.3 | 24/09/2026 | Refinamento da subseção de emissão fiscal, alinhada à decisão de escopo da CP7 (o sistema apoia, mas não emite nota fiscal) | [João Melo](https://github.com/jot4-ge) |
 | 1.4 | 11/10/2026 | Reformulação da declaração do problema (1.4): o controle manual e fragmentado do estoque passa a ser o problema central, com a eficiência operacional como maior impacto e as divergências de estoque como efeito ocasional, atualização do Ishikawa e do Rich Picture e remoção do percentual "~99%" dos indicadores, conforme feedback da monitoria (issue #3) | [João Melo](https://github.com/jot4-ge) |
+| 1.5 | 12/10/2026 | Problema central reformulado como efeito (tempo excessivo nas tarefas operacionais e informação de estoque pouco confiável), com o controle manual e fragmentado como causa; Ishikawa atualizado; subseção de emissão fiscal revisada para descrever o desafio sem delimitar o escopo do MVP, conforme feedback da monitoria (issue #3) | [João Melo](https://github.com/jot4-ge) |
