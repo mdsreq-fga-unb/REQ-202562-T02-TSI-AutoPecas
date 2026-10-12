@@ -23,7 +23,7 @@ A equipe de desenvolvimento é composta pelos seguintes membros. Todos os integr
 | --- | --- |
 | WhatsApp | Canal oficial para troca de mensagens rápidas e comunicação do dia a dia da equipe: avisos urgentes, links úteis e dúvidas pontuais que não exigem debate complexo. |
 | Google Meet | Reuniões de revisão e planejamento de sprint; videoconferências com o cliente. |
-| GitHub Issues / GitHub Projects | Gerenciamento do backlog, controle de tarefas, critérios de aceitação de cada item e acompanhamento do progresso de cada sprint por meio de um quadro Kanban. |
+| GitHub Issues / GitHub Projects | Gerenciamento do backlog, controle de tarefas, critérios de aceitação de cada item e acompanhamento do progresso de cada sprint por meio de um quadro visual de tarefas. |
 | GitHub | Versionamento de código. |
 
 #### Métodos e frequência de reuniões
@@ -69,4 +69,4 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 | 1.4 | 09/10/2026 | Adição da rastreabilidade das atas (tópico 7.4), linkando as atas de cada sprint | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.5 | 10/10/2026 | Atribuição da ordenação do Product Backlog exclusivamente ao Analista de requisitos; agrupamento das duas últimas atas sob a mesma sprint na tabela de rastreabilidade; correção do DoR (verifica, não define, critérios de aceitação) e do DoD (reformulado como checklist de qualidade técnica, com o ambiente de deploy de homologação explicitado) | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.6 | 11/10/2026 | Correção a partir do feedback da corretora: ordenação do Product Backlog retorna a ser responsabilidade do Product Owner (não do Analista de requisitos) e remoção de termo absoluto ("completos") do DoR | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.7 | 11/10/2026 | Inclusão do GitHub Projects na ferramenta de comunicação, explicitando o quadro Kanban usado para acompanhamento do progresso das sprints | [Luiz Moreira](https://github.com/luizhtmoreira) |
+| 1.7 | 11/10/2026 | Inclusão do GitHub Projects na ferramenta de comunicação, explicitando o quadro visual usado para acompanhamento do progresso das sprints | [Luiz Moreira](https://github.com/luizhtmoreira) |
