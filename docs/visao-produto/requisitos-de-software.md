@@ -6,7 +6,9 @@ Este documento apresenta os requisitos funcionais (RF) e não funcionais (RNF) d
 
 ### 8.1 Lista de requisitos funcionais
 
-#### CP1 — Gestão do catálogo de peças
+As características CP7 (Segurança e Integridade dos Dados) e CP8 (Acessibilidade e Responsividade) são atendidas exclusivamente por requisitos não funcionais, apresentados na seção 8.2.
+
+#### CP1 — Cadastro e Catálogo de Peças
 
 <div class="requirements-table-wrap requirements-table--rf" markdown="1">
 
@@ -21,7 +23,7 @@ Este documento apresenta os requisitos funcionais (RF) e não funcionais (RNF) d
 
 </div>
 
-#### CP2 — Controle de movimentações e saldo do estoque
+#### CP2 — Controle e Movimentação de Estoque
 
 <div class="requirements-table-wrap requirements-table--rf" markdown="1">
 
@@ -38,7 +40,7 @@ Este documento apresenta os requisitos funcionais (RF) e não funcionais (RNF) d
 
 </div>
 
-#### CP3 — Registro de vendas e recebimentos
+#### CP3 — Registro de Vendas e Recebimentos
 
 <div class="requirements-table-wrap requirements-table--rf" markdown="1">
 
@@ -53,7 +55,7 @@ Este documento apresenta os requisitos funcionais (RF) e não funcionais (RNF) d
 
 </div>
 
-#### CP4 — Planejamento de compras e reposição
+#### CP4 — Análise e Planejamento de Compras
 
 <div class="requirements-table-wrap requirements-table--rf" markdown="1">
 
@@ -63,58 +65,49 @@ Este documento apresenta os requisitos funcionais (RF) e não funcionais (RNF) d
 |  RF22  | Consultar painel de estoque crítico | O sistema deve exibir um painel consolidado com todas as peças em estado crítico (saldo abaixo do mínimo ou zerado), com indicação do saldo atual e do mínimo configurado.                                                                                                                                         |       CP4       |
 |  RF23  | Criar lista de compras              | O sistema deve permitir a criação de uma lista de compras para a próxima remessa, com adição manual das peças desejadas e das quantidades a pedir.                                                                                                                                                                 |       CP4       |
 |  RF24  | Confirmar recebimento de remessa    | O sistema deve permitir a confirmação do recebimento de uma remessa vinculada a uma lista de compras, aceitando recebimentos parciais ou totais. Caso a quantidade recebida seja divergente da lista, o sistema deve exigir uma justificativa. Ao confirmar, o saldo em estoque deve ser atualizado imediatamente. |       CP4       |
+|  RF25  | Listar itens mais vendidos    | O sistema deve fornecer uma interface de consulta, permitindo filtrar e ordenar itens por: volume de vendas (maior/menor) e itens sem movimentação (indicando dias desde a última saída), com período de tempo configurável.                            |       CP4       |
+|  RF26  | Analisar desempenho por canal | O sistema deve gerar um consolidado de vendas (volume de peças e valor financeiro total), agrupado por canal de origem (balcão, Mercado Livre e contato direto), a partir de um período de tempo configurável.                                          |       CP4       |
+|  RF27  | Exportar relatórios           | O sistema deve permitir a exportação do relatório de movimentações do estoque e do relatório de vendas, ambos gerados em um período configurável e visualizáveis em tela, nos formatos PDF e .xlsx (Excel), preservando os filtros e os dados exibidos. |       CP4       |
 
 </div>
 
-#### CP5 — Análise de desempenho do estoque e das vendas
-
-<div class="requirements-table-wrap requirements-table--rf" markdown="1">
-
-| Código | Nome                          | Descrição                                                                                                                                                                                                                                               | Rastreabilidade |
-| :----: | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------: |
-|  RF25  | Listar itens mais vendidos    | O sistema deve fornecer uma interface de consulta, permitindo filtrar e ordenar itens por: volume de vendas (maior/menor) e itens sem movimentação (indicando dias desde a última saída), com período de tempo configurável.                            |       CP5       |
-|  RF26  | Analisar desempenho por canal | O sistema deve gerar um consolidado de vendas (volume de peças e valor financeiro total), agrupado por canal de origem (balcão, Mercado Livre e contato direto), a partir de um período de tempo configurável.                                          |       CP5       |
-|  RF27  | Exportar relatórios           | O sistema deve permitir a exportação do relatório de movimentações do estoque e do relatório de vendas, ambos gerados em um período configurável e visualizáveis em tela, nos formatos PDF e .xlsx (Excel), preservando os filtros e os dados exibidos. |       CP5       |
-
-</div>
-
-#### CP6 — Visão financeira e de capital de giro
+#### CP5 — Controle Financeiro e Capital de Giro
 
 <div class="requirements-table-wrap requirements-table--rf" markdown="1">
 
 | Código | Nome                               | Descrição                                                                                                                                                                                                                                                                                                                                                                                                                                                     | Rastreabilidade |
 | :----: | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------: |
-|  RF28  | Registrar despesa operacional      | O sistema deve permitir ao administrador registrar uma despesa da operação (ex.: aluguel, embalagens ou frete de compra), informando data, categoria e valor.                                                                                                                                                                                                                                                                                                 |       CP6       |
-|  RF29  | Editar despesa operacional         | O sistema deve permitir ao administrador selecionar uma despesa operacional já registrada e alterar sua data, categoria e valor, salvando as alterações no mesmo registro.                                                                                                                                                                                                                                                                                    |       CP6       |
-|  RF30  | Excluir despesa operacional        | O sistema deve permitir ao administrador selecionar uma despesa operacional já registrada e excluí-la após confirmar a exclusão.                                                                                                                                                                                                                                                                                                                              |       CP6       |
-|  RF31  | Consultar demonstrativo financeiro | O sistema deve disponibilizar ao administrador uma página de demonstrativo financeiro com campos de data inicial e data final. Ao solicitar a consulta, a página deve exibir o total dos valores líquidos das vendas cuja data esteja no período informado, o total das despesas operacionais cuja data esteja no mesmo período e o saldo entre esses totais (receitas menos despesas), com detalhamento das receitas por canal e das despesas por categoria. |       CP6       |
+|  RF28  | Registrar despesa operacional      | O sistema deve permitir ao administrador registrar uma despesa da operação (ex.: aluguel, embalagens ou frete de compra), informando data, categoria e valor.                                                                                                                                                                                                                                                                                                 |       CP5       |
+|  RF29  | Editar despesa operacional         | O sistema deve permitir ao administrador selecionar uma despesa operacional já registrada e alterar sua data, categoria e valor, salvando as alterações no mesmo registro.                                                                                                                                                                                                                                                                                    |       CP5       |
+|  RF30  | Excluir despesa operacional        | O sistema deve permitir ao administrador selecionar uma despesa operacional já registrada e excluí-la após confirmar a exclusão.                                                                                                                                                                                                                                                                                                                              |       CP5       |
+|  RF31  | Consultar demonstrativo financeiro | O sistema deve disponibilizar ao administrador uma página de demonstrativo financeiro com campos de data inicial e data final. Ao solicitar a consulta, a página deve exibir o total dos valores líquidos das vendas cuja data esteja no período informado, o total das despesas operacionais cuja data esteja no mesmo período e o saldo entre esses totais (receitas menos despesas), com detalhamento das receitas por canal e das despesas por categoria. |       CP5       |
 
 </div>
 
-#### CP7 — Apoio à emissão fiscal e à expedição
+#### CP6 — Apoio Fiscal e Expedição
 
 <div class="requirements-table-wrap requirements-table--rf" markdown="1">
 
 | Código | Nome                              | Descrição                                                                                                                                                                                                                                                                 | Rastreabilidade |
 | :----: | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------: |
-|  RF32  | Registrar dados fiscais da peça   | O sistema deve permitir ao administrador registrar no cadastro da peça: NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável. Esses dados pertencem à peça; o CFOP depende da operação fiscal e não é um dado fixo desse cadastro. |       CP7       |
-|  RF33  | Editar dados fiscais da peça      | O sistema deve permitir ao administrador alterar, no cadastro de uma peça, os dados fiscais já registrados: código NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável.                                                           |       CP7       |
-|  RF34  | Vincular documento fiscal à venda | O sistema deve permitir vincular a uma venda concluída o número e a data de um documento fiscal já emitido (NF-e, NFC-e ou cupom fiscal). Essas informações ficam associadas à venda.                                                                                     |       CP7       |
-|  RF35  | Registrar envio de peças          | O sistema deve permitir o registro, para uma venda com entrega, da modalidade de envio, do código de rastreio e da data de despacho.                                                                                                                                      |       CP7       |
-|  RF36  | Consultar expedições do período   | O sistema deve exibir as vendas com entrega de um período, com o status de cada envio (a enviar / enviado / entregue) e os dados de rastreio registrados.                                                                                                                 |       CP7       |
+|  RF32  | Registrar dados fiscais da peça   | O sistema deve permitir ao administrador registrar no cadastro da peça: NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável. Esses dados pertencem à peça; o CFOP depende da operação fiscal e não é um dado fixo desse cadastro. |       CP6       |
+|  RF33  | Editar dados fiscais da peça      | O sistema deve permitir ao administrador alterar, no cadastro de uma peça, os dados fiscais já registrados: código NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável.                                                           |       CP6       |
+|  RF34  | Vincular documento fiscal à venda | O sistema deve permitir vincular a uma venda concluída o número e a data de um documento fiscal já emitido (NF-e, NFC-e ou cupom fiscal). Essas informações ficam associadas à venda.                                                                                     |       CP6       |
+|  RF35  | Registrar envio de peças          | O sistema deve permitir o registro, para uma venda com entrega, da modalidade de envio, do código de rastreio e da data de despacho.                                                                                                                                      |       CP6       |
+|  RF36  | Consultar expedições do período   | O sistema deve exibir as vendas com entrega de um período, com o status de cada envio (a enviar / enviado / entregue) e os dados de rastreio registrados.                                                                                                                 |       CP6       |
 
 </div>
 
-#### CP8 — Gestão de acesso e usuários
+#### CP9 — Gerenciamento e Autenticação de Usuários
 
 <div class="requirements-table-wrap requirements-table--rf" markdown="1">
 
 | Código | Nome               | Descrição                                                                                                                                                                       | Rastreabilidade |
 | :----: | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------: |
-|  RF37  | Autenticar usuário | O sistema deve exigir autenticação por credenciais (e-mail e senha) para acesso a qualquer funcionalidade, bloqueando o acesso após cinco tentativas consecutivas malsucedidas. |       CP8       |
-|  RF38  | Cadastrar usuário  | O sistema deve permitir ao administrador cadastrar um usuário, informando e-mail, senha inicial e perfil de acesso (administrador ou operador).                                 |       CP8       |
-|  RF39  | Editar usuário     | O sistema deve permitir ao administrador alterar o e-mail e o perfil de acesso de um usuário ativo, mantendo o histórico de operações desse usuário.                            |       CP8       |
-|  RF40  | Desativar usuário  | O sistema deve permitir ao administrador desativar uma conta de usuário, impedindo novos acessos dessa conta sem apagar seus registros históricos.                              |       CP8       |
+|  RF37  | Autenticar usuário | O sistema deve exigir autenticação por credenciais (e-mail e senha) para acesso a qualquer funcionalidade, bloqueando o acesso após cinco tentativas consecutivas malsucedidas. |       CP9       |
+|  RF38  | Cadastrar usuário  | O sistema deve permitir ao administrador cadastrar um usuário, informando e-mail, senha inicial e perfil de acesso (administrador ou operador).                                 |       CP9       |
+|  RF39  | Editar usuário     | O sistema deve permitir ao administrador alterar o e-mail e o perfil de acesso de um usuário ativo, mantendo o histórico de operações desse usuário.                            |       CP9       |
+|  RF40  | Desativar usuário  | O sistema deve permitir ao administrador desativar uma conta de usuário, impedindo novos acessos dessa conta sem apagar seus registros históricos.                              |       CP9       |
 
 </div>
 
@@ -130,6 +123,8 @@ A interface web do sistema deve ser responsiva e operável por toque em disposit
 
 **Critério verificável:** Conformidade com **WCAG 2.1 AA** — área de toque mínima de **44×44 pixels CSS** para todos os elementos interativos, nas larguras de viewport de 360px, 390px e 414px CSS em orientação retrato.
 
+**Rastreabilidade:** CP8
+
 </article>
 
 <article class="requirement-card" markdown="1">
@@ -141,6 +136,8 @@ Em caso de perda de conexão de rede durante o processamento de uma operação e
 **Classificação:** confiabilidade (URPS+) / produto — confiabilidade (Sommerville).
 
 **Critério verificável:** **0% de perda ou duplicidade de dados** em operações interrompidas por queda de conexão, garantido por chave de idempotência de requisição.
+
+**Rastreabilidade:** CP7
 
 </article>
 
@@ -154,6 +151,8 @@ O sistema deve operar corretamente nos navegadores web modernos Google Chrome, M
 
 **Critério verificável:** Execução sem erros bloqueantes nas **2 versões mais recentes** de Chrome, Firefox, Edge e Safari — sem quebras de layout e com persistência íntegra dos dados.
 
+**Rastreabilidade:** CP8
+
 </article>
 
 <article class="requirement-card" markdown="1">
@@ -166,6 +165,8 @@ As consultas ao catálogo, ao saldo de estoque e aos relatórios devem apresenta
 
 **Critério verificável:** **P95 ≤ 3 segundos** para consultas ao catálogo, saldo de estoque e relatórios analíticos, sob carga de 2 usuários simultâneos e conexão mínima de 10 Mbps.
 
+**Rastreabilidade:** CP8
+
 </article>
 
 <article class="requirement-card" markdown="1">
@@ -177,6 +178,8 @@ As senhas dos usuários devem ser armazenadas obrigatoriamente utilizando funç�
 **Classificação:** segurança (URPS+) / produto — segurança da informação (Sommerville).
 
 **Critério verificável:** **100% das senhas** armazenadas com hash bcrypt com salt; todo o tráfego protegido por **TLS 1.2 ou superior**, sem fallback para HTTP.
+
+**Rastreabilidade:** CP7
 
 </article>
 
@@ -191,3 +194,4 @@ As senhas dos usuários devem ser armazenadas obrigatoriamente utilizando funç�
 |  1.2   | 30/09/2026 | Atualização dos RFs e RNFs conforme a versão atual dos requisitos                                                                                          | Equipe                                     |
 |  1.3   | 02/10/2026 | Separação das operações de despesas, esclarecimento do demonstrativo financeiro e correção da sobreposição dos dados fiscais conforme feedback da monitora | Equipe                                     |
 | 1.4    | 03/10/2026 | Ajuste do RF11 (devolução vinculada a venda) e RF15 (simplificação da atualização de estoque) conforme feedback | Equipe |
+| 1.5    | 12/10/2026 | Atualização da rastreabilidade para as 9 características de produto (CP1 a CP9): fusão das antigas CP4 e CP5 na CP4 (Análise e Planejamento de Compras), renumeração das demais e inclusão dos RNFs na rastreabilidade (RNF02 e RNF05 na CP7; RNF01, RNF03 e RNF04 na CP8), conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
