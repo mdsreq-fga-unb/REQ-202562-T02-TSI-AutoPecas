@@ -1,6 +1,6 @@
 # 5 Engenharia de Requisitos
 
-## 5.1 Atividades e Técnicas de ER e KanBan XP
+## 5.1 Atividades e Técnicas de ER e Scrum XP
 
 ### Planejamento da Release
 
@@ -62,7 +62,7 @@
 
 ---
 
-## 5.2 Engenharia de Requisitos e o KanBan XP
+## 5.2 Engenharia de Requisitos e o Scrum XP
 
 | Fases do Processo | Atividades ER | Prática | Técnica | Resultado Esperado |
 | :--- | :--- | :--- | :--- | :--- |
@@ -95,3 +95,5 @@
 | 3.0 | 20/09/2026 | Revisão após feedback do professor e monitor | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
 | 4.0 | 11/10/2026 | Correção após analise do monitor | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
 | 4.1 | 12/10/2026 | Correção após analise do monitor | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 4.2 | 12/10/2026 | Fix no Scrum | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+
