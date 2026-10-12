@@ -19,27 +19,12 @@ O desenvolvimento do produto começa na Sprint 3 e é planejado por **requisitos
 **Princípios do cronograma**
 
 - **Cadência quinzenal nas quintas-feiras:** as sprints de 1 a 6 possuem duração padrão de 14 dias, encerrando sempre em uma quinta-feira em semanas alternadas. A Sprint 0 é excepcional, com 17 dias, por cobrir a formação da equipe e a elaboração do documento de visão.
-- **Planejamento por RFs do MVP:** os 13 RFs do MVP (RF01, RF02, RF03, RF04, RF05, RF06, RF08, RF09, RF10, RF12, RF14, RF15 e RF16) estão distribuídos pelas sprints 3 a 5, agrupados por dependência lógica: catálogo de peças (CP1) → movimentações e saldo (CP2) → vendas (CP3). Os RFs condicionados (RF11, RF13, RF21, RF22 e RF25) e os demais RFs de menor prioridade ficam fora do cronograma, como evolução futura, e só serão reavaliados se houver folga após a Sprint 5.
+- **Planejamento por RFs do MVP:** os 13 RFs do MVP (RF01, RF02, RF03, RF04, RF05, RF06, RF08, RF09, RF10, RF12, RF14, RF15 e RF16) estão distribuídos pelas sprints 3 a 5, agrupados por dependência lógica: catálogo de peças → movimentações e saldo → vendas. Os RFs condicionados (RF11, RF13, RF21, RF22 e RF25) e os demais RFs de menor prioridade ficam fora do cronograma, como evolução futura, e só serão reavaliados se houver folga após a Sprint 5.
 - **Validação do cliente foca em negócio:** o proprietário valida se o produto atende à operação da loja; decisões técnicas são responsabilidade da equipe.
 - **Implantação gradual:** a Sprint 4 testa a importação e ensaia a carga inicial; a Sprint 5 conclui e valida o MVP com dados de teste e prepara a implantação e o backup; o deploy em produção ocorre no início da Sprint 6, preservando o restante da sprint para carga inicial, treinamento e estabilização.
 - **Carga inicial com escopo definido:** serão transferidos os cadastros de peças e estabelecidos os saldos iniciais de estoque. O RF02 importa os cadastros; os saldos serão registrados pelas funcionalidades de entrada (RF08) e, quando necessário, ajuste de inventário (RF10), conforme procedimento ensaiado com dados de teste para evitar contagem duplicada. O proprietário confere os saldos antes do início da operação real. A importação do histórico de vendas e movimentações não integra essa carga inicial.
 - **Responsabilidade coletiva:** todas as entregas de cada sprint são responsabilidade de toda a equipe. O Product Owner coordena as validações com o cliente ao final de cada sprint. A atribuição individual de tarefas ocorre no planejamento interno de cada sprint, registrada no GitHub Projects.
 - **Requisitos não funcionais transversais:** RNF01 a RNF05 (responsividade, tolerância a falhas de conexão, compatibilidade com navegadores, desempenho e segurança de dados) não ocupam uma sprint isolada; orientam as decisões técnicas e de interface em todas as sprints de desenvolvimento, garantindo consistência dos dados de estoque e uso adequado em diferentes dispositivos durante a operação da loja.
-
-**Cobertura do MVP por característica de produto**
-
-A numeração das características de produto (CPs) segue a versão vigente dos [Requisitos de software](requisitos-de-software.md).
-
-| CP | Característica | RFs do MVP | Sprint(s) | Fora do cronograma |
-|----|----------------|------------|-----------|--------------------|
-| CP1 | Gestão do catálogo de peças | RF01, RF02, RF03, RF04, RF05, RF06 | 3 e 4 | — |
-| CP2 | Controle de movimentações e saldo do estoque | RF08, RF09, RF10, RF12, RF14 | 4 e 5 | RF07, RF11, RF13 |
-| CP3 | Registro de vendas e recebimentos | RF15, RF16 | 5 | RF17 a RF20 |
-| CP4 | Planejamento de compras e reposição | — | — | RF21 a RF24 |
-| CP5 | Análise de desempenho do estoque e das vendas | — | — | RF25 a RF27 |
-| CP6 | Visão financeira e de capital de giro | — | — | RF28 a RF31 |
-| CP7 | Apoio à emissão fiscal e à expedição | — | — | RF32 a RF36 |
-| CP8 | Gestão de acesso e usuários | — | — | RF37 a RF40 |
 
 ## Versionamento
 
