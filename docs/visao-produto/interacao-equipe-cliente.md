@@ -6,14 +6,14 @@
 
 A equipe de desenvolvimento é composta pelos seguintes membros. Todos os integrantes atuam também como Analistas de Requisitos, colaborando na elicitação, documentação e validação dos requisitos ao longo do projeto.
 
-| Papel | Descrição | Responsável |
-| --- | --- | --- |
-| Gerente de projeto / Product Owner | Coordena prazos e entregas acadêmicas da equipe e responde pela ordenação do Product Backlog, esclarecendo requisitos junto ao cliente sem ampliar o escopo do MVP. A combinação é adotada pelo porte reduzido da equipe; Antônio, proprietário e principal responsável pelo valor de negócio, decide sobre objetivos, regras da loja e mudanças de escopo. | João G. A. de Melo |
-| Desenvolvedor frontend | Responsável pela interface do usuário, pelo design e pela implementação das funcionalidades no lado do cliente. | Rodrigo Carvalho Barbosa |
-| Desenvolvedor backend / Scrum Master | Implementa a lógica de negócios, integração com banco de dados e APIs, além de facilitar os eventos ágeis e ajudar a remover impedimentos. O acúmulo com as tarefas técnicas de desenvolvimento é um risco reconhecido pela equipe para a priorização da facilitação; capacidade para essa responsabilidade é reservada no planejamento e o acúmulo é avaliado nas retrospectivas. | Luiz Henrique Tomaz Moreira |
-| Desenvolvedor backend | Implementa a lógica de negócios, integração com banco de dados e APIs. | Bruno Ferreira Dornelas |
-| Analista de QA | Garante a qualidade do produto, executando testes de funcionalidade, desempenho e usabilidade. | Leonardo da S. Lopes Júnior |
-| Analista de requisitos | Define os requisitos funcionais e não funcionais do sistema e garante que os critérios de aceitação sejam atendidos. | Thiago Gomes Pereira de Abreu |
+| Papel                                | Descrição                                                                                                                                                                                                                                                                                                                                                                          | Responsável                   |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| Gerente de projeto / Product Owner   | Coordena prazos e entregas acadêmicas da equipe e responde pela ordenação do Product Backlog, esclarecendo requisitos junto ao cliente sem ampliar o escopo do MVP. A combinação é adotada pelo porte reduzido da equipe; Antônio, proprietário e principal responsável pelo valor de negócio, decide sobre objetivos, regras da loja e mudanças de escopo.                        | João G. A. de Melo            |
+| Desenvolvedor frontend               | Responsável pela interface do usuário, pelo design e pela implementação das funcionalidades no lado do cliente.                                                                                                                                                                                                                                                                    | Rodrigo Carvalho Barbosa      |
+| Desenvolvedor backend / Scrum Master | Implementa a lógica de negócios, integração com banco de dados e APIs, além de facilitar os eventos ágeis e ajudar a remover impedimentos. O acúmulo com as tarefas técnicas de desenvolvimento é um risco reconhecido pela equipe para a priorização da facilitação; capacidade para essa responsabilidade é reservada no planejamento e o acúmulo é avaliado nas retrospectivas. | Luiz Henrique Tomaz Moreira   |
+| Desenvolvedor backend                | Implementa a lógica de negócios, integração com banco de dados e APIs.                                                                                                                                                                                                                                                                                                             | Bruno Ferreira Dornelas       |
+| Analista de QA                       | Garante a qualidade do produto, executando testes de funcionalidade, desempenho e usabilidade.                                                                                                                                                                                                                                                                                     | Leonardo da S. Lopes Júnior   |
+| Analista de requisitos               | Define os requisitos funcionais e não funcionais do sistema e garante que os critérios de aceitação sejam atendidos.                                                                                                                                                                                                                                                               | Thiago Gomes Pereira de Abreu |
 
 A acumulação do papel de Gerente de projeto / Product Owner foi validada com o cliente de forma assíncrona pelo WhatsApp, conforme o processo de registro de evidências descrito no item 7.2: a equipe enviou a Antônio Marcos a descrição do papel e ele confirmou estar de acordo. Ver [registro da validação](../atas/validacao-papel-po.md).
 
@@ -21,12 +21,12 @@ A acumulação do papel de Gerente de projeto / Product Owner foi validada com o
 
 #### Ferramentas de comunicação
 
-| Ferramenta | Finalidade |
-| --- | --- |
-| WhatsApp | Canal oficial para troca de mensagens rápidas e comunicação do dia a dia da equipe: avisos urgentes, links úteis e dúvidas pontuais que não exigem debate complexo. |
-| Google Meet | Reuniões de revisão e planejamento de sprint; videoconferências com o cliente. |
+| Ferramenta                      | Finalidade                                                                                                                                                               |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| WhatsApp                        | Canal oficial para troca de mensagens rápidas e comunicação do dia a dia da equipe: avisos urgentes, links úteis e dúvidas pontuais que não exigem debate complexo.      |
+| Google Meet                     | Reuniões de revisão e planejamento de sprint; videoconferências com o cliente.                                                                                           |
 | GitHub Issues / GitHub Projects | Gerenciamento do backlog, controle de tarefas, critérios de aceitação de cada item e acompanhamento do progresso de cada sprint por meio de um quadro visual de tarefas. |
-| GitHub | Versionamento de código. |
+| GitHub                          | Versionamento de código.                                                                                                                                                 |
 
 #### Métodos e frequência de reuniões
 
@@ -51,25 +51,34 @@ O processo ocorre em três etapas, cobrindo tanto a qualidade interna do requisi
 
 Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alinhamento interno da equipe) é registrada em ata, com feedback, decisões, Change Requests (CR) e ações, publicada na [pasta de atas do repositório](../atas/index.md) e linkada abaixo, garantindo a rastreabilidade exigida na disciplina.
 
-| Sprint | Data | Tipo | Ata |
-| --- | --- | --- | --- |
+| Sprint   | Data       | Tipo                                                                       | Ata                             |
+| -------- | ---------- | -------------------------------------------------------------------------- | ------------------------------- |
 | Sprint 0 | 03/09/2026 | Reunião interna — revisão do feedback do professor sobre a entrega inicial | [Sprint 0](../atas/sprint-0.md) |
-| Sprint 1 | 17/09/2026 | Entrevista com o cliente + planejamento interno da equipe | [Sprint 1](../atas/sprint-1.md) |
-| Sprint 2 | 30/09/2026 | Definição do valor de negócio dos requisitos com o cliente | [Sprint 2](../atas/sprint-2.md) |
-| Sprint 2 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP | [Sprint 3](../atas/sprint-3.md) |
+| Sprint 1 | 17/09/2026 | Entrevista com o cliente + planejamento interno da equipe                  | [Sprint 1](../atas/sprint-1.md) |
+| Sprint 2 | 30/09/2026 | Definição do valor de negócio dos requisitos com o cliente                 | [Sprint 2](../atas/sprint-2.md) |
+| Sprint 2 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP                    | [Sprint 3](../atas/sprint-3.md) |
 
 > Histórico completo, incluindo as atas das próximas sprints à medida que forem realizadas, em [Atas](../atas/index.md).
 
+### 7.5 Evidências
+
+#### Evidência de software
+
+O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza os três épicos e suas 13 histórias de usuário. As histórias estão vinculadas aos respectivos épicos como sub-issues, permitindo acompanhar seu status e o progresso de cada épico.
+
+[![Backlog no GitHub Projects com três épicos e suas histórias de usuário vinculadas como sub-issues.](../assets/images/visao-produto/evidencia_software.png)](../assets/images/visao-produto/evidencia_software.png)
+
 ## Versionamento
 
-| Versão | Data | Descrição | Autor(es/as) |
-| :----: | :--: | --- | --- |
-| 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
-| 1.1 | 07/09/2026 | Preenchimento do tópico 7 e revisão textual | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.2 | 07/09/2026 | Correção dos papéis da equipe e refinamento do processo de validação | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.3 | 27/09/2026 | Correção da issue 9: justificativa da acumulação de papéis, alinhamento das sprints a 14 dias, uso do GitHub Issues como ferramenta única de backlog, registro de evidências do WhatsApp e distinção entre DoR/DoD e validação externa | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.4 | 09/10/2026 | Adição da rastreabilidade das atas (tópico 7.4), linkando as atas de cada sprint | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.5 | 10/10/2026 | Atribuição da ordenação do Product Backlog exclusivamente ao Analista de requisitos; agrupamento das duas últimas atas sob a mesma sprint na tabela de rastreabilidade; correção do DoR (verifica, não define, critérios de aceitação) e do DoD (reformulado como checklist de qualidade técnica, com o ambiente de deploy de homologação explicitado) | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.6 | 11/10/2026 | Correção a partir do feedback da corretora: ordenação do Product Backlog retorna a ser responsabilidade do Product Owner (não do Analista de requisitos) e remoção de termo absoluto ("completos") do DoR | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.7 | 11/10/2026 | Inclusão do GitHub Projects na ferramenta de comunicação, explicitando o quadro visual usado para acompanhamento do progresso das sprints | [Luiz Moreira](https://github.com/luizhtmoreira) |
-| 1.8 | 12/10/2026 | Adição, no item 7.1, do link para o registro da validação do cliente sobre a acumulação do papel de Gerente de projeto / Product Owner | [Luiz Moreira](https://github.com/luizhtmoreira) |
+| Versão |    Data    | Descrição                                                                                                                                                                                                                                                                                                                                              | Autor(es/as)                                     |
+| :----: | :--------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+|  1.0   | 04/09/2026 | Iniciação do documento                                                                                                                                                                                                                                                                                                                                 | [Thiago Gomes](https://github.com/thgomxs)       |
+|  1.1   | 07/09/2026 | Preenchimento do tópico 7 e revisão textual                                                                                                                                                                                                                                                                                                            | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.2   | 07/09/2026 | Correção dos papéis da equipe e refinamento do processo de validação                                                                                                                                                                                                                                                                                   | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.3   | 27/09/2026 | Correção da issue 9: justificativa da acumulação de papéis, alinhamento das sprints a 14 dias, uso do GitHub Issues como ferramenta única de backlog, registro de evidências do WhatsApp e distinção entre DoR/DoD e validação externa                                                                                                                 | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.4   | 09/10/2026 | Adição da rastreabilidade das atas (tópico 7.4), linkando as atas de cada sprint                                                                                                                                                                                                                                                                       | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.5   | 10/10/2026 | Atribuição da ordenação do Product Backlog exclusivamente ao Analista de requisitos; agrupamento das duas últimas atas sob a mesma sprint na tabela de rastreabilidade; correção do DoR (verifica, não define, critérios de aceitação) e do DoD (reformulado como checklist de qualidade técnica, com o ambiente de deploy de homologação explicitado) | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.6   | 11/10/2026 | Correção a partir do feedback da corretora: ordenação do Product Backlog retorna a ser responsabilidade do Product Owner (não do Analista de requisitos) e remoção de termo absoluto ("completos") do DoR                                                                                                                                              | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.7   | 11/10/2026 | Inclusão do GitHub Projects na ferramenta de comunicação, explicitando o quadro visual usado para acompanhamento do progresso das sprints                                                                                                                                                                                                              | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.8   | 12/10/2026 | Adição, no item 7.1, do link para o registro da validação do cliente sobre a acumulação do papel de Gerente de projeto / Product Owner                                                                                                                                                                                                                 | [Luiz Moreira](https://github.com/luizhtmoreira) |
+|  1.9   | 12/10/2026 | Inclusão de evidência de software do GitHub Projects, com os épicos e as histórias de usuário vinculadas.                                                                                                                                                                                                                                              | [Thiago Gomes](https://github.com/thgomxs)       |
