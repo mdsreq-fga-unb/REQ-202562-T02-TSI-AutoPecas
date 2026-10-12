@@ -40,8 +40,15 @@ Esta seção reúne as atas das reuniões de cada sprint do projeto **TSI Peças
 
 As atas das próximas sprints serão adicionadas a esta página à medida que as reuniões forem realizadas.
 
+## Evidências de validação assíncrona
+
+Decisões validadas com o cliente de forma assíncrona (fora das reuniões de sprint), registradas conforme o item 7.2 de [Interação entre equipe e cliente](../visao-produto/interacao-equipe-cliente.md):
+
+- [Validação do papel de Gerente de projeto / Product Owner](validacao-papel-po.md) — 12/10/2026
+
 ## Versionamento
 
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 09/10/2026 | Criação do índice, preenchimento das atas das Sprints 0 a 3 e remoção dos cards de sprints futuras ainda sem ata (serão adicionados conforme as reuniões ocorrerem) | [Luiz Moreira](https://github.com/luizhtmoreira) |
+| 1.1 | 12/10/2026 | Adição da seção de evidências de validação assíncrona, com a validação do papel de Gerente de projeto / Product Owner | [Luiz Moreira](https://github.com/luizhtmoreira) |

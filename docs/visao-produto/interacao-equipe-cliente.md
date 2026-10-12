@@ -15,6 +15,8 @@ A equipe de desenvolvimento é composta pelos seguintes membros. Todos os integr
 | Analista de QA | Garante a qualidade do produto, executando testes de funcionalidade, desempenho e usabilidade. | Leonardo da S. Lopes Júnior |
 | Analista de requisitos | Define os requisitos funcionais e não funcionais do sistema e garante que os critérios de aceitação sejam atendidos. | Thiago Gomes Pereira de Abreu |
 
+A acumulação do papel de Gerente de projeto / Product Owner foi validada com o cliente de forma assíncrona pelo WhatsApp, conforme o processo de registro de evidências descrito no item 7.2: a equipe enviou a Antônio Marcos a descrição do papel e ele confirmou estar de acordo. Ver [registro da validação](../atas/validacao-papel-po.md).
+
 ### 7.2 Comunicação
 
 #### Ferramentas de comunicação
@@ -70,3 +72,4 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 | 1.5 | 10/10/2026 | Atribuição da ordenação do Product Backlog exclusivamente ao Analista de requisitos; agrupamento das duas últimas atas sob a mesma sprint na tabela de rastreabilidade; correção do DoR (verifica, não define, critérios de aceitação) e do DoD (reformulado como checklist de qualidade técnica, com o ambiente de deploy de homologação explicitado) | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.6 | 11/10/2026 | Correção a partir do feedback da corretora: ordenação do Product Backlog retorna a ser responsabilidade do Product Owner (não do Analista de requisitos) e remoção de termo absoluto ("completos") do DoR | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.7 | 11/10/2026 | Inclusão do GitHub Projects na ferramenta de comunicação, explicitando o quadro visual usado para acompanhamento do progresso das sprints | [Luiz Moreira](https://github.com/luizhtmoreira) |
+| 1.8 | 12/10/2026 | Adição, no item 7.1, do link para o registro da validação do cliente sobre a acumulação do papel de Gerente de projeto / Product Owner | [Luiz Moreira](https://github.com/luizhtmoreira) |
