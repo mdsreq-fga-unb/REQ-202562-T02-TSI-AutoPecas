@@ -55,6 +55,11 @@
 .md-typeset .backlog-page .backlog-table--stories th:nth-child(5) { width: 10%; }
 .md-typeset .backlog-page .backlog-table--stories th:nth-child(3) { width: 22%; }
 .md-typeset .backlog-page .backlog-table--stories th:nth-child(4) { width: 48%; }
+.md-typeset .backlog-page .backlog-table--mvp th:nth-child(1) { width: 10%; }
+.md-typeset .backlog-page .backlog-table--mvp th:nth-child(2) { width: 40%; }
+.md-typeset .backlog-page .backlog-table--mvp th:nth-child(3) { width: 20%; }
+.md-typeset .backlog-page .backlog-table--mvp th:nth-child(4) { width: 10%; }
+.md-typeset .backlog-page .backlog-table--mvp th:nth-child(5) { width: 20%; }
 .md-typeset .backlog-page .backlog-rnfs {
   display: block;
   margin-top: .5rem;
@@ -1351,6 +1356,111 @@ Rastreabilidade entre objetivos específicos (OE), características de produto (
 
 <iframe width="768" height="432" title="Árvore de histórias de usuário: OE, CP, RF e US" src="https://miro.com/app/live-embed/uXjVEbdGrpI=/?embedMode=view_only_without_ui&moveToViewport=-803,-1669,5237,2757&embedId=541076974290" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
+### 10.6 Quadro MVP
+
+<table class="backlog-table backlog-table--mvp">
+<thead><tr>
+<th scope="col">ID</th>
+<th scope="col">Nome</th>
+<th scope="col">Status</th>
+<th scope="col">PR</th>
+<th scope="col">Commit</th>
+</tr></thead>
+<tbody>
+<tr>
+<td data-label="ID"><a href="#us01">US01</a></td>
+<td data-label="Nome">Cadastrar peça</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us02">US02</a></td>
+<td data-label="Nome">Importar peças via planilha</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us03">US03</a></td>
+<td data-label="Nome">Associar veículo à peça</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us04">US04</a></td>
+<td data-label="Nome">Buscar peça</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us05">US05</a></td>
+<td data-label="Nome">Editar peça</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us06">US06</a></td>
+<td data-label="Nome">Alterar status da peça</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us08">US08</a></td>
+<td data-label="Nome">Registrar entrada de peças</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us09">US09</a></td>
+<td data-label="Nome">Registrar saída manual</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us10">US10</a></td>
+<td data-label="Nome">Registrar ajuste de inventário</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us12">US12</a></td>
+<td data-label="Nome">Consultar saldo de peça</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us14">US14</a></td>
+<td data-label="Nome">Filtrar histórico por período</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us15">US15</a></td>
+<td data-label="Nome">Registrar venda</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+<tr>
+<td data-label="ID"><a href="#us16">US16</a></td>
+<td data-label="Nome">Cancelar venda</td>
+<td data-label="Status">Não iniciado</td>
+<td data-label="PR"></td>
+<td data-label="Commit"></td>
+</tr>
+</tbody>
+</table>
+
 ## Versionamento
 
 <table class="backlog-table ">
@@ -1383,6 +1493,12 @@ Rastreabilidade entre objetivos específicos (OE), características de produto (
 <td data-label="Versão">1.3</td>
 <td data-label="Data">12/10/2026</td>
 <td data-label="Descrição">Inclusão da árvore de histórias de usuário no Miro, relacionando OE, CP, RF e US.</td>
+<td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
+</tr>
+<tr>
+<td data-label="Versão">1.4</td>
+<td data-label="Data">12/10/2026</td>
+<td data-label="Descrição">Inclusão do Quadro MVP com as 13 histórias de usuário, status inicial e espaço para PRs e commits de implementação.</td>
 <td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
 </tr>
 </tbody>
