@@ -1345,6 +1345,12 @@ As 13 histórias de usuário (US) detalham os requisitos funcionais selecionados
 </tbody>
 </table>
 
+### 10.5 Árvore de histórias de usuário
+
+Rastreabilidade entre objetivos específicos (OE), características de produto (CP), requisitos funcionais (RF) e histórias de usuário (US).
+
+<iframe width="768" height="432" title="Árvore de histórias de usuário: OE, CP, RF e US" src="https://miro.com/app/live-embed/uXjVEbdGrpI=/?embedMode=view_only_without_ui&moveToViewport=-803,-1669,5237,2757&embedId=541076974290" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
 ## Versionamento
 
 <table class="backlog-table ">
@@ -1371,6 +1377,12 @@ As 13 histórias de usuário (US) detalham os requisitos funcionais selecionados
 <td data-label="Versão">1.2</td>
 <td data-label="Data">12/10/2026</td>
 <td data-label="Descrição">Inclusão dos três épicos e da rastreabilidade das 13 histórias de usuário do MVP, com CPs, RFs, RNFs e dependências alinhadas ao escopo selecionado.</td>
+<td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
+</tr>
+<tr>
+<td data-label="Versão">1.3</td>
+<td data-label="Data">12/10/2026</td>
+<td data-label="Descrição">Inclusão da árvore de histórias de usuário no Miro, relacionando OE, CP, RF e US.</td>
 <td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
 </tr>
 </tbody>
