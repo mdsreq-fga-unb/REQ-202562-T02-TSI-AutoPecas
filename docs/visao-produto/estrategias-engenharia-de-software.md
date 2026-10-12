@@ -2,54 +2,93 @@
 
 ## 4 Estratégias de engenharia de software
 
-A estratégia foi definida considerando o porte reduzido da equipe, o prazo semestral, o acesso direto ao proprietário da TSI Peças e a necessidade de validar gradualmente uma solução para cadastro de peças e controle de estoque.
+A estratégia considera o porte da equipe, o prazo semestral, o contato com o proprietário da TSI Peças e a necessidade de validar gradualmente o cadastro de peças e o controle do estoque.
 
 ### 4.1 Estratégia priorizada
 
 - **Abordagem:** ágil.
-- **Ciclo de vida:** ágil, iterativo e incremental.
-- **Processo:** ScrumXP.
+- **Ciclo de vida:** iterativo e incremental.
+- **Processo adotado:** combinação adaptada de Scrum e XP.
 
 ### 4.2 Quadro comparativo
 
-| Característica | OpenUP | ScrumXP |
-| --- | --- | --- |
-| Abordagem geral | Processo leve, iterativo e incremental, com desenvolvimento orientado à arquitetura, aos riscos e ao valor para os stakeholders. | Combina o framework Scrum com práticas técnicas do XP, priorizando entregas frequentes, qualidade e feedback contínuo. |
-| Foco em arquitetura | Dá ênfase à definição e à validação da arquitetura desde as primeiras fases, reduzindo riscos estruturais do projeto. | Adota design simples e evolução contínua da arquitetura, ajustando-a conforme surgem necessidades e aprendizados. |
-| Estrutura do processo | Organiza o projeto nas fases de concepção, elaboração, construção e transição, cada uma contendo uma ou mais iterações. | Organiza o trabalho em sprints curtas, com planejamento, acompanhamento, revisão e retrospectiva a cada ciclo. |
-| Flexibilidade de requisitos | Refina os requisitos progressivamente, priorizando risco e valor e incorporando o feedback nas iterações seguintes. | Mantém o Product Backlog em refinamento contínuo, com prioridades revistas conforme o feedback, os riscos e a capacidade da equipe. |
-| Colaboração com o cliente | Promove colaboração direta e validação contínua com os stakeholders, por meio de revisões, demonstrações e testes. | Favorece a participação do cliente nas revisões de sprint e o esclarecimento frequente de requisitos durante o desenvolvimento. |
-| Complexidade do processo | Oferece um conjunto mínimo e adaptável de atividades e artefatos, mantendo a organização por fases do Processo Unificado. | Combina uma estrutura gerencial simples com práticas técnicas que exigem disciplina e colaboração contínuas da equipe. |
-| Qualidade técnica | A qualidade é tratada continuamente por meio de versões testadas e integradas, revisões e atenção à arquitetura. | Utiliza desenvolvimento orientado a testes (TDD), integração contínua, refatoração, design simples e programação em pares. |
-| Documentação | Mantém documentação essencial, como visão, casos de uso ou histórias de usuário e requisitos técnicos, detalhada conforme a necessidade. | Prioriza backlog, critérios de aceitação e definição de concluído (DoD), com os registros necessários de decisões e testes. |
-| Adequação à equipe | Adequado a equipes pequenas, com comunicação direta e interesse em combinar agilidade com orientação arquitetural. | Adequado a equipes pequenas e colaborativas, com disponibilidade para feedback frequente e aplicação das práticas do XP. |
-| Adequação à TSI Peças | Também é viável para o MVP: a orientação a riscos e arquitetura pode apoiar a modelagem do catálogo e a substituição das planilhas. | Ajusta-se às sprints quinzenais, ao contato com o proprietário e à experiência da equipe, associando gestão do trabalho e qualidade técnica. |
+| Aspecto               | OpenUP                                                                                                    | Combinação adaptada de Scrum e XP                                                                                                                                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Natureza              | Processo leve, iterativo e incremental, derivado do Processo Unificado.                                   | **Scrum:** framework de gestão do trabalho. **XP:** metodologia ágil de desenvolvimento; a equipe adotará apenas as práticas técnicas selecionadas.                                                                      |
+| Organização           | Concepção, elaboração, construção e transição, com iterações em cada fase.                                | **Scrum:** sprints de 14 dias, metas, planejamento, acompanhamento, revisão e retrospectiva; Sprint 0 preparatória excepcional. **XP:** incrementos testados e integrados com frequência.                                |
+| Requisitos            | Visão, casos de uso ou histórias e requisitos técnicos detalhados progressivamente, com atenção a riscos. | **Scrum:** Product Backlog ordenado pelo Product Owner e refinado conforme o feedback. **XP:** histórias e critérios de aceitação esclarecidos perto da implementação.                                                   |
+| Validação e mudanças  | Demonstrações e revisões nas iterações permitem incorporar mudanças.                                      | **Scrum:** Sprint Review inspeciona o incremento e ajusta o backlog. **XP:** testes automatizados dão retorno rápido sobre o código; testes de aceitação com o cliente verificam o atendimento aos critérios definidos.                                                                         |
+| Qualidade técnica     | Orientação à arquitetura, aos riscos e à integração de versões testadas.                                  | **Scrum:** Definition of Done (DoD) explicita critérios comuns de conclusão. **XP:** padrão de codificação, TDD, integração contínua, refatoração, propriedade coletiva, design simples e testes de aceitação com o cliente; relatórios de cobertura apoiam a verificação da qualidade. Programação em pares não será adotada. |
+| Adequação à TSI Peças | Alternativa viável para tratar riscos do catálogo e detalhar requisitos de modo progressivo.              | A experiência da equipe com Scrum favorece a organização das entregas; as práticas escolhidas de XP apoiam a confiabilidade das regras de estoque. Exigem disciplina e evidências de execução.                           |
 
 ### 4.3 Justificativa
 
-De acordo com as características e os aspectos analisados do projeto, a equipe optou por utilizar ScrumXP pelos seguintes motivos.
+- **Scrum:** o proprietário pode avaliar incrementos nas revisões e orientar prioridades. O backlog concentra primeiro as funções necessárias à operação da loja; mudanças de escopo dependem de validação de negócio.
+- **XP:** TDD, integração contínua e refatoração ajudam a proteger as regras de cadastro, movimentação e baixa por venda contra regressões. Design simples evita antecipar funcionalidades ainda não necessárias.
+- **Escolha da equipe:** OpenUP também é viável, mas a combinação selecionada corresponde à familiaridade da equipe com planejamento por sprints e ao compromisso de aplicar as práticas técnicas descritas abaixo.
 
-#### Feedback direto e requisitos evolutivos
+### 4.4 Scrum
 
-A equipe tem acesso presencial e por WhatsApp a Antônio Marcos, principal stakeholder, usuário administrador e homologador. As sprints de duas semanas permitem validar a linguagem do domínio de autopeças, o fluxo de trabalho e a simplicidade da interface. Revisões quinzenais e esclarecimentos pontuais respeitam a rotina do proprietário, que opera a loja sozinho, e reduzem interpretações incorretas e retrabalho.
+#### 4.4.1 Papéis e responsabilidades
 
-#### Entrega prioritária de valor e controle do escopo
+- **Product Owner (João G. A. de Melo):** por decisão da equipe, responde pela ordenação do Product Backlog e pelo valor das entregas dentro do escopo aprovado. Sua autoridade abrange priorizar itens, esclarecer requisitos com a equipe e com o cliente e ajustar a ordem do trabalho sem ampliar o MVP. Antônio, proprietário e principal responsável pelo valor de negócio, decide sobre objetivos, regras da loja e mudanças de escopo. João também coordena prazos e entregas acadêmicas por causa do porte reduzido da equipe; essa função de coordenação não é um papel do Scrum.
+- **Scrum Master (Luiz Henrique Tomaz Moreira):** facilita os eventos, ajuda a remover impedimentos e cuida da efetividade do processo. Como também desenvolve o backend, pode priorizar tarefas técnicas e reduzir o tempo de facilitação. A equipe reservará capacidade para essa responsabilidade no planejamento, redistribuirá tarefas diante de sobrecarga e avaliará o acúmulo nas retrospectivas.
+- **Developers:** integrantes de requisitos, frontend, backend e testes selecionam o trabalho viável para cada sprint, definem como executá-lo e respondem conjuntamente pela qualidade do incremento.
 
-O Product Backlog permite priorizar o cadastro padronizado de peças e as movimentações de estoque, incluindo a baixa na venda, e desenvolver gradualmente as demais características do produto. O leitor de código de barras e a integração automática com o Mercado Livre permanecem como evoluções futuras. Assim, o feedback orienta ajustes de prioridade sem ampliar automaticamente o escopo do MVP.
+#### 4.4.2 Eventos e duração das sprints
 
-#### Confiabilidade técnica
+O [cronograma](cronograma-e-entregas.md) prevê **14 dias para cada Sprint 1 a 6**, de 11/09 a 03/12/2026. A Sprint 0, de 24/08 a 10/09, é uma preparação excepcional para descoberta do domínio e organização inicial; não estabelece a duração dos ciclos de desenvolvimento.
 
-Como a dor central é a divergência de estoque, as regras de entrada, saída e venda devem ser protegidas por testes automatizados. TDD, integração contínua e refatoração ajudam a prevenir regressões; a programação em pares contribui para a revisão contínua dos trechos críticos. Essas práticas apoiam os testes internos e os critérios de conclusão das entregas.
+- **Sprint Planning:** definir a Meta da Sprint, selecionar itens do Product Backlog e planejar o trabalho conforme a capacidade da equipe.
+- **Sprint Review:** demonstrar e inspecionar o incremento com Antônio Marcos ao fim da sprint, registrar seu feedback e atualizar o backlog.
+- **Sprint Retrospective:** avaliar colaboração, processo e qualidade técnica antes da sprint seguinte, com ações de melhoria registradas.
+- **Refinamento contínuo:** esclarecer e dividir itens do backlog com o Product Owner e o proprietário quando necessário; não é tratado como evento obrigatório do Scrum.
 
-#### Adequação ao porte, ao prazo e à experiência da equipe
+#### 4.4.3 Artefatos e critérios
 
-A experiência prévia da equipe com ScrumXP favorece sua aplicação no prazo semestral. O OpenUP também seria adequado ao porte do projeto, pois admite documentação enxuta, adaptação e feedback frequente. A preferência pelo ScrumXP se fundamenta na familiaridade da equipe e na combinação entre sprints quinzenais e práticas técnicas do XP, mantendo a documentação e as evidências de validação exigidas pela disciplina.
+- **Product Backlog:** lista ordenada do trabalho necessário ao produto, mantida pelo Product Owner e centralizada no GitHub Issues. Cada issue registra o item, seus critérios de aceitação e as informações de acompanhamento; o GitHub Projects organiza essas mesmas issues para acompanhar o trabalho das sprints.
+- **Sprint Backlog:** Meta da Sprint, issues selecionadas e plano de execução, atualizados pelos Developers durante o ciclo e acompanhados no GitHub Projects.
+- **Incremento:** resultado integrado e utilizável que atende à DoD.
 
-A estratégia mantém, portanto, o ciclo de vida ágil, com refinamento e entregas incrementais, e combina o framework de gerenciamento Scrum com práticas técnicas do XP.
+A preparação dos itens, a conclusão técnica e a validação externa seguem o [processo de validação da equipe](interacao-equipe-cliente.md#73-processo-de-validacao):
+
+1. **Definition of Ready (DoR) - verificação interna:** antes do início do desenvolvimento, a equipe verifica se as User Stories de uma funcionalidade estão escritas e claras o bastante para a sprint começar, ou seja, se os requisitos, as regras de negócio e os critérios de aceitação já definidos foram registrados e compreendidos pela equipe. Protótipos e regras de negócio críticas são validados com o cliente antes do início da implementação, reduzindo o risco de retrabalho.
+2. **Definition of Done (DoD) - verificação interna:** checklist de qualidade técnica aplicado a cada funcionalidade antes de ser considerada concluída, abrangendo finalização e revisão do código, integração com o banco e testes internos sem bugs críticos. O deploy em ambiente de homologação, instância de pré-produção na Vercel (front-end) e no Render (back-end), conforme a stack definida em [Solução e Características](solucao-e-caracteristicas.md) é parte da DoD e antecede a validação externa; o deploy em produção, usado pelos usuários finais, ocorre somente após o aceite do cliente.
+3. **Testes de aceitação com o cliente - validação externa:** ao final de cada sprint, o cliente valida se a entrega cumpre os critérios de aceitação previamente definidos e verificados no DoR, e se atende à necessidade real do negócio. Divergências identificadas resultam em ajustes no backlog da sprint seguinte.
+
+### 4.5 XP
+
+A equipe assume as práticas de XP e os critérios de qualidade associados abaixo para o desenvolvimento da aplicação. Planejá-los não comprova que foram executados; testes, PRs, relatórios e registros de aceitação deverão evidenciar sua aplicação.
+
+| Prática / critério de qualidade | Aplicação adotada ou decisão | Evidência esperada |
+| --- | --- | --- |
+| **Padrão de codificação** | Definir e adotar na Sprint 2 convenções comuns de nomenclatura, formatação e organização do código. Aplicá-las ao desenvolvimento a partir da Sprint 3 e verificar sua observância nas revisões de PRs. | Padrão registrado no repositório e revisões de PRs que verifiquem sua aplicação. |
+| **TDD** | Para cada nova regra de negócio testável do MVP, executar primeiro um teste que falha, implementar o mínimo para fazê-lo passar e refatorar com os testes aprovados. Iniciar no cadastro, edição e status de peças na Sprint 3; aplicar ao saldo e às entradas na Sprint 4 e às movimentações, vendas e cancelamentos na Sprint 5. Testes escritos apenas depois da implementação não caracterizam TDD. | Histórico de commits ou PRs que mostre o ciclo teste → implementação → refatoração, com testes aprovados. |
+| **Integração contínua (CI)** | Configurar e validar o pipeline na Sprint 2. A partir da Sprint 3, executar os testes e o build da aplicação nos PRs e nas integrações à branch de desenvolvimento, integrar mudanças pequenas e corrigir falhas antes de acumular novas alterações. | Configuração e execuções do pipeline da aplicação; na Sprint 3, validação com os testes do catálogo. O workflow de publicação da documentação não comprova esta prática. |
+| **Cobertura de testes - apoio à qualidade** | Gerar, a partir da Sprint 3, relatórios de cobertura dos testes automatizados e utilizá-los como evidência na verificação da DoD prevista no cronograma. Revisar as lacunas das regras críticas de cadastro e estoque em conjunto com os cenários testados. O cronograma exige o relatório, mas não estabelece percentual mínimo. | Relatórios de cobertura e registros da análise dos cenários cobertos e das lacunas identificadas. |
+| **Refatoração** | Melhorar a estrutura do código sem mudar seu comportamento, apoiando-se nos testes. Refatorar durante os ciclos de TDD, tratar na Sprint 4 os débitos técnicos da sprint anterior e realizar a refatoração final antes da implantação, na Sprint 5. | PRs que identifiquem a melhoria estrutural e mostrem os testes aprovados. |
+| **Propriedade coletiva** | Permitir que os desenvolvedores modifiquem qualquer parte do código, seguindo o padrão comum e compartilhando conhecimento por revisão de PRs. | Contribuições e revisões distribuídas entre integrantes. |
+| **Design simples** | Implementar a solução suficiente para os requisitos atuais do MVP, sem antecipar funcionalidades ou abstrações sem necessidade. | Decisões técnicas justificadas pelo escopo e verificadas nas revisões de código. |
+| **Testes de aceitação com o cliente** | Preparar cenários baseados nos critérios de aceitação e executá-los com Antônio Marcos na Sprint 5, usando dados de teste baseados em uma amostra dos dados da loja. Verificar os fluxos do MVP, incluindo cadastro → entrada → venda → cancelamento → saldo, registrar resultados e ajustes e obter o aceite antes do deploy em produção na Sprint 6. | Roteiros, resultados, ajustes e aceite registrados em atas ou issues, vinculados à entrega correspondente. |
+| **Programação em pares - não adotada** | A equipe decidiu não se comprometer com sessões de desenvolvimento simultâneo por considerar inviável conciliá-las de forma consistente com a disponibilidade dos integrantes. Revisão de PRs será usada para compartilhar conhecimento, mas não equivale a programação em pares. | A decisão e sua justificativa ficam registradas neste documento; não haverá evidência de execução exigida. |
+
+#### 4.5.1 Aplicação nos ciclos
+
+O desenvolvimento das funcionalidades do MVP começa na **Sprint 3**, conforme o [cronograma corrigido](cronograma-e-entregas.md). A preparação técnica ocorre na Sprint 2; os testes de aceitação do MVP antecedem a implantação em produção.
+
+- **Sprint 2 - preparação:** consolidar os requisitos e o backlog do MVP; definir e adotar o padrão de codificação; configurar e validar o pipeline de CI.
+- **Sprint 3 - cadastro, edição e status (RF01, RF05 e RF06):** aplicar TDD às primeiras regras do catálogo; validar a CI com esses testes e gerar o relatório de cobertura previsto na verificação da DoD.
+- **Sprint 4 - catálogo completo, entradas e saldo (RF02, RF03, RF04, RF08 e RF12):** desenvolver importação, aplicações por veículo, busca, entrada de peças e consulta de saldo; aplicar TDD às regras de saldo e entrada, integrar os componentes com testes e refatorar os débitos da sprint anterior. Ensaiar a carga inicial com uma amostra da planilha.
+- **Sprint 5 - movimentações e vendas (RF09, RF10, RF14, RF15 e RF16):** aplicar TDD às regras de saída manual, ajuste, venda, baixa e reversão de estoque; implementar o filtro por período; executar testes de sistema e de aceitação com o proprietário; concluir a refatoração e preparar a implantação, o backup e seu teste de restauração.
+- **Sprint 6 - implantação e estabilização:** implantar o MVP em produção após os testes e a validação com o proprietário; realizar a carga inicial de cadastros e saldos com conferência do estoque físico; verificar o backup, treinar o proprietário e corrigir problemas encontrados em uso real, mantendo testes de regressão e CI.
+
+As evidências serão vinculadas às issues, aos PRs e às entregas. O cronograma descreve o planejamento dessas atividades; a execução será confirmada pelos registros de desenvolvimento.
 
 ## Versionamento
 
-| Versão | Data | Descrição | Autor(es/as) |
-| :----: | :--: | --- | --- |
-| 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
-| 1.1 | 07/09/2026 | Transposição do tópico 4 do PDF e revisão textual | [Thiago Gomes](https://github.com/thgomxs) |
+| Versão |    Data    | Descrição                                                                                                           | Autor(es/as)                               |
+| :----: | :--------: | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+|  1.0   | 04/09/2026 | Iniciação do documento                                                                                              | [Thiago Gomes](https://github.com/thgomxs) |
+|  1.1   | 07/09/2026 | Transposição do tópico 4 do PDF e revisão textual                                                                   | [Thiago Gomes](https://github.com/thgomxs) |
+|  1.2   | 26/09/2026 | Correção da issue 6: elementos adotados de Scrum e XP, TDD, papéis e alinhamento à cadência do cronograma corrigido | [Thiago Gomes](https://github.com/thgomxs) |
+|  1.3   | 12/10/2026 | Alinhamento da estratégia ao cronograma do MVP: papéis, GitHub Issues/Projects, DoR/DoD, práticas de XP e aplicação nas sprints | [Thiago Gomes](https://github.com/thgomxs) |
