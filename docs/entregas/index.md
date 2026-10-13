@@ -17,8 +17,8 @@ Cada entrega do projeto **TSI Peças** reúne um vídeo de apresentação no You
   <a class="section-card" href="entrega-2/">
     <span class="section-card__number" aria-hidden="true">02</span>
     <span class="section-card__title">Entrega 2</span>
-    <span class="section-card__description">Vídeo de apresentação e alterações na documentação.</span>
-    <span class="delivery-status">Em preparação</span>
+    <span class="section-card__description">Especificação, backlog, lições aprendidas e correções da Unidade 1.</span>
+    <span class="delivery-status delivery-status--done">Concluída</span>
     <span class="section-card__action">Acessar entrega <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="entrega-3/">
@@ -44,3 +44,4 @@ Cada entrega do projeto **TSI Peças** reúne um vídeo de apresentação no You
 | 1.0 | 06/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Ajuste da referência ao escopo da Entrega 1 | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.2 | 30/09/2026 | Atualização do status da Entrega 1 para concluída | Equipe |
+| 1.3 | 13/10/2026 | Atualização da Entrega 2 para concluída e descrição de seu escopo | [Thiago Gomes](https://github.com/thgomxs) |
