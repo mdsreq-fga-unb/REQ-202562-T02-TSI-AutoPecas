@@ -68,6 +68,8 @@ O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza 
 
 [![Backlog no GitHub Projects com três épicos e suas histórias de usuário vinculadas como sub-issues.](../assets/images/visao-produto/evidencia_software.png)](../assets/images/visao-produto/evidencia_software.png)
 
+[Acessar o quadro de planejamento no GitHub Projects](https://github.com/orgs/mdsreq-fga-unb/projects/126)
+
 ## Versionamento
 
 | Versão |    Data    | Descrição                                                                                                                                                                                                                                                                                                                                              | Autor(es/as)                                     |
