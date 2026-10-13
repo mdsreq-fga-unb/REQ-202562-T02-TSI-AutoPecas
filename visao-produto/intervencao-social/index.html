@@ -1,0 +1,2332 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação do projeto TSI Peças para a disciplina de Requisitos de Software.">
+      
+      
+      
+        <link rel="canonical" href="https://mdsreq-fga-unb.github.io/REQ-202562-T02-TSI-AutoPecas/visao-produto/intervencao-social/">
+      
+      
+        <link rel="prev" href="../solucao-e-caracteristicas/">
+      
+      
+        <link rel="next" href="../estrategias-engenharia-de-software/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/tsi-pecas-favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Intervenção social - TSI Peças</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#intervencao-social" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="TSI Peças" class="md-header__button md-logo" aria-label="TSI Peças" data-md-component="logo">
+      
+  <img src="../../assets/images/tsi-pecas-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TSI Peças
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Intervenção social
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Mudar para o modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Mudar para o modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para o modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+    
+  
+  Visão do Produto e Projeto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../atas/" class="md-tabs__link">
+          
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4zM3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7zm2-2v2h2V5zm0 14h2v-2H5zm0-6h2v-2H5z"/></svg>
+    
+  
+  Atas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../entregas/" class="md-tabs__link">
+          
+  
+  
+    
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 3h8a2 2 0 0 1 2-2 2 2 0 0 1 2 2h8v2h-1v11h-5.75L17 22h-2l-1.75-6h-2.5L9 22H7l1.75-6H3V5H2zm3 2v9h14V5z"/></svg>
+    
+  
+  Entregas
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../referencias/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Referências
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TSI Peças" class="md-nav__button md-logo" aria-label="TSI Peças" data-md-component="logo">
+      
+  <img src="../../assets/images/tsi-pecas-logo.png" alt="logo">
+
+    </a>
+    TSI Peças
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Visão do Produto e Projeto
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Visão do Produto e Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    O Negócio e o Problema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    O Negócio e o Problema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cliente-e-negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cliente e negócio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cenario-problema-e-desafios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cenário, problema e desafios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stakeholders-e-segmentacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stakeholders e segmentação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A Solução e o Impacto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A Solução e o Impacto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solucao-e-caracteristicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Solução e características
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intervenção social
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intervenção social
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3-intervencao-social" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Intervenção social
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Intervenção social">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-impactos-pretendidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Impactos pretendidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-efeitos-emergentes-riscos-e-desafios-de-adocao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Efeitos emergentes, riscos e desafios de adoção
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-decisoes-de-projeto-e-requisitos-derivados-da-intervencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Decisões de projeto e requisitos derivados da intervenção
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Matriz de rastreabilidade: riscos versus decisões e requisitos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versionamento
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estratégia e Engenharia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Estratégia e Engenharia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estrategias-engenharia-de-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estratégias de engenharia de software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../engenharia-de-requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Engenharia de requisitos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planejamento e Alinhamento
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Planejamento e Alinhamento
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cronograma-e-entregas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cronograma e entregas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interacao-equipe-cliente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interação entre equipe e cliente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Especificação e Backlog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Especificação e Backlog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requisitos-de-software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos de software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dor-e-dod/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DoR e DoD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backlog-de-produto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backlog de produto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolução do Projeto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evolução do Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../licoes-aprendidas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lições aprendidas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../atas/" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4zM3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7zm2-2v2h2V5zm0 14h2v-2H5zm0-6h2v-2H5z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Atas
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Atas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas/sprint-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas/sprint-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas/sprint-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas/sprint-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sprint 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas/validacao-papel-po/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validação do papel de Gerente de projeto / PO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../entregas/" class="md-nav__link ">
+              
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 3h8a2 2 0 0 1 2-2 2 2 0 0 1 2 2h8v2h-1v11h-5.75L17 22h-2l-1.75-6h-2.5L9 22H7l1.75-6H3V5H2zm3 2v9h14V5z"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregas
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Entregas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entregas/entrega-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entregas/entrega-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entregas/entrega-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entregas/entrega-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entrega 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Referências
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3-intervencao-social" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Intervenção social
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Intervenção social">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-impactos-pretendidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Impactos pretendidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-efeitos-emergentes-riscos-e-desafios-de-adocao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Efeitos emergentes, riscos e desafios de adoção
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-decisoes-de-projeto-e-requisitos-derivados-da-intervencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Decisões de projeto e requisitos derivados da intervenção
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Matriz de rastreabilidade: riscos versus decisões e requisitos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#versionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versionamento
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="intervencao-social">Intervenção social<a class="headerlink" href="#intervencao-social" title="Permanent link">&para;</a></h1>
+<h2 id="3-intervencao-social">3 Intervenção social<a class="headerlink" href="#3-intervencao-social" title="Permanent link">&para;</a></h2>
+<p>A introdução de um sistema de software em uma organização nunca é um evento puramente técnico; trata-se de uma intervenção sociotécnica que altera práticas cotidianas, fluxos de informação, rotinas de trabalho e a própria dinâmica do negócio. No contexto da TSI Peças — uma microempresa do setor de autopeças operada e administrada diretamente por seu proprietário, Antônio Marcos —, a implantação de uma solução digital de controle de estoque visa apoiar a substituição de práticas manuais consolidadas há anos, apoiadas na memória operacional e em planilhas parciais do Excel.</p>
+<p>Essa intervenção busca reestruturar a operação do negócio, visando conferir maior previsibilidade ao estoque e contribuindo para a redução de divergências. Contudo, em uma estrutura de operador único, qualquer atrito ou rigidez tecnológica repercute na capacidade de atendimento ao cliente final e no esforço de trabalho do proprietário. Assim, a engenharia de requisitos mapeia com cuidado tanto os impactos pretendidos quanto os efeitos emergentes e os riscos operacionais, formulando decisões de projeto e requisitos que atuem favorecendo a mitigação de vulnerabilidades e contribuindo para a sustentabilidade da solução.</p>
+<h3 id="31-impactos-pretendidos">3.1 Impactos pretendidos<a class="headerlink" href="#31-impactos-pretendidos" title="Permanent link">&para;</a></h3>
+<p>Os impactos pretendidos representam as mudanças positivas e os ganhos operacionais planejados para o negócio e para o operador:</p>
+<ul>
+<li><strong>Redução do esforço e do tempo operacional:</strong> visa diminuir o tempo despendido na localização de itens e na consulta de disponibilidade (que hoje pode chegar a 1 hora em casos de dúvidas complexas de aplicação) e no cadastro de novas peças, favorecendo a liberação do proprietário para atividades comerciais e de atendimento.</li>
+<li><strong>Confiabilidade da informação e mitigação de divergências:</strong> atua contribuindo para mitigar a frequência de divergências entre o estoque físico e o estoque registrado (historicamente ocorrendo de 1 a 2 vezes por mês), visando prevenir perdas de vendas por falta de itens e favorecendo a redução de cancelamentos de pedidos.</li>
+<li><strong>Proteção da reputação nos canais de venda:</strong> busca diminuir os cancelamentos de pedidos no Mercado Livre — canal que concentra aproximadamente 99% das vendas da empresa —, contribuindo para preservar os indicadores de reputação exigidos pela plataforma e favorecendo a competitividade da loja.</li>
+<li><strong>Padronização e centralização da base de conhecimento:</strong> visa estruturar e consolidar dados sobre códigos de fabricantes e aplicações veiculares em uma base organizada, contribuindo para superar a fragmentação do conhecimento hoje disperso em planilhas parciais e anotações informais.</li>
+<li><strong>Melhoria da dinâmica de trabalho e bem-estar:</strong> visa amenizar o estresse operacional e a sobrecarga de tarefas acumuladas por um operador único, favorecendo uma rotina de trabalho mais previsível e contribuindo para uma gestão mais equilibrada da loja física e dos pedidos remotos.</li>
+</ul>
+<h3 id="32-efeitos-emergentes-riscos-e-desafios-de-adocao">3.2 Efeitos emergentes, riscos e desafios de adoção<a class="headerlink" href="#32-efeitos-emergentes-riscos-e-desafios-de-adocao" title="Permanent link">&para;</a></h3>
+<p>A inserção da ferramenta na rotina diária da TSI Peças pode suscitar desdobramentos não previstos, reações de resistência e novos pontos de vulnerabilidade operacional. Os efeitos emergentes e riscos identificados na dinâmica sociotécnica do cliente compreendem:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">ID</th>
+<th>Efeito Emergente / Risco</th>
+<th>Descrição do Desafio</th>
+<th>Impacto Potencial na Operação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong id="r01">R01</strong></td>
+<td><strong>Resistência e sobrecarga por digitação manual</strong></td>
+<td>Sensação de burocratização e aumento do trabalho caso o registro de entradas, vendas e movimentações exija etapas complexas ou formulários extensos.</td>
+<td>Abandono do sistema e retorno aos métodos informais caso a ferramenta dispute a atenção do operador durante o atendimento presencial no balcão.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r02">R02</strong></td>
+<td><strong>Indisponibilidade de internet ou sistema (loja inoperante)</strong></td>
+<td>Falhas de conexão à internet na loja física ou interrupções temporárias de serviço dos servidores em nuvem onde a aplicação está hospedada.</td>
+<td>Dificuldade ou impedimento temporário na consulta de disponibilidade ou registro de baixas em tempo real, gerando potenciais atrasos no balcão ou descompasso transitório de estoque.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r03">R03</strong></td>
+<td><strong>Perda ou corrupção de dados</strong></td>
+<td>Incidentes técnicos na infraestrutura, falhas de sincronização no banco de dados ou exclusão acidental de registros pelo usuário.</td>
+<td>Perda de integridade da base cadastral de autopeças e do saldo de estoque, gerando desconfiança em relação ao sistema.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r04">R04</strong></td>
+<td><strong>Duplicidade temporária (sistema vs. planilhas legadas)</strong></td>
+<td>Manutenção simultânea do controle nas planilhas antigas e no novo software por insegurança ou hábito na fase inicial de transição.</td>
+<td>Informações conflitantes entre bases distintas, retrabalho de atualização em dobro e divergência acelerada do saldo real de itens.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r05">R05</strong></td>
+<td><strong>Migração incorreta dos registros existentes</strong></td>
+<td>Importação direta de dados das planilhas legadas que contenham duplicidades, códigos incompletos ou estoques desatualizados (~80% das peças antigas ainda não catalogadas formalmente).</td>
+<td>Contaminação inicial do banco de dados, propagando dados imprecisos para o novo sistema desde o primeiro dia de operação.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r06">R06</strong></td>
+<td><strong>Tratamento inadequado de exceções (cancelamentos, perdas e divergências)</strong></td>
+<td>Dificuldade ou ausência de mecanismos ágeis para reverter baixas quando uma venda for cancelada no Mercado Livre ou quando ocorrer divergência na contagem física de estoque.</td>
+<td>Omissão no reajuste do saldo e divergência progressiva entre os dados do sistema e o estoque físico na prateleira.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r07">R07</strong></td>
+<td><strong>Assincronia no registro de vendas externas (Mercado Livre)</strong></td>
+<td>Como o MVP não contempla integração automatizada via API com o Mercado Livre, as vendas na plataforma demandam baixa manual por parte do operador.</td>
+<td>Atraso no lançamento manual da venda online, criando uma janela de risco na qual a mesma peça pode ser comercializada simultaneamente no balcão.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r08">R08</strong></td>
+<td><strong>Dependência de serviços de nuvem e custos futuros</strong></td>
+<td>Utilização de infraestrutura como serviço (Supabase, Vercel, Render) sujeita a limites de planos gratuitos (<em>free-tier</em>) e políticas comerciais de terceiros proprietários.</td>
+<td>Risco de cobranças imprevistas, bloqueio por limite de tráfego/armazenamento ou lentidão caso os recursos atinjam cotas contratuais.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r09">R09</strong></td>
+<td><strong>Descontinuidade de suporte após o encerramento da disciplina</strong></td>
+<td>Conclusão do semestre acadêmico da equipe de desenvolvimento da universidade, cessando o suporte direto e o desenvolvimento evolutivo.</td>
+<td>Desamparo técnico do cliente caso surjam falhas críticas, necessidade de correções de bugs ou adaptações futuras de regras de negócio.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong id="r10">R10</strong></td>
+<td><strong>Dependência excessiva e perda de autonomia operacional</strong></td>
+<td>Dependência crítica do software para tarefas cotidianas que antes eram conduzidas pelo conhecimento tácito do operador.</td>
+<td>Vulnerabilidade da loja a qualquer intercorrência operacional que envolva a utilização de dispositivos eletrônicos.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-decisoes-de-projeto-e-requisitos-derivados-da-intervencao">3.3 Decisões de projeto e requisitos derivados da intervenção<a class="headerlink" href="#33-decisoes-de-projeto-e-requisitos-derivados-da-intervencao" title="Permanent link">&para;</a></h3>
+<p>Para transformar a análise dos riscos e efeitos emergentes em medidas práticas de engenharia de software e gestão de produto, foram formuladas decisões de arquitetura, requisitos de software (funcionais e não funcionais) e procedimentos operacionais padronizados (POP). As soluções do sistema concentram-se nos <strong>13 Requisitos Funcionais selecionados para o MVP</strong> (RF01, RF02, RF03, RF04, RF05, RF06, RF08, RF09, RF10, RF12, RF14, RF15 e RF16) e nos Requisitos Não Funcionais transversais (RNF01 a RNF05), explicitando quando determinada funcionalidade constitui requisito condicionado ou evolução futura:</p>
+<h4 id="d01-confiabilidade-de-dados-e-rotinas-de-backup-de-infraestrutura-mitigacao-de-r03"><span id="d01"></span>D01 — Confiabilidade de dados e rotinas de backup de infraestrutura (mitigação de R03)<a class="headerlink" href="#d01-confiabilidade-de-dados-e-rotinas-de-backup-de-infraestrutura-mitigacao-de-r03" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Decisão técnica de infraestrutura no MVP:</strong> O banco de dados relacional em nuvem (PostgreSQL gerenciado pelo Supabase) conta com rotinas automatizadas de backup no provedor (<em>point-in-time recovery</em> no plano padrão), cuja configuração é preparada e a restauração é testada pela equipe na <strong>Sprint 5</strong>, sendo ativada em produção no início da <strong>Sprint 6</strong>, visando permitir a recuperação do ambiente em caso de falhas físicas ou lógicas.</li>
+<li><strong>Requisito não funcional associado:</strong> Essa salvaguarda de infraestrutura apoia o <strong>RNF02 (Tolerância a Falhas de Conexão)</strong>, contribuindo para a recuperação de estado sem perda ou duplicidade de dados em operações confirmadas ou interrompidas por falhas de rede.</li>
+<li><strong>Distinção com requisitos de exportação:</strong> O backup é uma rotina técnica de infraestrutura para recuperação de desastres (<em>disaster recovery</em>), e não uma tela de usuário. A exportação manual de relatórios em <code>.xlsx</code> e PDF (<strong>RF27</strong>) foi classificada na priorização do backlog com Score 1 como <strong>evolução futura (fora do MVP)</strong>. Portanto, a mitigação de perda de dados do MVP não depende de exportações manuais, apoiando-se prioritariamente na resiliência da infraestrutura de banco e nos procedimentos de restauração testados, favorecendo a proteção dos dados da empresa.</li>
+</ul>
+<h4 id="d02-rastreabilidade-de-movimentacoes-e-integridade-do-saldo-mitigacao-de-r04-r06-e-r10"><span id="d02"></span>D02 — Rastreabilidade de movimentações e integridade do saldo (mitigação de R04, R06 e R10)<a class="headerlink" href="#d02-rastreabilidade-de-movimentacoes-e-integridade-do-saldo-mitigacao-de-r04-r06-e-r10" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Decisão técnica:</strong> As movimentações de estoque são modeladas de forma não destrutiva; os saldos são calculados a partir de registros de transações de entrada, saída e ajuste, favorecendo a rastreabilidade e a transparência do histórico.</li>
+<li><strong>Requisitos funcionais do MVP:</strong> No escopo do MVP, a rastreabilidade do estoque é viabilizada pelas operações que afetam o saldo e pelo filtro temporal de registros, contribuindo para a verificação de eventuais discrepâncias:</li>
+<li><strong>RF12 (Consultar saldo de peça — no MVP, Sprint 4):</strong> exibe a quantidade física total disponível atualizada;</li>
+<li><strong>RF14 (Filtrar histórico por período — no MVP, Sprint 5):</strong> permite ao usuário filtrar as movimentações ocorridas em um intervalo de datas, visando facilitar a conferência e auditoria de divergências;</li>
+<li><strong>Observação sobre dependência de escopo:</strong> O requisito <strong>RF13 (Consultar histórico de movimentações da peça)</strong> foi classificado no backlog com Score 2 como <strong>requisito condicionado à capacidade da equipe (fora do cronograma do MVP)</strong>. Dessa forma, a mitigação operacional de auditoria no MVP é provida diretamente pelas listagens das movimentações de entradas (<strong>RF08</strong>), saídas (<strong>RF09</strong>), ajustes (<strong>RF10</strong>), vendas (<strong>RF15</strong>) e cancelamentos (<strong>RF16</strong>), combinadas ao filtro de período (<strong>RF14</strong>), sem depender de telas analíticas que ficaram fora do MVP, visando manter a viabilidade do escopo.</li>
+</ul>
+<h4 id="d03-interface-para-ajustes-manuais-e-reversao-de-vendas-mitigacao-de-r06-e-r07"><span id="d03"></span>D03 — Interface para ajustes manuais e reversão de vendas (mitigação de R06 e R07)<a class="headerlink" href="#d03-interface-para-ajustes-manuais-e-reversao-de-vendas-mitigacao-de-r06-e-r07" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Decisão técnica:</strong> Inclusão no MVP de operações explícitas e reversíveis para correções de contagem física e cancelamentos de pedidos, visando apoiar a conciliação do estoque diante de imprevistos comerciais.</li>
+<li><strong>Requisitos funcionais do MVP:</strong> O tratamento de exceções é coberto por:</li>
+<li><strong>RF16 (Cancelar venda — no MVP, Sprint 5):</strong> permite ao Administrador cancelar uma venda previamente registrada (por exemplo, cancelada no Mercado Livre), favorecendo o retorno automático ao estoque das quantidades baixadas;</li>
+<li><strong>RF10 (Registrar ajuste de inventário — no MVP, Sprint 5):</strong> permite ao Administrador registrar diferenças físicas de quantidade (positivas ou negativas) com justificativa obrigatória, contribuindo para identificar as razões de perdas ou divergências;</li>
+<li><strong>RF09 (Registrar saída manual — no MVP, Sprint 5):</strong> permite registrar saídas de peças que não decorram de venda comercial, registrando data, quantidade e motivo.</li>
+<li><strong>Observação sobre devoluções:</strong> O requisito <strong>RF11 (Registrar devolução de peça vinculada a uma venda)</strong> recebeu Score 3 e permaneceu <strong>condicionado à capacidade (fora do MVP)</strong>. Operacionalmente, devoluções no balcão durante a operação do MVP serão tratadas pelo cancelamento da venda (<strong>RF16</strong>) ou pelo ajuste de inventário justificado (<strong>RF10</strong>), favorecendo a resolução das exceções sem exigir funcionalidades adicionais fora do MVP.</li>
+</ul>
+<h4 id="d04-reducao-de-etapas-e-usabilidade-para-operador-unico-mitigacao-de-r01-e-r07"><span id="d04"></span>D04 — Redução de etapas e usabilidade para operador único (mitigação de R01 e R07)<a class="headerlink" href="#d04-reducao-de-etapas-e-usabilidade-para-operador-unico-mitigacao-de-r01-e-r07" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Decisão de design:</strong> O fluxo de busca e registro de vendas é otimizado para operação rápida, viável diretamente em computadores ou dispositivos móveis no balcão da loja, visando facilitar a rotina diária e contribuindo para a agilidade no atendimento.</li>
+<li><strong>Requisitos e critérios verificáveis do MVP:</strong></li>
+<li><strong>RF04 (Buscar peça — no MVP, Sprint 4):</strong> localização ágil por código do fabricante, nome, categoria ou aplicação veicular;</li>
+<li><strong>RF15 (Registrar venda — no MVP, Sprint 5):</strong> registro direto da venda com identificação obrigatória do canal de origem (Mercado Livre, balcão ou contato direto) e baixa imediata no saldo;</li>
+<li><strong>RNF01 (Usabilidade em dispositivos móveis):</strong> conformidade com <strong>WCAG 2.1 AA</strong> e área de toque mínima de <strong>44×44 pixels CSS</strong> em larguras de viewport de 360px a 428px CSS em orientação retrato, favorecendo a operação em telas menores;</li>
+<li><strong>RNF04 (Desempenho de resposta):</strong> tempo de resposta <strong>P95 ≤ 3 segundos</strong> para consultas de catálogo e saldo sob conexão mínima de 10 Mbps, contribuindo para a fluidez das pesquisas.</li>
+</ul>
+<h4 id="d05-protocolo-de-operacao-degradada-e-contingencia-mitigacao-de-r02"><span id="d05"></span>D05 — Protocolo de operação degradada e contingência (mitigação de R02)<a class="headerlink" href="#d05-protocolo-de-operacao-degradada-e-contingencia-mitigacao-de-r02" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Prática de processo (POP):</strong> Em caso de queda de energia ou interrupção de internet na loja física, adota-se um procedimento operacional padrão simples: o operador utiliza um formulário físico padronizado (<em>Talonário de Contingência</em>) para anotar o código do fabricante da peça vendida, o canal e a quantidade, visando manter o controle durante a contingência sem paralisar as vendas.</li>
+<li><strong>Tratamento no sistema (MVP):</strong> Ao restabelecer a conectividade, o operador registra as vendas acumuladas sequencialmente pelo fluxo normal do <strong>RF15 (Registrar venda)</strong>, favorecendo a regularização gradual e contribuindo para a integridade das transações amparadas pelo <strong>RNF02 (Tolerância a Falhas de Conexão)</strong>.</li>
+</ul>
+<h4 id="d06-carga-inicial-e-importacao-assistida-de-planilhas-mitigacao-de-r05"><span id="d06"></span>D06 — Carga inicial e importação assistida de planilhas (mitigação de R05)<a class="headerlink" href="#d06-carga-inicial-e-importacao-assistida-de-planilhas-mitigacao-de-r05" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Decisão técnica:</strong> Substituição gradual do cadastro manual de centenas de itens por procedimento automatizado de carga de dados, visando reduzir o tempo de implantação e favorecendo a consistência das informações iniciais.</li>
+<li><strong>Requisitos funcionais do MVP e procedimento:</strong></li>
+<li><strong>RF02 (Importar peças via planilha — no MVP, Sprint 4):</strong> permite ao Administrador selecionar arquivo <code>.xlsx</code> de peças, validar os registros e cadastrá-los em lote, sem sobrescrever peças já cadastradas com o mesmo código do fabricante;</li>
+<li><strong>Procedimento ensaiado e conferido:</strong> A Sprint 4 realiza o ensaio da importação com uma amostra da planilha atual do proprietário; na <strong>Sprint 6</strong>, a carga real dos cadastros de peças é realizada via RF02, seguida pelo estabelecimento dos saldos iniciais via entrada (<strong>RF08</strong>) e ajuste (<strong>RF10</strong>), com conferência física orientada junto ao proprietário antes do início da operação real, contribuindo para calibrar os dados antes do uso diário.</li>
+</ul>
+<h4 id="d07-implantacao-gradual-alinhada-ao-cronograma-de-sprints-mitigacao-de-r04-e-r05"><span id="d07"></span>D07 — Implantação gradual alinhada ao cronograma de sprints (mitigação de R04 e R05)<a class="headerlink" href="#d07-implantacao-gradual-alinhada-ao-cronograma-de-sprints-mitigacao-de-r04-e-r05" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Estratégia de implantação:</strong> A transição é conduzida de forma progressiva e iterativa, favorecendo a adaptação do operador e visando mitigar impactos na rotina da loja, estruturada sobre as sprints e os 13 RFs do MVP definidos no cronograma oficial do projeto (Seção 6):</li>
+<li><em>Sprint 3 (09/10/2026 a 22/10/2026) — Fundação do Catálogo:</em> Implementação dos requisitos de catálogo (<strong>RF01</strong>: cadastro, <strong>RF05</strong>: edição e <strong>RF06</strong>: status ativo/inativo). Demonstração na Sprint Review com dados reais da loja, visando coletar impressões preliminares;</li>
+<li><em>Sprint 4 (23/10/2026 a 05/11/2026) — Catálogo Completo, Importação e Saldo:</em> Entrega da associação veicular (<strong>RF03</strong>), busca (<strong>RF04</strong>), importação em lote (<strong>RF02</strong>), entradas (<strong>RF08</strong>) e consulta de saldo (<strong>RF12</strong>). Realização do <strong>ensaio da carga inicial com uma amostra da planilha atual</strong> e definição do procedimento de registro dos saldos, contribuindo para preparar a carga definitiva;</li>
+<li><em>Sprint 5 (06/11/2026 a 19/11/2026) — Movimentações, Vendas e Validação do MVP:</em> Conclusão da saída manual (<strong>RF09</strong>), ajuste de inventário (<strong>RF10</strong>), filtro de movimentações por período (<strong>RF14</strong>), registro de vendas (<strong>RF15</strong>) e cancelamento (<strong>RF16</strong>). Realização da <strong>sessão de aceitação do MVP com o proprietário simulando fluxos com dados de teste</strong>; preparação da infraestrutura de produção, elaboração do manual preliminar e realização do teste da rotina de backup e restauração, visando verificar a prontidão do sistema;</li>
+<li><em>Sprint 6 (20/11/2026 a 03/12/2026) — Deploy em Produção, Carga Real, Treinamento e Estabilização:</em> No início da sprint, realiza-se o <strong>deploy do MVP em produção</strong> e a ativação da rotina de backup. Em seguida, executa-se a <strong>carga inicial real dos cadastros de peças via RF02</strong> e o registro dos saldos iniciais (RF08 e RF10), com <strong>conferência física amostral e dos itens principais dos saldos junto ao proprietário</strong> antes do início da operação real. Conduz-se o <strong>treinamento com o manual finalizado em linguagem simples</strong>, favorecendo a autonomia do cliente e contribuindo para a transição definitiva das planilhas legadas até o aceite do produto.</li>
+</ul>
+<h4 id="d08-capacitacao-manual-simplificado-e-onboarding-visual-mitigacao-de-r01-e-r10"><span id="d08"></span>D08 — Capacitação, manual simplificado e onboarding visual (mitigação de R01 e R10)<a class="headerlink" href="#d08-capacitacao-manual-simplificado-e-onboarding-visual-mitigacao-de-r01-e-r10" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Prática de processo e treinamento:</strong> Elaboração de material didático adaptado ao perfil do operador único, visando facilitar o aprendizado prático e contribuindo para uma assimilação natural dos novos fluxos:</li>
+<li><em>Manual em linguagem simples:</em> Elaboração da versão preliminar na Sprint 5 e entrega da versão finalizada na Sprint 6;</li>
+<li><em>Guia Rápido de Balcão (One-Page):</em> Folha plastificada com instruções visuais diretas dos fluxos essenciais (busca, venda e ajuste);</li>
+<li><em>Treinamento presencial:</em> Sessões práticas de simulação na Sprint 5 e acompanhamento assistido no início da Sprint 6 durante a operação real, favorecendo a segurança do operador no uso diário.</li>
+</ul>
+<h4 id="d09-sustentabilidade-tecnologica-separacao-entre-codigo-aberto-e-infraestrutura-proprietaria-mitigacao-de-r08-e-r09"><span id="d09"></span>D09 — Sustentabilidade tecnológica: separação entre código aberto e infraestrutura proprietária (mitigação de R08 e R09)<a class="headerlink" href="#d09-sustentabilidade-tecnologica-separacao-entre-codigo-aberto-e-infraestrutura-proprietaria-mitigacao-de-r08-e-r09" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Distinção entre tecnologias abertas e serviços proprietários:</strong></li>
+<li><em>Tecnologias de desenvolvimento e código-fonte:</em> A aplicação utiliza linguagens e bibliotecas abertas (React, Python com FastAPI e PostgreSQL). O repositório acadêmico do projeto é público no GitHub sob licença permissiva MIT, visando permitir que o código possa ser auditado, adaptado e mantido no futuro;</li>
+<li><em>Infraestrutura e hospedagem de terceiros (serviços proprietários em plano gratuito):</em> A hospedagem utiliza plataformas proprietárias operadas em suas camadas gratuitas (<em>free-tier</em>): <strong>Vercel</strong> (deploy do front-end), <strong>Render</strong> (deploy do back-end) e <strong>Supabase</strong> (gerenciamento do banco PostgreSQL).</li>
+<li><strong>Alinhamento com o cliente e transferência de titularidade:</strong></li>
+<li>O cliente é formalmente informado de que as credenciais e dados de negócio são mantidos privados e protegidos por autenticação com hash bcrypt e tráfego HTTPS/TLS 1.2+ (<strong>RNF05</strong>);</li>
+<li>Na Sprint 6, a equipe finaliza o <em>Guia de Manutenção</em> e transfere formalmente a titularidade das contas desses serviços em nuvem (Vercel, Render e Supabase) para o proprietário, favorecendo a autonomia operacional e contribuindo para a continuidade do projeto após o encerramento da disciplina.</li>
+</ul>
+<h3 id="34-matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos">3.4 Matriz de rastreabilidade: riscos versus decisões e requisitos<a class="headerlink" href="#34-matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos" title="Permanent link">&para;</a></h3>
+<p>A tabela a seguir consolida o mapeamento bidirecional entre os riscos e efeitos emergentes identificados e as decisões, requisitos e práticas de processo formulados no escopo do projeto, visando demonstrar a rastreabilidade entre cada risco, a respectiva decisão vinculada e o status no MVP:</p>
+<table>
+<thead>
+<tr>
+<th>Efeito Emergente / Risco</th>
+<th style="text-align: center;">Decisão Vinculada</th>
+<th>Resposta Formulada</th>
+<th style="text-align: center;">Tipo de Solução</th>
+<th>Requisito / Artefato do Escopo</th>
+<th style="text-align: center;">Status no Escopo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="#r01">R01</a></strong> (Resistência e sobrecarga operacional)</td>
+<td style="text-align: center;"><strong><a href="#d04">D04</a></strong>, <strong><a href="#d08">D08</a></strong></td>
+<td>Interface com múltiplos filtros para operador único e baixa em poucas etapas, visando diminuir o tempo no balcão</td>
+<td style="text-align: center;">Requisito Funcional / RNF</td>
+<td><a href="../requisitos-de-software/#rf04">RF04</a> (<a href="../solucao-e-caracteristicas/#cp1">CP1</a>), <a href="../requisitos-de-software/#rf15">RF15</a> (<a href="../solucao-e-caracteristicas/#cp3">CP3</a>), <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a></td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprints 4 e 5)</td>
+</tr>
+<tr>
+<td><strong><a href="#r02">R02</a></strong> (Indisponibilidade de internet ou sistema)</td>
+<td style="text-align: center;"><strong><a href="#d05">D05</a></strong></td>
+<td>Protocolo de contingência manual (talonário físico) e tolerância a falhas de conexão, visando evitar paradas na operação</td>
+<td style="text-align: center;">Prática de Processo (POP) / RNF</td>
+<td><a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, lançamento posterior via <a href="../requisitos-de-software/#rf15">RF15</a></td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprint 5)</td>
+</tr>
+<tr>
+<td><strong><a href="#r03">R03</a></strong> (Risco de perda ou corrupção de dados)</td>
+<td style="text-align: center;"><strong><a href="#d01">D01</a></strong></td>
+<td>Rotinas automatizadas de backup no banco e testes de restauração, contribuindo para a integridade dos dados</td>
+<td style="text-align: center;">Decisão de Infraestrutura / RNF</td>
+<td>Backup Supabase, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a> (<a href="../requisitos-de-software/#rf27">RF27</a> como evolução futura)</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprints 5 e 6)</td>
+</tr>
+<tr>
+<td><strong><a href="#r04">R04</a></strong> (Duplicidade temporária entre sistema e planilhas)</td>
+<td style="text-align: center;"><strong><a href="#d07">D07</a></strong>, <strong><a href="#d02">D02</a></strong></td>
+<td>Implantação gradual articulada por sprints, favorecendo a transição planejada das planilhas para o sistema</td>
+<td style="text-align: center;">Gestão de Produto / Rollout</td>
+<td>Alinhamento com Sprints 3 a 6 do Cronograma</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprints 3 a 6)</td>
+</tr>
+<tr>
+<td><strong><a href="#r05">R05</a></strong> (Migração incorreta dos registros existentes)</td>
+<td style="text-align: center;"><strong><a href="#d06">D06</a></strong>, <strong><a href="#d07">D07</a></strong></td>
+<td>Importação em lote via planilha com validação prévia de código e ensaio de carga, visando atenuar inconsistências</td>
+<td style="text-align: center;">Requisito Funcional / Prática</td>
+<td><a href="../requisitos-de-software/#rf02">RF02</a> (<a href="../solucao-e-caracteristicas/#cp1">CP1</a>), <a href="../requisitos-de-software/#rf08">RF08</a>, <a href="../requisitos-de-software/#rf10">RF10</a> e conferência física</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprints 4 e 6)</td>
+</tr>
+<tr>
+<td><strong><a href="#r06">R06</a></strong> (Tratamento inadequado de exceções)</td>
+<td style="text-align: center;"><strong><a href="#d03">D03</a></strong></td>
+<td>Comandos para cancelamento de venda e ajuste de inventário justificado, favorecendo a conciliação do estoque</td>
+<td style="text-align: center;">Requisitos Funcionais</td>
+<td><a href="../requisitos-de-software/#rf16">RF16</a> (<a href="../solucao-e-caracteristicas/#cp3">CP3</a>), <a href="../requisitos-de-software/#rf10">RF10</a> (<a href="../solucao-e-caracteristicas/#cp2">CP2</a>) (<a href="../requisitos-de-software/#rf11">RF11</a> como condicionado)</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprint 5)</td>
+</tr>
+<tr>
+<td><strong><a href="#r07">R07</a></strong> (Assincronia nas vendas do Mercado Livre)</td>
+<td style="text-align: center;"><strong><a href="#d04">D04</a></strong>, <strong><a href="#d03">D03</a></strong></td>
+<td>Registro ágil de vendas com canal de origem obrigatório e baixa imediata no saldo, visando prevenir duplicidades</td>
+<td style="text-align: center;">Requisito Funcional</td>
+<td><a href="../requisitos-de-software/#rf15">RF15</a> (<a href="../solucao-e-caracteristicas/#cp3">CP3</a>)</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprint 5)</td>
+</tr>
+<tr>
+<td><strong><a href="#r08">R08</a></strong> (Dependência de serviços de nuvem e custos futuros)</td>
+<td style="text-align: center;"><strong><a href="#d09">D09</a></strong></td>
+<td>Arquitetura desacoplada e operação em camadas gratuitas (<em>free-tier</em>), contribuindo para a contenção de custos</td>
+<td style="text-align: center;">Decisão Arquitetural</td>
+<td>Hospedagem Vercel / Render / Supabase</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprints 5 e 6)</td>
+</tr>
+<tr>
+<td><strong><a href="#r09">R09</a></strong> (Descontinuidade de suporte após o encerramento da disciplina)</td>
+<td style="text-align: center;"><strong><a href="#d09">D09</a></strong></td>
+<td>Repositório público com licença MIT, transferência formal de titularidade e guia de manutenção, favorecendo a autonomia</td>
+<td style="text-align: center;">Prática de Governança / Entrega</td>
+<td>Guia de Manutenção e Código Aberto</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprint 6)</td>
+</tr>
+<tr>
+<td><strong><a href="#r10">R10</a></strong> (Insegurança ou dependência do sistema)</td>
+<td style="text-align: center;"><strong><a href="#d02">D02</a></strong>, <strong><a href="#d08">D08</a></strong></td>
+<td>Registro de operações, filtro temporal e manual didático em linguagem simples, visando dar segurança ao operador</td>
+<td style="text-align: center;">Requisito Funcional / Treinamento</td>
+<td><a href="../requisitos-de-software/#rf12">RF12</a>, <a href="../requisitos-de-software/#rf14">RF14</a> (<a href="../solucao-e-caracteristicas/#cp2">CP2</a>), Manual do Proprietário (<a href="../requisitos-de-software/#rf13">RF13</a> condicionado)</td>
+<td style="text-align: center;"><strong>MVP</strong> (Sprints 4, 5 e 6)</td>
+</tr>
+</tbody>
+</table>
+<p>Assim, a intervenção social deixa de ser uma reflexão puramente teórica e passa a direcionar as decisões de engenharia de software, articulando-se com a especificação de requisitos do MVP, o cronograma quinzenal e a arquitetura do sistema TSI Peças.</p>
+<h2 id="versionamento">Versionamento<a class="headerlink" href="#versionamento" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th style="text-align: center;">Data</th>
+<th>Descrição</th>
+<th>Autor(es/as)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">04/09/2026</td>
+<td>Iniciação do documento</td>
+<td><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">1.1</td>
+<td style="text-align: center;">07/09/2026</td>
+<td>Preenchimento do tópico 3 e revisão textual</td>
+<td><a href="https://github.com/LeonardoLopesJr">Leonardo Lopes</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">1.2</td>
+<td style="text-align: center;">28/09/2026</td>
+<td>Correções da issue #5: detalhamento de riscos operacionais, requisitos derivados e matriz inicial</td>
+<td><a href="https://github.com/LeonardoLopesJr">Leonardo Lopes</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">1.3</td>
+<td style="text-align: center;">11/10/2026</td>
+<td>Ajustes da PR #17: distinção de backup vs exportação, detalhamento de infraestrutura e revisão inicial</td>
+<td><a href="https://github.com/LeonardoLopesJr">Leonardo Lopes</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">1.4</td>
+<td style="text-align: center;">12/10/2026</td>
+<td>Alinhamento com cronograma do MVP (13 RFs), ajuste de mitigações de escopo, novas colunas na matriz e moderação de termos absolutistas</td>
+<td><a href="https://github.com/LeonardoLopesJr">Leonardo Lopes</a></td>
+</tr>
+<tr>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">13/10/2026</td>
+<td>Inclusão de links entre riscos, decisões, requisitos e características na matriz de rastreabilidade.</td>
+<td><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
