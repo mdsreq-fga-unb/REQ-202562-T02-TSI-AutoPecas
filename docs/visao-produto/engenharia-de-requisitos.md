@@ -27,6 +27,7 @@
   * *Prototipação Rápida:* Utilização de esboços, *storyboards* ou *wireframes* para validar visualmente se o fluxo da história de usuário está correto e compreendido antes da codificação.
 * **Verificação e Validação:**
   * *Verificação de Prontidão (DoR):* Verificação prévia das histórias e regras de negócio antes do desenvolvimento, contribuindo para que os critérios de aceitação estejam prontos.
+  * *Validação com Propietário:* Validação prévia com o propietário, para favorecer o esclarecimento de possiveis duvidas e problemas.
 * **Organização e Atualização:**
   * *Prática de Refinamento do Backlog:* Atividade contínua e colaborativa na qual a equipe utiliza técnicas para discutir, detalhar, estimar e priorizar os itens do backlog, favorecendo um entendimento unificado antes do planejamento da iteração.
   * *Decomposição e Detalhamento de Requisitos:* Técnica analítica em que requisitos maiores são fatiados em histórias menores, favorecendo a atualização constante do quadro de trabalho e a entrega de valor.
@@ -55,7 +56,7 @@
 
 * **Elicitação e Descoberta:**
   * *Brainstorming:* Sessões para captar novas necessidades estratégicas da TSI Peças ou compilar os feedbacks das Sprints anteriores, contribuindo para a visualização do que agregará mais valor na próxima versão.
-* **Declaração:**
+* **Organização e Atualização:**
   * *Atualização de Épicos e User Stories:* Criação e declaração de novos épicos e histórias de usuário baseados nos *feedbacks* coletados, organizando-os no *Product Backlog* para contribuir na definição clara do escopo e do valor entregue na próxima *release*.
 * **Verificação e Validação:**
   * *Verificação de Prontidão (DoR):* Verificação contínua do backlog geral da *release* contra os critérios DoR para que a equipe esteja preparada para a execução da próxima sprint. 
@@ -74,6 +75,7 @@
 | **Planejamento da Sprint** | Declaração | Especificação Detalhada | Detalhamento e Análise das Histórias | Detalhamento e análise dos Épicos e Histórias de Usuário |
 | **Planejamento da Sprint** | Representação | Produção de Artefatos Visuais | Prototipação Rápida | Wireframes ou protótipos produzidos para validar fluxos visualmente. |
 | **Planejamento da Sprint** | Verificação e Validação | Verificação Prévia | Verificação de Prontidão (DoR) | Histórias e regras verificadas antes do desenvolvimento. |
+| **Planejamento da Sprint** | Verificação e Validação | Verificação Prévia | Validação com Propietário | Histórias e regras verificadas antes do desenvolvimento. |
 | **Planejamento da Sprint** | Organização e Atualização | Gestão e Detalhamento | Refinamento e Decomposição | Histórias detalhadas, priorizadas e fatiadas para a Sprint. |
 | **Execução da Sprint** | Verificação | Verificação Interna | Revisão por Checklists | Funcionalidades verificadas internamente. |
 | **Execução da Sprint** | Verificação | Propriedades do Backlog | Verificação contínua do backlog | *Backlog* verificado para atestar as características DEEP. |
@@ -81,7 +83,7 @@
 | **Revisão da Sprint** | Organização e Atualização | Atualização de Escopo | Declaração de requisitos | Novos requisitos formalizados para o *backlog*. |
 | **Retrospectiva da Sprint** | Análise e Consenso | Avaliação de Processos de ER | Análise de Causa Raiz | Falhas de comunicação identificadas para melhoria. |
 | **Planej. da Próxima Release** | Elicitação e Descoberta | Planejamento Evolutivo | Brainstorming | Novas necessidades e adaptações captadas para a próxima versão do sistema. |
-| **Planej. da Próxima Release** | Declaração | Especificação Ágil | Atualização de Épicos e User Stories | Novos épicos e histórias formalizados e alocados para a próxima versão. |
+| **Planej. da Próxima Release** | Organização e Atualização | Especificação Ágil | Atualização de Épicos e User Stories | Novos épicos e histórias formalizados e alocados para a próxima versão. |
 | **Planej. da Próxima Release** | Verificação e Validação | Validação de Prontidão | Verificação de Prontidão (DoR) | Backlog validado contra os critérios DoR favorecendo a prontidão para a próxima fase. |
 ---
 
