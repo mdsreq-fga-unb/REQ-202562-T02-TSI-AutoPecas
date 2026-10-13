@@ -10,12 +10,12 @@ A solução visa reduzir as perdas de vendas causadas por informações de estoq
  
 ### 2.2 Objetivos específicos (OE) do produto
  
-- **OE1:** organizar e padronizar o cadastro de peças, utilizando o código do fabricante e a aplicação por veículo.
-- **OE2:** disponibilizar informações confiáveis e atualizadas sobre a disponibilidade das peças, reduzindo perdas causadas por divergências no estoque.
-- **OE3:** reduzir o tempo gasto em tarefas operacionais repetitivas.
-- **OE4:** facilitar as decisões de compra e de precificação, com base no desempenho do estoque e das vendas.
-- **OE5:** aumentar a previsibilidade financeira do negócio, facilitando o controle da necessidade de caixa.
-- **OE6:** centralizar as informações da operação hoje dispersas em planilhas, estabelecendo o sistema como fonte única de dados.
+- <strong id="oe1">OE1:</strong> organizar e padronizar o cadastro de peças, utilizando o código do fabricante e a aplicação por veículo.
+- <strong id="oe2">OE2:</strong> disponibilizar informações confiáveis e atualizadas sobre a disponibilidade das peças, reduzindo perdas causadas por divergências no estoque.
+- <strong id="oe3">OE3:</strong> reduzir o tempo gasto em tarefas operacionais repetitivas.
+- <strong id="oe4">OE4:</strong> facilitar as decisões de compra e de precificação, com base no desempenho do estoque e das vendas.
+- <strong id="oe5">OE5:</strong> aumentar a previsibilidade financeira do negócio, facilitando o controle da necessidade de caixa.
+- <strong id="oe6">OE6:</strong> centralizar as informações da operação hoje dispersas em planilhas, estabelecendo o sistema como fonte única de dados.
 ### 2.3 Características de produto mapeadas com os objetivos específicos
  
 A solução proposta deverá contemplar, de forma preliminar, as características a seguir. O mapeamento distingue o objetivo específico principal de cada característica e sua contribuição secundária.
@@ -24,29 +24,29 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
  
 | ID | Característica | OE principal | Contribuição secundária |
 | --- | --- | :---: | :---: |
-| CP1 | Cadastro e Catálogo de Peças | OE1 | OE3, OE6 |
-| CP2 | Controle e Movimentação de Estoque | OE6 | OE2, OE4 |
-| CP3 | Registro de Vendas e Recebimentos | OE2 | OE5 |
-| CP4 | Análise e Planejamento de Compras | OE4 | OE2, OE5 |
-| CP5 | Controle Financeiro e Capital de Giro | OE5 | OE3, OE6 |
-| CP6 | Apoio Fiscal e Expedição | OE3 | OE1 |
-| CP7 | Segurança e Integridade dos Dados | OE2 | OE6 |
-| CP8 | Acessibilidade e Responsividade | OE3 | OE2 |
-| CP9 | Gerenciamento e Autenticação de Usuários | OE2 | OE6 |
+| <strong id="cp1">CP1</strong> | Cadastro e Catálogo de Peças | [OE1](#oe1) | [OE3](#oe3), [OE6](#oe6) |
+| <strong id="cp2">CP2</strong> | Controle e Movimentação de Estoque | [OE6](#oe6) | [OE2](#oe2), [OE4](#oe4) |
+| <strong id="cp3">CP3</strong> | Registro de Vendas e Recebimentos | [OE2](#oe2) | [OE5](#oe5) |
+| <strong id="cp4">CP4</strong> | Análise e Planejamento de Compras | [OE4](#oe4) | [OE2](#oe2), [OE5](#oe5) |
+| <strong id="cp5">CP5</strong> | Controle Financeiro e Capital de Giro | [OE5](#oe5) | [OE3](#oe3), [OE6](#oe6) |
+| <strong id="cp6">CP6</strong> | Apoio Fiscal e Expedição | [OE3](#oe3) | [OE1](#oe1) |
+| <strong id="cp7">CP7</strong> | Segurança e Integridade dos Dados | [OE2](#oe2) | [OE6](#oe6) |
+| <strong id="cp8">CP8</strong> | Acessibilidade e Responsividade | [OE3](#oe3) | [OE2](#oe2) |
+| <strong id="cp9">CP9</strong> | Gerenciamento e Autenticação de Usuários | [OE2](#oe2) | [OE6](#oe6) |
  
 #### Descrição e valor de negócio
  
 | ID | Descrição resumida | ID VN | Valor de negócio (VN) |
 | --- | --- | :---: | --- |
-| CP1 | A solução deverá manter um catálogo único e padronizado das peças, com suas informações técnicas e de aplicação, permitindo que o mesmo cadastro sirva de referência para o estoque, os anúncios e os documentos fiscais. | VN1 | Redução do tempo de catalogação e fim do retrabalho de cadastrar a mesma peça em lugares diferentes. |
-| CP2 | A solução deverá controlar as movimentações de estoque de cada peça, mantendo seu saldo e seu histórico atualizados, permitindo que o estoque registrado corresponda ao estoque real. | VN2 | Saldo de estoque confiável, condição para substituir o controle em planilhas. |
-| CP3 | A solução deverá registrar as vendas realizadas nos diferentes canais e acompanhar seus recebimentos, permitindo que o estoque seja atualizado a cada venda e que os valores a receber sejam conhecidos. | VN3 | Fim da baixa manual após cada venda e clareza sobre os valores pendentes de recebimento. |
-| CP4 | A solução deverá analisar o desempenho do estoque e das vendas e apoiar o planejamento das compras, permitindo que as decisões de reposição e de precificação sejam tomadas com base em dados. | VN4 | Menor perda de vendas por ruptura de estoque e melhor uso do capital disponível para compras. |
-| CP5 | A solução deverá consolidar as informações financeiras da operação, permitindo acompanhar a necessidade de capital de giro do negócio. | VN5 | Substituição do fechamento manual entre planilhas e previsibilidade da necessidade de caixa. |
-| CP6 | A solução deverá apoiar as rotinas fiscais e de expedição das vendas, permitindo reaproveitar os dados já cadastrados e acompanhar o envio das peças. | VN6 | Eliminação do cadastro duplicado entre o marketplace e o emissor de notas fiscais. |
-| CP7 | A solução deverá garantir a integridade e a consistência dos dados de estoque e protegê-los no armazenamento e na transmissão, permitindo operar o sistema com segurança durante a rotina de separação e envio. | VN7 | Estoque e dados do negócio íntegros e protegidos, evitando perdas e duplicidades de registro quando a conexão falha ou há operações simultâneas, e mantendo seguras as credenciais e as informações da loja. |
-| CP8 | A solução deverá oferecer uma interface acessível e responsiva, adequada ao uso em telas de diferentes tamanhos, permitindo operar o sistema no próprio local de trabalho durante a rotina de separação e envio. | VN8 | Melhoria da experiência do usuário e ampliação da acessibilidade da solução, permitindo o uso confortável e inclusivo em diferentes dispositivos e tamanhos de tela. |
-| CP9 | A solução deverá controlar o acesso dos usuários e registrar a autoria das operações, permitindo que tarefas operacionais sejam delegadas com segurança. | VN9 | Preparação para a delegação de tarefas operacionais em caso de contratação futura. |
+| [CP1](#cp1) | A solução deverá manter um catálogo único e padronizado das peças, com suas informações técnicas e de aplicação, permitindo que o mesmo cadastro sirva de referência para o estoque, os anúncios e os documentos fiscais. | VN1 | Redução do tempo de catalogação e fim do retrabalho de cadastrar a mesma peça em lugares diferentes. |
+| [CP2](#cp2) | A solução deverá controlar as movimentações de estoque de cada peça, mantendo seu saldo e seu histórico atualizados, permitindo que o estoque registrado corresponda ao estoque real. | VN2 | Saldo de estoque confiável, condição para substituir o controle em planilhas. |
+| [CP3](#cp3) | A solução deverá registrar as vendas realizadas nos diferentes canais e acompanhar seus recebimentos, permitindo que o estoque seja atualizado a cada venda e que os valores a receber sejam conhecidos. | VN3 | Fim da baixa manual após cada venda e clareza sobre os valores pendentes de recebimento. |
+| [CP4](#cp4) | A solução deverá analisar o desempenho do estoque e das vendas e apoiar o planejamento das compras, permitindo que as decisões de reposição e de precificação sejam tomadas com base em dados. | VN4 | Menor perda de vendas por ruptura de estoque e melhor uso do capital disponível para compras. |
+| [CP5](#cp5) | A solução deverá consolidar as informações financeiras da operação, permitindo acompanhar a necessidade de capital de giro do negócio. | VN5 | Substituição do fechamento manual entre planilhas e previsibilidade da necessidade de caixa. |
+| [CP6](#cp6) | A solução deverá apoiar as rotinas fiscais e de expedição das vendas, permitindo reaproveitar os dados já cadastrados e acompanhar o envio das peças. | VN6 | Eliminação do cadastro duplicado entre o marketplace e o emissor de notas fiscais. |
+| [CP7](#cp7) | A solução deverá garantir a integridade e a consistência dos dados de estoque e protegê-los no armazenamento e na transmissão, permitindo operar o sistema com segurança durante a rotina de separação e envio. | VN7 | Estoque e dados do negócio íntegros e protegidos, evitando perdas e duplicidades de registro quando a conexão falha ou há operações simultâneas, e mantendo seguras as credenciais e as informações da loja. |
+| [CP8](#cp8) | A solução deverá oferecer uma interface acessível e responsiva, adequada ao uso em telas de diferentes tamanhos, permitindo operar o sistema no próprio local de trabalho durante a rotina de separação e envio. | VN8 | Melhoria da experiência do usuário e ampliação da acessibilidade da solução, permitindo o uso confortável e inclusivo em diferentes dispositivos e tamanhos de tela. |
+| [CP9](#cp9) | A solução deverá controlar o acesso dos usuários e registrar a autoria das operações, permitindo que tarefas operacionais sejam delegadas com segurança. | VN9 | Preparação para a delegação de tarefas operacionais em caso de contratação futura. |
  
 #### Notas de escopo
  
@@ -80,7 +80,7 @@ O mercado de sistemas de gestão para autopeças conta com soluções consolidad
  
 <small>¹ Representados por AtacadistaPro, VendaSimples e ERPClass.</small>
  
-As soluções analisadas são robustas, porém direcionadas a operações mais estruturadas do que a da TSI Peças. Os ERPs generalistas, como o Bling e o Tiny, atendem a pequenas e médias empresas com planos que crescem por faixas, módulos e volume [1][2][3], mas trazem uma amplitude de recursos maior do que a rotina de um operador único exige. Os sistemas especializados em autopeças, por sua vez, reúnem módulos como referência cruzada, curva ABC, substituição tributária, múltiplos depósitos, vendas B2B e comissão de vendedores [4][5], que também excedem a necessidade de um operador único. As referências estão listadas na página de [Referências](../referencias.md).
+As soluções analisadas são robustas, porém direcionadas a operações mais estruturadas do que a da TSI Peças. Os ERPs generalistas, como o Bling e o Tiny, atendem a pequenas e médias empresas com planos que crescem por faixas, módulos e volume [1](../referencias.md#ref1)[2](../referencias.md#ref2)[3](../referencias.md#ref3), mas trazem uma amplitude de recursos maior do que a rotina de um operador único exige. Os sistemas especializados em autopeças, por sua vez, reúnem módulos como referência cruzada, curva ABC, substituição tributária, múltiplos depósitos, vendas B2B e comissão de vendedores [4](../referencias.md#ref4)[5](../referencias.md#ref5), que também excedem a necessidade de um operador único. As referências estão listadas na página de [Referências](../referencias.md).
  
 A solução proposta para a TSI Peças não pretende competir em amplitude, mas em foco e adequação. Concentra-se no núcleo que resolve a dor real do cliente — catálogo organizado, controle de estoque confiável e registro de vendas — com uma interface enxuta para um operador que trabalha sozinho, sem o custo recorrente de assinatura nem a complexidade de configurar módulos não essenciais.
  
@@ -129,3 +129,4 @@ A viabilidade depende de manter o escopo do MVP controlado, preservar as priorid
 | 1.9 | 12/10/2026 | Renomeação da CP7 para "Segurança e Integridade dos Dados" e ajuste de sua descrição e do VN7, passando a abranger a segurança dos dados, conforme validação da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
 | 1.10 | 12/10/2026 | Ampliação do VN7 e reescrita do VN8, que passa a descrever o benefício para o negócio em vez de repetir a descrição da CP8, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
 | 1.11 | 12/10/2026 | Reescrita do VN8, que passa a destacar a melhoria da experiência do usuário e a ampliação da acessibilidade da solução, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
+| 1.12 | 13/10/2026 | Inclusão de âncoras para OEs e CPs e de links nos mapeamentos e nas citações da pesquisa de mercado. | [Thiago Gomes](https://github.com/thgomxs) |

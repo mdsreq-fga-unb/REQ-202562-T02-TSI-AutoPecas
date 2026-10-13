@@ -139,202 +139,202 @@ A página apresenta, nesta ordem:
 </tr></thead>
 <tbody>
 <tr>
-<td data-label="ID">RF01</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf01">RF01</a></td>
 <td data-label="Nome">Cadastrar peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que utilizadores com perfil Administrador ou Operador cadastrem uma peça, com preenchimento obrigatório do código do fabricante, do nome e da categoria; e preenchimento opcional da descrição técnica, da localização física e de uma foto.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF02</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf02">RF02</a></td>
 <td data-label="Nome">Importar peças via planilha</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao perfil Administrador selecionar uma planilha .xlsx de peças, validar os registros e cadastrá-los em lote, sem sobrescrever peças já cadastradas com o mesmo código do fabricante.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF03</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf03">RF03</a></td>
 <td data-label="Nome">Associar veículo à peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a associação de uma ou mais aplicações por veículo a uma peça cadastrada, com registo de marca, modelo e ano de compatibilidade.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF04</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf04">RF04</a></td>
 <td data-label="Nome">Buscar peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a localização de peças no catálogo por ao menos um dos seguintes filtros: código do fabricante, nome, categoria ou aplicação por veículo (marca, modelo ou ano).<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF05</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf05">RF05</a></td>
 <td data-label="Nome">Editar peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a edição de qualquer campo do cadastro de uma peça já registrada, com exceção do código do fabricante, que é imutável após o cadastro inicial.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF06</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf06">RF06</a></td>
 <td data-label="Nome">Alterar status da peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que o usuário altere o status de uma peça, alternando entre &quot;ativo&quot; e &quot;inativo&quot;.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF07</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf07">RF07</a></td>
 <td data-label="Nome">Cadastrar fornecedor</td>
 <td data-label="Descrição do requisito">O sistema deve permitir o cadastro de fornecedores.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF08</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf08">RF08</a></td>
 <td data-label="Nome">Registar entrada de peças</td>
 <td data-label="Descrição do requisito">O sistema deve permitir o registo da entrada de um lote de peças no stock, com informação da peça, da quantidade, da data, do fornecedor e do preço de custo unitário.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF09</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf09">RF09</a></td>
 <td data-label="Nome">Registar saída manual</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que utilizadores com perfil Administrador ou Operador registrem uma saída manual de peças do stock, com informação da peça, da quantidade, da data e do motivo.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF10</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf10">RF10</a></td>
 <td data-label="Nome">Registar ajuste de inventário</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que apenas o perfil Administrador realize o registo de um ajuste de inventário, com informação da peça, da diferença de quantidade (positiva ou negativa) e da justificativa do ajuste.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF11</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf11">RF11</a></td>
 <td data-label="Nome">Registar devolução de peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que o usuário registre a devolução de uma peça vinculada a uma venda, restabelecendo a quantidade devolvida ao saldo do estoque.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF12</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf12">RF12</a></td>
 <td data-label="Nome">Consultar saldo de peça</td>
 <td data-label="Descrição do requisito">O sistema deve exibir o saldo atual da peça (quantidade física total disponível).<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF13</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf13">RF13</a></td>
 <td data-label="Nome">Consultar histórico de movimentações</td>
 <td data-label="Descrição do requisito">O sistema deve exibir no ecrã o histórico de movimentações da peça.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF14</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf14">RF14</a></td>
 <td data-label="Nome">Filtrar histórico por período</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que o utilizador aplique um filtro de período (data) na listagem do histórico de movimentações.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF15</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf15">RF15</a></td>
 <td data-label="Nome">Registrar venda</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a utilizadores com perfil Administrador ou Operador o registro de uma venda com informação do canal de origem, das peças vendidas, das quantidades e do preço, atualizando o saldo em estoque.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF16</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf16">RF16</a></td>
 <td data-label="Nome">Cancelar venda</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao Administrador cancelar uma venda registrada previamente, revertendo a baixa de estoque correspondente.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF17</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf17">RF17</a></td>
 <td data-label="Nome">Registrar encargos da venda</td>
 <td data-label="Descrição do requisito">O sistema deve permitir o registro dos valores de desconto concedido, frete cobrado e taxas aplicadas (ex: comissão do marketplace) para uma venda já criada.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF18</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf18">RF18</a></td>
 <td data-label="Nome">Gerenciar status de recebimento</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que o usuário registre o recebimento (total ou parcial) de uma venda e a forma de pagamento por meio de um botão dropdown, com as opções de status de recebimento. O status de novas vendas deve iniciar como &quot;a receber&quot;, podendo o utilizador com perfil Administrador ou Operador atualizar esse status de forma autónoma ao registo.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF19</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf19">RF19</a></td>
 <td data-label="Nome">Exibir total consolidado</td>
 <td data-label="Descrição do requisito">O sistema deve exibir uma página com o total consolidado de valores a receber, listando as vendas pendentes.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF20</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf20">RF20</a></td>
 <td data-label="Nome">Filtrar página de recebíveis</td>
 <td data-label="Descrição do requisito">O sistema deve permitir que o usuário aplique filtros por período e canal na página de recebíveis.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF21</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf21">RF21</a></td>
 <td data-label="Nome">Definir estoque mínimo por peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a configuração de uma quantidade mínima de estoque para cada peça, abaixo da qual o item é considerado em estado crítico.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF22</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf22">RF22</a></td>
 <td data-label="Nome">Consultar painel de estoque crítico</td>
 <td data-label="Descrição do requisito">O sistema deve exibir um painel consolidado com todas as peças em estado crítico (saldo abaixo do mínimo ou zerado), com indicação do saldo atual e do mínimo configurado.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF23</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf23">RF23</a></td>
 <td data-label="Nome">Criar lista de compras</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a criação de uma lista de compras para a próxima remessa, com adição manual das peças desejadas e das quantidades a pedir.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF24</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf24">RF24</a></td>
 <td data-label="Nome">Confirmar recebimento de remessa</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a confirmação do recebimento de uma remessa vinculada a uma lista de compras, aceitando recebimentos parciais ou totais. Caso a quantidade recebida seja divergente da lista, o sistema deve exigir uma justificativa. Ao confirmar, o saldo em estoque deve ser atualizado imediatamente.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF25</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf25">RF25</a></td>
 <td data-label="Nome">Listar itens mais vendidos</td>
 <td data-label="Descrição do requisito">O sistema deve fornecer uma interface de consulta, permitindo filtrar e ordenar itens por: volume de vendas (maior/menor) e itens sem movimentação (indicando dias desde a última saída), com período de tempo configurável.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF26</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf26">RF26</a></td>
 <td data-label="Nome">Analisar desempenho por canal</td>
 <td data-label="Descrição do requisito">O sistema deve gerar um consolidado de vendas (volume de peças e valor financeiro total), agrupado por canal de origem (balcão, Mercado Livre e contato direto), a partir de um período de tempo configurável.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF27</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf27">RF27</a></td>
 <td data-label="Nome">Exportar relatórios</td>
 <td data-label="Descrição do requisito">O sistema deve permitir a exportação do relatório de movimentações do estoque e do relatório de vendas, ambos gerados em um período configurável e visualizáveis em tela, nos formatos PDF e .xlsx (Excel), preservando os filtros e os dados exibidos.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF28</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf28">RF28</a></td>
 <td data-label="Nome">Registrar despesa operacional</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador registrar uma despesa da operação (ex.: aluguel, embalagens ou frete de compra), informando data, categoria e valor.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF29</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf29">RF29</a></td>
 <td data-label="Nome">Editar despesa operacional</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador selecionar uma despesa operacional já registrada e alterar sua data, categoria e valor, salvando as alterações no mesmo registro.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF30</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf30">RF30</a></td>
 <td data-label="Nome">Excluir despesa operacional</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador selecionar uma despesa operacional já registrada e excluí-la após confirmar a exclusão.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF31</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf31">RF31</a></td>
 <td data-label="Nome">Consultar demonstrativo financeiro</td>
 <td data-label="Descrição do requisito">O sistema deve disponibilizar ao administrador uma página de demonstrativo financeiro com campos de data inicial e data final. Ao solicitar a consulta, a página deve exibir o total dos valores líquidos das vendas cuja data esteja no período informado, o total das despesas operacionais cuja data esteja no mesmo período e o saldo entre esses totais (receitas menos despesas), com detalhamento das receitas por canal e das despesas por categoria.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF32</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf32">RF32</a></td>
 <td data-label="Nome">Registrar dados fiscais da peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador registrar no cadastro da peça: NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável. Esses dados pertencem à peça; o CFOP depende da operação fiscal e não é um dado fixo desse cadastro.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF33</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf33">RF33</a></td>
 <td data-label="Nome">Editar dados fiscais da peça</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador alterar, no cadastro de uma peça, os dados fiscais já registrados: código NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF34</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf34">RF34</a></td>
 <td data-label="Nome">Vincular documento fiscal à venda</td>
 <td data-label="Descrição do requisito">O sistema deve permitir vincular a uma venda concluída o número e a data de um documento fiscal já emitido (NF-e, NFC-e ou cupom fiscal). Essas informações ficam associadas à venda.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF35</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf35">RF35</a></td>
 <td data-label="Nome">Registrar envio de peças</td>
 <td data-label="Descrição do requisito">O sistema deve permitir o registro, para uma venda com entrega, da modalidade de envio, do código de rastreio e da data de despacho.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF36</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf36">RF36</a></td>
 <td data-label="Nome">Consultar expedições do período</td>
 <td data-label="Descrição do requisito">O sistema deve exibir as vendas com entrega de um período, com o status de cada envio (a enviar / enviado / entregue) e os dados de rastreio registrados.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF37</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf37">RF37</a></td>
 <td data-label="Nome">Autenticar usuário</td>
 <td data-label="Descrição do requisito">O sistema deve exigir autenticação por credenciais (e-mail e senha) para acesso a qualquer funcionalidade, bloqueando o acesso após cinco tentativas consecutivas malsucedidas.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF38</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf38">RF38</a></td>
 <td data-label="Nome">Cadastrar usuário</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador cadastrar um usuário, informando e-mail, senha inicial e perfil de acesso (administrador ou operador).<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF39</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf39">RF39</a></td>
 <td data-label="Nome">Editar usuário</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador alterar o e-mail e o perfil de acesso de um usuário ativo, mantendo o histórico de operações desse usuário.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
 <tr>
-<td data-label="ID">RF40</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf40">RF40</a></td>
 <td data-label="Nome">Desativar usuário</td>
 <td data-label="Descrição do requisito">O sistema deve permitir ao administrador desativar uma conta de usuário, impedindo novos acessos dessa conta sem apagar seus registros históricos.<span class="backlog-rnfs"><strong>RNFs vinculados:</strong> <a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></span></td>
 </tr>
@@ -442,280 +442,280 @@ O **Esforço Técnico (ET)** é a média dos três critérios, arredondada ao in
 </tr></thead>
 <tbody>
 <tr>
-<td data-label="ID">RF01</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf01">RF01</a></td>
 <td data-label="Esforço de Implementação (EI)">3</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF02</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf02">RF02</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF03</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf03">RF03</a></td>
 <td data-label="Esforço de Implementação (EI)">3</td>
 <td data-label="Complexidade Arquitetural (CA)">3</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF04</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf04">RF04</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF05</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf05">RF05</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF06</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf06">RF06</a></td>
 <td data-label="Esforço de Implementação (EI)">3</td>
 <td data-label="Complexidade Arquitetural (CA)">3</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF07</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf07">RF07</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF08</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf08">RF08</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF09</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf09">RF09</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF10</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf10">RF10</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF11</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf11">RF11</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF12</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf12">RF12</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF13</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf13">RF13</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF14</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf14">RF14</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF15</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf15">RF15</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF16</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf16">RF16</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF17</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf17">RF17</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF18</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf18">RF18</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF19</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf19">RF19</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF20</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf20">RF20</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF21</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf21">RF21</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF22</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf22">RF22</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">3</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF23</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf23">RF23</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF24</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf24">RF24</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF25</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf25">RF25</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">3</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF26</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf26">RF26</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF27</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf27">RF27</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF28</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf28">RF28</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF29</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf29">RF29</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF30</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf30">RF30</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF31</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf31">RF31</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF32</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf32">RF32</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF33</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf33">RF33</a></td>
 <td data-label="Esforço de Implementação (EI)">1</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF34</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf34">RF34</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF35</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf35">RF35</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">1</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">1</td>
 </tr>
 <tr>
-<td data-label="ID">RF36</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf36">RF36</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">2</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF37</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf37">RF37</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF38</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf38">RF38</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF39</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf39">RF39</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
 <td data-label="Esforço Técnico (ET)">2</td>
 </tr>
 <tr>
-<td data-label="ID">RF40</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf40">RF40</a></td>
 <td data-label="Esforço de Implementação (EI)">2</td>
 <td data-label="Complexidade Arquitetural (CA)">2</td>
 <td data-label="Lacuna de Capacidade (LC)">1</td>
@@ -820,7 +820,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 </tr></thead>
 <tbody>
 <tr>
-<td data-label="ID">RF05</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf05">RF05</a></td>
 <td data-label="Nome">Editar peça</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -830,7 +830,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF08</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf08">RF08</a></td>
 <td data-label="Nome">Registar entrada de peças</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -840,7 +840,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF01</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf01">RF01</a></td>
 <td data-label="Nome">Cadastrar peça</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -850,7 +850,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF02</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf02">RF02</a></td>
 <td data-label="Nome">Importar peças via planilha</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -860,7 +860,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF03</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf03">RF03</a></td>
 <td data-label="Nome">Associar veículo à peça</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -870,7 +870,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF04</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf04">RF04</a></td>
 <td data-label="Nome">Buscar peça</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -880,7 +880,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF06</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf06">RF06</a></td>
 <td data-label="Nome">Alterar status da peça</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -890,7 +890,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF09</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf09">RF09</a></td>
 <td data-label="Nome">Registar saída manual</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -900,7 +900,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF10</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf10">RF10</a></td>
 <td data-label="Nome">Registar ajuste de inventário</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -910,7 +910,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF12</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf12">RF12</a></td>
 <td data-label="Nome">Consultar saldo de peça</td>
 <td data-label="VN">3</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -920,7 +920,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF15</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf15">RF15</a></td>
 <td data-label="Nome">Registrar venda</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Must Have</td>
@@ -930,7 +930,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF14</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf14">RF14</a></td>
 <td data-label="Nome">Filtrar histórico por período</td>
 <td data-label="VN">3</td>
 <td data-label="MoSCoW">Should Have</td>
@@ -940,7 +940,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF16</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf16">RF16</a></td>
 <td data-label="Nome">Cancelar venda</td>
 <td data-label="VN">4</td>
 <td data-label="MoSCoW">Should Have</td>
@@ -950,7 +950,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Sim</td>
 </tr>
 <tr>
-<td data-label="ID">RF11</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf11">RF11</a></td>
 <td data-label="Nome">Registar devolução de peça</td>
 <td data-label="VN">3</td>
 <td data-label="MoSCoW">Should Have</td>
@@ -960,7 +960,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Cond.</td>
 </tr>
 <tr>
-<td data-label="ID">RF21</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf21">RF21</a></td>
 <td data-label="Nome">Definir estoque mínimo por peça</td>
 <td data-label="VN">2</td>
 <td data-label="MoSCoW">Should Have</td>
@@ -970,7 +970,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Cond.</td>
 </tr>
 <tr>
-<td data-label="ID">RF25</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf25">RF25</a></td>
 <td data-label="Nome">Listar itens mais vendidos</td>
 <td data-label="VN">3</td>
 <td data-label="MoSCoW">Should Have</td>
@@ -980,7 +980,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Cond.</td>
 </tr>
 <tr>
-<td data-label="ID">RF13</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf13">RF13</a></td>
 <td data-label="Nome">Consultar histórico de movimentações</td>
 <td data-label="VN">3</td>
 <td data-label="MoSCoW">Could Have</td>
@@ -990,7 +990,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Cond.</td>
 </tr>
 <tr>
-<td data-label="ID">RF22</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf22">RF22</a></td>
 <td data-label="Nome">Consultar painel de estoque crítico</td>
 <td data-label="VN">2</td>
 <td data-label="MoSCoW">Should Have</td>
@@ -1000,7 +1000,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Cond.</td>
 </tr>
 <tr>
-<td data-label="ID">RF23</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf23">RF23</a></td>
 <td data-label="Nome">Criar lista de compras</td>
 <td data-label="VN">1</td>
 <td data-label="MoSCoW">Could Have</td>
@@ -1010,7 +1010,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF31</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf31">RF31</a></td>
 <td data-label="Nome">Consultar demonstrativo financeiro</td>
 <td data-label="VN">2</td>
 <td data-label="MoSCoW">Could Have</td>
@@ -1020,7 +1020,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF19</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf19">RF19</a></td>
 <td data-label="Nome">Exibir total consolidado</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Could Have</td>
@@ -1030,7 +1030,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF20</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf20">RF20</a></td>
 <td data-label="Nome">Filtrar página de recebíveis</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Could Have</td>
@@ -1040,7 +1040,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF28</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf28">RF28</a></td>
 <td data-label="Nome">Registrar despesa operacional</td>
 <td data-label="VN">1</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1050,7 +1050,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF29</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf29">RF29</a></td>
 <td data-label="Nome">Editar despesa operacional</td>
 <td data-label="VN">1</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1060,7 +1060,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF30</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf30">RF30</a></td>
 <td data-label="Nome">Excluir despesa operacional</td>
 <td data-label="VN">1</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1070,7 +1070,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF07</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf07">RF07</a></td>
 <td data-label="Nome">Cadastrar fornecedor</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1080,7 +1080,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF27</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf27">RF27</a></td>
 <td data-label="Nome">Exportar relatórios</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1090,7 +1090,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF32</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf32">RF32</a></td>
 <td data-label="Nome">Registrar dados fiscais da peça</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1100,7 +1100,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF33</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf33">RF33</a></td>
 <td data-label="Nome">Editar dados fiscais da peça</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1110,7 +1110,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF35</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf35">RF35</a></td>
 <td data-label="Nome">Registrar envio de peças</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1120,7 +1120,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF17</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf17">RF17</a></td>
 <td data-label="Nome">Registrar encargos da venda</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1130,7 +1130,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF18</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf18">RF18</a></td>
 <td data-label="Nome">Gerenciar status de recebimento</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1140,7 +1140,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF24</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf24">RF24</a></td>
 <td data-label="Nome">Confirmar recebimento de remessa</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1150,7 +1150,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF26</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf26">RF26</a></td>
 <td data-label="Nome">Analisar desempenho por canal</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1160,7 +1160,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF34</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf34">RF34</a></td>
 <td data-label="Nome">Vincular documento fiscal à venda</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1170,7 +1170,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF36</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf36">RF36</a></td>
 <td data-label="Nome">Consultar expedições do período</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1180,7 +1180,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF37</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf37">RF37</a></td>
 <td data-label="Nome">Autenticar usuário</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1190,7 +1190,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF38</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf38">RF38</a></td>
 <td data-label="Nome">Cadastrar usuário</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1200,7 +1200,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF39</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf39">RF39</a></td>
 <td data-label="Nome">Editar usuário</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1210,7 +1210,7 @@ Os RFs estão ordenados por Score decrescente. **Cond.** significa condicionado 
 <td data-label="MVP">Não</td>
 </tr>
 <tr>
-<td data-label="ID">RF40</td>
+<td data-label="ID"><a href="../requisitos-de-software/#rf40">RF40</a></td>
 <td data-label="Nome">Desativar usuário</td>
 <td data-label="VN">0</td>
 <td data-label="MoSCoW">Won&#x27;t Have</td>
@@ -1238,18 +1238,18 @@ Os épicos agrupam as histórias de usuário do MVP por uma necessidade ampla do
 </tr></thead>
 <tbody>
 <tr>
-<td data-label="Épico"><strong id="ep01">EP01</strong><br>Gestão do catálogo de peças</td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a><br>Gestão do catálogo de peças</td>
+<td data-label="Épico"><strong id="ep01"><a href="#ep01">EP01</a></strong><br>Gestão do catálogo de peças</td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp1">CP1</a><br>Gestão do catálogo de peças</td>
 <td data-label="US vinculadas"><a href="#us01">US01</a>, <a href="#us02">US02</a>, <a href="#us03">US03</a>, <a href="#us04">US04</a>, <a href="#us05">US05</a>, <a href="#us06">US06</a></td>
 </tr>
 <tr>
-<td data-label="Épico"><strong id="ep02">EP02</strong><br>Controle de movimentações e saldo</td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a><br>Controle de movimentações e saldo do estoque</td>
+<td data-label="Épico"><strong id="ep02"><a href="#ep02">EP02</a></strong><br>Controle de movimentações e saldo</td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp2">CP2</a><br>Controle de movimentações e saldo do estoque</td>
 <td data-label="US vinculadas"><a href="#us08">US08</a>, <a href="#us09">US09</a>, <a href="#us10">US10</a>, <a href="#us12">US12</a>, <a href="#us14">US14</a></td>
 </tr>
 <tr>
-<td data-label="Épico"><strong id="ep03">EP03</strong><br>Registro e cancelamento de vendas</td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">CP3</a><br>Registro de vendas e recebimentos</td>
+<td data-label="Épico"><strong id="ep03"><a href="#ep03">EP03</a></strong><br>Registro e cancelamento de vendas</td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp3">CP3</a><br>Registro de vendas e recebimentos</td>
 <td data-label="US vinculadas"><a href="#us15">US15</a>, <a href="#us16">US16</a></td>
 </tr>
 </tbody>
@@ -1270,108 +1270,108 @@ As 13 histórias de usuário (US) detalham os requisitos funcionais selecionados
 </tr></thead>
 <tbody>
 <tr>
-<td data-label="US"><strong id="us01" title="Cadastrar peça">US01</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF01</a></td>
+<td data-label="US"><strong id="us01" title="Cadastrar peça"><a href="#us01">US01</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf01">RF01</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como administrador ou operador da loja, quero cadastrar uma peça para manter suas informações organizadas e disponíveis para consulta.</td>
 <td data-label="Épico"><a href="#ep01">EP01</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp1">CP1</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us02" title="Importar peças via planilha">US02</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF02</a></td>
+<td data-label="US"><strong id="us02" title="Importar peças via planilha"><a href="#us02">US02</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf02">RF02</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como administrador da loja, quero importar peças de uma planilha para aproveitar os registros existentes e reduzir o trabalho de cadastro manual.</td>
 <td data-label="Épico"><a href="#ep01">EP01</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp1">CP1</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us03" title="Associar veículo à peça">US03</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF03</a></td>
+<td data-label="US"><strong id="us03" title="Associar veículo à peça"><a href="#us03">US03</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf03">RF03</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como usuário da loja, quero associar os veículos compatíveis a uma peça para identificar sua aplicação corretamente durante o atendimento.</td>
 <td data-label="Épico"><a href="#ep01">EP01</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp1">CP1</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us04" title="Buscar peça">US04</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF04</a></td>
+<td data-label="US"><strong id="us04" title="Buscar peça"><a href="#us04">US04</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf04">RF04</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como usuário da loja, quero localizar peças por suas informações de identificação ou aplicação para encontrar o item adequado durante o atendimento.</td>
 <td data-label="Épico"><a href="#ep01">EP01</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp1">CP1</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us05" title="Editar peça">US05</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF05</a></td>
+<td data-label="US"><strong id="us05" title="Editar peça"><a href="#us05">US05</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf05">RF05</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como usuário da loja, quero corrigir os dados de uma peça cadastrada para manter o catálogo atualizado sem alterar sua identificação pelo fabricante.</td>
 <td data-label="Épico"><a href="#ep01">EP01</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp1">CP1</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us06" title="Alterar status da peça">US06</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">RF06</a></td>
+<td data-label="US"><strong id="us06" title="Alterar status da peça"><a href="#us06">US06</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf06">RF06</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como usuário da loja, quero alternar uma peça entre ativa e inativa para indicar sua situação no catálogo sem perder o cadastro existente.</td>
 <td data-label="Épico"><a href="#ep01">EP01</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp1-gestao-do-catalogo-de-pecas">CP1</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp1">CP1</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us08" title="Registrar entrada de peças">US08</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF08</a></td>
+<td data-label="US"><strong id="us08" title="Registrar entrada de peças"><a href="#us08">US08</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf08">RF08</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como usuário da loja, quero registrar a entrada de um lote de peças para manter o estoque atualizado e identificar sua origem e seu custo de aquisição.</td>
 <td data-label="Épico"><a href="#ep02">EP02</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp2">CP2</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us09" title="Registrar saída manual">US09</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF09</a></td>
+<td data-label="US"><strong id="us09" title="Registrar saída manual"><a href="#us09">US09</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf09">RF09</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como administrador ou operador da loja, quero registrar uma saída de peças que não decorra de venda para manter o saldo coerente com a movimentação física e seu motivo.</td>
 <td data-label="Épico"><a href="#ep02">EP02</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp2">CP2</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us10" title="Registrar ajuste de inventário">US10</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF10</a></td>
+<td data-label="US"><strong id="us10" title="Registrar ajuste de inventário"><a href="#us10">US10</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf10">RF10</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como administrador da loja, quero registrar uma diferença de inventário com justificativa para corrigir o saldo de uma peça conforme a contagem física.</td>
 <td data-label="Épico"><a href="#ep02">EP02</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp2">CP2</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us12" title="Consultar saldo de peça">US12</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF12</a></td>
+<td data-label="US"><strong id="us12" title="Consultar saldo de peça"><a href="#us12">US12</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf12">RF12</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf04-desempenho-de-resposta">RNF04</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como usuário da loja, quero consultar a quantidade física disponível de uma peça para informar sua disponibilidade durante o atendimento.</td>
 <td data-label="Épico"><a href="#ep02">EP02</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp2">CP2</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us14" title="Filtrar histórico por período">US14</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">RF14</a></td>
+<td data-label="US"><strong id="us14" title="Filtrar histórico por período"><a href="#us14">US14</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf14">RF14</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como usuário da loja, quero consultar apenas as movimentações de uma peça em determinado período para analisar o intervalo relevante para minha necessidade.</td>
 <td data-label="Épico"><a href="#ep02">EP02</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp2-controle-de-movimentacoes-e-saldo-do-estoque">CP2</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp2">CP2</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us15" title="Registrar venda">US15</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">RF15</a></td>
+<td data-label="US"><strong id="us15" title="Registrar venda"><a href="#us15">US15</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf15">RF15</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como administrador ou operador da loja, quero registrar uma venda com seus itens e canal de origem para manter as vendas documentadas e o saldo de estoque atualizado.</td>
 <td data-label="Épico"><a href="#ep03">EP03</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">CP3</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp3">CP3</a></td>
 </tr>
 <tr>
-<td data-label="US"><strong id="us16" title="Cancelar venda">US16</strong></td>
-<td data-label="RF de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">RF16</a></td>
+<td data-label="US"><strong id="us16" title="Cancelar venda"><a href="#us16">US16</a></strong></td>
+<td data-label="RF de origem"><a href="../requisitos-de-software/#rf16">RF16</a></td>
 <td data-label="RNFs vinculados"><a href="../requisitos-de-software/#rnf01-responsividade-da-interface-em-dispositivos-moveis">RNF01</a>, <a href="../requisitos-de-software/#rnf02-tolerancia-a-falhas-de-conexao">RNF02</a>, <a href="../requisitos-de-software/#rnf03-compatibilidade-com-navegadores-web">RNF03</a>, <a href="../requisitos-de-software/#rnf05-seguranca-de-dados">RNF05</a></td>
 <td data-label="Narrativa">Como administrador da loja, quero cancelar uma venda registrada para corrigir um registro de venda e restabelecer ao estoque as quantidades baixadas.</td>
 <td data-label="Épico"><a href="#ep03">EP03</a></td>
-<td data-label="CP de origem"><a href="../requisitos-de-software/#cp3-registro-de-vendas-e-recebimentos">CP3</a></td>
+<td data-label="CP de origem"><a href="../solucao-e-caracteristicas/#cp3">CP3</a></td>
 </tr>
 </tbody>
 </table>
@@ -1531,6 +1531,12 @@ Rastreabilidade entre objetivos específicos (OE), características de produto (
 <td data-label="Versão">1.5</td>
 <td data-label="Data">13/10/2026</td>
 <td data-label="Descrição">Substituição da coluna de dependências pelas narrativas das 13 histórias de usuário e inclusão dos vínculos com os épicos.</td>
+<td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
+</tr>
+<tr>
+<td data-label="Versão">1.6</td>
+<td data-label="Data">13/10/2026</td>
+<td data-label="Descrição">Correção da navegação para os RFs individuais e para as CPs de origem; inclusão de links permanentes dos épicos e das histórias de usuário.</td>
 <td data-label="Autor(es/as)"><a href="https://github.com/thgomxs">Thiago Gomes</a></td>
 </tr>
 </tbody>
