@@ -119,6 +119,15 @@
 
 ### 10.1 Backlog geral
 
+A página apresenta, nesta ordem:
+
+- **Lista de requisitos:** requisitos previstos e RNFs vinculados.
+- **Priorização:** avaliação de valor, esforço e importância para definir o MVP.
+- **Épicos:** agrupamentos de histórias com um objetivo comum.
+- **Histórias de usuário:** necessidades descritas pela perspectiva do usuário.
+- **Árvore:** vínculos entre OE, CP, RF e US.
+- **Quadro MVP:** acompanhamento do status, PRs e commits das histórias selecionadas.
+
 <table class="backlog-table backlog-table--general">
 <thead><tr>
 <th scope="col">ID</th>

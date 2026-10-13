@@ -41,6 +41,28 @@ A gravação do vídeo mostrou que um documento completo precisa ser transformad
 
 ### 11.2 Unidade 2
 
+Durante a elicitação, a revisão dos requisitos e a definição do MVP, a equipe obteve os seguintes aprendizados:
+
+#### Elicitação e validação com o cliente
+
+Aprendemos que a elicitação de requisitos exige mais de uma conversa com o cliente. Ao discutir exemplos da rotina da loja e revisar os requisitos com o proprietário, identificamos ambiguidades e distinguimos necessidades essenciais de melhorias futuras, tornando o escopo do MVP mais claro e viável.
+
+#### Comunicação e cumprimento dos prazos
+
+Aprendemos que a comunicação clara é essencial para cumprir os prazos. As dificuldades de entrega causadas por ruídos na comunicação reforçaram a necessidade de alinhar responsabilidades, esclarecer dúvidas e registrar decisões entre os integrantes da equipe.
+
+#### Distinção entre características, requisitos e regras de negócio
+
+Aprendemos, na prática, a distinguir características de produto, requisitos funcionais e regras de negócio. Inicialmente, misturamos funcionalidades, regras que orientam sua execução e efeitos de outras operações. A revisão mostrou que os requisitos funcionais descrevem comportamentos observáveis do sistema e podem incluir ações automáticas, como a atualização do saldo após uma venda. Essa compreensão ajudou a organizar a especificação e a relacionar cada comportamento à funcionalidade correspondente.
+
+#### Delimitação do MVP antes do desenvolvimento
+
+Uma lição fundamental foi perceber que a definição clara do escopo do MVP depende de uma seleção criteriosa dos requisitos antes do desenvolvimento. Esse filtro ajuda a evitar a inclusão de funcionalidades que aumentem o esforço sem contribuir diretamente para resolver o problema principal do cliente.
+
+#### Priorização e construção de consenso
+
+Uma das maiores lições aprendidas nesta unidade foi a importância da priorização dos requisitos que irão compor o MVP e da construção de consenso. Esse processo não se resume ao cálculo de diversos critérios: também exige um esforço coletivo para alinhar as perspectivas técnicas dos integrantes da equipe e obter informações do cliente com maior precisão e menor influência de vieses, permitindo estabelecer um backlog organizado e coerente para o MVP.
+
 ### 11.3 Unidade 3
 
 ### 11.4 Unidade 4
@@ -51,3 +73,4 @@ A gravação do vídeo mostrou que um documento completo precisa ser transformad
 | :----: | :--------: | ----------------------------------------------------------- | ------------------------------------------ |
 |  1.0   | 04/09/2026 | Iniciação do documento                                      | [Thiago Gomes](https://github.com/thgomxs) |
 |  1.1   | 07/09/2026 | Registro das lições aprendidas da Unidade 1 até a Entrega 1 | [Thiago Gomes](https://github.com/thgomxs) |
+|  1.2   | 12/10/2026 | Registro e revisão das lições aprendidas da Unidade 2 | Equipe (conteúdo); [Thiago Gomes](https://github.com/thgomxs) (revisão e formatação) |
