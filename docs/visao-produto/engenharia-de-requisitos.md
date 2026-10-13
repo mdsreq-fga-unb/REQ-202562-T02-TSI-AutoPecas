@@ -69,7 +69,7 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **Planejamento da Release** | Elicitação e Descoberta | Entendimento do Domínio e Negócio | Entrevistas semiestruturadas, Sessões de Ideação, Análise do contexto da solução | Visão geral das necessidades do proprietário e escopo inicial do sistema estabelecido. |
 | **Planejamento da Release** | Análise e Consenso | Priorização Orientada a Valor | MoSCoW, Análise Documental | Funcionalidades críticas identificadas, para a priorização e viabilidade técnica verificada. |
-| **Planejamento da Release** | Declaração | Especificação Ágil de Alto Nível | Declaração | Primeira versão do *Product Backlog* criada contendo as grandes necessidades. |
+| **Planejamento da Release** | Declaração | Especificação Ágil de Alto Nível | Análise de material disponível e conhecimento do domínio | Criação do *Product Backlog* com as grandes necessidades. |
 | **Planejamento da Sprint** | Elicitação e Descoberta | Alinhamento Contínuo | Análise Documental, Reuniões com o proprietário | Escopo da Sprint compreendido, visando minimizar lacunas e ambiguidades. |
 | **Planejamento da Sprint** | Análise e Consenso | Entendimento do Usuário | Análise de Tarefas | Tarefas e fluxo de trabalho do usuário mapeados e compreendidos. |
 | **Planejamento da Sprint** | Declaração | Especificação Detalhada | Detalhamento e Análise das Histórias | Detalhamento e análise dos Épicos e Histórias de Usuário |
@@ -80,7 +80,7 @@
 | **Execução da Sprint** | Verificação | Verificação Interna | Revisão por Checklists | Funcionalidades verificadas internamente. |
 | **Execução da Sprint** | Verificação | Propriedades do Backlog | Verificação contínua do backlog | *Backlog* verificado para atestar as características DEEP. |
 | **Revisão da Sprint** | Validação Externa | Homologação com o Proprietário | Demonstração e Validação com Cliente | Incremento de software validado externamente pelo proprietário. |
-| **Revisão da Sprint** | Organização e Atualização | Atualização de Escopo | Declaração de requisitos | Novos requisitos formalizados para o *backlog*. |
+| **Revisão da Sprint** | Organização e Atualização | Atualização de Escopo |  de requisitos | Novos requisitos formalizados para o *backlog*. |
 | **Retrospectiva da Sprint** | Análise e Consenso | Avaliação de Processos de ER | Análise de Causa Raiz | Falhas de comunicação identificadas para melhoria. |
 | **Planej. da Próxima Release** | Elicitação e Descoberta | Planejamento Evolutivo | Brainstorming | Novas necessidades e adaptações captadas para a próxima versão do sistema. |
 | **Planej. da Próxima Release** | Organização e Atualização | Especificação Ágil | Atualização de Épicos e User Stories | Novos épicos e histórias formalizados e alocados para a próxima versão. |
