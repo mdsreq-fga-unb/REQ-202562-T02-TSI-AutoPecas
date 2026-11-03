@@ -22,8 +22,11 @@ O escopo do MVP, com 13 requisitos funcionais, e o cronograma estão na document
 | Documento | Conteúdo |
 | --- | --- |
 | [Visão do produto e projeto](docs/visao-produto/index.md) | Contexto, problema, solução, requisitos e planejamento |
-| [Requisitos de software](docs/visao-produto/requisitos-de-software.md) | Requisitos funcionais (RF) e não funcionais (RNF) |
-| [Backlog de produto](docs/visao-produto/backlog-de-produto.md) | Priorização e definição do MVP |
+| [Catálogo de requisitos](docs/visao-produto/requisitos-de-software.md) | Registro único de cada RF e RNF, com origem, condições, priorização, entrega e situação |
+| [Priorização](docs/visao-produto/priorizacao.md) | Método de priorização e decisões gerais de escopo |
+| [MVP](docs/visao-produto/mvp.md) | Objetivo do incremento, justificativa do recorte e validação |
+| [Rastreabilidade](docs/visao-produto/rastreabilidade.md) | Tipos de vínculo entre os elementos do escopo |
+| [Histórico de evolução](docs/visao-produto/historico-de-evolucao.md) | Rotina de atualização e decisões que alteraram o escopo |
 | [Cronograma e entregas](docs/visao-produto/cronograma-e-entregas.md) | Sprints, entregas e validações com o cliente |
 | [Atas](docs/atas/index.md) | Registro das reuniões de cada sprint |
 | [Entregas](docs/entregas/index.md) | Entregas da disciplina |

@@ -55,19 +55,22 @@ Use os cards abaixo para acessar os tópicos da Visão do Produto e Projeto. A p
   <div class="section-card section-card--group">
     <span class="section-card__number" aria-hidden="true">05</span>
     <span class="section-card__title">Especificação e Backlog</span>
-    <span class="section-card__description">Acompanhe a evolução da especificação, dos critérios de pronto e do backlog do produto.</span>
+    <span class="section-card__description">Consulte o catálogo integrado dos requisitos, o método de priorização, o recorte do MVP e a rastreabilidade do escopo.</span>
     <ul class="section-card__links">
-      <li><a href="requisitos-de-software/">Requisitos de software</a></li>
+      <li><a href="requisitos-de-software/">Catálogo de requisitos</a></li>
+      <li><a href="priorizacao/">Priorização</a></li>
+      <li><a href="mvp/">MVP</a></li>
+      <li><a href="rastreabilidade/">Rastreabilidade</a></li>
       <li><a href="dor-e-dod/">DoR e DoD</a></li>
-      <li><a href="backlog-de-produto/">Backlog de produto</a></li>
     </ul>
   </div>
 
   <div class="section-card section-card--group">
     <span class="section-card__number" aria-hidden="true">06</span>
     <span class="section-card__title">Evolução do Projeto</span>
-    <span class="section-card__description">Registre os aprendizados das unidades e as melhorias para os próximos ciclos de desenvolvimento.</span>
+    <span class="section-card__description">Acompanhe as decisões que alteraram o escopo e os aprendizados de cada unidade.</span>
     <ul class="section-card__links">
+      <li><a href="historico-de-evolucao/">Histórico de evolução</a></li>
       <li><a href="licoes-aprendidas/">Lições aprendidas</a></li>
     </ul>
   </div>

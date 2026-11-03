@@ -9,6 +9,9 @@ edit_uri: edit/main/docs/
 extra_css:
   - assets/stylesheets/custom.css
 
+extra_javascript:
+  - assets/javascripts/catalog.js
+
 theme:
   name: material
   language: pt-BR
@@ -49,7 +52,11 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
 
@@ -70,11 +77,14 @@ nav:
       - Planejamento e Alinhamento:
           - Cronograma e entregas: visao-produto/cronograma-e-entregas.md
           - Interação entre equipe e cliente: visao-produto/interacao-equipe-cliente.md
-      - Especificação e Backlog:
-          - Requisitos de software: visao-produto/requisitos-de-software.md
+      - Especificação e Escopo:
+          - Catálogo de requisitos: visao-produto/requisitos-de-software.md
+          - Priorização: visao-produto/priorizacao.md
+          - MVP: visao-produto/mvp.md
+          - Rastreabilidade: visao-produto/rastreabilidade.md
           - DoR e DoD: visao-produto/dor-e-dod.md
-          - Backlog de produto: visao-produto/backlog-de-produto.md
       - Evolução do Projeto:
+          - Histórico de evolução: visao-produto/historico-de-evolucao.md
           - Lições aprendidas: visao-produto/licoes-aprendidas.md
   - Atas:
       - atas/index.md

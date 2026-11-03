@@ -260,6 +260,9 @@
   --tsi-surface: #fff;
   --tsi-soft-red: #fff1f3;
   --tsi-card-shadow: 0 0.5rem 1.6rem rgb(23 27 33 / 7%);
+  /* Tons legíveis sobre a superfície do tema, usados em textos e selos. */
+  --tsi-accent: var(--tsi-red);
+  --tsi-amber: #946a00;
 }
 
 [data-md-color-scheme="slate"] {
@@ -277,6 +280,9 @@
   --tsi-surface: #1e2024;
   --tsi-soft-red: rgb(197 30 54 / 13%);
   --tsi-card-shadow: 0 0.6rem 1.8rem rgb(0 0 0 / 22%);
+  /* Tons legíveis sobre a superfície do tema, usados em textos e selos. */
+  --tsi-accent: #ff7183;
+  --tsi-amber: #e3a72f;
 }
 
 html {
@@ -826,5 +832,240 @@ body {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Catálogo integrado de requisitos
+   ========================================================================== */
+
+.md-typeset .catalog-controls {
+  margin: 1.2rem 0 0.8rem;
+}
+
+.md-typeset a.catalog-toggle {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--tsi-accent);
+  border-radius: 2rem;
+  color: var(--tsi-accent) !important;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.md-typeset a.catalog-toggle:hover,
+.md-typeset a.catalog-toggle:focus-visible {
+  background: var(--tsi-soft-red);
+}
+
+.md-typeset .catalog-index,
+.md-typeset .mvp-board {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.66rem;
+}
+
+.md-typeset .catalog-index th,
+.md-typeset .catalog-index td,
+.md-typeset .mvp-board th,
+.md-typeset .mvp-board td {
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+/* Cabeçalho herda o estilo compartilhado de `table:not(.team-table) th`
+   (barra escura com texto branco), legível nos modos claro e escuro. */
+.md-typeset .catalog-index thead th,
+.md-typeset .mvp-board thead th {
+  border-bottom: 0;
+  font-weight: 700;
+  text-align: left;
+}
+
+.md-typeset .catalog-index th:nth-child(1) { width: 8%; }
+.md-typeset .catalog-index th:nth-child(2) { width: 32%; }
+.md-typeset .catalog-index th:nth-child(3) { width: 8%; }
+.md-typeset .catalog-index th:nth-child(4),
+.md-typeset .catalog-index th:nth-child(5),
+.md-typeset .catalog-index th:nth-child(6) { width: 6%; text-align: center; }
+.md-typeset .catalog-index td:nth-child(4),
+.md-typeset .catalog-index td:nth-child(5),
+.md-typeset .catalog-index td:nth-child(6) { text-align: center; }
+.md-typeset .catalog-index th:nth-child(7) { width: 15%; }
+.md-typeset .catalog-index th:nth-child(8) { width: 19%; }
+
+.md-typeset .mvp-board th:nth-child(1) { width: 8%; }
+.md-typeset .mvp-board th:nth-child(2) { width: 34%; }
+.md-typeset .mvp-board th:nth-child(3) { width: 12%; }
+.md-typeset .mvp-board th:nth-child(4) { width: 18%; }
+.md-typeset .mvp-board th:nth-child(5),
+.md-typeset .mvp-board th:nth-child(6) { width: 14%; }
+
+/* Registro de requisito */
+
+.md-typeset details.req-record {
+  margin: 0.6rem 0;
+  padding: 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 4px solid var(--tsi-red);
+  border-radius: 0.75rem;
+  background: var(--tsi-surface);
+  box-shadow: var(--tsi-card-shadow);
+  font-size: 0.72rem;
+}
+
+.md-typeset details.req-record--rnf {
+  border-left-color: var(--tsi-muted);
+}
+
+.md-typeset details.req-record > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.7rem;
+  padding: 0.75rem 1rem 0.75rem 2.1rem;
+  background: none;
+  font-weight: 400;
+  list-style: none;
+  cursor: pointer;
+}
+
+.md-typeset details.req-record > summary::before {
+  top: 0.85rem;
+  left: 0.7rem;
+}
+
+.md-typeset details.req-record > summary::after {
+  display: none;
+}
+
+.md-typeset details.req-record[open] > summary {
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .req-record__id {
+  color: var(--tsi-accent);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.md-typeset .req-record__name {
+  flex: 1 1 12rem;
+  font-weight: 700;
+}
+
+.md-typeset .req-record__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.md-typeset .req-chip {
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 2rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.6rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.md-typeset .req-chip--mvp {
+  border-color: var(--tsi-accent);
+  background: var(--tsi-soft-red);
+  color: var(--tsi-accent);
+}
+
+.md-typeset .req-chip--condicionado {
+  border-color: var(--tsi-amber);
+  color: var(--tsi-amber);
+}
+
+.md-typeset .req-chip--rnf {
+  border-color: var(--tsi-muted);
+  color: var(--tsi-muted);
+}
+
+.md-typeset .req-record__body {
+  padding: 0.2rem 1rem 0.9rem;
+}
+
+.md-typeset .req-record__body > p,
+.md-typeset .req-record__body > ul {
+  margin: 0.55rem 0;
+}
+
+.md-typeset .req-record__body > p > strong:first-child {
+  color: var(--tsi-accent);
+}
+
+.md-typeset .req-record__body ul {
+  padding-left: 1.1rem;
+}
+
+.md-typeset .priority-equation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 1rem 0;
+  padding: 1rem 0.5rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--tsi-red) 4%, var(--tsi-surface));
+  font-size: clamp(16px, 2vw, 24px);
+}
+
+@media (max-width: 640px) {
+  .md-typeset .catalog-index,
+  .md-typeset .catalog-index tbody,
+  .md-typeset .catalog-index tr,
+  .md-typeset .catalog-index td,
+  .md-typeset .mvp-board,
+  .md-typeset .mvp-board tbody,
+  .md-typeset .mvp-board tr,
+  .md-typeset .mvp-board td {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .md-typeset .catalog-index thead,
+  .md-typeset .mvp-board thead {
+    display: none;
+  }
+
+  .md-typeset .catalog-index tr,
+  .md-typeset .mvp-board tr {
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.5rem;
+  }
+
+  .md-typeset .catalog-index td,
+  .md-typeset .mvp-board td {
+    border: 0;
+    text-align: left !important;
+  }
+
+  .md-typeset .catalog-index td::before,
+  .md-typeset .mvp-board td::before {
+    content: attr(data-label) ": ";
+    color: var(--md-default-fg-color--light);
+    font-weight: 700;
+  }
+
+  .md-typeset .priority-equation {
+    font-size: 16px;
   }
 }

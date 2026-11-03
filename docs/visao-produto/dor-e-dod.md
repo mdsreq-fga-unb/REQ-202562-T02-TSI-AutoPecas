@@ -16,7 +16,7 @@ Uma História de Usuário (US) só pode passar do Product Backlog refinado para 
 Verifica se o que será desenvolvido e seu valor para o negócio estão claros para toda a equipe.
 
 - [ ] O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?
-- [ ] O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW foi registrada e a prioridade foi definida no [backlog](backlog-de-produto.md#tabela-de-priorizacao)?
+- [ ] O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW foi registrada e a prioridade foi registrada no [catálogo de requisitos](requisitos-de-software.md#83-indice-dos-registros), conforme o método de [Priorização](priorizacao.md)?
 - [ ] Os critérios de aceitação são verificáveis, estão escritos no formato **Dado / Quando / Então**, cobrem os fluxos de exceção e erro e estão explicitamente vinculados ao requisito funcional (RF), ao objetivo específico (OE) e à característica de produto (CP) correspondentes?
 - [ ] As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre.
 - [ ] O validador (Antônio Marcos, proprietário), o canal de validação (reuniões quinzenais pelo Google Meet, encontros presenciais ou WhatsApp) e o critério de aprovação pelo cliente estão definidos?
@@ -27,7 +27,7 @@ Verifica a existência de bloqueios externos, de infraestrutura ou de dependênc
 
 - [ ] As dependências técnicas foram mapeadas, incluindo tabelas no PostgreSQL/Supabase, endpoints do FastAPI e componentes React, quando aplicáveis?
 - [ ] Os impedimentos conhecidos foram removidos ou possuem um plano de mitigação documentado? Exemplos: limites dos planos gratuitos e higienização das planilhas legadas.
-- [ ] Os requisitos não funcionais (RNFs) aplicáveis à história foram mapeados e seus critérios verificáveis são viáveis de implementar? Exemplos: RNF01 para uso em dispositivos móveis no balcão; RNF02 para tolerância a falhas de conexão e prevenção de duplicidades; RNF04 para buscas com P95 ≤ 3 s; RNF05 para segurança dos dados, nas condições definidas em [Requisitos de software](requisitos-de-software.md#82-lista-de-requisitos-nao-funcionais).
+- [ ] Os requisitos não funcionais (RNFs) aplicáveis à história foram mapeados e seus critérios verificáveis são viáveis de implementar? Exemplos: RNF01 para uso em dispositivos móveis no balcão; RNF02 para tolerância a falhas de conexão e prevenção de duplicidades; RNF04 para buscas com P95 ≤ 3 s; RNF05 para segurança dos dados, nas condições definidas nos [registros dos RNFs](requisitos-de-software.md#85-registros-dos-requisitos-nao-funcionais).
 
 #### Dimensão de escopo
 

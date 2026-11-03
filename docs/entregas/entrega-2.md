@@ -53,9 +53,11 @@ A Entrega 2 reúne os tópicos **8 a 10** e as **lições aprendidas da Unidade 
 
 ### Unidade 2
 
-- [8. Requisitos de software](../visao-produto/requisitos-de-software.md): especificação dos requisitos funcionais e não funcionais.
+- [8. Catálogo de requisitos](../visao-produto/requisitos-de-software.md): registro único de cada requisito funcional e não funcional, com origem, condições, priorização, entrega e situação.
 - [9. DoR e DoD](../visao-produto/dor-e-dod.md): critérios de prontidão e conclusão dos itens de trabalho.
-- [10. Backlog de produto](../visao-produto/backlog-de-produto.md): priorização, definição do MVP, épicos, histórias de usuário, árvore de rastreabilidade e quadro de acompanhamento.
+- [9. Priorização](../visao-produto/priorizacao.md): método de priorização e decisões gerais de escopo.
+- [10. MVP](../visao-produto/mvp.md): objetivo do incremento, justificativa do recorte, épicos e validação.
+- [11. Rastreabilidade](../visao-produto/rastreabilidade.md): tipos de vínculo e acesso à cadeia de rastreabilidade.
 - [11. Lições aprendidas da Unidade 2](../visao-produto/licoes-aprendidas.md#112-unidade-2): aprendizados sobre elicitação, comunicação, classificação dos requisitos, escopo e priorização.
 
 ### Correções da Unidade 1
