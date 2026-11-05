@@ -42,8 +42,13 @@ recorte *Evolução futura*.
 
 ## <span id="103-epicos-do-incremento"></span>Épicos do incremento {#epicos-do-incremento}
 
-Os épicos agrupam as histórias do MVP por uma necessidade ampla do produto, mantendo o vínculo com
-a característica de produto de origem.
+A **característica de produto (CP)** descreve uma capacidade que o produto deve oferecer. O
+**épico** organiza o trabalho em histórias de usuário para entregar essa capacidade.
+
+Neste projeto, as CPs orientam a organização dos épicos: **CP1 → EP01, CP2 → EP02 e CP3 → EP03**.
+Cada épico reúne as histórias dos requisitos selecionados para o MVP e cobre o **recorte da CP
+previsto para essa entrega**. Assim, pode contemplar apenas parte dos requisitos da característica,
+que permanece como referência na visão do produto.
 
 | Épico | CP de origem | Histórias vinculadas |
 | --- | --- | --- |
@@ -121,3 +126,4 @@ Pendências identificadas na revisão do escopo que ainda não foram decididas c
 | 1.0 | 12/10/2026 | Épicos, histórias de usuário e quadro MVP, originalmente publicados nas seções 10.4, 10.5 e 10.7 do Backlog de produto | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 03/11/2026 | Página dedicada ao **objetivo, à justificativa do recorte e à validação** do MVP. As narrativas das histórias foram incorporadas aos registros do [Catálogo de requisitos](requisitos-de-software.md); o quadro passou a acompanhar a execução. Registrada a dependência em aberto entre RF14 e RF13 | Equipe |
 | 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.2 | 05/11/2026 | Esclarecimento da relação entre características de produto e épicos, explicitando o recorte de cada CP contemplado no MVP. | [Thiago Gomes](https://github.com/thgomxs) |
