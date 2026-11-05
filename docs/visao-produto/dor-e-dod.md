@@ -1,35 +1,34 @@
-# DoR e DoD
+# <span id="9-dor-e-dod"></span>DoR e DoD {#dor-e-dod}
 
-## 9 DoR e DoD
 
-### 9.1 Definition of Ready (DoR)
+## <span id="91-definition-of-ready-dor"></span>Definition of Ready (DoR) {#definition-of-ready-dor}
 
 Uma História de Usuário (US) só pode passar do Product Backlog refinado para o Sprint Backlog, durante o planejamento da sprint, quando todas as perguntas abaixo forem respondidas com **Sim**.
 
-#### Tratamento da resposta “Não”
+### Tratamento da resposta “Não”
 
 - **Na equipe:** o item retorna ao refinamento para esclarecer dúvidas e definir as regras pendentes da seção **“A refinar”** ou **“Pontos a esclarecer”** da US.
 - **Individualmente:** quando houver uma lacuna de conhecimento, será aberta uma issue de estudo, capacitação ou alinhamento técnico para o integrante responsável.
 
-#### Dimensão de clareza
+### Dimensão de clareza
 
 Verifica se o que será desenvolvido e seu valor para o negócio estão claros para toda a equipe.
 
 - [ ] O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?
-- [ ] O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW foi registrada e a prioridade foi registrada no [catálogo de requisitos](requisitos-de-software.md#83-indice-dos-registros), conforme o método de [Priorização](priorizacao.md)?
+- [ ] O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW foi registrada e a prioridade foi registrada no [catálogo de requisitos](requisitos-de-software.md#indice-dos-registros), conforme o método de [Priorização](priorizacao.md)?
 - [ ] Os critérios de aceitação são verificáveis, estão escritos no formato **Dado / Quando / Então**, cobrem os fluxos de exceção e erro e estão explicitamente vinculados ao requisito funcional (RF), ao objetivo específico (OE) e à característica de produto (CP) correspondentes?
 - [ ] As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre.
 - [ ] O validador (Antônio Marcos, proprietário), o canal de validação (reuniões quinzenais pelo Google Meet, encontros presenciais ou WhatsApp) e o critério de aprovação pelo cliente estão definidos?
 
-#### Dimensão de viabilidade
+### Dimensão de viabilidade
 
 Verifica a existência de bloqueios externos, de infraestrutura ou de dependências do sistema.
 
 - [ ] As dependências técnicas foram mapeadas, incluindo tabelas no PostgreSQL/Supabase, endpoints do FastAPI e componentes React, quando aplicáveis?
 - [ ] Os impedimentos conhecidos foram removidos ou possuem um plano de mitigação documentado? Exemplos: limites dos planos gratuitos e higienização das planilhas legadas.
-- [ ] Os requisitos não funcionais (RNFs) aplicáveis à história foram mapeados e seus critérios verificáveis são viáveis de implementar? Exemplos: RNF01 para uso em dispositivos móveis no balcão; RNF02 para tolerância a falhas de conexão e prevenção de duplicidades; RNF04 para buscas com P95 ≤ 3 s; RNF05 para segurança dos dados, nas condições definidas nos [registros dos RNFs](requisitos-de-software.md#85-registros-dos-requisitos-nao-funcionais).
+- [ ] Os requisitos não funcionais (RNFs) aplicáveis à história foram mapeados e seus critérios verificáveis são viáveis de implementar? Exemplos: RNF01 para uso em dispositivos móveis no balcão; RNF02 para tolerância a falhas de conexão e prevenção de duplicidades; RNF04 para buscas com P95 ≤ 3 s; RNF05 para segurança dos dados, nas condições definidas nos [registros dos RNFs](requisitos-de-software.md#registros-dos-requisitos-nao-funcionais).
 
-#### Dimensão de escopo
+### Dimensão de escopo
 
 Verifica o entendimento compartilhado e se o trabalho cabe na sprint.
 
@@ -38,7 +37,7 @@ Verifica o entendimento compartilhado e se o trabalho cabe na sprint.
 - [ ] Cada integrante envolvido (Product Owner, frontend, backend e QA) consegue explicar exatamente o que será construído, como será testado e o prazo estimado, sem perguntas adicionais?
 - [ ] As dependências entre itens, incluindo outras US necessárias, foram mapeadas e estão concluídas ou possuem uma sequência de entrega explicitamente acordada?
 
-### 9.2 Definition of Done (DoD)
+## <span id="92-definition-of-done-dod"></span>Definition of Done (DoD) {#definition-of-done-dod}
 
 A equipe considera uma funcionalidade concluída quando **todos os critérios abaixo** são atendidos:
 
@@ -56,3 +55,4 @@ A equipe considera uma funcionalidade concluída quando **todos os critérios ab
 | 1.1 | 12/10/2026 | Elaboração do conteúdo da Definition of Done (DoD) | [João Guilherme Amancio de Melo (@jot4-ge)](https://github.com/jot4-ge) |
 | 1.2 | 12/10/2026 | Elaboração do conteúdo da Definition of Ready (DoR) | [Leonardo da Silva Lopes Júnior (@LeonardoLopesJr)](https://github.com/LeonardoLopesJr) |
 | 1.3 | 12/10/2026 | Inserção dos textos fornecidos no documento, revisão gramatical, formatação e adequação da referência de entrada na sprint à estratégia adotada | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.4 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

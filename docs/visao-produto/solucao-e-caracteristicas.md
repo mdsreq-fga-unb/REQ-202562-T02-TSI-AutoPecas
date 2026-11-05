@@ -1,27 +1,26 @@
-# Solução e características
- 
-## 2 Solução proposta
- 
-### 2.1 Objetivo geral do produto
- 
+# <span id="2-solucao-proposta"></span>Solução e características {#solucao-e-caracteristicas}
+
+
+## <span id="21-objetivo-geral-do-produto"></span>Objetivo geral do produto {#objetivo-geral-do-produto}
+
 Facilitar a gestão da TSI Peças por meio de uma solução digital de controle de estoque e cadastro de peças, substituindo o uso de planilhas do Excel por um sistema organizado e confiável.
- 
+
 A solução visa reduzir as perdas de vendas causadas por informações de estoque desatualizadas e diminuir o tempo gasto pelo proprietário em tarefas operacionais repetitivas, permitindo que ele dedique mais atenção ao atendimento e ao negócio.
- 
-### 2.2 Objetivos específicos (OE) do produto
- 
+
+## <span id="22-objetivos-especificos-oe-do-produto"></span>Objetivos específicos (OE) do produto {#objetivos-especificos-oe-do-produto}
+
 - <strong id="oe1">OE1:</strong> organizar e padronizar o cadastro de peças, utilizando o código do fabricante e a aplicação por veículo.
 - <strong id="oe2">OE2:</strong> disponibilizar informações confiáveis e atualizadas sobre a disponibilidade das peças, reduzindo perdas causadas por divergências no estoque.
 - <strong id="oe3">OE3:</strong> reduzir o tempo gasto em tarefas operacionais repetitivas.
 - <strong id="oe4">OE4:</strong> facilitar as decisões de compra e de precificação, com base no desempenho do estoque e das vendas.
 - <strong id="oe5">OE5:</strong> aumentar a previsibilidade financeira do negócio, facilitando o controle da necessidade de caixa.
 - <strong id="oe6">OE6:</strong> centralizar as informações da operação hoje dispersas em planilhas, estabelecendo o sistema como fonte única de dados.
-### 2.3 Características de produto mapeadas com os objetivos específicos
- 
+## <span id="23-caracteristicas-de-produto-mapeadas-com-os-objetivos-especificos"></span>Características de produto mapeadas com os objetivos específicos {#caracteristicas-de-produto-mapeadas-com-os-objetivos-especificos}
+
 A solução proposta deverá contemplar, de forma preliminar, as características a seguir. O mapeamento distingue o objetivo específico principal de cada característica e sua contribuição secundária.
- 
-#### Mapeamento entre características e objetivos
- 
+
+### Mapeamento entre características e objetivos
+
 | ID | Característica | OE principal | Contribuição secundária |
 | --- | --- | :---: | :---: |
 | <strong id="cp1">CP1</strong> | Cadastro e Catálogo de Peças | [OE1](#oe1) | [OE3](#oe3), [OE6](#oe6) |
@@ -33,9 +32,9 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
 | <strong id="cp7">CP7</strong> | Segurança e Integridade dos Dados | [OE2](#oe2) | [OE6](#oe6) |
 | <strong id="cp8">CP8</strong> | Acessibilidade e Responsividade | [OE3](#oe3) | [OE2](#oe2) |
 | <strong id="cp9">CP9</strong> | Gerenciamento e Autenticação de Usuários | [OE2](#oe2) | [OE6](#oe6) |
- 
-#### Descrição e valor de negócio
- 
+
+### Descrição e valor de negócio
+
 | ID | Descrição resumida | ID VN | Valor de negócio (VN) |
 | --- | --- | :---: | --- |
 | [CP1](#cp1) | A solução deverá manter um catálogo único e padronizado das peças, com suas informações técnicas e de aplicação, permitindo que o mesmo cadastro sirva de referência para o estoque, os anúncios e os documentos fiscais. | VN1 | Redução do tempo de catalogação e fim do retrabalho de cadastrar a mesma peça em lugares diferentes. |
@@ -47,14 +46,14 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
 | [CP7](#cp7) | A solução deverá garantir a integridade e a consistência dos dados de estoque e protegê-los no armazenamento e na transmissão, permitindo operar o sistema com segurança durante a rotina de separação e envio. | VN7 | Estoque e dados do negócio íntegros e protegidos, evitando perdas e duplicidades de registro quando a conexão falha ou há operações simultâneas, e mantendo seguras as credenciais e as informações da loja. |
 | [CP8](#cp8) | A solução deverá oferecer uma interface acessível e responsiva, adequada ao uso em telas de diferentes tamanhos, permitindo operar o sistema no próprio local de trabalho durante a rotina de separação e envio. | VN8 | Melhoria da experiência do usuário e ampliação da acessibilidade da solução, permitindo o uso confortável e inclusivo em diferentes dispositivos e tamanhos de tela. |
 | [CP9](#cp9) | A solução deverá controlar o acesso dos usuários e registrar a autoria das operações, permitindo que tarefas operacionais sejam delegadas com segurança. | VN9 | Preparação para a delegação de tarefas operacionais em caso de contratação futura. |
- 
-#### Notas de escopo
- 
+
+### Notas de escopo
+
 - **CP6:** a solução não emite a nota fiscal. Ela mantém os dados necessários à emissão, que continua sendo feita no emissor externo, e registra a nota emitida e o envio associados a cada venda.
-### 2.4 Tecnologias a serem utilizadas
- 
+## <span id="24-tecnologias-a-serem-utilizadas"></span>Tecnologias a serem utilizadas {#tecnologias-a-serem-utilizadas}
+
 Para a construção da solução, foram definidas tecnologias amplamente utilizadas no desenvolvimento web, priorizando a familiaridade da equipe e a adequação ao escopo do projeto.
- 
+
 | Componente | Tecnologias | Finalidade |
 | --- | --- | --- |
 | Front-end | React com Vite | Construir uma interface responsiva e de fácil manutenção. |
@@ -64,11 +63,11 @@ Para a construção da solução, foram definidas tecnologias amplamente utiliza
 | Publicação do back-end | Render | Realizar o deploy do back-end. |
 | Controle de versão | Git e GitHub | Versionar o código do projeto. |
 | Ambiente de desenvolvimento e execução | Docker | Padronizar o ambiente de desenvolvimento e a execução da aplicação. |
- 
-### 2.5 Pesquisa de mercado e análise competitiva
- 
+
+## <span id="25-pesquisa-de-mercado-e-analise-competitiva"></span>Pesquisa de mercado e análise competitiva {#pesquisa-de-mercado-e-analise-competitiva}
+
 O mercado de sistemas de gestão para autopeças conta com soluções consolidadas, que podem ser divididas em dois grupos: ERPs generalistas voltados a pequenas e médias empresas (como Bling e Tiny/Olist) e sistemas especializados no setor automotivo (como AtacadistaPro, VendaSimples e ERPClass). A análise a seguir compara essas soluções segundo critérios relevantes para o contexto da TSI Peças.
- 
+
 | Critério | Bling | Tiny (Olist) | Sistemas de autopeças¹ | Solução TSI Peças (proposta) |
 | --- | --- | --- | --- | --- |
 | Foco | ERP generalista para PMEs de e-commerce | ERP generalista para sellers online | Especializados no setor automotivo | Sob medida para a operação da TSI Peças |
@@ -77,44 +76,44 @@ O mercado de sistemas de gestão para autopeças conta com soluções consolidad
 | Catálogo por aplicação veicular | Não nativo | Não nativo | Sim (nativo) | Sim (foco do projeto) |
 | Amplitude | Alta (fiscal, financeiro, PDV, marketplaces) | Alta (fiscal, expedição, marketplaces) | Alta (referência cruzada, curva ABC, ICMS-ST) | Enxuta (núcleo: catálogo, estoque e vendas) |
 | Público-alvo | Micro a médias empresas | Sellers em crescimento | Autopeças estruturadas (balcão e atacado B2B) | Microempresa de operador único |
- 
+
 <small>¹ Representados por AtacadistaPro, VendaSimples e ERPClass.</small>
- 
+
 As soluções analisadas são robustas, porém direcionadas a operações mais estruturadas do que a da TSI Peças. Os ERPs generalistas, como o Bling e o Tiny, atendem a pequenas e médias empresas com planos que crescem por faixas, módulos e volume [1](../referencias.md#ref1)[2](../referencias.md#ref2)[3](../referencias.md#ref3), mas trazem uma amplitude de recursos maior do que a rotina de um operador único exige. Os sistemas especializados em autopeças, por sua vez, reúnem módulos como referência cruzada, curva ABC, substituição tributária, múltiplos depósitos, vendas B2B e comissão de vendedores [4](../referencias.md#ref4)[5](../referencias.md#ref5), que também excedem a necessidade de um operador único. As referências estão listadas na página de [Referências](../referencias.md).
- 
+
 A solução proposta para a TSI Peças não pretende competir em amplitude, mas em foco e adequação. Concentra-se no núcleo que resolve a dor real do cliente — catálogo organizado, controle de estoque confiável e registro de vendas — com uma interface enxuta para um operador que trabalha sozinho, sem o custo recorrente de assinatura nem a complexidade de configurar módulos não essenciais.
- 
+
 Cabe ressaltar que a ausência de custo de licença não significa ausência total de custos de operação: serviços de hospedagem e infraestrutura possuem planos gratuitos com limites, e a operação em escala pode exigir custos futuros. A integração automática com o Mercado Livre, presente em vários concorrentes, é reconhecida como evolução futura da solução.
- 
-### 2.6 Viabilidade da proposta
- 
+
+## <span id="26-viabilidade-da-proposta"></span>Viabilidade da proposta {#viabilidade-da-proposta}
+
 A proposta é considerada viável no contexto da disciplina, levando em conta o acesso ao cliente, o escopo definido e a possibilidade de entregar incrementalmente um MVP funcional até o final do semestre.
- 
+
 - **Acesso ao cliente:** o proprietário da TSI Peças procurou a equipe e se dispôs a colaborar ao longo do desenvolvimento, favorecendo a elicitação e a validação frequentes de requisitos.
 - **Escopo delimitado:** a solução concentra-se no cadastro organizado de peças e no controle confiável do estoque. Funcionalidades de maior complexidade, como a integração automática com o Mercado Livre, são tratadas como evoluções futuras, fora do MVP. Esse recorte mantém o projeto compatível com o prazo e o tamanho da equipe.
 - **Conhecimento técnico:** a equipe optou por tecnologias amplamente difundidas e com as quais possui familiaridade — React, Python com FastAPI e PostgreSQL por meio do Supabase —, reduzindo o risco associado à curva de aprendizado.
 - **Risco de domínio e mitigação:** o principal ponto de atenção está na modelagem do cadastro de peças, considerando as particularidades dos códigos dos fabricantes e da aplicação por veículo. O acesso direto ao proprietário, que conhece o domínio, e as entregas incrementais em sprints de duas semanas, com validação contínua, contribuem para mitigar esse risco.
 A viabilidade depende de manter o escopo do MVP controlado, preservar as prioridades e realizar validações frequentes com o cliente ao longo do desenvolvimento.
- 
-### 2.7 Benefícios esperados
- 
-#### Para o cliente: TSI Peças
- 
+
+## <span id="27-beneficios-esperados"></span>Benefícios esperados {#beneficios-esperados}
+
+### Para o cliente: TSI Peças
+
 - Redução das perdas de vendas causadas por divergências entre o estoque real e o registrado, incluindo a diminuição dos cancelamentos no Mercado Livre e a preservação da reputação da loja.
 - Organização e padronização do cadastro de peças, com um catálogo único que serve de referência para o estoque, os anúncios e os documentos fiscais.
 - Maior previsibilidade financeira, com acompanhamento da necessidade de capital de giro e substituição do fechamento manual entre planilhas.
 - Apoio às decisões de compra e de precificação, baseado no desempenho do estoque e das vendas.
 - Redução do tempo gasto em tarefas operacionais repetitivas, liberando o proprietário para o atendimento e a gestão do negócio.
-#### Para o usuário: proprietário e operador
- 
+### Para o usuário: proprietário e operador
+
 - Substituição do controle manual em planilhas por uma ferramenta única e adequada à sua rotina, com menor esforço operacional.
 - Estoque confiável e atualizado a cada venda, com prevenção de vendas acima do saldo disponível.
 - Reaproveitamento dos dados no apoio às rotinas fiscais e de expedição, eliminando o cadastro duplicado entre o marketplace e o emissor de notas.
 - Menor risco de erro no controle, com a centralização das informações que hoje estão dispersas.
 - Como evolução futura, a integração automática com o Mercado Livre poderá ampliar esses benefícios ao sincronizar o estoque do sistema com o canal de vendas on-line, reduzindo o esforço de atualização. Essa funcionalidade é desejável, mas permanece fora do escopo do MVP.
- 
+
 ## Versionamento
- 
+
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
@@ -130,3 +129,4 @@ A viabilidade depende de manter o escopo do MVP controlado, preservar as priorid
 | 1.10 | 12/10/2026 | Ampliação do VN7 e reescrita do VN8, que passa a descrever o benefício para o negócio em vez de repetir a descrição da CP8, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
 | 1.11 | 12/10/2026 | Reescrita do VN8, que passa a destacar a melhoria da experiência do usuário e a ampliação da acessibilidade da solução, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
 | 1.12 | 13/10/2026 | Inclusão de âncoras para OEs e CPs e de links nos mapeamentos e nas citações da pesquisa de mercado. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.13 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

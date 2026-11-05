@@ -1,8 +1,7 @@
-# Stakeholders e segmentação
+# <span id="1-cenario-atual-do-cliente-e-do-negocio"></span>Stakeholders e segmentação {#stakeholders-e-segmentacao}
 
-## 1 Cenário atual do cliente e do negócio
 
-### 1.6 Mapa de stakeholders
+## <span id="16-mapa-de-stakeholders"></span>Mapa de stakeholders {#mapa-de-stakeholders}
 
 Os stakeholders do projeto foram identificados e posicionados segundo seu nível de interesse no projeto e de influência sobre ele. A matriz a seguir orienta a estratégia de participação de cada um.
 
@@ -22,15 +21,15 @@ O quadro a seguir detalha cada stakeholder, sua relação com a solução, seus 
 | Correios | Logística de envio das vendas. | Baixo | Baixa | Monitorar: contexto operacional externo, sem interação direta com o sistema. |
 | Hospedagem / manutenção futura | Responsáveis pela sustentação do sistema após a entrega. | Baixo | Baixa | Monitorar: prever documentação e requisitos que facilitem a manutenção futura. |
 
-### 1.7 Segmentação de clientes
+## <span id="17-segmentacao-de-clientes"></span>Segmentação de clientes {#segmentacao-de-clientes}
 
 Por se tratar de uma ferramenta interna da loja, a solução atende a um único perfil de usuário e beneficia indiretamente o cliente final.
 
-#### Perfil primário — Proprietário/administrador
+### Perfil primário — Proprietário/administrador
 
 O proprietário é o único operador da TSI Peças e atualmente responde por todo o controle manual do estoque e das vendas. Busca uma ferramenta simples, que padronize o cadastro de peças, automatize o controle de estoque e reduza o tempo gasto em tarefas operacionais. É o único usuário efetivo do sistema.
 
-#### Beneficiário indireto — Cliente final da loja
+### Beneficiário indireto — Cliente final da loja
 
 O cliente final não utiliza o sistema, mas é impactado positivamente por ele. Com o estoque preciso e atualizado, recebe informações de disponibilidade mais confiáveis e corre menor risco de frustração por divergências entre o que é anunciado e o que existe em estoque.
 
@@ -41,3 +40,4 @@ O cliente final não utiliza o sistema, mas é impactado positivamente por ele. 
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Preenchimento dos itens 1.6 e 1.7 e revisão textual | [João Melo](https://github.com/jot4-ge) |
 | 1.2 | 22/09/2026 | Reestruturação do mapa de stakeholders (matriz interesse × influência e estratégias de participação) e inclusão de stakeholders indiretos, conforme issue #3 | [João Melo](https://github.com/jot4-ge) |
+| 1.3 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

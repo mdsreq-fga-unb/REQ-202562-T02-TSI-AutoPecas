@@ -1,14 +1,13 @@
-# Definição e composição do MVP
+# <span id="10-definicao-e-composicao-do-mvp"></span>Definição e composição do MVP {#definicao-e-composicao-do-mvp}
 
-## 10 Definição e composição do MVP
 
 Esta página registra **o objetivo do incremento**, **a justificativa do recorte** e **como o MVP
 será validado** com o cliente. A composição nominal do MVP — quais requisitos entram, com que
 prioridade e em que situação — é consultada no
 [Catálogo de requisitos](requisitos-de-software.md), pela coluna *Entrega* do
-[índice dos registros](requisitos-de-software.md#83-indice-dos-registros).
+[índice dos registros](requisitos-de-software.md#indice-dos-registros).
 
-### 10.1 Objetivo do incremento
+## <span id="101-objetivo-do-incremento"></span>Objetivo do incremento {#objetivo-do-incremento}
 
 O MVP entrega o **núcleo que substitui o controle em planilhas**: um catálogo de peças padronizado,
 um saldo de estoque confiável e o registro das vendas que movimentam esse saldo.
@@ -22,7 +21,7 @@ Os objetivos específicos atendidos pelo recorte são
 [OE2](solucao-e-caracteristicas.md#oe2) (informação confiável de disponibilidade) e
 [OE6](solucao-e-caracteristicas.md#oe6) (sistema como fonte única de dados).
 
-### 10.2 Justificativa do recorte
+## <span id="102-justificativa-do-recorte"></span>Justificativa do recorte {#justificativa-do-recorte}
 
 O recorte resultou da aplicação do método descrito em [Priorização](priorizacao.md), combinada com
 as restrições do projeto.
@@ -41,7 +40,7 @@ canais de venda on-line, não controla despesas nem gera relatórios analíticos
 perfis de acesso. Esses limites estão registrados nos requisitos correspondentes do catálogo, com
 recorte *Evolução futura*.
 
-### 10.3 Épicos do incremento
+## <span id="103-epicos-do-incremento"></span>Épicos do incremento {#epicos-do-incremento}
 
 Os épicos agrupam as histórias do MVP por uma necessidade ampla do produto, mantendo o vínculo com
 a característica de produto de origem.
@@ -56,7 +55,7 @@ Cada história é mantida no campo *Intenção e valor* do registro do seu requi
 numeração da US acompanha a do RF — a US01 detalha o RF01 —, e os números ausentes (US07, US11,
 US13) correspondem a requisitos que não entraram no MVP.
 
-### 10.4 Quadro de acompanhamento da entrega
+## <span id="104-quadro-de-acompanhamento-da-entrega"></span>Quadro de acompanhamento da entrega {#quadro-de-acompanhamento-da-entrega}
 
 Visão da execução das histórias do MVP, derivada dos registros do catálogo. A **situação** aqui e a
 situação no registro do requisito são a mesma informação: ao atualizar uma, atualize a outra.
@@ -88,7 +87,7 @@ requisito.
 A distribuição das histórias pelas sprints e os marcos de cada entrega estão em
 [Cronograma e entregas](cronograma-e-entregas.md).
 
-### 10.5 Validação do MVP
+## <span id="105-validacao-do-mvp"></span>Validação do MVP {#validacao-do-mvp}
 
 A validação é incremental e acontece em três níveis.
 
@@ -101,7 +100,7 @@ A validação é incremental e acontece em três níveis.
 O MVP é considerado aceito quando o ciclo completo da rotina é percorrido sem recorrer à planilha e
 o saldo exibido corresponde à contagem física das peças usadas no teste.
 
-### 10.6 Pontos em aberto do recorte
+## <span id="106-pontos-em-aberto-do-recorte"></span>Pontos em aberto do recorte {#pontos-em-aberto-do-recorte}
 
 Pendências identificadas na revisão do escopo que ainda não foram decididas com o cliente.
 
@@ -113,7 +112,7 @@ Pendências identificadas na revisão do escopo que ainda não foram decididas c
   com o proprietário.
 - **Confirmação do valor de negócio.** As pontuações de VN que sustentam o recorte ainda não foram
   confirmadas formalmente pelo proprietário, conforme registrado em
-  [Priorização](priorizacao.md#91-avaliacao-do-valor-de-negocio-vn).
+  [Priorização](priorizacao.md#avaliacao-do-valor-de-negocio-vn).
 
 ## Versionamento
 
@@ -121,3 +120,4 @@ Pendências identificadas na revisão do escopo que ainda não foram decididas c
 | :----: | :--: | --- | --- |
 | 1.0 | 12/10/2026 | Épicos, histórias de usuário e quadro MVP, originalmente publicados nas seções 10.4, 10.5 e 10.7 do Backlog de produto | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 03/11/2026 | Página dedicada ao **objetivo, à justificativa do recorte e à validação** do MVP. As narrativas das histórias foram incorporadas aos registros do [Catálogo de requisitos](requisitos-de-software.md); o quadro passou a acompanhar a execução. Registrada a dependência em aberto entre RF14 e RF13 | Equipe |
+| 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

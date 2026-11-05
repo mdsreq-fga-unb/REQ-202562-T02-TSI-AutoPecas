@@ -10,27 +10,39 @@ Este projeto, desenvolvido pela equipe **Umbra** para a disciplina de **Requisit
 
 ---
 
-## Navegação 
+## Navegação
 
-Explore as três áreas da documentação do projeto.
+Explore as cinco áreas da documentação do projeto.
 
 <div class="section-grid">
   <a class="section-card" href="visao-produto/">
     <span class="section-card__number" aria-hidden="true">01</span>
     <span class="section-card__title">Visão do Produto e Projeto</span>
-    <span class="section-card__description">Conheça o contexto do negócio, o problema, a solução proposta, o planejamento e a especificação inicial do produto.</span>
+    <span class="section-card__description">Conheça o negócio, o problema, a solução proposta e as estratégias que orientam o projeto.</span>
+    <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
+  </a>
+  <a class="section-card" href="requisitos/">
+    <span class="section-card__number" aria-hidden="true">02</span>
+    <span class="section-card__title">Requisitos</span>
+    <span class="section-card__description">Consulte o catálogo, a priorização, o MVP, a rastreabilidade e a evolução dos requisitos.</span>
+    <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
+  </a>
+  <a class="section-card" href="cronograma/">
+    <span class="section-card__number" aria-hidden="true">03</span>
+    <span class="section-card__title">Cronograma</span>
+    <span class="section-card__description">Acompanhe o planejamento das sprints e acesse os registros das reuniões e das entregas.</span>
     <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="atas/">
-    <span class="section-card__number" aria-hidden="true">02</span>
+    <span class="section-card__number" aria-hidden="true">04</span>
     <span class="section-card__title">Atas</span>
-    <span class="section-card__description">Espaço para as atas de reuniões, decisões e alinhamentos da equipe, organizados da sprint 0 à sprint 6.</span>
+    <span class="section-card__description">Consulte as reuniões, decisões e alinhamentos da equipe e do cliente.</span>
     <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="entregas/">
-    <span class="section-card__number" aria-hidden="true">03</span>
+    <span class="section-card__number" aria-hidden="true">05</span>
     <span class="section-card__title">Entregas</span>
-    <span class="section-card__description">Vídeos de apresentação e alterações na documentação das quatro entregas do projeto.</span>
+    <span class="section-card__description">Acesse os vídeos de apresentação e os artefatos de cada entrega da disciplina.</span>
     <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
   </a>
 </div>

@@ -16,6 +16,8 @@
 
 ## Documentação
 
+A numeração citada nesta entrega corresponde à estrutura original do template usada na Unidade 1.
+
 Esta entrega contempla **somente os tópicos 1 a 7 e 11 (Unidade 1)** da [Visão do Produto e Projeto](../visao-produto/index.md):
 
 - **1. Cenário atual do cliente e do negócio:** [cliente e negócio](../visao-produto/cliente-e-negocio.md), [cenário, problema e desafios](../visao-produto/cenario-problema-e-desafios.md) e [stakeholders e segmentação](../visao-produto/stakeholders-e-segmentacao.md).
@@ -34,3 +36,4 @@ Esta entrega contempla **somente os tópicos 1 a 7 e 11 (Unidade 1)** da [Visão
 |  1.0   | 06/09/2026 | Iniciação do documento                                    | [Thiago Gomes](https://github.com/thgomxs) |
 |  1.1   | 07/09/2026 | Delimitação do escopo da Entrega 1 aos tópicos 1 a 7 e 11 | [Thiago Gomes](https://github.com/thgomxs) |
 |  1.2   | 07/09/2026 | Inclusão do vídeo da apresentação                          | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.3 | 04/11/2026 | Atualização dos links e das referências à numeração original do template, preservando o histórico das entregas. | [Thiago Gomes](https://github.com/thgomxs) |

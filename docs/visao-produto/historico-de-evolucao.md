@@ -1,6 +1,5 @@
-# Histórico de evolução dos requisitos
+# <span id="12-historico-de-evolucao-dos-requisitos"></span>Histórico de evolução dos requisitos {#historico-de-evolucao-dos-requisitos}
 
-## 12 Histórico de evolução dos requisitos
 
 O escopo do produto muda ao longo do projeto. Esta página registra **como a equipe incorpora uma
 mudança** e **quais decisões já alteraram o escopo**, de modo que seja possível recuperar o que
@@ -9,7 +8,7 @@ mudou, por quê e quais elementos foram afetados.
 A memória de cada requisito individual fica no campo *Evolução* do seu registro no
 [Catálogo de requisitos](requisitos-de-software.md). Esta página reúne a visão por entrega.
 
-### 12.1 Rotina de atualização
+## <span id="121-rotina-de-atualizacao"></span>Rotina de atualização {#rotina-de-atualizacao}
 
 Sempre que o entendimento do escopo muda, a equipe percorre os mesmos quatro passos, com esforço
 proporcional ao impacto da mudança.
@@ -30,9 +29,9 @@ flowchart LR
 | Análise e decisão | Identifica os registros, vínculos e critérios potencialmente afetados e acorda o que passa a valer. | Discussão registrada na issue ou na ata |
 | Atualização | Altera o registro no catálogo — declaração, origem, condições, priorização, entrega ou situação — e confere os vínculos afetados. | [Catálogo de requisitos](requisitos-de-software.md) |
 | Comunicação | Informa quem depende da informação alterada: equipe, monitoria e, quando aplicável, o proprietário. | Sprint Review, ata ou comentário na issue |
-| Memória | Anota data e motivo no campo *Evolução* do registro e acrescenta a linha desta página. | Registro do requisito e seção 12.3 |
+| Memória | Anota data e motivo no campo *Evolução* do registro e acrescenta a linha desta página. | Registro do requisito e [Decisões que alteraram o escopo](#decisoes-que-alteraram-o-escopo) |
 
-### 12.2 Propagação de uma mudança
+## <span id="122-propagacao-de-uma-mudanca"></span>Propagação de uma mudança {#propagacao-de-uma-mudanca}
 
 Uma alteração raramente atinge um elemento só. Antes de encerrar a atualização, a equipe confere os
 quatro eixos abaixo — a mesma verificação, independentemente do tamanho da mudança.
@@ -42,17 +41,17 @@ quatro eixos abaixo — a mesma verificação, independentemente do tamanho da m
 | Declaração e regras | O texto vigente do requisito ainda descreve o comportamento acordado? Alguma regra associada mudou junto? |
 | Critérios de confirmação | Os critérios continuam verificáveis e coerentes com a nova declaração? |
 | Vínculos | Origem, RNFs aplicáveis e dependências continuam corretos? Algum requisito que depende deste foi afetado? |
-| Entrega e visões | O recorte de entrega e a sprint continuam viáveis? O índice do catálogo, o [quadro do MVP](mvp.md#104-quadro-de-acompanhamento-da-entrega) e o [cronograma](cronograma-e-entregas.md) refletem a mudança? |
+| Entrega e visões | O recorte de entrega e a sprint continuam viáveis? O índice do catálogo, o [quadro do MVP](mvp.md#quadro-de-acompanhamento-da-entrega) e o [cronograma](cronograma-e-entregas.md) refletem a mudança? |
 
 **Exemplo de propagação.** Se o proprietário confirmar que o
 [RF13](requisitos-de-software.md#rf13) precisa entrar no MVP — pendência registrada em
-[Pontos em aberto do recorte](mvp.md#106-pontos-em-aberto-do-recorte) —, a mudança atinge: o
+[Pontos em aberto do recorte](mvp.md#pontos-em-aberto-do-recorte) —, a mudança atinge: o
 recorte de entrega e a situação do RF13; a dependência declarada no
 [RF14](requisitos-de-software.md#rf14); a composição do épico
 [EP02](mvp.md#ep02); a distribuição das histórias nas sprints; e a contagem de requisitos do MVP
-registrada em [Priorização](priorizacao.md#96-decisoes-gerais-da-priorizacao).
+registrada em [Priorização](priorizacao.md#decisoes-gerais-da-priorizacao).
 
-### 12.3 Decisões que alteraram o escopo
+## <span id="123-decisoes-que-alteraram-o-escopo"></span>Decisões que alteraram o escopo {#decisoes-que-alteraram-o-escopo}
 
 Registro das decisões que mudaram requisitos, características ou o recorte de entrega. Cada linha
 indica a data, a decisão, os elementos afetados e a origem da mudança.
@@ -72,11 +71,11 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 | 10/10/2026 | Fragmentação da característica de integridade em duas: segurança/integridade dos dados e acessibilidade/responsividade. | CP7, CP8, RNF01 a RNF05 | Feedback da monitoria |
 | 12/10/2026 | Definição dos três épicos e das 13 histórias de usuário do MVP, com os vínculos de CP, RF e RNF. | [EP01](mvp.md#ep01), [EP02](mvp.md#ep02), [EP03](mvp.md#ep03) e as 13 US | Decisão da equipe |
 | 13/10/2026 | Realinhamento das características de origem dos RF25 a RF40, com a unificação de compras e análise na CP4. | [RF25](requisitos-de-software.md#rf25) a [RF40](requisitos-de-software.md#rf40) | Revisão de rastreabilidade |
-| 03/11/2026 | **Consolidação do escopo em um catálogo integrado.** Cada requisito passou a ter um registro único, reunindo declaração, intenção e valor, origem, condições, priorização, entrega, situação e evolução. As listas paralelas de requisitos mantidas no Backlog de produto foram eliminadas, e as páginas de priorização, MVP e rastreabilidade passaram a consultar o catálogo. | Todos os registros; páginas 8 a 12 | Estudo de caso do Capítulo 12 |
+| 03/11/2026 | **Consolidação do escopo em um catálogo integrado.** Cada requisito passou a ter um registro único, reunindo declaração, intenção e valor, origem, condições, priorização, entrega, situação e evolução. As listas paralelas de requisitos mantidas no Backlog de produto foram eliminadas, e as páginas de priorização, MVP e rastreabilidade passaram a consultar o catálogo. | Todos os registros; páginas 8 a 12 na numeração original | Estudo de caso do Capítulo 12 |
 | 03/11/2026 | Adoção dos nomes das características definidos na Visão do Produto como versão vigente, corrigindo a divergência com os nomes usados na página de requisitos (CP1 e CP2). | [CP1](solucao-e-caracteristicas.md#cp1), [CP2](solucao-e-caracteristicas.md#cp2) e seus requisitos | Revisão de consistência |
 | 03/11/2026 | Registro das dependências entre requisitos, derivadas da leitura das declarações, com marcação explícita de que aguardam validação no refinamento. | Campo *Condições e avaliação* de 35 registros | Revisão de consistência |
 
-### 12.4 Pendências de escopo em aberto
+## <span id="124-pendencias-de-escopo-em-aberto"></span>Pendências de escopo em aberto {#pendencias-de-escopo-em-aberto}
 
 Itens já identificados, ainda sem decisão. Cada um será levado à próxima sessão de validação com o
 proprietário ou ao próximo refinamento da equipe.
@@ -89,7 +88,7 @@ proprietário ou ao próximo refinamento da equipe.
 | As dependências registradas foram derivadas das declarações e ainda não foram validadas. | Campo *Condições e avaliação* dos registros | Refinamento de cada história, conforme a [DoR](dor-e-dod.md) |
 | Critérios de confirmação ainda não detalhados para os requisitos fora do MVP. | Requisitos com recorte *Evolução futura* | Quando o requisito for repriorizado |
 
-### 12.5 Referência de cada entrega
+## <span id="125-referencia-de-cada-entrega"></span>Referência de cada entrega {#referencia-de-cada-entrega}
 
 Cada entrega preserva uma referência do escopo naquele momento, permitindo comparar o que mudou sem
 congelar o documento. A referência é o estado do repositório na data da entrega.
@@ -106,3 +105,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 03/11/2026 | Criação da página, reunindo a rotina de atualização, a propagação de mudanças, o histórico de decisões de escopo e as pendências em aberto | Equipe |
+| 1.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

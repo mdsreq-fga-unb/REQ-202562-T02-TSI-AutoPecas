@@ -1,13 +1,12 @@
-# Rastreabilidade dos requisitos
+# <span id="11-rastreabilidade-dos-requisitos"></span>Rastreabilidade dos requisitos {#rastreabilidade-dos-requisitos}
 
-## 11 Rastreabilidade dos requisitos
 
 Esta página descreve **quais tipos de vínculo** o projeto mantém entre os elementos do escopo e
 **onde cada vínculo é consultado**. Os vínculos não são mantidos aqui: eles pertencem aos registros
 do [Catálogo de requisitos](requisitos-de-software.md), onde são atualizados junto com o requisito
 que os origina.
 
-### 11.1 Cadeia de rastreabilidade
+## <span id="111-cadeia-de-rastreabilidade"></span>Cadeia de rastreabilidade {#cadeia-de-rastreabilidade}
 
 A hierarquia liga o problema do cliente às declarações dos requisitos, e os RNFs condicionam os
 requisitos funcionais em qualquer ponto dessa cadeia.
@@ -25,19 +24,19 @@ flowchart TD
 
 Cada elo é percorrível nos dois sentidos a partir do registro do requisito no catálogo.
 
-### 11.2 Tipos de vínculo mantidos
+## <span id="112-tipos-de-vinculo-mantidos"></span>Tipos de vínculo mantidos {#tipos-de-vinculo-mantidos}
 
 | Vínculo | O que relaciona | Onde é mantido | Como consultar |
 | --- | --- | --- | --- |
 | **Origem** | Requisito → característica de produto → objetivo específico | Campo *Origem e agrupamento* do registro | Abrir o registro e seguir os links de CP e OE para a [Solução e características](solucao-e-caracteristicas.md) |
-| **Condição** | RNF → requisitos funcionais que ele condiciona | Campo *Condições e avaliação* do RF e campo *Aplica-se a* do RNF | Os dois lados do vínculo aparecem nos [registros dos RNFs](requisitos-de-software.md#85-registros-dos-requisitos-nao-funcionais) |
+| **Condição** | RNF → requisitos funcionais que ele condiciona | Campo *Condições e avaliação* do RF e campo *Aplica-se a* do RNF | Os dois lados do vínculo aparecem nos [registros dos RNFs](requisitos-de-software.md#registros-dos-requisitos-nao-funcionais) |
 | **Dependência** | Requisito → requisitos de que ele depende | Campo *Condições e avaliação* do registro | Seguir os links em *Depende de*; os vínculos foram derivados da leitura das declarações e aguardam validação no refinamento |
-| **Recorte de entrega** | Requisito → história de usuário → épico | Campos *Intenção e valor* e *Origem e agrupamento* do registro | Épicos e histórias estão agrupados em [MVP](mvp.md#103-epicos-do-incremento) |
-| **Priorização** | Requisito → valor, esforço, Score e quadrante | Campo *Priorização* do registro | Método em [Priorização](priorizacao.md); valores vigentes no [índice do catálogo](requisitos-de-software.md#83-indice-dos-registros) |
+| **Recorte de entrega** | Requisito → história de usuário → épico | Campos *Intenção e valor* e *Origem e agrupamento* do registro | Épicos e histórias estão agrupados em [MVP](mvp.md#epicos-do-incremento) |
+| **Priorização** | Requisito → valor, esforço, Score e quadrante | Campo *Priorização* do registro | Método em [Priorização](priorizacao.md); valores vigentes no [índice do catálogo](requisitos-de-software.md#indice-dos-registros) |
 | **Planejamento** | História → sprint de entrega | Campo *Entrega e situação* do registro | Distribuição completa em [Cronograma e entregas](cronograma-e-entregas.md) |
 | **Evolução** | Requisito → decisões que o alteraram | Campo *Evolução* do registro | Visão por entrega em [Histórico de evolução](historico-de-evolucao.md) |
 
-### 11.3 Como percorrer uma relação
+## <span id="113-como-percorrer-uma-relacao"></span>Como percorrer uma relação {#como-percorrer-uma-relacao}
 
 As três consultas mais frequentes, e o caminho de cada uma:
 
@@ -51,7 +50,7 @@ As três consultas mais frequentes, e o caminho de cada uma:
 - **"Este RNF se aplica a quê?"** Abra o registro do RNF e leia *Aplica-se a*, que lista todos os
   requisitos funcionais condicionados por ele.
 
-### 11.4 Árvore de histórias de usuário
+## <span id="114-arvore-de-historias-de-usuario"></span>Árvore de histórias de usuário {#arvore-de-historias-de-usuario}
 
 Representação visual da cadeia entre objetivos específicos, características de produto, requisitos
 funcionais e histórias de usuário do MVP.
@@ -63,7 +62,7 @@ funcionais e histórias de usuário do MVP.
     vínculo muda, a alteração é feita no registro do requisito e o diagrama é regerado a partir
     dele — nunca o contrário.
 
-### 11.5 Como a rastreabilidade é mantida
+## <span id="115-como-a-rastreabilidade-e-mantida"></span>Como a rastreabilidade é mantida {#como-a-rastreabilidade-e-mantida}
 
 Para que os vínculos permaneçam coerentes, a equipe segue a mesma regra em toda alteração de
 escopo:
@@ -77,7 +76,7 @@ escopo:
    diagramas que exibam o vínculo alterado.
 
 A rotina completa, com os cuidados de cada momento do ciclo, está em
-[Histórico de evolução](historico-de-evolucao.md#121-rotina-de-atualizacao).
+[Histórico de evolução](historico-de-evolucao.md#rotina-de-atualizacao).
 
 ## Versionamento
 
@@ -85,3 +84,4 @@ A rotina completa, com os cuidados de cada momento do ciclo, está em
 | :----: | :--: | --- | --- |
 | 1.0 | 12/10/2026 | Árvore de histórias de usuário relacionando OE, CP, RF e US, originalmente publicada na seção 10.6 do Backlog de produto | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 03/11/2026 | Página dedicada aos **tipos de vínculo e ao acesso à rastreabilidade**. Os vínculos por requisito passaram a ser mantidos nos registros do [Catálogo de requisitos](requisitos-de-software.md) | Equipe |
+| 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

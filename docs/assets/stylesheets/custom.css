@@ -1069,3 +1069,145 @@ body {
     font-size: 16px;
   }
 }
+
+/* Cronograma: resumo responsivo e planejamento detalhado de cada sprint. */
+.md-typeset .schedule-page {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.md-typeset .schedule-page .schedule-overview {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 0.72rem;
+}
+
+.md-typeset .schedule-overview th,
+.md-typeset .schedule-overview td {
+  min-width: 0;
+  padding: 0.7rem 0.55rem;
+  vertical-align: top;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.md-typeset .schedule-overview th:nth-child(1) { width: 15%; }
+.md-typeset .schedule-overview th:nth-child(2) { width: 25%; }
+.md-typeset .schedule-overview th:nth-child(3) { width: 40%; }
+.md-typeset .schedule-overview th:nth-child(4) { width: 20%; }
+.md-typeset .schedule-overview td:first-child a { font-weight: 700; }
+
+.md-typeset .schedule-page .delivery-status {
+  max-width: 100%;
+  margin: 0;
+  white-space: normal;
+}
+
+.md-typeset .schedule-page .schedule-status--active {
+  border-color: var(--tsi-amber);
+  color: var(--tsi-amber);
+  background: color-mix(in srgb, var(--tsi-amber) 10%, var(--tsi-surface));
+}
+
+.md-typeset .schedule-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.8rem 0;
+}
+
+.md-typeset .schedule-toggle {
+  max-width: 100%;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--tsi-accent);
+  border-radius: 2rem;
+  color: var(--tsi-accent);
+  background: var(--tsi-surface);
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.md-typeset .schedule-toggle[hidden] { display: none; }
+.md-typeset .schedule-toggle:hover { background: var(--tsi-soft-red); }
+
+.md-typeset .schedule-page a:focus-visible,
+.md-typeset .schedule-toggle:focus-visible,
+.md-typeset .sprint-details > summary:focus-visible {
+  outline: 2px solid var(--tsi-accent);
+  outline-offset: 3px;
+}
+
+.md-typeset details.sprint-details {
+  margin: 0.9rem 0;
+  padding: 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 4px solid var(--tsi-red);
+  border-radius: 0.75rem;
+  background: var(--tsi-surface);
+  box-shadow: var(--tsi-card-shadow);
+  font-size: 0.75rem;
+  scroll-margin-top: 6rem;
+}
+
+.md-typeset details.sprint-details > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.8rem;
+  margin: 0;
+  padding: 0.85rem 1rem 0.85rem 2.1rem;
+  background: none;
+  list-style: none;
+  cursor: pointer;
+}
+
+.md-typeset details.sprint-details > summary::before {
+  content: "▸";
+  top: 0.8rem;
+  left: 0.75rem;
+  width: 0.8rem;
+  height: 1rem;
+  color: var(--tsi-accent);
+  background: none;
+  mask: none;
+  -webkit-mask: none;
+  font-size: 0.9rem;
+  transform: none;
+}
+
+.md-typeset details.sprint-details[open] > summary::before { content: "▾"; }
+.md-typeset details.sprint-details > summary::after { display: none; }
+.md-typeset details.sprint-details > summary::-webkit-details-marker { display: none; }
+.md-typeset details.sprint-details[open] > summary { border-bottom: 1px solid var(--md-default-fg-color--lightest); }
+.md-typeset .sprint-details__title { color: var(--tsi-accent); font-weight: 750; }
+.md-typeset .sprint-details__period { flex: 1 1 12rem; color: var(--md-default-fg-color--light); font-size: 0.7rem; font-weight: 400; }
+.md-typeset .sprint-details__body { padding: 0.2rem 1rem 0.8rem; line-height: 1.65; }
+.md-typeset .sprint-details__body > p { margin: 0.65rem 0; }
+.md-typeset .sprint-details__body > p > strong:only-child { color: var(--tsi-accent); }
+.md-typeset .sprint-details__body > ul { margin: 0.5rem 0 1rem; padding-left: 1.1rem; }
+
+@media (max-width: 640px) {
+  .md-typeset .schedule-page .schedule-overview,
+  .md-typeset .schedule-overview tbody,
+  .md-typeset .schedule-overview tr,
+  .md-typeset .schedule-overview td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .md-typeset .schedule-page .schedule-overview { border: 0; background: none; }
+  .md-typeset .schedule-overview thead { display: none; }
+  .md-typeset .schedule-overview tr { margin-bottom: 0.8rem; padding: 0.45rem; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 0.75rem; background: var(--tsi-surface); }
+  .md-typeset .schedule-overview td { padding: 0.35rem 0.45rem; border: 0; text-align: left; }
+  .md-typeset .schedule-overview td::before { content: attr(data-label) ": "; color: var(--md-default-fg-color--light); font-weight: 700; }
+  .md-typeset .schedule-controls { justify-content: flex-start; }
+  .md-typeset .sprint-details__period { flex-basis: 100%; }
+}

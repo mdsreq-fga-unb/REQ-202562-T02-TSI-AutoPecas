@@ -1,6 +1,5 @@
-# Priorização de requisitos
+# <span id="9-priorizacao-de-requisitos"></span>Priorização de requisitos {#priorizacao-de-requisitos}
 
-## 9 Priorização de requisitos
 
 Esta página descreve **como** a equipe prioriza os requisitos e **quais decisões gerais** resultaram
 desse método. A prioridade de cada requisito — valor de negócio, esforço técnico, MoSCoW, Score e
@@ -8,11 +7,11 @@ quadrante — é mantida no registro correspondente do
 [Catálogo de requisitos](requisitos-de-software.md), e não é repetida aqui.
 
 !!! tip "Consultar a prioridade vigente"
-    O [índice do catálogo](requisitos-de-software.md#83-indice-dos-registros) lista todos os
+    O [índice do catálogo](requisitos-de-software.md#indice-dos-registros) lista todos os
     requisitos com VN, ET e Score, ordenáveis pela leitura. A justificativa de cada pontuação está
     no campo *Priorização* do registro do requisito.
 
-### 9.1 Avaliação do valor de negócio (VN)
+## <span id="91-avaliacao-do-valor-de-negocio-vn"></span>Avaliação do valor de negócio (VN) {#avaliacao-do-valor-de-negocio-vn}
 
 Para cada requisito funcional, a equipe responde às quatro perguntas abaixo com o cliente.
 **Cada "Sim" acrescenta 1 ponto; cada "Não" acrescenta 0.** A soma forma o **Valor de Negócio (VN)**,
@@ -33,7 +32,7 @@ de **0 a 4 pontos**.
     exibe essa situação no campo *Priorização*. A confirmação está prevista para a próxima sessão
     de validação de escopo com o cliente.
 
-### 9.2 Avaliação do esforço técnico (ET)
+## <span id="92-avaliacao-do-esforco-tecnico-et"></span>Avaliação do esforço técnico (ET) {#avaliacao-do-esforco-tecnico-et}
 
 A equipe atribui notas de **1 a 4** aos três critérios. Quanto maior a nota, maior a dificuldade.
 
@@ -60,7 +59,7 @@ O **Esforço Técnico (ET)** é a média dos três critérios, arredondada ao in
 2,33, resultando em ET = 2. As três notas de cada requisito ficam registradas no campo
 *Priorização* do seu registro.
 
-### 9.3 Classificação MoSCoW
+## <span id="93-classificacao-moscow"></span>Classificação MoSCoW {#classificacao-moscow}
 
 MoSCoW classifica a importância de cada requisito para esta versão do produto e atribui o peso
 utilizado no cálculo da prioridade.
@@ -72,7 +71,7 @@ utilizado no cálculo da prioridade.
 | Could Have | Desejável, podendo ser adiado. | 1 |
 | Won't Have | Fora do escopo desta versão. | 0 |
 
-### 9.4 Cálculo da prioridade final (Score)
+## <span id="94-calculo-da-prioridade-final-score"></span>Cálculo da prioridade final (Score) {#calculo-da-prioridade-final-score}
 
 A prioridade final combina o Valor de Negócio, o peso MoSCoW e o Esforço Técnico:
 
@@ -91,7 +90,7 @@ A prioridade final combina o Valor de Negócio, o peso MoSCoW e o Esforço Técn
 A seleção final considera também dependências, viabilidade e validação com o cliente. Um
 *Must Have* não é excluído apenas pelo esforço, e um *Won't Have* permanece fora desta versão.
 
-### 9.5 Matriz de Valor de negócio × Esforço técnico
+## <span id="95-matriz-de-valor-de-negocio-esforco-tecnico"></span>Matriz de Valor de negócio × Esforço técnico {#matriz-de-valor-de-negocio-esforco-tecnico}
 
 Nos dois eixos, **0–2 pontos representam baixo** e **3–4 pontos representam alto**. A posição de
 cada requisito utiliza VN e ET e está registrada no campo *Priorização* do seu registro.
@@ -105,11 +104,11 @@ cada requisito utiliza VN e ET e está registrada no campo *Priorização* do se
 
 <iframe width="100%" height="900" title="Matriz de Valor de negócio × Esforço técnico" src="https://miro.com/app/live-embed/uXjVEfU_HbE=/?embedMode=view_only_without_ui&moveToViewport=5543,1432,3508,3730&embedId=91070939469" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
-### 9.6 Decisões gerais da priorização
+## <span id="96-decisoes-gerais-da-priorizacao"></span>Decisões gerais da priorização {#decisoes-gerais-da-priorizacao}
 
 A aplicação do método aos 40 requisitos funcionais produziu a seguinte distribuição. Os números
 são uma leitura dos registros do catálogo; a composição nominal de cada grupo é consultada no
-[índice do catálogo](requisitos-de-software.md#83-indice-dos-registros), pela coluna *Entrega*.
+[índice do catálogo](requisitos-de-software.md#indice-dos-registros), pela coluna *Entrega*.
 
 | Recorte de entrega | Quantidade | Critério aplicado |
 | --- | :--: | --- |
@@ -137,7 +136,7 @@ Decisões gerais acordadas pela equipe ao aplicar o método:
 - **Esforço não exclui um *Must Have*.** Nenhum requisito classificado como indispensável foi
   retirado do MVP por causa da nota de esforço; o maior ET entre os requisitos do MVP é 2.
 
-### 9.7 Quando a priorização é revisada
+## <span id="97-quando-a-priorizacao-e-revisada"></span>Quando a priorização é revisada {#quando-a-priorizacao-e-revisada}
 
 A prioridade registrada não é definitiva. Ela é reavaliada quando:
 
@@ -156,3 +155,4 @@ Em qualquer desses casos, a alteração é feita **no registro do requisito** no
 | :----: | :--: | --- | --- |
 | 1.0 | 05/10/2026 | Critérios de avaliação, priorização e matriz 2×2, originalmente publicados na seção 10.3 do Backlog de produto | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 03/11/2026 | Página dedicada ao **método e às decisões gerais** de priorização. A tabela de priorização por requisito foi incorporada ao [Catálogo de requisitos](requisitos-de-software.md), eliminando a lista paralela | Equipe |
+| 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

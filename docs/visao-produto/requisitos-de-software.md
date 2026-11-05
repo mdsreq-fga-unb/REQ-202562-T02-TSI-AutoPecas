@@ -1,6 +1,5 @@
-# Catálogo de requisitos
+# <span id="8-catalogo-integrado-de-requisitos"></span>Catálogo de requisitos {#catalogo-de-requisitos}
 
-## 8 Catálogo integrado de requisitos
 
 Esta página é o **registro único** de cada requisito do produto TSI Peças. Um requisito aparece
 aqui uma única vez, reunindo a declaração vigente, a origem, as condições aplicáveis, a
@@ -11,7 +10,7 @@ e [Histórico de evolução](historico-de-evolucao.md) descrevem método, decis�
 **não mantêm listas paralelas de requisitos**: todas consultam os registros desta página. Uma
 alteração de escopo é feita no registro correspondente e passa a valer para todas as consultas.
 
-### 8.1 Conteúdo de cada registro
+## <span id="81-conteudo-de-cada-registro"></span>Conteúdo de cada registro {#conteudo-de-cada-registro}
 
 | Parte do registro | Informação mantida |
 | --- | --- |
@@ -30,7 +29,7 @@ alteração de escopo é feita no registro correspondente e passa a valer para t
     técnico é uma estimativa da equipe e é reavaliado a cada refinamento. Enquanto a confirmação
     não ocorre, os valores vigentes são os desta página.
 
-### 8.2 Papel das declarações: RF, US, caso de uso e cenário
+## <span id="82-papel-das-declaracoes-rf-us-caso-de-uso-e-cenario"></span>Papel das declarações: RF, US, caso de uso e cenário {#papel-das-declaracoes-rf-us-caso-de-uso-e-cenario}
 
 A equipe mantém declarações de dois tipos, com funções distintas e vínculo explícito entre elas.
 
@@ -48,7 +47,7 @@ alternativos e as exceções são tratados como critérios de confirmação do p
 requisito futuro reúna vários objetivos do mesmo ator, a equipe passará a manter o caso de uso
 correspondente como complemento vinculado ao registro, e não como declaração paralela.
 
-### 8.3 Índice dos registros
+## <span id="83-indice-dos-registros"></span>Índice dos registros {#indice-dos-registros}
 
 Índice de navegação dos registros desta mesma página — não é uma lista paralela: os valores
 exibidos pertencem aos registros abaixo.
@@ -105,12 +104,12 @@ exibidos pertencem aos registros abaixo.
 </tbody>
 </table>
 
-### 8.4 Registros dos requisitos funcionais
+## <span id="84-registros-dos-requisitos-funcionais"></span>Registros dos requisitos funcionais {#registros-dos-requisitos-funcionais}
 
 Os registros estão agrupados pela característica de produto de origem. Cada registro abre e fecha;
 um link direto para um ID (por exemplo `#rf04`) abre o registro correspondente.
 
-#### CP1 — Cadastro e Catálogo de Peças
+### CP1 — Cadastro e Catálogo de Peças
 
 Objetivo principal: [OE1](solucao-e-caracteristicas.md#oe1). Contribuição secundária: [OE3](solucao-e-caracteristicas.md#oe3), [OE6](solucao-e-caracteristicas.md#oe6). 6 requisitos registrados.
 
@@ -288,7 +287,7 @@ Objetivo principal: [OE1](solucao-e-caracteristicas.md#oe1). Contribuição secu
 </div>
 </details>
 
-#### CP2 — Controle e Movimentação de Estoque
+### CP2 — Controle e Movimentação de Estoque
 
 Objetivo principal: [OE6](solucao-e-caracteristicas.md#oe6). Contribuição secundária: [OE2](solucao-e-caracteristicas.md#oe2), [OE4](solucao-e-caracteristicas.md#oe4). 8 requisitos registrados.
 
@@ -525,7 +524,7 @@ Objetivo principal: [OE6](solucao-e-caracteristicas.md#oe6). Contribuição secu
 </div>
 </details>
 
-#### CP3 — Registro de Vendas e Recebimentos
+### CP3 — Registro de Vendas e Recebimentos
 
 Objetivo principal: [OE2](solucao-e-caracteristicas.md#oe2). Contribuição secundária: [OE5](solucao-e-caracteristicas.md#oe5). 6 requisitos registrados.
 
@@ -704,7 +703,7 @@ Objetivo principal: [OE2](solucao-e-caracteristicas.md#oe2). Contribuição secu
 </div>
 </details>
 
-#### CP4 — Análise e Planejamento de Compras
+### CP4 — Análise e Planejamento de Compras
 
 Objetivo principal: [OE4](solucao-e-caracteristicas.md#oe4). Contribuição secundária: [OE2](solucao-e-caracteristicas.md#oe2), [OE5](solucao-e-caracteristicas.md#oe5). 7 requisitos registrados.
 
@@ -914,7 +913,7 @@ Objetivo principal: [OE4](solucao-e-caracteristicas.md#oe4). Contribuição secu
 </div>
 </details>
 
-#### CP5 — Controle Financeiro e Capital de Giro
+### CP5 — Controle Financeiro e Capital de Giro
 
 Objetivo principal: [OE5](solucao-e-caracteristicas.md#oe5). Contribuição secundária: [OE3](solucao-e-caracteristicas.md#oe3), [OE6](solucao-e-caracteristicas.md#oe6). 4 requisitos registrados.
 
@@ -1042,7 +1041,7 @@ Objetivo principal: [OE5](solucao-e-caracteristicas.md#oe5). Contribuição secu
 </div>
 </details>
 
-#### CP6 — Apoio Fiscal e Expedição
+### CP6 — Apoio Fiscal e Expedição
 
 Objetivo principal: [OE3](solucao-e-caracteristicas.md#oe3). Contribuição secundária: [OE1](solucao-e-caracteristicas.md#oe1). 5 requisitos registrados.
 
@@ -1198,7 +1197,7 @@ Objetivo principal: [OE3](solucao-e-caracteristicas.md#oe3). Contribuição secu
 </div>
 </details>
 
-#### CP9 — Gerenciamento e Autenticação de Usuários
+### CP9 — Gerenciamento e Autenticação de Usuários
 
 Objetivo principal: [OE2](solucao-e-caracteristicas.md#oe2). Contribuição secundária: [OE6](solucao-e-caracteristicas.md#oe6). 4 requisitos registrados.
 
@@ -1322,7 +1321,7 @@ Objetivo principal: [OE2](solucao-e-caracteristicas.md#oe2). Contribuição secu
 </div>
 </details>
 
-### 8.5 Registros dos requisitos não funcionais
+## <span id="85-registros-dos-requisitos-nao-funcionais"></span>Registros dos requisitos não funcionais {#registros-dos-requisitos-nao-funcionais}
 
 Os RNFs são registros únicos que **condicionam** os requisitos funcionais. Cada registro indica a
 característica de produto de origem e os requisitos funcionais aos quais se aplica — esse vínculo
@@ -1455,3 +1454,4 @@ característica de produto de origem e os requisitos funcionais aos quais se apl
 | 1.5 | 13/10/2026 | Inclusão de âncoras individuais para os RFs e de links para as CPs com origem correspondente na solução | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.6 | 13/10/2026 | Alinhamento das CPs dos RF25 a RF40 com a solução atual, unificação de compras e análise na CP4 e atualização dos links de rastreabilidade | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 03/11/2026 | Reestruturação da página como **catálogo integrado**: cada requisito passou a ter um registro único com declaração, intenção e valor, origem, condições, priorização, entrega, situação e evolução. As listas paralelas de requisitos mantidas no Backlog de produto foram incorporadas e eliminadas | Equipe |
+| 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

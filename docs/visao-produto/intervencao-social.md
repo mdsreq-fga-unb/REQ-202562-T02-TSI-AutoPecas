@@ -1,12 +1,11 @@
-# Intervenção social
+# <span id="3-intervencao-social"></span>Intervenção social {#intervencao-social}
 
-## 3 Intervenção social
 
 A introdução de um sistema de software em uma organização nunca é um evento puramente técnico; trata-se de uma intervenção sociotécnica que altera práticas cotidianas, fluxos de informação, rotinas de trabalho e a própria dinâmica do negócio. No contexto da TSI Peças — uma microempresa do setor de autopeças operada e administrada diretamente por seu proprietário, Antônio Marcos —, a implantação de uma solução digital de controle de estoque visa apoiar a substituição de práticas manuais consolidadas há anos, apoiadas na memória operacional e em planilhas parciais do Excel.
 
 Essa intervenção busca reestruturar a operação do negócio, visando conferir maior previsibilidade ao estoque e contribuindo para a redução de divergências. Contudo, em uma estrutura de operador único, qualquer atrito ou rigidez tecnológica repercute na capacidade de atendimento ao cliente final e no esforço de trabalho do proprietário. Assim, a engenharia de requisitos mapeia com cuidado tanto os impactos pretendidos quanto os efeitos emergentes e os riscos operacionais, formulando decisões de projeto e requisitos que atuem favorecendo a mitigação de vulnerabilidades e contribuindo para a sustentabilidade da solução.
 
-### 3.1 Impactos pretendidos
+## <span id="31-impactos-pretendidos"></span>Impactos pretendidos {#impactos-pretendidos}
 
 Os impactos pretendidos representam as mudanças positivas e os ganhos operacionais planejados para o negócio e para o operador:
 
@@ -16,7 +15,7 @@ Os impactos pretendidos representam as mudanças positivas e os ganhos operacion
 - **Padronização e centralização da base de conhecimento:** visa estruturar e consolidar dados sobre códigos de fabricantes e aplicações veiculares em uma base organizada, contribuindo para superar a fragmentação do conhecimento hoje disperso em planilhas parciais e anotações informais.
 - **Melhoria da dinâmica de trabalho e bem-estar:** visa amenizar o estresse operacional e a sobrecarga de tarefas acumuladas por um operador único, favorecendo uma rotina de trabalho mais previsível e contribuindo para uma gestão mais equilibrada da loja física e dos pedidos remotos.
 
-### 3.2 Efeitos emergentes, riscos e desafios de adoção
+## <span id="32-efeitos-emergentes-riscos-e-desafios-de-adocao"></span>Efeitos emergentes, riscos e desafios de adoção {#efeitos-emergentes-riscos-e-desafios-de-adocao}
 
 A inserção da ferramenta na rotina diária da TSI Peças pode suscitar desdobramentos não previstos, reações de resistência e novos pontos de vulnerabilidade operacional. Os efeitos emergentes e riscos identificados na dinâmica sociotécnica do cliente compreendem:
 
@@ -33,23 +32,23 @@ A inserção da ferramenta na rotina diária da TSI Peças pode suscitar desdobr
 | <strong id="r09">R09</strong> | **Descontinuidade de suporte após o encerramento da disciplina** | Conclusão do semestre acadêmico da equipe de desenvolvimento da universidade, cessando o suporte direto e o desenvolvimento evolutivo. | Desamparo técnico do cliente caso surjam falhas críticas, necessidade de correções de bugs ou adaptações futuras de regras de negócio. |
 | <strong id="r10">R10</strong> | **Dependência excessiva e perda de autonomia operacional** | Dependência crítica do software para tarefas cotidianas que antes eram conduzidas pelo conhecimento tácito do operador. | Vulnerabilidade da loja a qualquer intercorrência operacional que envolva a utilização de dispositivos eletrônicos. |
 
-### 3.3 Decisões de projeto e requisitos derivados da intervenção
+## <span id="33-decisoes-de-projeto-e-requisitos-derivados-da-intervencao"></span>Decisões de projeto e requisitos derivados da intervenção {#decisoes-de-projeto-e-requisitos-derivados-da-intervencao}
 
 Para transformar a análise dos riscos e efeitos emergentes em medidas práticas de engenharia de software e gestão de produto, foram formuladas decisões de arquitetura, requisitos de software (funcionais e não funcionais) e procedimentos operacionais padronizados (POP). As soluções do sistema concentram-se nos **13 Requisitos Funcionais selecionados para o MVP** (RF01, RF02, RF03, RF04, RF05, RF06, RF08, RF09, RF10, RF12, RF14, RF15 e RF16) e nos Requisitos Não Funcionais transversais (RNF01 a RNF05), explicitando quando determinada funcionalidade constitui requisito condicionado ou evolução futura:
 
-#### <span id="d01"></span>D01 — Confiabilidade de dados e rotinas de backup de infraestrutura (mitigação de R03)
+### <span id="d01"></span>D01 — Confiabilidade de dados e rotinas de backup de infraestrutura (mitigação de R03)
 - **Decisão técnica de infraestrutura no MVP:** O banco de dados relacional em nuvem (PostgreSQL gerenciado pelo Supabase) conta com rotinas automatizadas de backup no provedor (*point-in-time recovery* no plano padrão), cuja configuração é preparada e a restauração é testada pela equipe na **Sprint 5**, sendo ativada em produção no início da **Sprint 6**, visando permitir a recuperação do ambiente em caso de falhas físicas ou lógicas.
 - **Requisito não funcional associado:** Essa salvaguarda de infraestrutura apoia o **RNF02 (Tolerância a Falhas de Conexão)**, contribuindo para a recuperação de estado sem perda ou duplicidade de dados em operações confirmadas ou interrompidas por falhas de rede.
 - **Distinção com requisitos de exportação:** O backup é uma rotina técnica de infraestrutura para recuperação de desastres (*disaster recovery*), e não uma tela de usuário. A exportação manual de relatórios em `.xlsx` e PDF (**RF27**) foi classificada na [priorização](priorizacao.md) com Score 1 como **evolução futura (fora do MVP)**. Portanto, a mitigação de perda de dados do MVP não depende de exportações manuais, apoiando-se prioritariamente na resiliência da infraestrutura de banco e nos procedimentos de restauração testados, favorecendo a proteção dos dados da empresa.
 
-#### <span id="d02"></span>D02 — Rastreabilidade de movimentações e integridade do saldo (mitigação de R04, R06 e R10)
+### <span id="d02"></span>D02 — Rastreabilidade de movimentações e integridade do saldo (mitigação de R04, R06 e R10)
 - **Decisão técnica:** As movimentações de estoque são modeladas de forma não destrutiva; os saldos são calculados a partir de registros de transações de entrada, saída e ajuste, favorecendo a rastreabilidade e a transparência do histórico.
 - **Requisitos funcionais do MVP:** No escopo do MVP, a rastreabilidade do estoque é viabilizada pelas operações que afetam o saldo e pelo filtro temporal de registros, contribuindo para a verificação de eventuais discrepâncias:
   - **RF12 (Consultar saldo de peça — no MVP, Sprint 4):** exibe a quantidade física total disponível atualizada;
   - **RF14 (Filtrar histórico por período — no MVP, Sprint 5):** permite ao usuário filtrar as movimentações ocorridas em um intervalo de datas, visando facilitar a conferência e auditoria de divergências;
   - **Observação sobre dependência de escopo:** O requisito **RF13 (Consultar histórico de movimentações da peça)** foi classificado na [priorização](priorizacao.md) com Score 2 como **requisito condicionado à capacidade da equipe (fora do cronograma do MVP)**. Dessa forma, a mitigação operacional de auditoria no MVP é provida diretamente pelas listagens das movimentações de entradas (**RF08**), saídas (**RF09**), ajustes (**RF10**), vendas (**RF15**) e cancelamentos (**RF16**), combinadas ao filtro de período (**RF14**), sem depender de telas analíticas que ficaram fora do MVP, visando manter a viabilidade do escopo.
 
-#### <span id="d03"></span>D03 — Interface para ajustes manuais e reversão de vendas (mitigação de R06 e R07)
+### <span id="d03"></span>D03 — Interface para ajustes manuais e reversão de vendas (mitigação de R06 e R07)
 - **Decisão técnica:** Inclusão no MVP de operações explícitas e reversíveis para correções de contagem física e cancelamentos de pedidos, visando apoiar a conciliação do estoque diante de imprevistos comerciais.
 - **Requisitos funcionais do MVP:** O tratamento de exceções é coberto por:
   - **RF16 (Cancelar venda — no MVP, Sprint 5):** permite ao Administrador cancelar uma venda previamente registrada (por exemplo, cancelada no Mercado Livre), favorecendo o retorno automático ao estoque das quantidades baixadas;
@@ -57,7 +56,7 @@ Para transformar a análise dos riscos e efeitos emergentes em medidas práticas
   - **RF09 (Registrar saída manual — no MVP, Sprint 5):** permite registrar saídas de peças que não decorram de venda comercial, registrando data, quantidade e motivo.
 - **Observação sobre devoluções:** O requisito **RF11 (Registrar devolução de peça vinculada a uma venda)** recebeu Score 3 e permaneceu **condicionado à capacidade (fora do MVP)**. Operacionalmente, devoluções no balcão durante a operação do MVP serão tratadas pelo cancelamento da venda (**RF16**) ou pelo ajuste de inventário justificado (**RF10**), favorecendo a resolução das exceções sem exigir funcionalidades adicionais fora do MVP.
 
-#### <span id="d04"></span>D04 — Redução de etapas e usabilidade para operador único (mitigação de R01 e R07)
+### <span id="d04"></span>D04 — Redução de etapas e usabilidade para operador único (mitigação de R01 e R07)
 - **Decisão de design:** O fluxo de busca e registro de vendas é otimizado para operação rápida, viável diretamente em computadores ou dispositivos móveis no balcão da loja, visando facilitar a rotina diária e contribuindo para a agilidade no atendimento.
 - **Requisitos e critérios verificáveis do MVP:**
   - **RF04 (Buscar peça — no MVP, Sprint 4):** localização ágil por código do fabricante, nome, categoria ou aplicação veicular;
@@ -65,30 +64,30 @@ Para transformar a análise dos riscos e efeitos emergentes em medidas práticas
   - **RNF01 (Usabilidade em dispositivos móveis):** conformidade com **WCAG 2.1 AA** e área de toque mínima de **44×44 pixels CSS** em larguras de viewport de 360px a 428px CSS em orientação retrato, favorecendo a operação em telas menores;
   - **RNF04 (Desempenho de resposta):** tempo de resposta **P95 ≤ 3 segundos** para consultas de catálogo e saldo sob conexão mínima de 10 Mbps, contribuindo para a fluidez das pesquisas.
 
-#### <span id="d05"></span>D05 — Protocolo de operação degradada e contingência (mitigação de R02)
+### <span id="d05"></span>D05 — Protocolo de operação degradada e contingência (mitigação de R02)
 - **Prática de processo (POP):** Em caso de queda de energia ou interrupção de internet na loja física, adota-se um procedimento operacional padrão simples: o operador utiliza um formulário físico padronizado (*Talonário de Contingência*) para anotar o código do fabricante da peça vendida, o canal e a quantidade, visando manter o controle durante a contingência sem paralisar as vendas.
 - **Tratamento no sistema (MVP):** Ao restabelecer a conectividade, o operador registra as vendas acumuladas sequencialmente pelo fluxo normal do **RF15 (Registrar venda)**, favorecendo a regularização gradual e contribuindo para a integridade das transações amparadas pelo **RNF02 (Tolerância a Falhas de Conexão)**.
 
-#### <span id="d06"></span>D06 — Carga inicial e importação assistida de planilhas (mitigação de R05)
+### <span id="d06"></span>D06 — Carga inicial e importação assistida de planilhas (mitigação de R05)
 - **Decisão técnica:** Substituição gradual do cadastro manual de centenas de itens por procedimento automatizado de carga de dados, visando reduzir o tempo de implantação e favorecendo a consistência das informações iniciais.
 - **Requisitos funcionais do MVP e procedimento:**
   - **RF02 (Importar peças via planilha — no MVP, Sprint 4):** permite ao Administrador selecionar arquivo `.xlsx` de peças, validar os registros e cadastrá-los em lote, sem sobrescrever peças já cadastradas com o mesmo código do fabricante;
   - **Procedimento ensaiado e conferido:** A Sprint 4 realiza o ensaio da importação com uma amostra da planilha atual do proprietário; na **Sprint 6**, a carga real dos cadastros de peças é realizada via RF02, seguida pelo estabelecimento dos saldos iniciais via entrada (**RF08**) e ajuste (**RF10**), com conferência física orientada junto ao proprietário antes do início da operação real, contribuindo para calibrar os dados antes do uso diário.
 
-#### <span id="d07"></span>D07 — Implantação gradual alinhada ao cronograma de sprints (mitigação de R04 e R05)
-- **Estratégia de implantação:** A transição é conduzida de forma progressiva e iterativa, favorecendo a adaptação do operador e visando mitigar impactos na rotina da loja, estruturada sobre as sprints e os 13 RFs do MVP definidos no cronograma oficial do projeto (Seção 6):
+### <span id="d07"></span>D07 — Implantação gradual alinhada ao cronograma de sprints (mitigação de R04 e R05)
+- **Estratégia de implantação:** A transição é conduzida de forma progressiva e iterativa, favorecendo a adaptação do operador e visando mitigar impactos na rotina da loja, estruturada sobre as sprints e os 13 RFs do MVP definidos no [cronograma oficial do projeto](cronograma-e-entregas.md):
   1. *Sprint 3 (09/10/2026 a 22/10/2026) — Fundação do Catálogo:* Implementação dos requisitos de catálogo (**RF01**: cadastro, **RF05**: edição e **RF06**: status ativo/inativo). Demonstração na Sprint Review com dados reais da loja, visando coletar impressões preliminares;
   2. *Sprint 4 (23/10/2026 a 05/11/2026) — Catálogo Completo, Importação e Saldo:* Entrega da associação veicular (**RF03**), busca (**RF04**), importação em lote (**RF02**), entradas (**RF08**) e consulta de saldo (**RF12**). Realização do **ensaio da carga inicial com uma amostra da planilha atual** e definição do procedimento de registro dos saldos, contribuindo para preparar a carga definitiva;
   3. *Sprint 5 (06/11/2026 a 19/11/2026) — Movimentações, Vendas e Validação do MVP:* Conclusão da saída manual (**RF09**), ajuste de inventário (**RF10**), filtro de movimentações por período (**RF14**), registro de vendas (**RF15**) e cancelamento (**RF16**). Realização da **sessão de aceitação do MVP com o proprietário simulando fluxos com dados de teste**; preparação da infraestrutura de produção, elaboração do manual preliminar e realização do teste da rotina de backup e restauração, visando verificar a prontidão do sistema;
   4. *Sprint 6 (20/11/2026 a 03/12/2026) — Deploy em Produção, Carga Real, Treinamento e Estabilização:* No início da sprint, realiza-se o **deploy do MVP em produção** e a ativação da rotina de backup. Em seguida, executa-se a **carga inicial real dos cadastros de peças via RF02** e o registro dos saldos iniciais (RF08 e RF10), com **conferência física amostral e dos itens principais dos saldos junto ao proprietário** antes do início da operação real. Conduz-se o **treinamento com o manual finalizado em linguagem simples**, favorecendo a autonomia do cliente e contribuindo para a transição definitiva das planilhas legadas até o aceite do produto.
 
-#### <span id="d08"></span>D08 — Capacitação, manual simplificado e onboarding visual (mitigação de R01 e R10)
+### <span id="d08"></span>D08 — Capacitação, manual simplificado e onboarding visual (mitigação de R01 e R10)
 - **Prática de processo e treinamento:** Elaboração de material didático adaptado ao perfil do operador único, visando facilitar o aprendizado prático e contribuindo para uma assimilação natural dos novos fluxos:
   - *Manual em linguagem simples:* Elaboração da versão preliminar na Sprint 5 e entrega da versão finalizada na Sprint 6;
   - *Guia Rápido de Balcão (One-Page):* Folha plastificada com instruções visuais diretas dos fluxos essenciais (busca, venda e ajuste);
   - *Treinamento presencial:* Sessões práticas de simulação na Sprint 5 e acompanhamento assistido no início da Sprint 6 durante a operação real, favorecendo a segurança do operador no uso diário.
 
-#### <span id="d09"></span>D09 — Sustentabilidade tecnológica: separação entre código aberto e infraestrutura proprietária (mitigação de R08 e R09)
+### <span id="d09"></span>D09 — Sustentabilidade tecnológica: separação entre código aberto e infraestrutura proprietária (mitigação de R08 e R09)
 - **Distinção entre tecnologias abertas e serviços proprietários:**
   - *Tecnologias de desenvolvimento e código-fonte:* A aplicação utiliza linguagens e bibliotecas abertas (React, Python com FastAPI e PostgreSQL). O repositório acadêmico do projeto é público no GitHub sob licença permissiva MIT, visando permitir que o código possa ser auditado, adaptado e mantido no futuro;
   - *Infraestrutura e hospedagem de terceiros (serviços proprietários em plano gratuito):* A hospedagem utiliza plataformas proprietárias operadas em suas camadas gratuitas (*free-tier*): **Vercel** (deploy do front-end), **Render** (deploy do back-end) e **Supabase** (gerenciamento do banco PostgreSQL).
@@ -96,7 +95,7 @@ Para transformar a análise dos riscos e efeitos emergentes em medidas práticas
   - O cliente é formalmente informado de que as credenciais e dados de negócio são mantidos privados e protegidos por autenticação com hash bcrypt e tráfego HTTPS/TLS 1.2+ (**RNF05**);
   - Na Sprint 6, a equipe finaliza o *Guia de Manutenção* e transfere formalmente a titularidade das contas desses serviços em nuvem (Vercel, Render e Supabase) para o proprietário, favorecendo a autonomia operacional e contribuindo para a continuidade do projeto após o encerramento da disciplina.
 
-### 3.4 Matriz de rastreabilidade: riscos versus decisões e requisitos
+## <span id="34-matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos"></span>Matriz de rastreabilidade: riscos versus decisões e requisitos {#matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos}
 
 A tabela a seguir consolida o mapeamento bidirecional entre os riscos e efeitos emergentes identificados e as decisões, requisitos e práticas de processo formulados no escopo do projeto, visando demonstrar a rastreabilidade entre cada risco, a respectiva decisão vinculada e o status no MVP:
 
@@ -125,4 +124,4 @@ Assim, a intervenção social deixa de ser uma reflexão puramente teórica e pa
 | 1.3 | 11/10/2026 | Ajustes da PR #17: distinção de backup vs exportação, detalhamento de infraestrutura e revisão inicial | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
 | 1.4 | 12/10/2026 | Alinhamento com cronograma do MVP (13 RFs), ajuste de mitigações de escopo, novas colunas na matriz e moderação de termos absolutistas | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
 | 1.5 | 13/10/2026 | Inclusão de links entre riscos, decisões, requisitos e características na matriz de rastreabilidade. | [Thiago Gomes](https://github.com/thgomxs) |
-
+| 1.6 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

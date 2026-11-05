@@ -1,8 +1,7 @@
-# Interação entre equipe e cliente
+# <span id="7-interacao-entre-equipe-e-cliente"></span>Interação entre equipe e cliente {#interacao-entre-equipe-e-cliente}
 
-## 7 Interação entre equipe e cliente
 
-### 7.1 Composição da equipe
+## <span id="71-composicao-da-equipe"></span>Composição da equipe {#composicao-da-equipe}
 
 A equipe de desenvolvimento é composta pelos seguintes membros. Todos os integrantes atuam também como Analistas de Requisitos, colaborando na elicitação, documentação e validação dos requisitos ao longo do projeto.
 
@@ -15,11 +14,11 @@ A equipe de desenvolvimento é composta pelos seguintes membros. Todos os integr
 | Analista de QA                       | Garante a qualidade do produto, executando testes de funcionalidade, desempenho e usabilidade.                                                                                                                                                                                                                                                                                     | Leonardo da S. Lopes Júnior   |
 | Analista de requisitos               | Define os requisitos funcionais e não funcionais do sistema e garante que os critérios de aceitação sejam atendidos.                                                                                                                                                                                                                                                               | Thiago Gomes Pereira de Abreu |
 
-A acumulação do papel de Gerente de projeto / Product Owner foi validada com o cliente de forma assíncrona pelo WhatsApp, conforme o processo de registro de evidências descrito no item 7.2: a equipe enviou a Antônio Marcos a descrição do papel e ele confirmou estar de acordo. Ver [registro da validação](../atas/validacao-papel-po.md).
+A acumulação do papel de Gerente de projeto / Product Owner foi validada com o cliente de forma assíncrona pelo WhatsApp, conforme o processo de registro de evidências descrito na seção [Comunicação](#comunicacao): a equipe enviou a Antônio Marcos a descrição do papel e ele confirmou estar de acordo. Ver [registro da validação](../atas/validacao-papel-po.md).
 
-### 7.2 Comunicação
+## <span id="72-comunicacao"></span>Comunicação {#comunicacao}
 
-#### Ferramentas de comunicação
+### Ferramentas de comunicação
 
 | Ferramenta                      | Finalidade                                                                                                                                                               |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -28,18 +27,18 @@ A acumulação do papel de Gerente de projeto / Product Owner foi validada com o
 | GitHub Issues / GitHub Projects | Gerenciamento do backlog, controle de tarefas, critérios de aceitação de cada item e acompanhamento do progresso de cada sprint por meio de um quadro visual de tarefas. |
 | GitHub                          | Versionamento de código.                                                                                                                                                 |
 
-#### Métodos e frequência de reuniões
+### Métodos e frequência de reuniões
 
 - **Revisão de sprint:** ao final de cada [sprint de 14 dias](cronograma-e-entregas.md), o grupo organizará uma videochamada no Google Meet com o cliente para demonstrar as soluções construídas. É o momento dedicado para que o proprietário avalie o sistema e direcione as próximas necessidades. Todas essas sessões são documentadas em ata, registrada na [pasta de atas do repositório](../atas/index.md) e linkada à entrega correspondente, garantindo a rastreabilidade exigida na disciplina.
 - **Planejamento de sprint:** imediatamente após a reunião com o cliente, os membros do grupo farão o mapeamento da próxima iteração, reavaliando o repositório de requisitos e selecionando as tarefas prioritárias para o ciclo seguinte, com base no último feedback recebido.
 - **Retrospectiva:** fechando o período da sprint, o time fará uma avaliação interna, refletindo sobre as práticas adotadas, identificando gargalos técnicos ou de comunicação e definindo ações corretivas.
 
-#### Frequência de interações com o cliente
+### Frequência de interações com o cliente
 
 - **Encontros quinzenais de homologação:** a participação oficial e síncrona de Antônio Marcos acontece no fechamento de cada sprint de 14 dias, concentrando a validação do software em momentos específicos e evitando consumir excessivamente o tempo que ele precisa dedicar ao atendimento presencial na loja.
 - **Contato assíncrono e registro de evidências:** para resoluções rápidas no dia a dia, o WhatsApp será a ferramenta principal. Caso alguma aprovação ou mudança de escopo seja feita por este canal em vez de uma reunião formal, a equipe registra a decisão, a data, os participantes, a justificativa e a referência à evidência (print ou trecho da conversa), evitando expor dados pessoais ou informações desnecessárias na íntegra.
 
-### 7.3 Processo de validação
+## <span id="73-processo-de-validacao"></span>Processo de validação {#processo-de-validacao}
 
 O processo ocorre em três etapas, cobrindo tanto a qualidade interna do requisito/entrega quanto a confirmação de que o produto atende à necessidade real do cliente, reduzindo o esforço operacional da TSI Peças:
 
@@ -47,7 +46,7 @@ O processo ocorre em três etapas, cobrindo tanto a qualidade interna do requisi
 2. **Definition of Done (DoD) — verificação interna:** checklist de qualidade técnica aplicado a cada funcionalidade antes de ser considerada concluída, abrangendo finalização e revisão do código, integração com o banco e testes internos sem bugs críticos. O deploy em ambiente de homologação — instância de pré-produção na Vercel (front-end) e no Render (back-end), conforme a stack definida em [Solução e Características](solucao-e-caracteristicas.md) — é parte da DoD e antecede a validação externa; o deploy em produção, usado pelos usuários finais, ocorre somente após o aceite do cliente.
 3. **Testes de aceitação com o cliente — validação externa:** ao final de cada sprint, o cliente valida se a entrega cumpre os critérios de aceitação previamente definidos e verificados no DoR, e se atende à necessidade real do negócio. Divergências identificadas resultam em ajustes no backlog da sprint seguinte.
 
-### 7.4 Rastreabilidade das atas
+## <span id="74-rastreabilidade-das-atas"></span>Rastreabilidade das atas {#rastreabilidade-das-atas}
 
 Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alinhamento interno da equipe) é registrada em ata, com feedback, decisões, Change Requests (CR) e ações, publicada na [pasta de atas do repositório](../atas/index.md) e linkada abaixo, garantindo a rastreabilidade exigida na disciplina.
 
@@ -60,9 +59,9 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 
 > Histórico completo, incluindo as atas das próximas sprints à medida que forem realizadas, em [Atas](../atas/index.md).
 
-### 7.5 Evidências
+## <span id="75-evidencias"></span>Evidências {#evidencias}
 
-#### Evidência de software
+### Evidência de software
 
 O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza os três épicos e suas 13 histórias de usuário. As histórias estão vinculadas aos respectivos épicos como sub-issues, permitindo acompanhar seu status e o progresso de cada épico.
 
@@ -84,3 +83,4 @@ O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza 
 |  1.7   | 11/10/2026 | Inclusão do GitHub Projects na ferramenta de comunicação, explicitando o quadro visual usado para acompanhamento do progresso das sprints                                                                                                                                                                                                              | [Luiz Moreira](https://github.com/luizhtmoreira) |
 |  1.8   | 12/10/2026 | Adição, no item 7.1, do link para o registro da validação do cliente sobre a acumulação do papel de Gerente de projeto / Product Owner                                                                                                                                                                                                                 | [Luiz Moreira](https://github.com/luizhtmoreira) |
 |  1.9   | 12/10/2026 | Inclusão de evidência de software do GitHub Projects, com os épicos e as histórias de usuário vinculadas.                                                                                                                                                                                                                                              | [Thiago Gomes](https://github.com/thgomxs)       |
+| 1.10 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

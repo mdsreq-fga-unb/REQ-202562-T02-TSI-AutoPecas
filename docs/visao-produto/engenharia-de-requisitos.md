@@ -1,6 +1,6 @@
-# 5 Engenharia de Requisitos
+# <span id="5-engenharia-de-requisitos"></span>Engenharia de Requisitos {#engenharia-de-requisitos}
 
-## 5.1 Atividades e Técnicas de ER e Scrum XP
+## <span id="51-atividades-e-tecnicas-de-er-e-scrum-xp"></span>Atividades e Técnicas de ER e Scrum XP {#atividades-e-tecnicas-de-er-e-scrum-xp}
 
 ### Planejamento da Release
 
@@ -63,7 +63,7 @@
 
 ---
 
-## 5.2 Engenharia de Requisitos e o Scrum XP
+## <span id="52-engenharia-de-requisitos-e-o-scrum-xp"></span>Engenharia de Requisitos e o Scrum XP {#engenharia-de-requisitos-e-o-scrum-xp}
 
 | Fases do Processo | Atividades ER | Prática | Técnica | Resultado Esperado |
 | :--- | :--- | :--- | :--- | :--- |
@@ -98,3 +98,4 @@
 | 4.1 | 12/10/2026 | Correção após analise do monitor | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
 | 4.2 | 12/10/2026 | Fix no Scrum | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
 | 4.3 | 12/10/2026 | Correção após analise do monitor | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 4.4 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

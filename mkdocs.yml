@@ -11,6 +11,7 @@ extra_css:
 
 extra_javascript:
   - assets/javascripts/catalog.js
+  - assets/javascripts/schedule.js
 
 theme:
   name: material
@@ -74,18 +75,20 @@ nav:
       - Estratégia e Engenharia:
           - Estratégias de engenharia de software: visao-produto/estrategias-engenharia-de-software.md
           - Engenharia de requisitos: visao-produto/engenharia-de-requisitos.md
-      - Planejamento e Alinhamento:
-          - Cronograma e entregas: visao-produto/cronograma-e-entregas.md
+      - Equipe e Aprendizados:
           - Interação entre equipe e cliente: visao-produto/interacao-equipe-cliente.md
-      - Especificação e Escopo:
-          - Catálogo de requisitos: visao-produto/requisitos-de-software.md
-          - Priorização: visao-produto/priorizacao.md
-          - MVP: visao-produto/mvp.md
-          - Rastreabilidade: visao-produto/rastreabilidade.md
-          - DoR e DoD: visao-produto/dor-e-dod.md
-      - Evolução do Projeto:
-          - Histórico de evolução: visao-produto/historico-de-evolucao.md
           - Lições aprendidas: visao-produto/licoes-aprendidas.md
+  - Requisitos:
+      - requisitos/index.md
+      - Catálogo de requisitos: visao-produto/requisitos-de-software.md
+      - Priorização: visao-produto/priorizacao.md
+      - MVP: visao-produto/mvp.md
+      - Rastreabilidade: visao-produto/rastreabilidade.md
+      - DoR e DoD: visao-produto/dor-e-dod.md
+      - Histórico de evolução: visao-produto/historico-de-evolucao.md
+  - Cronograma:
+      - cronograma/index.md
+      - Planejamento de sprints: visao-produto/cronograma-e-entregas.md
   - Atas:
       - atas/index.md
       - Sprint 0: atas/sprint-0.md
