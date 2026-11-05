@@ -1,4 +1,8 @@
-# <span id="6-cronograma-e-entregas"></span>Cronograma e entregas {#cronograma-e-entregas}
+---
+icon: material/calendar-clock
+---
+
+# <span id="6-cronograma-e-entregas"></span><span id="cronograma-e-entregas"></span>Cronograma {#cronograma}
 
 
 A partir da estratégia de desenvolvimento ágil estabelecida para o projeto **TSI Peças**, o semestre foi organizado em sprints de duas semanas, ancoradas nas quintas-feiras em semanas alternadas. A Sprint 0 é excepcional, com 17 dias, por cobrir a formação da equipe, a descoberta do domínio e a elaboração do documento de visão. O planejamento é preliminar e será atualizado ao final de cada sprint com base no progresso real e no feedback do cliente.
@@ -93,6 +97,8 @@ Compreender o domínio de autopeças, definir o escopo do produto e preparar o a
 
 Validação da viabilidade do projeto: o proprietário confirma que os problemas e as necessidades descritos refletem a realidade da loja
 
+**Registro da sprint:** [Ata da Sprint 0](../atas/sprint-0.md)
+
 </div>
 </details>
 
@@ -121,6 +127,8 @@ Correção dos feedbacks do professor; elicitar, analisar e declarar os requisit
 **Validação com o cliente**
 
 Apresentação dos requisitos e funcionalidades levantados ao proprietário para alinhamento
+
+**Registro da sprint:** [Ata da Sprint 1](../atas/sprint-1.md)
 
 </div>
 </details>
@@ -153,6 +161,8 @@ Consolidar os requisitos e o backlog priorizado e definir os padrões técnicos 
 
 Validação do escopo e dos critérios de aceite do MVP com o proprietário
 
+**Registro da sprint:** [Ata da Sprint 2](../atas/sprint-2.md)
+
 </div>
 </details>
 
@@ -170,7 +180,7 @@ Definir o DoR e o DoD; Correção dos feedbacks do professor; Iniciar o catálog
 
 **Trabalho previsto**
 
-- Entregas da unidade 2 corrigidas
+- [Entregas da Unidade 2](../entregas/entrega-2.md) corrigidas
 - DoR e DoD definidos e adotados pela equipe
 - US01: cadastro de peça
 - US05: edição de peça
@@ -186,6 +196,8 @@ Definir o DoR e o DoD; Correção dos feedbacks do professor; Iniciar o catálog
 **Validação com o cliente**
 
 Sprint Review: demonstração do cadastro e da edição de peças com dados reais da loja
+
+**Registro da sprint:** [Ata da Sprint 3](../atas/sprint-3.md)
 
 </div>
 </details>
@@ -336,3 +348,4 @@ Conferência dos cadastros e saldos iniciais, acompanhamento dos fluxos em produ
 | 1.5 | 13/10/2026 | Correção do link para a seção de histórias de usuário após a renumeração do backlog. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.6 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.7 | 04/11/2026 | Reorganização visual do cronograma em resumo responsivo e detalhes expansíveis por sprint, preservando períodos, objetivos, histórias, entregáveis e validações. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.8 | 05/11/2026 | Acesso direto pela aba Cronograma, simplificação do título e inclusão de links para as atas preenchidas e a entrega citada no planejamento. | [Thiago Gomes](https://github.com/thgomxs) |

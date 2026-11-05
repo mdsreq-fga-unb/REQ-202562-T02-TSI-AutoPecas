@@ -23,13 +23,12 @@ O escopo do MVP, com 13 requisitos funcionais, e o cronograma estão na document
 | --- | --- |
 | [Visão do produto e projeto](docs/visao-produto/index.md) | Contexto, problema, solução e estratégias do projeto |
 | [Requisitos](docs/requisitos/index.md) | Especificação, priorização, MVP, rastreabilidade e evolução do escopo |
-| [Cronograma](docs/cronograma/index.md) | Acessos ao planejamento das sprints, às atas e às entregas |
+| [Cronograma](docs/visao-produto/cronograma-e-entregas.md) | Períodos, objetivos, histórias previstas e validações de cada sprint |
 | [Catálogo de requisitos](docs/visao-produto/requisitos-de-software.md) | Registro único de cada RF e RNF, com origem, condições, priorização, entrega e situação |
 | [Priorização](docs/visao-produto/priorizacao.md) | Método de priorização e decisões gerais de escopo |
 | [MVP](docs/visao-produto/mvp.md) | Objetivo do incremento, justificativa do recorte e validação |
 | [Rastreabilidade](docs/visao-produto/rastreabilidade.md) | Tipos de vínculo entre os elementos do escopo |
 | [Histórico de evolução](docs/visao-produto/historico-de-evolucao.md) | Rotina de atualização e decisões que alteraram o escopo |
-| [Cronograma e entregas](docs/visao-produto/cronograma-e-entregas.md) | Sprints, entregas e validações com o cliente |
 | [Atas](docs/atas/index.md) | Registro das reuniões de cada sprint |
 | [Entregas](docs/entregas/index.md) | Entregas da disciplina |
 

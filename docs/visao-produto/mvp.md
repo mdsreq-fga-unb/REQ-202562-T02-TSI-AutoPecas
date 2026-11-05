@@ -85,7 +85,7 @@ requisito.
 </table>
 
 A distribuição das histórias pelas sprints e os marcos de cada entrega estão em
-[Cronograma e entregas](cronograma-e-entregas.md).
+[Cronograma](cronograma-e-entregas.md).
 
 ## <span id="105-validacao-do-mvp"></span>Validação do MVP {#validacao-do-mvp}
 

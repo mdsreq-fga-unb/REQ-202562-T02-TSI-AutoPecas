@@ -228,7 +228,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 3** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 3** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -357,7 +357,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -486,7 +486,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -615,7 +615,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -744,7 +744,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 3** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 3** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -873,7 +873,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 3** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 3** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -1129,7 +1129,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -1258,7 +1258,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -1387,7 +1387,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -1640,7 +1640,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 4** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -1892,7 +1892,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -2025,7 +2025,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 
@@ -2155,7 +2155,7 @@ a detalhar no refinamento da história, conforme a [DoR](dor-e-dod.md).
 <section class="req-section" data-field="delivery" markdown="1">
 <p class="req-section__title">Entrega e situação</p>
 
-Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma e entregas](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
+Recorte: **MVP**. Planejado para a **Sprint 5** (ver [Cronograma](cronograma-e-entregas.md)). Situação atual: **Não iniciado**.
 
 </section>
 

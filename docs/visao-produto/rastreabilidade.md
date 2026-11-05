@@ -33,7 +33,7 @@ Cada elo é percorrível nos dois sentidos a partir do registro do requisito no 
 | **Dependência** | Requisito → requisitos de que ele depende | Campo *Condições e avaliação* do registro | Seguir os links em *Depende de*; os vínculos foram derivados da leitura das declarações e aguardam validação no refinamento |
 | **Recorte de entrega** | Requisito → história de usuário → épico | Campos *Intenção e valor* e *Origem e agrupamento* do registro | Épicos e histórias estão agrupados em [MVP](mvp.md#epicos-do-incremento) |
 | **Priorização** | Requisito → valor, esforço, Score e quadrante | Campo *Priorização* do registro | Método em [Priorização](priorizacao.md); valores vigentes no [índice do catálogo](requisitos-de-software.md#indice-dos-registros) |
-| **Planejamento** | História → sprint de entrega | Campo *Entrega e situação* do registro | Distribuição completa em [Cronograma e entregas](cronograma-e-entregas.md) |
+| **Planejamento** | História → sprint de entrega | Campo *Entrega e situação* do registro | Distribuição completa em [Cronograma](cronograma-e-entregas.md) |
 | **Evolução** | Requisito → decisões que o alteraram | Campo *Evolução* do registro | Visão por entrega em [Histórico de evolução](historico-de-evolucao.md) |
 
 ## <span id="113-como-percorrer-uma-relacao"></span>Como percorrer uma relação {#como-percorrer-uma-relacao}

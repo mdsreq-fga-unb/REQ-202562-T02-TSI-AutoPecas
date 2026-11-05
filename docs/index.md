@@ -27,10 +27,10 @@ Explore as cinco áreas da documentação do projeto.
     <span class="section-card__description">Consulte o catálogo, a priorização, o MVP, a rastreabilidade e a evolução dos requisitos.</span>
     <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
   </a>
-  <a class="section-card" href="cronograma/">
+  <a class="section-card" href="visao-produto/cronograma-e-entregas/">
     <span class="section-card__number" aria-hidden="true">03</span>
     <span class="section-card__title">Cronograma</span>
-    <span class="section-card__description">Acompanhe o planejamento das sprints e acesse os registros das reuniões e das entregas.</span>
+    <span class="section-card__description">Consulte os períodos, os objetivos, as histórias previstas e as validações de cada sprint.</span>
     <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="atas/">

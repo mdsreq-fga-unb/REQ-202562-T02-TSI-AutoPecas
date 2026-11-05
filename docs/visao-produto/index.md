@@ -10,7 +10,7 @@ Esta seção reúne a visão inicial do produto **TSI Peças** e as decisões qu
 
 Conheça os fundamentos do produto e as decisões que orientam o projeto. A especificação e o escopo
 estão em [Requisitos](../requisitos/index.md), e o planejamento das sprints está em
-[Cronograma](../cronograma/index.md).
+[Cronograma](cronograma-e-entregas.md).
 
 <div class="section-grid section-grid--vision">
   <div class="section-card section-card--group">

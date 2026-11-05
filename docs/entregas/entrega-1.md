@@ -25,7 +25,7 @@ Esta entrega contempla **somente os tópicos 1 a 7 e 11 (Unidade 1)** da [Visão
 - [3. Intervenção social](../visao-produto/intervencao-social.md).
 - [4. Estratégias de engenharia de software](../visao-produto/estrategias-engenharia-de-software.md).
 - [5. Engenharia de requisitos](../visao-produto/engenharia-de-requisitos.md).
-- [6. Cronograma e entregas](../visao-produto/cronograma-e-entregas.md).
+- [6. Cronograma](../visao-produto/cronograma-e-entregas.md).
 - [7. Interação entre equipe e cliente](../visao-produto/interacao-equipe-cliente.md).
 - [11. Lições aprendidas](../visao-produto/licoes-aprendidas.md).
 

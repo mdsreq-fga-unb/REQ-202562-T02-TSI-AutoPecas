@@ -55,7 +55,7 @@ consultá-los e atualizá-los.
 ## Documentos relacionados
 
 - [Visão do Produto e Projeto](../visao-produto/index.md): contexto, problemas, objetivos e características do produto.
-- [Cronograma](../cronograma/index.md): planejamento das sprints e acompanhamento das entregas.
+- [Cronograma](../visao-produto/cronograma-e-entregas.md): planejamento das sprints e acompanhamento das entregas.
 
 ## Versionamento
 
