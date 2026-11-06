@@ -1,0 +1,153 @@
+name: História de usuário
+description: Criar uma US vinculada ao backlog, com narrativa, critérios e acompanhamento.
+title: 'US - '
+labels:
+- user-story
+body:
+- type: markdown
+  attributes:
+    value: Use o ID reservado no catálogo e preencha o título como US01 - Nome. O número da issue é diferente
+      do ID da US. Os títulos dos campos devem ser preservados nas edições. A declaração do RF, CP, RNFs
+      aprovados e priorização são mantidos em data/backlog.json. Critérios podem ficar pendentes durante
+      o refinamento.
+- type: input
+  id: us
+  attributes:
+    label: Identificação da US
+    placeholder: US01
+  validations:
+    required: true
+- type: dropdown
+  id: rf
+  attributes:
+    label: RF de origem
+    options:
+    - RF01
+    - RF02
+    - RF03
+    - RF04
+    - RF05
+    - RF06
+    - RF07
+    - RF08
+    - RF09
+    - RF10
+    - RF11
+    - RF12
+    - RF13
+    - RF14
+    - RF15
+    - RF16
+    - RF17
+    - RF18
+    - RF19
+    - RF20
+    - RF21
+    - RF22
+    - RF23
+    - RF24
+    - RF25
+    - RF26
+    - RF27
+    - RF28
+    - RF29
+    - RF30
+    - RF31
+    - RF32
+    - RF33
+    - RF34
+    - RF35
+    - RF36
+    - RF37
+    - RF38
+    - RF39
+    - RF40
+  validations:
+    required: true
+- type: dropdown
+  id: epic
+  attributes:
+    label: Épico
+    options:
+    - EP01 - Gestão do catálogo de peças
+    - EP02 - Controle de movimentações e saldo
+    - EP03 - Registro e cancelamento de vendas
+    - EP04 - Análise e planejamento de compras
+    - EP05 - Controle financeiro e capital de giro
+    - EP06 - Apoio fiscal e expedição
+    - EP07 - Gerenciamento e autenticação de usuários
+  validations:
+    required: true
+- type: textarea
+  id: narrative
+  attributes:
+    label: Narrativa
+    description: Quem precisa, o que precisa e para qual benefício.
+    placeholder: Como ..., quero ... para ...
+  validations:
+    required: true
+- type: textarea
+  id: acceptance
+  attributes:
+    label: Critérios de aceitação
+    description: Condições verificáveis. Use Dado / Quando / Então e contemple erros e exceções. Se ainda
+      não definidos, registre a pendência em A refinar.
+  validations:
+    required: false
+- type: dropdown
+  id: rnfs
+  attributes:
+    label: RNFs aplicáveis
+    multiple: true
+    options:
+    - RNF01 - Responsividade da interface em dispositivos móveis
+    - RNF02 - Tolerância a falhas de conexão
+    - RNF03 - Compatibilidade com navegadores web
+    - RNF04 - Desempenho de resposta
+    - RNF05 - Segurança de dados
+  validations:
+    required: false
+- type: textarea
+  id: dependencies
+  attributes:
+    label: Dependências
+    description: 'Use IDs existentes: US01 ou RF01. Escreva Nenhuma quando isso tiver sido confirmado.'
+  validations:
+    required: false
+- type: textarea
+  id: refinement
+  attributes:
+    label: A refinar
+    description: Dúvidas e decisões pendentes. Não use este campo para declarar conclusão.
+  validations:
+    required: false
+- type: dropdown
+  id: status
+  attributes:
+    label: Situação do desenvolvimento
+    options:
+    - Não iniciado
+    - Em andamento
+    - Em revisão
+    - Bloqueado
+    - Concluído
+    default: 0
+  validations:
+    required: true
+- type: checkboxes
+  id: done
+  attributes:
+    label: Confirmação de conclusão
+    description: Marque somente após cumprir a DoD e registrar a evidência. Fechar uma issue ou integrar
+      um PR não substitui essa verificação.
+    options:
+    - label: A DoD foi atendida e a validação aplicável foi registrada.
+- type: input
+  id: evidence
+  attributes:
+    label: Evidência de conclusão
+    description: Link HTTPS para o registro de verificação e validação. Obrigatório para contabilizar
+      uma US como concluída.
+    placeholder: https://...
+  validations:
+    required: false

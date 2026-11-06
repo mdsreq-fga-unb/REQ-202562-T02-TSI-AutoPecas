@@ -1,0 +1,38 @@
+name: Épico
+description: Agrupar histórias por uma capacidade do produto.
+title: 'EP - '
+body:
+- type: markdown
+  attributes:
+    value: 'Use o ID reservado em data/backlog.json. Exemplo de título: EP01 - Gestão do catálogo de peças.
+      Vincule as histórias como sub-issues; selecionar um nome no formulário da US não cria essa relação
+      automaticamente.'
+- type: input
+  id: epic
+  attributes:
+    label: Identificação do épico
+    placeholder: EP01
+  validations:
+    required: true
+- type: dropdown
+  id: cp
+  attributes:
+    label: CP de origem
+    options:
+    - CP1 - Cadastro e Catálogo de Peças
+    - CP2 - Controle e Movimentação de Estoque
+    - CP3 - Registro de Vendas e Recebimentos
+    - CP4 - Análise e Planejamento de Compras
+    - CP5 - Controle Financeiro e Capital de Giro
+    - CP6 - Apoio Fiscal e Expedição
+    - CP9 - Gerenciamento e Autenticação de Usuários
+  validations:
+    required: true
+- type: textarea
+  id: objective
+  attributes:
+    label: Objetivo
+    description: Necessidade ampla e benefício esperado. As histórias são consultadas pelas sub-issues,
+      sem copiar uma lista aqui.
+  validations:
+    required: true
