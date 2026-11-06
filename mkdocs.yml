@@ -42,6 +42,9 @@ theme:
     - search.suggest
     - search.highlight
 
+hooks:
+  - hooks/backlog.py
+
 plugins:
   - search
 
@@ -83,10 +86,9 @@ nav:
       - requisitos/index.md
       - Catálogo de requisitos: visao-produto/requisitos-de-software.md
       - Priorização: visao-produto/priorizacao.md
-      - MVP: visao-produto/mvp.md
       - Rastreabilidade: visao-produto/rastreabilidade.md
       - DoR e DoD: visao-produto/dor-e-dod.md
-      - Histórico de evolução: visao-produto/historico-de-evolucao.md
+      - Organização e atualização: visao-produto/historico-de-evolucao.md
   - Cronograma: visao-produto/cronograma-e-entregas.md
   - Atas:
       - atas/index.md

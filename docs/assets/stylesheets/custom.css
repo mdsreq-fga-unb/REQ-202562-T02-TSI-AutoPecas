@@ -1289,3 +1289,82 @@ body {
   .md-typeset .req-property { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
   .md-typeset .req-calculation__math math { font-size: 0.75rem; }
 }
+
+/* Backlog único: registros compactos; detalhes relacionados compartilham linhas. */
+.md-typeset .backlog-catalog { font-size: .74rem; overflow-wrap: anywhere; }
+.md-typeset .backlog-overview { color: var(--md-default-fg-color--light); font-size: .68rem; }
+.md-typeset .backlog-controls { display: flex; align-items: end; flex-wrap: wrap; gap: .45rem; margin: .65rem 0; }
+.md-typeset .backlog-controls label { display: grid; gap: .15rem; flex: 1 1 8rem; font-size: .65rem; font-weight: 600; }
+.md-typeset .backlog-controls input,
+.md-typeset .backlog-controls select,
+.md-typeset .backlog-controls button { max-width: 100%; min-width: 0; padding: .35rem .5rem; border: 1px solid var(--md-default-fg-color--lighter); border-radius: .35rem; background: var(--md-default-bg-color); color: var(--md-default-fg-color); font: inherit; }
+.md-typeset .backlog-controls button { cursor: pointer; font-size: .65rem; }
+.md-typeset .backlog-controls :focus-visible { outline: 2px solid var(--tsi-accent); outline-offset: 2px; }
+.md-typeset .backlog-epic { margin: .8rem 0 1.2rem; }
+.md-typeset .backlog-epic > h3 { margin: .6rem 0 .3rem; }
+.md-typeset .backlog-epic > p { margin: .25rem 0; }
+.md-typeset .backlog-epic-meta { font-size: .67rem; color: var(--md-default-fg-color--light); }
+.md-typeset .backlog-catalog details.req-record { margin: .4rem 0; }
+.md-typeset .backlog-catalog details.req-record > summary { gap: .35rem; padding: .5rem .6rem .5rem 1.6rem; font-size: .73rem; line-height: 1.4; }
+.md-typeset .backlog-catalog .req-record__body { display: block; padding: .2rem .65rem .5rem; font-size: .72rem; line-height: 1.5; }
+.md-typeset .backlog-catalog .req-record__body > p { margin: .35rem 0; }
+.md-typeset .backlog-catalog .req-chip { white-space: normal; overflow-wrap: anywhere; }
+.md-typeset .backlog-text { margin: 0; padding: .35rem 0; border-top: 1px solid var(--md-default-fg-color--lightest); }
+.md-typeset .backlog-text p { margin: .2rem 0; }
+.md-typeset .backlog-label { margin: 0 0 .2rem; font-size: .65rem; font-weight: 750; color: var(--tsi-accent); }
+.md-typeset .backlog-facts { display: grid; gap: .2rem; min-width: 0; margin: .35rem 0; }
+.md-typeset .backlog-row { display: grid; grid-template-columns: minmax(5rem, 7rem) minmax(0, 1fr); gap: .35rem; min-width: 0; }
+.md-typeset .backlog-row dt { margin: 0; font-weight: 700; font-size: .65rem; }
+.md-typeset .backlog-row dd { margin: 0; min-width: 0; }
+.md-typeset .backlog-priority { margin: .35rem 0; padding: .4rem .5rem; border-left: 3px solid var(--tsi-accent); background: var(--tsi-soft-red); border-radius: .2rem; }
+.md-typeset .backlog-priority p { margin: .15rem 0; }
+.md-typeset .backlog-score { font-size: .72rem; }
+.md-typeset .backlog-links { line-height: 1.7; overflow-wrap: anywhere; }
+.md-typeset .backlog-pending { margin: .35rem 0; padding: .35rem .5rem; border-left: 3px solid var(--tsi-amber); background: var(--md-code-bg-color); font-size: .67rem; }
+.md-typeset .backlog-pending ul { margin: .2rem 0; }
+.md-typeset .backlog-history,
+.md-typeset .backlog-scope { margin: .4rem 0; padding: 0 .5rem .2rem; font-size: .66rem; }
+.md-typeset .backlog-history > summary,
+.md-typeset .backlog-scope > summary { margin: 0 -.5rem; padding: .35rem .5rem; }
+.md-typeset .backlog-anchor { scroll-margin-top: 6rem; }
+.md-typeset .backlog-catalog [hidden] { display: none !important; }
+@media (max-width: 480px) {
+  .md-typeset .backlog-row { grid-template-columns: minmax(0, 1fr); gap: .05rem; }
+  .md-typeset .backlog-row + .backlog-row { margin-top: .2rem; }
+  .md-typeset .backlog-controls button { flex: 1 1 auto; }
+  .md-typeset .backlog-catalog .req-record__body { padding: .15rem .45rem .4rem; }
+}
+
+
+.md-typeset .backlog-rf-origin { color: var(--md-default-fg-color--light); font-size: .58rem; font-weight: 500; }
+
+/* Filtros compactos e ícones de expansão com espaço reservado em todos os níveis. */
+.md-typeset .backlog-controls { display: block; }
+.md-typeset .backlog-filter-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem; }
+.md-typeset .backlog-filter-primary { grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); }
+.md-typeset .backlog-filter-grid label { min-width: 0; }
+.md-typeset .backlog-controls input,
+.md-typeset .backlog-controls select { width: 100%; }
+.md-typeset .backlog-filter-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-top: .4rem; }
+.md-typeset .backlog-filter-actions output { margin-left: auto; color: var(--md-default-fg-color--light); font-size: .65rem; }
+.md-typeset .backlog-controls button:disabled { opacity: .5; cursor: default; }
+.md-typeset .backlog-controls .backlog-filter-hint { margin: .2rem 0 0; font-size: .61rem; color: var(--md-default-fg-color--light); }
+.md-typeset .backlog-filter-options { margin: .4rem 0; padding: 0 .5rem .45rem; border-color: var(--md-default-fg-color--lightest); box-shadow: none; font-size: .66rem; }
+.md-typeset .backlog-filter-options > summary { margin: 0 -.5rem; padding: .35rem .5rem .35rem 1.55rem; font-weight: 650; }
+.md-typeset .backlog-filter-options[open] > summary { margin-bottom: .4rem; }
+.md-typeset .backlog-history > summary,
+.md-typeset .backlog-scope > summary { padding-left: 1.55rem; }
+.md-typeset .backlog-catalog details > summary { position: relative; list-style: none; background: none; }
+.md-typeset .backlog-catalog details > summary::marker { content: ""; }
+.md-typeset .backlog-catalog details > summary::-webkit-details-marker { display: none; }
+.md-typeset .backlog-catalog details > summary::before { content: ""; display: block; position: absolute; top: .6rem; left: .55rem; width: .4rem; height: .4rem; border: solid var(--tsi-accent); border-width: 0 .08rem .08rem 0; border-radius: 0; background: none; mask: none; transform: rotate(-45deg); }
+.md-typeset .backlog-catalog details[open] > summary::before { transform: rotate(45deg); }
+.md-typeset .backlog-catalog details > summary::after { display: none; }
+@media (max-width: 760px) {
+  .md-typeset .backlog-filter-primary,
+  .md-typeset .backlog-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 380px) {
+  .md-typeset .backlog-filter-grid { grid-template-columns: minmax(0, 1fr); }
+  .md-typeset .backlog-filter-actions output { width: 100%; margin-left: 0; }
+}

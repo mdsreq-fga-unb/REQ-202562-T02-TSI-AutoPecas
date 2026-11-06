@@ -17,7 +17,7 @@ consultá-los e atualizá-los.
   <a class="section-card" href="../visao-produto/requisitos-de-software/">
     <span class="section-card__number" aria-hidden="true">01</span>
     <span class="section-card__title">Catálogo de requisitos</span>
-    <span class="section-card__description">Consulte cada RF e RNF com sua declaração vigente, origem, condições, prioridade, entrega e situação.</span>
+    <span class="section-card__description">Consulte épicos e histórias com sua origem, narrativa, prioridade, recorte de entrega e evidências.</span>
     <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="../visao-produto/priorizacao/">
@@ -26,28 +26,22 @@ consultá-los e atualizá-los.
     <span class="section-card__description">Entenda os critérios de valor, esforço e MoSCoW utilizados para definir a prioridade.</span>
     <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
   </a>
-  <a class="section-card" href="../visao-produto/mvp/">
-    <span class="section-card__number" aria-hidden="true">03</span>
-    <span class="section-card__title">MVP</span>
-    <span class="section-card__description">Conheça o objetivo do incremento, o recorte de entrega, os épicos e o acompanhamento das histórias.</span>
-    <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
-  </a>
   <a class="section-card" href="../visao-produto/rastreabilidade/">
-    <span class="section-card__number" aria-hidden="true">04</span>
+    <span class="section-card__number" aria-hidden="true">03</span>
     <span class="section-card__title">Rastreabilidade</span>
     <span class="section-card__description">Percorra os vínculos entre objetivos, características, requisitos, RNFs, histórias e entregas.</span>
     <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="../visao-produto/dor-e-dod/">
-    <span class="section-card__number" aria-hidden="true">05</span>
+    <span class="section-card__number" aria-hidden="true">04</span>
     <span class="section-card__title">DoR e DoD</span>
     <span class="section-card__description">Consulte os critérios de prontidão para iniciar uma história e de conclusão de uma funcionalidade.</span>
     <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="../visao-produto/historico-de-evolucao/">
-    <span class="section-card__number" aria-hidden="true">06</span>
-    <span class="section-card__title">Histórico de evolução</span>
-    <span class="section-card__description">Recupere as decisões, as alterações e as referências que explicam a evolução do escopo.</span>
+    <span class="section-card__number" aria-hidden="true">05</span>
+    <span class="section-card__title">Organização e atualização</span>
+    <span class="section-card__description">Entenda as fontes, os formulários, a automação e a memória das decisões de requisitos.</span>
     <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
   </a>
 </div>

@@ -1,55 +1,108 @@
-# <span id="12-historico-de-evolucao-dos-requisitos"></span>Histórico de evolução dos requisitos {#historico-de-evolucao-dos-requisitos}
+# <span id="12-historico-de-evolucao-dos-requisitos"></span><span id="historico-de-evolucao-dos-requisitos"></span>Organização e atualização dos requisitos {#organizacao-e-atualizacao-dos-requisitos}
 
+O [catálogo](requisitos-de-software.md) é a **única apresentação completa do backlog**. Ele é
+organizado por épicos, que apontam para suas características de produto (CPs), e por histórias
+(US01 a US40), cada uma vinculada ao RF do mesmo número. O recorte do MVP e as evidências são
+consultados no próprio registro; não há uma lista ou página de acompanhamento paralela.
 
-O escopo do produto muda ao longo do projeto. Esta página registra **como a equipe incorpora uma
-mudança** e **quais decisões já alteraram o escopo**, de modo que seja possível recuperar o que
-mudou, por quê e quais elementos foram afetados.
+## Fonte de cada informação {#fontes-dos-dados}
 
-A memória de cada requisito individual fica no campo *Evolução* do seu registro no
-[Catálogo de requisitos](requisitos-de-software.md). Esta página reúne a visão por entrega.
+| Informação | Onde é mantida | Como chega ao catálogo |
+| --- | --- | --- |
+| IDs, declaração do RF, CP/OE, épico, RNFs, dependências aprovadas, prioridade e sprint | `data/backlog.json` | Geração automática a partir da base versionada |
+| Narrativa, critérios de aceitação e pontos a refinar da US | Corpo da issue | Coleta das seções padronizadas, preservando o número da issue |
+| Objetivo do épico | Issue do épico | Coleta do campo Objetivo e consulta às sub-issues |
+| Responsáveis, marco e estado da issue | Metadados do GitHub | Leitura pela API |
+| Situação do desenvolvimento | Status do Projects, quando configurado; na ausência, campo da issue | Exibida com indicação da origem |
+| PRs e commits | Relações explícitas com a issue | Coleta de referências, timeline e commits dos PRs; commits diretos na branch padrão desde a criação das issues |
+| Conceitos, descrições de CPs e OEs | [Visão do produto](solucao-e-caracteristicas.md) | Links de origem, sem copiar a especificação |
+
+**Uma fonte por campo.** A aplicação inversa dos RNFs, os totais e os cálculos são derivados dos
+vínculos e das notas registrados, sem manutenção de tabelas paralelas. A base versionada mantém o escopo aprovado, inclusive histórias ainda sem
+issue. Ela não armazena cópias da narrativa e dos critérios do GitHub. O Markdown do catálogo
+contém o ponto de geração, não uma segunda lista. O snapshot local em `.cache/backlog/github.json`
+é descartável, ignorado pelo Git e nunca deve ser editado como fonte de requisitos.
+
+Quando a issue informa RNFs ou dependências diferentes dos vínculos aprovados, a divergência é
+mostrada no registro. Ela exige análise antes de alterar a base, evitando mudanças silenciosas de
+escopo. Na ausência de issue, a US permanece visível, com narrativa e critérios pendentes; a
+situação inicial vem do planejamento, não da simples ausência de atividade no GitHub.
+
+## Preenchimento e refinamento das issues {#padrao-das-issues}
+
+1. Reserve o vínculo RF/US e seu épico na base. A numeração da US é independente do número da issue.
+2. Em **Issues → New issue**, escolha **História de usuário** e utilize o ID reservado.
+3. Preencha narrativa, critérios, RNFs, dependências e pendências. Preserve os títulos das seções ao editar o corpo da issue.
+4. Vincule a história ao épico como **sub-issue** no GitHub. O dropdown registra a escolha, mas não cria esse parentesco automaticamente; a automação confere ambos.
+5. Use **A refinar** para pendências. Uma história com critérios incompletos continua visível, mas só entra em desenvolvimento quando atende à [DoR](dor-e-dod.md).
+
+Os formulários ficam em `.github/ISSUE_TEMPLATE/historia-de-usuario.yml` e `epico.yml`. As issues
+anteriores também são reconhecidas pelos campos Origem, RNFs, Dependências, Critérios de
+aceitação e A refinar. Não é necessário recriá-las. IDs duplicados, RF/US incompatíveis ou
+parentesco divergente interrompem a coleta, sem substituir a última publicação válida.
 
 ## <span id="121-rotina-de-atualizacao"></span>Rotina de atualização {#rotina-de-atualizacao}
 
-Sempre que o entendimento do escopo muda, a equipe percorre os mesmos quatro passos, com esforço
-proporcional ao impacto da mudança.
-
-```mermaid
-flowchart LR
-    A["<b>Descoberta</b><br/><small>Nova necessidade, feedback<br/>ou problema identificado</small>"]
-    B["<b>Análise e decisão</b><br/><small>Compreender impactos e<br/>acordar o que passa a valer</small>"]
-    C["<b>Atualização</b><br/><small>Incorporar os efeitos nos<br/>registros e vínculos afetados</small>"]
-    D["<b>Comunicação</b><br/><small>Alinhar o novo entendimento<br/>com as pessoas afetadas</small>"]
-    A --> B --> C --> D
-    C --> M["<b>Memória</b><br/><small>Razões, decisões e referências<br/>registradas no catálogo</small>"]
-```
-
-| Passo | O que a equipe faz | Onde fica o resultado |
+| Passo | Ação | Registro |
 | --- | --- | --- |
-| Descoberta | Registra o achado: feedback do cliente ou da monitoria, impedimento técnico, incoerência encontrada na revisão. | Issue no repositório ou [ata](../atas/index.md) da reunião |
-| Análise e decisão | Identifica os registros, vínculos e critérios potencialmente afetados e acorda o que passa a valer. | Discussão registrada na issue ou na ata |
-| Atualização | Altera o registro no catálogo — declaração, origem, condições, priorização, entrega ou situação — e confere os vínculos afetados. | [Catálogo de requisitos](requisitos-de-software.md) |
-| Comunicação | Informa quem depende da informação alterada: equipe, monitoria e, quando aplicável, o proprietário. | Sprint Review, ata ou comentário na issue |
-| Memória | Anota data e motivo no campo *Evolução* do registro e acrescenta a linha desta página. | Registro do requisito e [Decisões que alteraram o escopo](#decisoes-que-alteraram-o-escopo) |
+| Descoberta | Identificar necessidade, feedback ou inconsistência | Issue ou ata específica |
+| Análise e decisão | Avaliar valor, regras, dependências, impacto e recorte | Decisão na issue ou na ata |
+| Atualização | Alterar somente a fonte do campo afetado | Base versionada ou issue |
+| Comunicação | Alinhar a mudança com quem depende dela | Review, ata ou comentário na issue |
+| Memória | Registrar data, motivo e origem | Evolução do registro e histórico abaixo |
 
 ## <span id="122-propagacao-de-uma-mudanca"></span>Propagação de uma mudança {#propagacao-de-uma-mudanca}
 
-Uma alteração raramente atinge um elemento só. Antes de encerrar a atualização, a equipe confere os
-quatro eixos abaixo — a mesma verificação, independentemente do tamanho da mudança.
+Antes de concluir uma alteração, confira a declaração e as regras, os critérios de aceitação, os
+RNFs e as dependências, o épico, o recorte de entrega e a sprint. Atualize o cronograma ou um
+diagrama quando a mudança afetar essas representações. As [relações de rastreabilidade](rastreabilidade.md)
+permitem localizar os elementos envolvidos; a automação não decide o escopo pelo cliente.
 
-| Eixo | O que conferir |
-| --- | --- |
-| Declaração e regras | O texto vigente do requisito ainda descreve o comportamento acordado? Alguma regra associada mudou junto? |
-| Critérios de confirmação | Os critérios continuam verificáveis e coerentes com a nova declaração? |
-| Vínculos | Origem, RNFs aplicáveis e dependências continuam corretos? Algum requisito que depende deste foi afetado? |
-| Entrega e visões | O recorte de entrega e a sprint continuam viáveis? O índice do catálogo, o [quadro do MVP](mvp.md#quadro-de-acompanhamento-da-entrega) e o [cronograma](cronograma-e-entregas.md) refletem a mudança? |
+## Publicação e acompanhamento automático {#automacao-do-backlog}
 
-**Exemplo de propagação.** Se o proprietário confirmar que o
-[RF13](requisitos-de-software.md#rf13) precisa entrar no MVP — pendência registrada em
-[Pontos em aberto do recorte](mvp.md#pontos-em-aberto-do-recorte) —, a mudança atinge: o
-recorte de entrega e a situação do RF13; a dependência declarada no
-[RF14](requisitos-de-software.md#rf14); a composição do épico
-[EP02](mvp.md#ep02); a distribuição das histórias nas sprints; e a contagem de requisitos do MVP
-registrada em [Priorização](priorizacao.md#decisoes-gerais-da-priorizacao).
+A geração tem três passos: **consultar a API → validar os vínculos → publicar o catálogo**. O
+workflow `.github/workflows/docs.yml` usa o código da `main` e executa a coleta em mudanças de
+issues, comentários, PRs, pushes na `main`, execução manual e reconciliação a cada 30 minutos.
+Assim, alterações de parentesco ou do Projects também podem ser recuperadas pela reconciliação.
+
+O script `scripts/backlog.py` pagina as consultas, reconhece as issues pelo ID da US e consulta o
+parentesco dos épicos. Associa PRs e commits por referências exatas à issue: `Refs #27`,
+`Closes #27` ou a URL completa. Em outro repositório, use `organização/repositório#27` ou a URL.
+A lista de repositórios de implementação é configurada na base; repositórios não listados não são
+consultados. Se o código for movido para outro repositório, inclua-o nessa configuração.
+
+O hook `hooks/backlog.py` gera os registros em memória durante o build. A coleta nunca altera
+issues, não cria histórias, não reescreve o Markdown e não faz commits automáticos na `main`.
+Uma falha de API ou validação impede uma nova publicação; não transforma ausência de dados em
+conclusão nem sobrescreve o último snapshot válido.
+
+**Conclusão é diferente de evidência de implementação.** PR integrado, commit vinculado ou issue
+encerrada não comprovam, sozinhos, a DoD. Para contar como concluída, a US precisa ter a situação
+Concluído, a confirmação da DoD e um link HTTPS de evidência de verificação/validação. Na falta
+disso, o catálogo informa que a conclusão precisa ser confirmada. O progresso do épico conta
+somente histórias com essa confirmação.
+
+O acesso às issues e aos PRs usa `GITHUB_TOKEN`. Para consultar o status do Project da organização,
+configure o secret **`BACKLOG_PROJECT_TOKEN`** com leitura do Project e dos repositórios envolvidos.
+Sem ele, a geração continua funcionando com as informações das issues, as evidências e o
+planejamento, sem presumir o status do quadro. Quando disponível, o status do Projects tem precedência, evitando repetir manualmente as mudanças
+do quadro na issue. Sem ele, é utilizado o campo da issue; na falta de ambos, evidências indicam
+implementação/revisão sem inferir aceite.
+
+Para conferir localmente:
+
+```bash
+python -m pip install -r requirements-docs.txt
+python scripts/backlog.py sync
+python scripts/backlog.py check
+python -m unittest discover -s tests -v
+mkdocs build --strict
+python scripts/check_links.py site
+```
+
+Sem executar `sync`, o build funciona com o inventário completo e informa a ausência de coleta.
+As validações de PRs são executadas sem secrets e sem publicação. Os formulários e os gatilhos
+passam a estar disponíveis depois que os arquivos forem integrados à branch padrão.
 
 ## <span id="123-decisoes-que-alteraram-o-escopo"></span>Decisões que alteraram o escopo {#decisoes-que-alteraram-o-escopo}
 
@@ -69,7 +122,7 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 | 03/10/2026 | Devolução de peça passou a ser vinculada a uma venda; atualização de estoque no registro de venda simplificada. | [RF11](requisitos-de-software.md#rf11), [RF15](requisitos-de-software.md#rf15) | Feedback da monitoria |
 | 05/10/2026 | Definição do método de priorização — VN, ET, MoSCoW e Score — e seleção de 13 requisitos para o MVP, 5 condicionados e 22 como evolução futura. | Todos os RFs; [Priorização](priorizacao.md) | Decisão da equipe |
 | 10/10/2026 | Fragmentação da característica de integridade em duas: segurança/integridade dos dados e acessibilidade/responsividade. | CP7, CP8, RNF01 a RNF05 | Feedback da monitoria |
-| 12/10/2026 | Definição dos três épicos e das 13 histórias de usuário do MVP, com os vínculos de CP, RF e RNF. | [EP01](mvp.md#ep01), [EP02](mvp.md#ep02), [EP03](mvp.md#ep03) e as 13 US | Decisão da equipe |
+| 12/10/2026 | Definição dos três épicos e das 13 histórias de usuário do MVP, com os vínculos de CP, RF e RNF. | [EP01](requisitos-de-software.md#ep01), [EP02](requisitos-de-software.md#ep02), [EP03](requisitos-de-software.md#ep03) e as 13 US | Decisão da equipe |
 | 13/10/2026 | Realinhamento das características de origem dos RF25 a RF40, com a unificação de compras e análise na CP4. | [RF25](requisitos-de-software.md#rf25) a [RF40](requisitos-de-software.md#rf40) | Revisão de rastreabilidade |
 | 03/11/2026 | **Consolidação do escopo em um catálogo integrado.** Cada requisito passou a ter um registro único, reunindo declaração, intenção e valor, origem, condições, priorização, entrega, situação e evolução. As listas paralelas de requisitos mantidas no Backlog de produto foram eliminadas, e as páginas de priorização, MVP e rastreabilidade passaram a consultar o catálogo. | Todos os registros; páginas 8 a 12 na numeração original | Estudo de caso do Capítulo 12 |
 | 03/11/2026 | Adoção dos nomes das características definidos na Visão do Produto como versão vigente, corrigindo a divergência com os nomes usados na página de requisitos (CP1 e CP2). | [CP1](solucao-e-caracteristicas.md#cp1), [CP2](solucao-e-caracteristicas.md#cp2) e seus requisitos | Revisão de consistência |
@@ -77,16 +130,8 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 
 ## <span id="124-pendencias-de-escopo-em-aberto"></span>Pendências de escopo em aberto {#pendencias-de-escopo-em-aberto}
 
-Itens já identificados, ainda sem decisão. Cada um será levado à próxima sessão de validação com o
-proprietário ou ao próximo refinamento da equipe.
-
-| Pendência | Elementos envolvidos | Encaminhamento |
-| --- | --- | --- |
-| Valor de negócio aguarda confirmação formal do proprietário. | Todos os RFs | Próxima sessão de validação de escopo |
-| [RF14](requisitos-de-software.md#rf14) está no MVP, mas depende do [RF13](requisitos-de-software.md#rf13), que está condicionado. | RF13, RF14, EP02, Sprint 5 | Próxima sessão de priorização |
-| [RNF04](requisitos-de-software.md#rnf04-desempenho-de-resposta) não tem característica de produto de origem registrada. | RNF04, CP7, CP8 | Próximo refinamento da Visão do Produto |
-| As dependências registradas foram derivadas das declarações e ainda não foram validadas. | Campo *Condições e avaliação* dos registros | Refinamento de cada história, conforme a [DoR](dor-e-dod.md) |
-| Critérios de confirmação ainda não detalhados para os requisitos fora do MVP. | Requisitos com recorte *Evolução futura* | Quando o requisito for repriorizado |
+As pendências vigentes estão no [recorte do catálogo](requisitos-de-software.md#pontos-em-aberto-do-recorte)
+e nos próprios registros das histórias. Elas não são reproduzidas em uma segunda lista nesta página.
 
 ## <span id="125-referencia-de-cada-entrega"></span>Referência de cada entrega {#referencia-de-cada-entrega}
 
@@ -106,3 +151,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | :----: | :--: | --- | --- |
 | 1.0 | 03/11/2026 | Criação da página, reunindo a rotina de atualização, a propagação de mudanças, o histórico de decisões de escopo e as pendências em aberto | Equipe |
 | 1.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.0 | 05/11/2026 | Explicitação das fontes por campo, formulários, geração do catálogo, rastreabilidade e critérios da automação, preservando a memória das decisões. | [Thiago Gomes](https://github.com/thgomxs) |

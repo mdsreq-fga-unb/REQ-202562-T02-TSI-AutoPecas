@@ -2,9 +2,8 @@
 
 
 Esta página descreve **quais tipos de vínculo** o projeto mantém entre os elementos do escopo e
-**onde cada vínculo é consultado**. Os vínculos não são mantidos aqui: eles pertencem aos registros
-do [Catálogo de requisitos](requisitos-de-software.md), onde são atualizados junto com o requisito
-que os origina.
+**onde cada vínculo é consultado**. Os vínculos aprovados são mantidos na base versionada e exibidos nos registros
+do [Catálogo de requisitos](requisitos-de-software.md); o detalhamento das histórias é obtido das issues.
 
 ## <span id="111-cadeia-de-rastreabilidade"></span>Cadeia de rastreabilidade {#cadeia-de-rastreabilidade}
 
@@ -15,11 +14,12 @@ requisitos funcionais em qualquer ponto dessa cadeia.
 flowchart TD
     P["Problema<br/><small>Controle manual em planilhas</small>"] --> OE["Objetivos específicos<br/><small>OE1 a OE6</small>"]
     OE --> CP["Características de produto<br/><small>CP1 a CP9</small>"]
+    CP --> EP["Épicos<br/><small>EP01 a EP07</small>"]
     CP --> RF["Requisitos funcionais<br/><small>RF01 a RF40</small>"]
     CP --> RNF["Requisitos não funcionais<br/><small>RNF01 a RNF05</small>"]
     RNF -. condicionam .-> RF
-    RF --> US["Histórias de usuário<br/><small>recorte de entrega</small>"]
-    US --> EP["Épicos<br/><small>EP01 a EP03</small>"]
+    RF -. origem .-> US["Histórias de usuário<br/><small>US01 a US40</small>"]
+    EP --> US
 ```
 
 Cada elo é percorrível nos dois sentidos a partir do registro do requisito no catálogo.
@@ -28,23 +28,23 @@ Cada elo é percorrível nos dois sentidos a partir do registro do requisito no 
 
 | Vínculo | O que relaciona | Onde é mantido | Como consultar |
 | --- | --- | --- | --- |
-| **Origem** | Requisito → característica de produto → objetivo específico | Campo *Origem e agrupamento* do registro | Abrir o registro e seguir os links de CP e OE para a [Solução e características](solucao-e-caracteristicas.md) |
-| **Condição** | RNF → requisitos funcionais que ele condiciona | Campo *Condições e avaliação* do RF e campo *Aplica-se a* do RNF | Os dois lados do vínculo aparecem nos [registros dos RNFs](requisitos-de-software.md#registros-dos-requisitos-nao-funcionais) |
-| **Dependência** | Requisito → requisitos de que ele depende | Campo *Condições e avaliação* do registro | Seguir os links em *Depende de*; os vínculos foram derivados da leitura das declarações e aguardam validação no refinamento |
-| **Recorte de entrega** | Requisito → história de usuário → épico | Campos *Intenção e valor* e *Origem e agrupamento* do registro | Épicos e histórias estão agrupados em [MVP](mvp.md#epicos-do-incremento) |
-| **Priorização** | Requisito → valor, esforço, Score e quadrante | Campo *Priorização* do registro | Método em [Priorização](priorizacao.md); valores vigentes no [índice do catálogo](requisitos-de-software.md#indice-dos-registros) |
-| **Planejamento** | História → sprint de entrega | Campo *Entrega e situação* do registro | Distribuição completa em [Cronograma](cronograma-e-entregas.md) |
-| **Evolução** | Requisito → decisões que o alteraram | Campo *Evolução* do registro | Visão por entrega em [Histórico de evolução](historico-de-evolucao.md) |
+| **Origem** | Requisito → característica de produto → objetivo específico | Base versionada; origem exibida no registro | Abrir o registro e seguir os links de CP e OE para a [Solução e características](solucao-e-caracteristicas.md) |
+| **Condição** | RNF → requisitos funcionais que ele condiciona | Vínculos RF/RNF na base versionada; condições exibidas no registro | Os dois lados do vínculo aparecem nos [registros dos RNFs](requisitos-de-software.md#registros-dos-requisitos-nao-funcionais) |
+| **Dependência** | Requisito → requisitos de que ele depende | Dependências aprovadas na base; informação adicional da issue | Seguir os links de RF e US em *Dependências*; os vínculos foram derivados da leitura das declarações e aguardam validação no refinamento |
+| **Recorte de entrega** | Requisito → história de usuário → épico | Vínculo RF/US/épico na base; narrativa e parentesco nas issues | Épicos e histórias estão agrupados em [MVP](requisitos-de-software.md#epicos-do-incremento) |
+| **Priorização** | Requisito → valor, esforço, Score e quadrante | Notas na base versionada; cálculo exibido na US | Método em [Priorização](priorizacao.md); valores vigentes no [catálogo](requisitos-de-software.md#registros-dos-requisitos-funcionais) |
+| **Planejamento** | História → sprint de entrega | Recorte e sprint na base; acompanhamento pelas issues e evidências | Distribuição completa em [Cronograma](cronograma-e-entregas.md) |
+| **Evolução** | Requisito → decisões que o alteraram | Evolução da base e histórico da issue | Visão por entrega em [Organização e atualização](historico-de-evolucao.md) |
 
 ## <span id="113-como-percorrer-uma-relacao"></span>Como percorrer uma relação {#como-percorrer-uma-relacao}
 
 As três consultas mais frequentes, e o caminho de cada uma:
 
-- **"De onde veio este requisito?"** Abra o registro no catálogo e leia *Origem e agrupamento*. O
+- **"De onde veio este requisito?"** Abra o registro no catálogo e leia *Origem*. O
   link da CP leva à descrição da característica e ao valor de negócio associado; o link do OE leva
   ao objetivo específico que a característica atende.
-- **"O que quebra se eu mudar este requisito?"** Abra o registro e leia *Condições e avaliação*.
-  *Depende de* lista o que ele consome; para descobrir quem depende dele, use a busca do site pelo
+- **"O que quebra se eu mudar este requisito?"** Abra o registro e leia *Dependências*.
+  *Dependências* lista os vínculos identificados; para descobrir quem depende dele, use a busca do site pelo
   ID — os registros que o citam aparecem no resultado. Verifique também a história associada e a
   sprint em que ela está planejada.
 - **"Este RNF se aplica a quê?"** Abra o registro do RNF e leia *Aplica-se a*, que lista todos os
@@ -59,24 +59,24 @@ funcionais e histórias de usuário do MVP.
 
 !!! note "A árvore é uma visão, não a fonte"
     O diagrama reproduz os vínculos registrados no catálogo em uma data específica. Quando um
-    vínculo muda, a alteração é feita no registro do requisito e o diagrama é regerado a partir
-    dele — nunca o contrário.
+    vínculo muda, a alteração é feita na fonte do vínculo e o diagrama é atualizado a partir
+    dela — nunca o contrário.
 
 ## <span id="115-como-a-rastreabilidade-e-mantida"></span>Como a rastreabilidade é mantida {#como-a-rastreabilidade-e-mantida}
 
 Para que os vínculos permaneçam coerentes, a equipe segue a mesma regra em toda alteração de
 escopo:
 
-1. **A alteração é feita no registro do requisito**, no catálogo — nunca em uma cópia.
-2. **Os vínculos afetados são conferidos no próprio registro**: origem, RNFs, dependências,
+1. **A alteração é feita na fonte do campo**: base versionada para o escopo aprovado e issue para o detalhamento da US.
+2. **Os vínculos afetados são conferidos na base e na issue**: origem, RNFs, dependências,
    recorte de entrega e sprint.
-3. **O motivo é anotado** no campo *Evolução* do registro e no
-   [Histórico de evolução](historico-de-evolucao.md).
-4. **As visões derivadas são atualizadas**: índice do catálogo, quadro do MVP, cronograma e
+3. **O motivo é anotado** na evolução da base ou na issue e no
+   [Organização e atualização](historico-de-evolucao.md).
+4. **O catálogo é regenerado**, e as representações afetadas são conferidas: cronograma e
    diagramas que exibam o vínculo alterado.
 
 A rotina completa, com os cuidados de cada momento do ciclo, está em
-[Histórico de evolução](historico-de-evolucao.md#rotina-de-atualizacao).
+[Organização e atualização](historico-de-evolucao.md#rotina-de-atualizacao).
 
 ## Versionamento
 

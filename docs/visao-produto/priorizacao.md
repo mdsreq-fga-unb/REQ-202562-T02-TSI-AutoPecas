@@ -3,13 +3,12 @@
 
 Esta página descreve **como** a equipe prioriza os requisitos e **quais decisões gerais** resultaram
 desse método. A prioridade de cada requisito — valor de negócio, esforço técnico, MoSCoW, Score e
-quadrante — é mantida no registro correspondente do
+quadrante — é mantida na base versionada e exibida no registro correspondente do
 [Catálogo de requisitos](requisitos-de-software.md), e não é repetida aqui.
 
 !!! tip "Consultar a prioridade vigente"
-    O [índice do catálogo](requisitos-de-software.md#indice-dos-registros) lista todos os
-    requisitos com VN, ET e Score, ordenáveis pela leitura. A justificativa de cada pontuação está
-    no campo *Priorização* do registro do requisito.
+    O [catálogo](requisitos-de-software.md#registros-dos-requisitos-funcionais) reúne as histórias
+    por épico, com VN, ET, Score e recorte de entrega no próprio registro.
 
 ## <span id="91-avaliacao-do-valor-de-negocio-vn"></span>Avaliação do valor de negócio (VN) {#avaliacao-do-valor-de-negocio-vn}
 
@@ -106,15 +105,14 @@ cada requisito utiliza VN e ET e está registrada no campo *Priorização* do se
 
 ## <span id="96-decisoes-gerais-da-priorizacao"></span>Decisões gerais da priorização {#decisoes-gerais-da-priorizacao}
 
-A aplicação do método aos 40 requisitos funcionais produziu a seguinte distribuição. Os números
-são uma leitura dos registros do catálogo; a composição nominal de cada grupo é consultada no
-[índice do catálogo](requisitos-de-software.md#indice-dos-registros), pela coluna *Entrega*.
+O recorte de cada história é exibido no [catálogo](requisitos-de-software.md#registros-dos-requisitos-funcionais),
+com os totais calculados a partir da base vigente. Os critérios utilizados são:
 
-| Recorte de entrega | Quantidade | Critério aplicado |
-| --- | :--: | --- |
-| MVP | 13 | Score ≥ 4 |
-| Condicionado à capacidade | 5 | Score de 2 a 3 |
-| Evolução futura | 22 | Score ≤ 1 |
+| Recorte de entrega | Critério aplicado |
+| --- | --- |
+| MVP | Score ≥ 4 |
+| Condicionado à capacidade | Score de 2 a 3 |
+| Evolução futura | Score ≤ 1 |
 
 Decisões gerais acordadas pela equipe ao aplicar o método:
 
@@ -131,8 +129,8 @@ Decisões gerais acordadas pela equipe ao aplicar o método:
   contratação. O recorte é uma decisão de escopo, não uma dispensa de segurança: os critérios do
   [RNF05](requisitos-de-software.md#rnf05-seguranca-de-dados) continuam aplicáveis a todos os
   requisitos entregues.
-- **Os 5 requisitos condicionados não receberam história de usuário nem sprint.** Entram no escopo
-  apenas se houver folga de capacidade após a Sprint 5, e serão repriorizados antes disso.
+- **As histórias condicionadas permanecem no backlog, sem sprint atribuída.** Seu detalhamento
+  e sua inclusão na entrega dependem de refinamento e reavaliação de capacidade após a Sprint 5.
 - **Esforço não exclui um *Must Have*.** Nenhum requisito classificado como indispensável foi
   retirado do MVP por causa da nota de esforço; o maior ET entre os requisitos do MVP é 2.
 
@@ -145,9 +143,9 @@ A prioridade registrada não é definitiva. Ela é reavaliada quando:
 - uma dependência identificada no catálogo muda a ordem viável de implementação;
 - a revisão de uma sprint traz feedback que altera a importância de um requisito.
 
-Em qualquer desses casos, a alteração é feita **no registro do requisito** no catálogo, e o motivo
-é anotado no campo *Evolução* do próprio registro e no
-[Histórico de evolução](historico-de-evolucao.md).
+Em qualquer desses casos, a alteração é feita **na fonte do campo afetado** (base versionada ou issue), e o motivo
+é registrado na issue ou no campo de evolução da base, conforme a fonte alterada, e no
+[Organização e atualização](historico-de-evolucao.md).
 
 ## Versionamento
 

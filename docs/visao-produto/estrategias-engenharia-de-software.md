@@ -45,7 +45,7 @@ O [cronograma](cronograma-e-entregas.md) prevê **14 dias para cada Sprint 1 a 6
 
 ### <span id="443-artefatos-e-criterios"></span>Artefatos e critérios {#artefatos-e-criterios}
 
-- **Product Backlog:** lista ordenada do trabalho necessário ao produto, mantida pelo Product Owner e centralizada no GitHub Issues. Cada issue registra o item, seus critérios de aceitação e as informações de acompanhamento; o GitHub Projects organiza essas mesmas issues para acompanhar o trabalho das sprints.
+- **Product Backlog:** lista ordenada do trabalho necessário ao produto, mantida pelo Product Owner e consultada no [catálogo único](requisitos-de-software.md). A base versionada preserva o escopo completo; o GitHub Issues mantém o detalhamento e o acompanhamento das histórias já vinculadas. O catálogo reúne essas informações automaticamente, e o GitHub Projects organiza as mesmas issues para acompanhar as sprints, conforme as [estratégias de organização e atualização](historico-de-evolucao.md).
 - **Sprint Backlog:** Meta da Sprint, issues selecionadas e plano de execução, atualizados pelos Developers durante o ciclo e acompanhados no GitHub Projects.
 - **Incremento:** resultado integrado e utilizável que atende à DoD.
 

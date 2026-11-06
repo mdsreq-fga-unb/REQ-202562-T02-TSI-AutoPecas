@@ -1,12 +1,23 @@
-name: Deploy documentation
+name: Publish documentation and backlog
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  issues:
+    types: [opened, edited, deleted, transferred, closed, reopened, labeled, unlabeled, assigned, unassigned, milestoned, demilestoned]
+  issue_comment:
+    types: [created, edited, deleted]
+  # Publicação sempre executa o código confiável da main, nunca o código do PR.
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened, closed, ready_for_review]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * *'
 
 permissions:
   contents: write
+  issues: read
+  pull-requests: read
 
 concurrency:
   group: documentation-deployment
@@ -14,25 +25,34 @@ concurrency:
 
 jobs:
   deploy:
-    name: Deploy Material for MkDocs
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install documentation dependencies
+        run: python -m pip install -r requirements-docs.txt
+      - name: Validate backlog and automation
+        run: python -m unittest discover -s tests -v
+      - name: Read issues, epics, pull requests and commits
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Opcional: token com leitura do Project da organização.
+          BACKLOG_PROJECT_TOKEN: ${{ secrets.BACKLOG_PROJECT_TOKEN }}
+        run: python scripts/backlog.py sync
+      - name: Check collected data
+        run: python scripts/backlog.py check
+      - name: Validate generated documentation
+        run: |
+          mkdocs build --strict
+          python scripts/check_links.py site
       - name: Configure Git credentials
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Set up Python
-        uses: actions/setup-python@v7
-        with:
-          python-version: "3.13"
-
-      - name: Install Material for MkDocs
-        run: python -m pip install --upgrade mkdocs-material
-
-      - name: Deploy documentation
+      - name: Publish generated catalog
         run: mkdocs gh-deploy --force --strict

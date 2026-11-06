@@ -7,7 +7,7 @@ icon: material/calendar-clock
 
 A partir da estratégia de desenvolvimento ágil estabelecida para o projeto **TSI Peças**, o semestre foi organizado em sprints de duas semanas, ancoradas nas quintas-feiras em semanas alternadas. A Sprint 0 é excepcional, com 17 dias, por cobrir a formação da equipe, a descoberta do domínio e a elaboração do documento de visão. O planejamento é preliminar e será atualizado ao final de cada sprint com base no progresso real e no feedback do cliente.
 
-O desenvolvimento do produto começa na Sprint 3 e é planejado por **histórias de usuário (US)**, que detalham os **13 requisitos funcionais (RFs) selecionados para o MVP** na [priorização](priorizacao.md) (Score ≥ 4). Cada US mantém o número do RF de origem (por exemplo, US01 detalha o RF01) e está registrada no campo *Intenção e valor* do [registro do requisito](requisitos-de-software.md#registros-dos-requisitos-funcionais). Os RFs condicionados à capacidade da equipe foram retirados do cronograma, para evitar sobrecarga, e os demais RFs permanecem como evolução futura. A declaração vigente de cada RF está no [Catálogo de requisitos](requisitos-de-software.md).
+O desenvolvimento do produto começa na Sprint 3 e é planejado por **histórias de usuário (US)**, que detalham os **13 requisitos funcionais (RFs) selecionados para o MVP** na [priorização](priorizacao.md) (Score ≥ 4). Cada US mantém o número do RF de origem (por exemplo, US01 detalha o RF01) e está registrada no campo *Narrativa da US* do [registro do requisito](requisitos-de-software.md#registros-dos-requisitos-funcionais). As USs dos RFs condicionados à capacidade da equipe foram retiradas do cronograma, para evitar sobrecarga, e os demais RFs permanecem como evolução futura. A declaração vigente de cada RF está no [Catálogo de requisitos](requisitos-de-software.md).
 
 <div class="schedule-page" markdown="1">
 
@@ -148,14 +148,14 @@ Consolidar os requisitos e o backlog priorizado e definir os padrões técnicos 
 **Trabalho previsto**
 
 - [Requisitos funcionais e não funcionais](requisitos-de-software.md)
-- [escopo priorizado com MVP definido (13 RFs)](mvp.md)
+- [escopo priorizado com MVP definido (13 RFs)](requisitos-de-software.md#objetivo-do-incremento)
 - padrão de codificação definido e adotado pela equipe
 
 **Entregáveis**
 
 - [Catálogo de requisitos](requisitos-de-software.md)
 - [Priorização](priorizacao.md)
-- [MVP](mvp.md)
+- [MVP](requisitos-de-software.md#objetivo-do-incremento)
 
 **Validação com o cliente**
 
@@ -330,7 +330,7 @@ Conferência dos cadastros e saldos iniciais, acompanhamento dos fluxos em produ
 ## Princípios do cronograma
 
 - **Cadência quinzenal nas quintas-feiras:** as sprints de 1 a 6 possuem duração padrão de 14 dias, encerrando sempre em uma quinta-feira em semanas alternadas. A Sprint 0 é excepcional, com 17 dias, por cobrir a formação da equipe e a elaboração do documento de visão.
-- **Planejamento por US do MVP:** as 13 US do MVP ([US01](requisitos-de-software.md#rf01), [US02](requisitos-de-software.md#rf02), [US03](requisitos-de-software.md#rf03), [US04](requisitos-de-software.md#rf04), [US05](requisitos-de-software.md#rf05), [US06](requisitos-de-software.md#rf06), [US08](requisitos-de-software.md#rf08), [US09](requisitos-de-software.md#rf09), [US10](requisitos-de-software.md#rf10), [US12](requisitos-de-software.md#rf12), [US14](requisitos-de-software.md#rf14), [US15](requisitos-de-software.md#rf15) e [US16](requisitos-de-software.md#rf16)) estão distribuídas pelas sprints 3 a 5, agrupadas por dependência lógica: catálogo de peças → movimentações e saldo → vendas. As US seguem a numeração dos RFs de origem; os RFs condicionados (RF11, RF13, RF21, RF22 e RF25), que ainda não possuem US, e os demais RFs de menor prioridade ficam fora do cronograma, como evolução futura, e só serão reavaliados se houver folga após a Sprint 5.
+- **Planejamento por US do MVP:** as 13 US do MVP ([US01](requisitos-de-software.md#rf01), [US02](requisitos-de-software.md#rf02), [US03](requisitos-de-software.md#rf03), [US04](requisitos-de-software.md#rf04), [US05](requisitos-de-software.md#rf05), [US06](requisitos-de-software.md#rf06), [US08](requisitos-de-software.md#rf08), [US09](requisitos-de-software.md#rf09), [US10](requisitos-de-software.md#rf10), [US12](requisitos-de-software.md#rf12), [US14](requisitos-de-software.md#rf14), [US15](requisitos-de-software.md#rf15) e [US16](requisitos-de-software.md#rf16)) estão distribuídas pelas sprints 3 a 5, agrupadas por dependência lógica: catálogo de peças → movimentações e saldo → vendas. As US seguem a numeração dos RFs de origem; os RFs condicionados (RF11, RF13, RF21, RF22 e RF25), cujas USs ainda não foram detalhadas, e os demais RFs de menor prioridade ficam fora do cronograma, como evolução futura, e só serão reavaliados se houver folga após a Sprint 5.
 - **Validação do cliente foca em negócio:** o proprietário valida se o produto atende à operação da loja; decisões técnicas são responsabilidade da equipe.
 - **Carga inicial com escopo definido:** serão transferidos os cadastros de peças e estabelecidos os saldos iniciais de estoque. A US02 importa os cadastros; os saldos serão registrados pelas funcionalidades de entrada (US08) e, quando necessário, ajuste de inventário (US10), conforme procedimento ensaiado com dados de teste para evitar contagem duplicada. O proprietário confere os saldos antes do início da operação real. A importação do histórico de vendas e movimentações não integra essa carga inicial.
 - **Responsabilidade coletiva:** todas as entregas de cada sprint são responsabilidade de toda a equipe. O Product Owner coordena as validações com o cliente ao final de cada sprint. A atribuição individual de tarefas ocorre no planejamento interno de cada sprint, registrada no GitHub Projects.
