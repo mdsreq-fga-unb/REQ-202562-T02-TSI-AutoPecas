@@ -17,14 +17,17 @@ O produto propõe uma solução digital simples e confiável para:
 - registrar entradas, saídas, ajustes e vendas com saldo de estoque sempre atualizado;
 - reduzir o tempo gasto em tarefas operacionais repetitivas.
 
-O escopo do MVP, com 13 requisitos funcionais, e o cronograma estão na documentação:
+O escopo do MVP e o cronograma estão na documentação:
 
 | Documento | Conteúdo |
 | --- | --- |
-| [Visão do produto e projeto](docs/visao-produto/index.md) | Contexto, problema, solução, requisitos e planejamento |
-| [Requisitos de software](docs/visao-produto/requisitos-de-software.md) | Requisitos funcionais (RF) e não funcionais (RNF) |
-| [Backlog de produto](docs/visao-produto/backlog-de-produto.md) | Priorização e definição do MVP |
-| [Cronograma e entregas](docs/visao-produto/cronograma-e-entregas.md) | Sprints, entregas e validações com o cliente |
+| [Visão do produto e projeto](docs/visao-produto/index.md) | Contexto, problema, solução e estratégias do projeto |
+| [Requisitos](docs/requisitos/index.md) | Especificação, priorização, MVP, rastreabilidade e evolução do escopo |
+| [Cronograma](docs/visao-produto/cronograma-e-entregas.md) | Períodos, objetivos, histórias previstas e validações de cada sprint |
+| [Catálogo de requisitos](docs/visao-produto/requisitos-de-software.md) | Registro único de cada RF e RNF, com origem, condições, priorização, entrega e situação |
+| [Priorização](docs/visao-produto/priorizacao.md) | Método de priorização e decisões gerais de escopo |
+| [Rastreabilidade](docs/visao-produto/rastreabilidade.md) | Tipos de vínculo entre os elementos do escopo |
+| [Organização e atualização](docs/visao-produto/historico-de-evolucao.md) | Rotina de atualização e decisões que alteraram o escopo |
 | [Atas](docs/atas/index.md) | Registro das reuniões de cada sprint |
 | [Entregas](docs/entregas/index.md) | Entregas da disciplina |
 
@@ -198,3 +201,20 @@ O revisor verifica, no mínimo, se:
 | Thiago Gomes Pereira de Abreu | Analista de requisitos | [@thgomxs](https://github.com/thgomxs) |
 
 Todos os integrantes também atuam como analistas de requisitos.
+
+## Backlog e documentação local
+
+O catálogo publicado é gerado de `data/backlog.json` e dos campos das issues. Os formulários ficam
+em `.github/ISSUE_TEMPLATE/`; as fontes e regras de manutenção estão em
+[Organização e atualização](docs/visao-produto/historico-de-evolucao.md).
+
+```bash
+python -m pip install -r requirements-docs.txt
+python scripts/backlog.py sync
+python scripts/backlog.py check
+python -m unittest discover -s tests -v
+mkdocs serve
+```
+
+A coleta local é somente de leitura. O snapshot em `.cache/` não é versionado. O build sem coleta
+preserva as 40 histórias e identifica os campos remotos ainda não consultados.

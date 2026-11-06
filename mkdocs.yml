@@ -9,8 +9,13 @@ edit_uri: edit/main/docs/
 extra_css:
   - assets/stylesheets/custom.css
 
+extra_javascript:
+  - assets/javascripts/catalog.js
+  - assets/javascripts/schedule.js
+
 theme:
   name: material
+  custom_dir: overrides
   language: pt-BR
   logo: assets/images/tsi-pecas-logo.png
   favicon: assets/images/tsi-pecas-favicon.svg
@@ -37,6 +42,9 @@ theme:
     - search.suggest
     - search.highlight
 
+hooks:
+  - hooks/backlog.py
+
 plugins:
   - search
 
@@ -49,7 +57,11 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tasklist:
       custom_checkbox: true
 
@@ -67,15 +79,17 @@ nav:
       - Estratégia e Engenharia:
           - Estratégias de engenharia de software: visao-produto/estrategias-engenharia-de-software.md
           - Engenharia de requisitos: visao-produto/engenharia-de-requisitos.md
-      - Planejamento e Alinhamento:
-          - Cronograma e entregas: visao-produto/cronograma-e-entregas.md
+      - Equipe e Aprendizados:
           - Interação entre equipe e cliente: visao-produto/interacao-equipe-cliente.md
-      - Especificação e Backlog:
-          - Requisitos de software: visao-produto/requisitos-de-software.md
-          - DoR e DoD: visao-produto/dor-e-dod.md
-          - Backlog de produto: visao-produto/backlog-de-produto.md
-      - Evolução do Projeto:
           - Lições aprendidas: visao-produto/licoes-aprendidas.md
+  - Requisitos:
+      - requisitos/index.md
+      - Catálogo de requisitos: visao-produto/requisitos-de-software.md
+      - Priorização: visao-produto/priorizacao.md
+      - Rastreabilidade: visao-produto/rastreabilidade.md
+      - DoR e DoD: visao-produto/dor-e-dod.md
+      - Organização e atualização: visao-produto/historico-de-evolucao.md
+  - Cronograma: visao-produto/cronograma-e-entregas.md
   - Atas:
       - atas/index.md
       - Sprint 0: atas/sprint-0.md

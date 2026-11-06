@@ -8,7 +8,9 @@ Esta seção reúne a visão inicial do produto **TSI Peças** e as decisões qu
 
 ## Navegação
 
-Use os cards abaixo para acessar os tópicos da Visão do Produto e Projeto. A primeira entrega contempla os tópicos **1 a 7 e 11**; os tópicos de especificação detalhada serão desenvolvidos nas próximas unidades.
+Conheça os fundamentos do produto e as decisões que orientam o projeto. A especificação e o escopo
+estão em [Requisitos](../requisitos/index.md), e o planejamento das sprints está em
+[Cronograma](cronograma-e-entregas.md).
 
 <div class="section-grid section-grid--vision">
   <div class="section-card section-card--group">
@@ -44,30 +46,10 @@ Use os cards abaixo para acessar os tópicos da Visão do Produto e Projeto. A p
 
   <div class="section-card section-card--group">
     <span class="section-card__number" aria-hidden="true">04</span>
-    <span class="section-card__title">Planejamento e Alinhamento</span>
-    <span class="section-card__description">Consulte o planejamento das entregas e a forma de interação entre a equipe e o cliente.</span>
+    <span class="section-card__title">Equipe e Aprendizados</span>
+    <span class="section-card__description">Consulte a interação entre equipe e cliente e os aprendizados de cada unidade.</span>
     <ul class="section-card__links">
-      <li><a href="cronograma-e-entregas/">Cronograma e entregas</a></li>
       <li><a href="interacao-equipe-cliente/">Interação entre equipe e cliente</a></li>
-    </ul>
-  </div>
-
-  <div class="section-card section-card--group">
-    <span class="section-card__number" aria-hidden="true">05</span>
-    <span class="section-card__title">Especificação e Backlog</span>
-    <span class="section-card__description">Acompanhe a evolução da especificação, dos critérios de pronto e do backlog do produto.</span>
-    <ul class="section-card__links">
-      <li><a href="requisitos-de-software/">Requisitos de software</a></li>
-      <li><a href="dor-e-dod/">DoR e DoD</a></li>
-      <li><a href="backlog-de-produto/">Backlog de produto</a></li>
-    </ul>
-  </div>
-
-  <div class="section-card section-card--group">
-    <span class="section-card__number" aria-hidden="true">06</span>
-    <span class="section-card__title">Evolução do Projeto</span>
-    <span class="section-card__description">Registre os aprendizados das unidades e as melhorias para os próximos ciclos de desenvolvimento.</span>
-    <ul class="section-card__links">
       <li><a href="licoes-aprendidas/">Lições aprendidas</a></li>
     </ul>
   </div>
@@ -79,3 +61,5 @@ Use os cards abaixo para acessar os tópicos da Visão do Produto e Projeto. A p
 | :----: | :--: | --- | --- |
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Estruturação da introdução e da navegação por grupos | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.2 | 04/11/2026 | Separação da navegação de requisitos e cronograma em áreas próprias; atualização dos acessos da visão do produto. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.3 | 04/11/2026 | Agrupamento de Interação entre equipe e cliente e Lições aprendidas na categoria Equipe e Aprendizados. | [Thiago Gomes](https://github.com/thgomxs) |

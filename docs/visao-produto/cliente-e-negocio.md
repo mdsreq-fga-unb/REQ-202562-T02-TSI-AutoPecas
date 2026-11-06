@@ -1,8 +1,7 @@
-# Cliente e negócio
+# <span id="1-cenario-atual-do-cliente-e-do-negocio"></span>Cliente e negócio {#cliente-e-negocio}
 
-## 1 Cenário atual do cliente e do negócio
 
-### 1.1 Identificação do cliente/parceiro
+## <span id="11-identificacao-do-clienteparceiro"></span>Identificação do cliente/parceiro {#identificacao-do-clienteparceiro}
 
 | Informação | Descrição |
 | --- | --- |
@@ -12,7 +11,7 @@
 | Forma de contato | Encontros presenciais com o proprietário e comunicação por WhatsApp. |
 | Vínculo com o projeto | Principal stakeholder e usuário administrador. Procurou a equipe relatando a necessidade da ferramenta; participa da validação dos requisitos e da homologação das entregas. |
 
-### 1.2 Introdução ao negócio e contexto
+## <span id="12-introducao-ao-negocio-e-contexto"></span>Introdução ao negócio e contexto {#introducao-ao-negocio-e-contexto}
 
 A TSI Peças é uma microempresa do ramo de autopeças que atua no comércio varejista de peças automotivas. O negócio é conduzido integralmente por Antônio Marcos, proprietário e único operador, responsável por todas as etapas da operação: compra, cadastro, venda e controle de estoque.
 
@@ -43,3 +42,4 @@ O conteúdo da Visão de Produto e Projeto foi validado pelo cliente, Antônio M
 | 1.0 | 04/09/2026 | Iniciação do documento | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.1 | 07/09/2026 | Preenchimento dos itens 1.1 e 1.2 e revisão textual | [João Melo](https://github.com/jot4-ge) |
 | 1.2 | 09/09/2026 | Inclusão das evidências de validação do cliente | [João Melo](https://github.com/jot4-ge) |
+| 1.3 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

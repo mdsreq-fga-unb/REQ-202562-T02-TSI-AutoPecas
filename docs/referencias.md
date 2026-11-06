@@ -4,7 +4,7 @@ Esta página centraliza as referências utilizadas ao longo da documentação do
 
 ## Visão do Produto e Projeto
 
-### Pesquisa de mercado e análise competitiva (2.5)
+### <span id="pesquisa-de-mercado-e-analise-competitiva-25"></span>Pesquisa de mercado e análise competitiva {#pesquisa-de-mercado-e-analise-competitiva}
 
 1. <span id="ref1"></span>Bling — Planos e Preços. Disponível em: <https://www.bling.com.br/planos-e-precos>. Acesso em: 24 set. 2026.
 2. <span id="ref2"></span>Analister. Bling ERP: Review Completo e Preços 2026. Disponível em: <https://analister.com/ferramentas/bling>. Acesso em: 24 set. 2026.
@@ -19,3 +19,4 @@ Esta página centraliza as referências utilizadas ao longo da documentação do
 | :----: | :--: | --- | --- |
 | 1.0 | 24/09/2026 | Criação da página de referências com as fontes da pesquisa de mercado (2.5) | [João Melo](https://github.com/jot4-ge) |
 | 1.1 | 13/10/2026 | Inclusão de âncoras individuais para as referências da pesquisa de mercado. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.2 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

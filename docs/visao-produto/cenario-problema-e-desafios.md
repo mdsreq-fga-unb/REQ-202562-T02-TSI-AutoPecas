@@ -1,8 +1,7 @@
-# Cenário, problema e desafios
+# <span id="1-cenario-atual-do-cliente-e-do-negocio"></span>Cenário, problema e desafios {#cenario-problema-e-desafios}
 
-## 1 Cenário atual do cliente e do negócio
 
-### 1.3 Rich Picture
+## <span id="13-rich-picture"></span>Rich Picture {#rich-picture}
 
 O Rich Picture apresenta o cenário atual da TSI Peças: o proprietário e único operador, Antônio Marcos, no centro da operação, cercado pelos fornecedores, pelos canais de venda (com forte predominância do Mercado Livre), pela logística de envio (Correios), pelas planilhas de controle e pela emissão fiscal. O diagrama também evidencia as principais preocupações do proprietário, decorrentes do controle manual e fragmentado da operação.
 
@@ -10,7 +9,7 @@ O Rich Picture apresenta o cenário atual da TSI Peças: o proprietário e únic
 
 *Figura 1 — Cenário atual da TSI Peças. Imagem extraída do documento de Visão do Produto e Projeto; clique para ampliar.*
 
-### 1.4 Identificação da oportunidade ou problema
+## <span id="14-identificacao-da-oportunidade-ou-problema"></span>Identificação da oportunidade ou problema {#identificacao-da-oportunidade-ou-problema}
 
 O problema central da TSI Peças é o tempo excessivo que o proprietário gasta em tarefas operacionais repetitivas e a baixa confiabilidade da informação de estoque. Esses efeitos têm origem no controle manual e fragmentado do estoque, apoiado em planilhas parciais que não se comunicam com o registro de vendas.
 
@@ -18,7 +17,7 @@ O primeiro efeito é o tempo excessivo gasto em tarefas operacionais repetitivas
 
 O segundo efeito é a informação de estoque pouco confiável: como a baixa de itens não é automática, o estoque registrado diverge, ainda que de forma menos frequente, do estoque real. Essa divergência leva à perda de vendas em duas situações: o cliente procura uma peça que os registros indicam como disponível, mas que já foi vendida; ou uma peça existente deixa de ser vendida porque não consta corretamente nos registros. No Mercado Livre — canal que concentra a quase totalidade das vendas —, a divergência também gera cancelamentos, o que afeta a reputação da loja.
 
-#### Indicadores do problema
+### Indicadores do problema
 
 Os indicadores a seguir, levantados junto ao proprietário, dimensionam o problema e sustentam a necessidade da solução:
 
@@ -34,7 +33,7 @@ Os indicadores a seguir, levantados junto ao proprietário, dimensionam o proble
 
 Esses números evidenciam os dois efeitos do problema: o **tempo excessivo** nas tarefas operacionais — sobretudo na consulta e no cadastro — e a **informação de estoque pouco confiável**. As divergências são pouco frequentes (1 a 2 vezes por mês, cerca de R$ 90,00 cada), mas, como as vendas se concentram no Mercado Livre, geram cancelamentos que afetam a reputação da loja, um efeito que não se resume ao valor da venda perdida.
 
-#### Análise de causas
+### Análise de causas
 
 O diagrama de Ishikawa organiza as causas do problema segundo os **6M**: Método, Mão de obra, Máquina, Material, Medição e Meio ambiente.
 
@@ -42,31 +41,31 @@ O diagrama de Ishikawa organiza as causas do problema segundo os **6M**: Método
 
 *Figura 2 — Diagrama de Ishikawa da TSI Peças. Imagem extraída do documento de Visão do Produto e Projeto; clique para ampliar.*
 
-### 1.5 Desafios do projeto
+## <span id="15-desafios-do-projeto"></span>Desafios do projeto {#desafios-do-projeto}
 
-#### Desafios técnicos
+### Desafios técnicos
 
 O principal desafio técnico está na modelagem do cadastro de peças automotivas, que envolve um catálogo extenso, com códigos de fabricante e informações de aplicação por veículo. Estruturar esse cadastro de forma organizada e consultável é essencial para que o controle de estoque seja confiável.
 
 Também é necessário substituir o controle atual em planilhas sem perda de informações, garantindo que os registros de entradas, saídas e baixas nas vendas reflitam a realidade do estoque. Essa substituição exige, ainda, a carga inicial dos dados hoje mantidos em planilhas.
 
-#### Desafio de hardware
+### Desafio de hardware
 
 O projeto prevê, como etapa futura, a utilização de um leitor de código de barras para agilizar o cadastro e a movimentação das peças. Segundo o proprietário, essa utilização é viável, mas depende da conclusão de etapas anteriores: organização do estoque em planilhas, codificação dos itens, construção do sistema, cadastro dos produtos e impressão de etiquetas.
 
 A aquisição do equipamento representa um custo adicional. Por envolver um dispositivo físico e sua integração ao sistema, o leitor é tratado como um desafio previsto, mas **fora do escopo do produto mínimo viável (MVP)**.
 
-#### Emissão fiscal
+### Emissão fiscal
 
 Atualmente, a emissão de notas é feita manualmente e em mais de um sistema, com redigitação de dados. A automação da emissão fiscal envolve regras específicas, como obrigações legais e integração com sistemas externos, o que a torna um desafio de maior complexidade para o projeto.
 
-#### Desafios operacionais
+### Desafios operacionais
 
 Como o proprietário opera a loja sozinho e concentra várias funções, a solução precisa ser simples e rápida de usar, sem competir com o atendimento nem sobrecarregá-lo.
 
 Também há um desafio de adoção: o conhecimento do proprietário sobre o controle manual favorece a transição, mas a ferramenta precisa oferecer um ganho claro em relação às planilhas atuais para que seu uso se sustente.
 
-#### Desafio de prazo e escopo
+### Desafio de prazo e escopo
 
 O MVP deve ser viável para entrega até o fim do semestre letivo. Isso exige manter o foco no núcleo da solução — o controle interno de estoque — e tratar funcionalidades de maior complexidade, como o leitor de código de barras e a integração automática com o Mercado Livre, como evoluções futuras.
 
@@ -82,3 +81,4 @@ Delimitar esse escopo é, por si só, um desafio de priorização.
 | 1.3 | 24/09/2026 | Refinamento da subseção de emissão fiscal, alinhada à decisão de escopo da CP7 (o sistema apoia, mas não emite nota fiscal) | [João Melo](https://github.com/jot4-ge) |
 | 1.4 | 11/10/2026 | Reformulação da declaração do problema (1.4): o controle manual e fragmentado do estoque passa a ser o problema central, com a eficiência operacional como maior impacto e as divergências de estoque como efeito ocasional, atualização do Ishikawa e do Rich Picture e remoção do percentual "~99%" dos indicadores, conforme feedback da monitoria (issue #3) | [João Melo](https://github.com/jot4-ge) |
 | 1.5 | 12/10/2026 | Problema central reformulado como efeito (tempo excessivo nas tarefas operacionais e informação de estoque pouco confiável), com o controle manual e fragmentado como causa; Ishikawa atualizado; subseção de emissão fiscal revisada para descrever o desafio sem delimitar o escopo do MVP, conforme feedback da monitoria (issue #3) | [João Melo](https://github.com/jot4-ge) |
+| 1.6 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |

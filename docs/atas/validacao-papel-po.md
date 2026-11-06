@@ -1,12 +1,12 @@
 # Validação assíncrona — Papel de Gerente de projeto / Product Owner
 
 - **Data:** 12/10/2026
-- **Tipo:** Validação assíncrona via WhatsApp, sem reunião formal — conforme o processo de registro de evidências descrito no item 7.2 de [Interação entre equipe e cliente](../visao-produto/interacao-equipe-cliente.md)
+- **Tipo:** Validação assíncrona via WhatsApp, sem reunião formal — conforme o processo de registro de evidências descrito em [Comunicação](../visao-produto/interacao-equipe-cliente.md#comunicacao) (item 7.2 na estrutura original)
 - **Participantes:** Antônio Marcos (cliente); Luiz Henrique Tomaz Moreira (equipe)
 
 ## Decisão
 
-A equipe enviou a Antônio Marcos, pelo WhatsApp, a descrição do papel "Gerente de projeto / Product Owner" registrada no item 7.1 de [Interação entre equipe e cliente](../visao-produto/interacao-equipe-cliente.md), incluindo a justificativa da acumulação dos dois papéis pelo porte reduzido da equipe. Antônio confirmou estar de acordo com a divisão de responsabilidades descrita.
+A equipe enviou a Antônio Marcos, pelo WhatsApp, a descrição do papel "Gerente de projeto / Product Owner" registrada em [Composição da equipe](../visao-produto/interacao-equipe-cliente.md#composicao-da-equipe) (item 7.1 na estrutura original), incluindo a justificativa da acumulação dos dois papéis pelo porte reduzido da equipe. Antônio confirmou estar de acordo com a divisão de responsabilidades descrita.
 
 ## Evidência
 

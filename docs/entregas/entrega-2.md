@@ -49,14 +49,18 @@
 
 ## Documentação
 
+A numeração dos tópicos corresponde à estrutura original do template. Os links abaixo levam às páginas atuais da documentação.
+
 A Entrega 2 reúne os tópicos **8 a 10** e as **lições aprendidas da Unidade 2 (tópico 11)** da [Visão do Produto e Projeto](../visao-produto/index.md) e as correções da Unidade 1 solicitadas pelo professor.
 
 ### Unidade 2
 
-- [8. Requisitos de software](../visao-produto/requisitos-de-software.md): especificação dos requisitos funcionais e não funcionais.
-- [9. DoR e DoD](../visao-produto/dor-e-dod.md): critérios de prontidão e conclusão dos itens de trabalho.
-- [10. Backlog de produto](../visao-produto/backlog-de-produto.md): priorização, definição do MVP, épicos, histórias de usuário, árvore de rastreabilidade e quadro de acompanhamento.
-- [11. Lições aprendidas da Unidade 2](../visao-produto/licoes-aprendidas.md#112-unidade-2): aprendizados sobre elicitação, comunicação, classificação dos requisitos, escopo e priorização.
+- [Catálogo de requisitos](../visao-produto/requisitos-de-software.md): registro único de cada requisito funcional e não funcional, com origem, condições, priorização, entrega e situação.
+- [DoR e DoD](../visao-produto/dor-e-dod.md): critérios de prontidão e conclusão dos itens de trabalho.
+- [Priorização](../visao-produto/priorizacao.md): método de priorização e decisões gerais de escopo.
+- [MVP](../visao-produto/requisitos-de-software.md#objetivo-do-incremento): objetivo do incremento, justificativa do recorte, épicos e validação.
+- [Rastreabilidade](../visao-produto/rastreabilidade.md): tipos de vínculo e acesso à cadeia de rastreabilidade.
+- [Lições aprendidas da Unidade 2](../visao-produto/licoes-aprendidas.md#unidade-2): aprendizados sobre elicitação, comunicação, classificação dos requisitos, escopo e priorização.
 
 ### Correções da Unidade 1
 
@@ -71,9 +75,9 @@ A tabela relaciona os documentos revisados, as issues do professor e os PRs inco
 | [Intervenção social](../visao-produto/intervencao-social.md)                                                                                                                                                              |  [#5](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/5)  | [#17](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/17) |
 | [Estratégias de engenharia de software](../visao-produto/estrategias-engenharia-de-software.md)                                                                                                                           |  [#6](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/6)  | [#14](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/14) |
 | [Engenharia de requisitos](../visao-produto/engenharia-de-requisitos.md)                                                                                                                                                  |  [#7](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/7)  | [#18](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/18) |
-| [Cronograma e entregas](../visao-produto/cronograma-e-entregas.md)                                                                                                                                                        |  [#8](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/8)  | [#13](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/13) |
+| [Cronograma](../visao-produto/cronograma-e-entregas.md)                                                                                                                                                        |  [#8](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/8)  | [#13](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/13) |
 | [Interação entre equipe e cliente](../visao-produto/interacao-equipe-cliente.md)                                                                                                                                          |  [#9](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/9)  | [#15](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/15) |
-| [Lições aprendidas da Unidade 1](../visao-produto/licoes-aprendidas.md#111-unidade-1)                                                                                                                                     | [#10](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/10) |                                 Não vinculado                                 |
+| [Lições aprendidas da Unidade 1](../visao-produto/licoes-aprendidas.md#unidade-1)                                                                                                                                     | [#10](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/10) |                                 Não vinculado                                 |
 
 </div>
 
@@ -85,3 +89,4 @@ A tabela relaciona os documentos revisados, as issues do professor e os PRs inco
 |  1.1   | 13/10/2026 | Inclusão do vídeo, dos artefatos e lições aprendidas da Unidade 2 e da relação entre documentos, issues e PRs das correções da Unidade 1 | [Thiago Gomes](https://github.com/thgomxs) |
 
 </div>
+| 1.2 | 04/11/2026 | Atualização dos links e das referências à numeração original do template, preservando o histórico das entregas. | [Thiago Gomes](https://github.com/thgomxs) |
