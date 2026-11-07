@@ -1339,7 +1339,24 @@ body {
 .md-typeset .backlog-rf-origin { color: var(--md-default-fg-color--light); font-size: .58rem; font-weight: 500; }
 
 /* Filtros compactos e ícones de expansão com espaço reservado em todos os níveis. */
-.md-typeset .backlog-controls { display: block; }
+/* Painel de busca e filtros, com a mesma paleta das demais superfícies. */
+.md-typeset .backlog-controls {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(.65rem, 2vw, 1rem);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: .8rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--tsi-accent) 5%, transparent), transparent 65%),
+    var(--tsi-canvas);
+  box-shadow: 0 .15rem .5rem rgb(0 0 0 / 5%);
+  transition: border-color .2s ease;
+}
+.md-typeset .backlog-controls:focus-within {
+  border-color: color-mix(in srgb, var(--tsi-accent) 55%, var(--md-default-fg-color--lightest));
+}
 .md-typeset .backlog-filter-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .45rem; }
 .md-typeset .backlog-filter-primary { grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); }
 .md-typeset .backlog-filter-grid label { min-width: 0; }

@@ -9,7 +9,7 @@ consultados no próprio registro; não há uma lista ou página de acompanhament
 
 | Informação | Onde é mantida | Como chega ao catálogo |
 | --- | --- | --- |
-| IDs, declaração do RF, CP/OE, épico, RNFs, dependências aprovadas, prioridade e sprint | `data/backlog.json` | Geração automática a partir da base versionada |
+| IDs, declaração do RF, CP/OE, épico, RNFs, dependências aprovadas, prioridade e sprint | `tools/docs/data/backlog.json` | Geração automática a partir da base versionada |
 | Narrativa, critérios de aceitação e pontos a refinar da US | Corpo da issue | Coleta das seções padronizadas, preservando o número da issue |
 | Objetivo do épico | Issue do épico | Coleta do campo Objetivo e consulta às sub-issues |
 | Responsáveis, marco e estado da issue | Metadados do GitHub | Leitura pela API |
@@ -20,7 +20,7 @@ consultados no próprio registro; não há uma lista ou página de acompanhament
 **Uma fonte por campo.** A aplicação inversa dos RNFs, os totais e os cálculos são derivados dos
 vínculos e das notas registrados, sem manutenção de tabelas paralelas. A base versionada mantém o escopo aprovado, inclusive histórias ainda sem
 issue. Ela não armazena cópias da narrativa e dos critérios do GitHub. O Markdown do catálogo
-contém o ponto de geração, não uma segunda lista. O snapshot local em `.cache/backlog/github.json`
+contém o ponto de geração, não uma segunda lista. O snapshot local em `.cache/docs/backlog/github.json`
 é descartável, ignorado pelo Git e nunca deve ser editado como fonte de requisitos.
 
 Quando a issue informa RNFs ou dependências diferentes dos vínculos aprovados, a divergência é
@@ -65,13 +65,13 @@ workflow `.github/workflows/docs.yml` usa o código da `main` e executa a coleta
 issues, comentários, PRs, pushes na `main`, execução manual e reconciliação a cada 30 minutos.
 Assim, alterações de parentesco ou do Projects também podem ser recuperadas pela reconciliação.
 
-O script `scripts/backlog.py` pagina as consultas, reconhece as issues pelo ID da US e consulta o
+O script `tools/docs/scripts/backlog.py` pagina as consultas, reconhece as issues pelo ID da US e consulta o
 parentesco dos épicos. Associa PRs e commits por referências exatas à issue: `Refs #27`,
 `Closes #27` ou a URL completa. Em outro repositório, use `organização/repositório#27` ou a URL.
 A lista de repositórios de implementação é configurada na base; repositórios não listados não são
 consultados. Se o código for movido para outro repositório, inclua-o nessa configuração.
 
-O hook `hooks/backlog.py` gera os registros em memória durante o build. A coleta nunca altera
+O hook `tools/docs/hooks/backlog.py` gera os registros em memória durante o build. A coleta nunca altera
 issues, não cria histórias, não reescreve o Markdown e não faz commits automáticos na `main`.
 Uma falha de API ou validação impede uma nova publicação; não transforma ausência de dados em
 conclusão nem sobrescreve o último snapshot válido.
@@ -92,12 +92,12 @@ implementação/revisão sem inferir aceite.
 Para conferir localmente:
 
 ```bash
-python -m pip install -r requirements-docs.txt
-python scripts/backlog.py sync
-python scripts/backlog.py check
-python -m unittest discover -s tests -v
+python -m pip install -r tools/docs/requirements.txt
+python tools/docs/scripts/backlog.py sync
+python tools/docs/scripts/backlog.py check
+python -m unittest discover -s tools/docs/tests -t tools/docs -v
 mkdocs build --strict
-python scripts/check_links.py site
+python tools/docs/scripts/check_links.py site
 ```
 
 Sem executar `sync`, o build funciona com o inventário completo e informa a ausência de coleta.
@@ -152,3 +152,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 1.0 | 03/11/2026 | Criação da página, reunindo a rotina de atualização, a propagação de mudanças, o histórico de decisões de escopo e as pendências em aberto | Equipe |
 | 1.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 05/11/2026 | Explicitação das fontes por campo, formulários, geração do catálogo, rastreabilidade e critérios da automação, preservando a memória das decisões. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.1 | 07/11/2026 | Reorganização das fontes de apoio em `tools/docs/`, com atualização dos caminhos de manutenção, testes e automação. | [Thiago Gomes](https://github.com/thgomxs) |

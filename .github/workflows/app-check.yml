@@ -1,0 +1,104 @@
+name: Validate application
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'compose.yaml'
+      - 'render.yaml'
+      - '.github/workflows/app-check.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+      - 'compose.yaml'
+      - 'render.yaml'
+      - '.github/workflows/app-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: application-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          package_json_file: frontend/package.json
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm test
+      - run: pnpm build
+
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v10.3.3
+        with:
+          version: '0.13.7'
+          python-version: '3.13'
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+      - run: uv sync --locked
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest
+
+  containers:
+    runs-on: ubuntu-latest
+    needs: [frontend, backend]
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check Compose and start development services
+        run: |
+          docker compose config --quiet
+          docker compose up --build --detach --wait --wait-timeout 120
+          curl --fail http://localhost:8000/health
+          curl --fail http://localhost:5173/
+      - name: Check production API image and hosting port
+        run: |
+          docker build --target production --tag tsi-pecas-api:check ./backend
+          docker run --detach --name tsi-api-production --env PORT=9090 --publish 127.0.0.1:8001:9090 tsi-pecas-api:check
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:8001/health; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs tsi-api-production
+          exit 1
+      - name: Show container logs on failure
+        if: failure()
+        run: docker compose logs
+      - name: Stop test containers
+        if: always()
+        run: |
+          docker compose down --volumes
+          docker rm --force tsi-api-production || true

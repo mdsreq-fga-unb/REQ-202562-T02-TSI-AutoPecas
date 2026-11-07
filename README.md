@@ -35,8 +35,8 @@ O escopo do MVP e o cronograma estão na documentação:
 
 | Componente | Tecnologia |
 | --- | --- |
-| Front-end | React com Vite |
-| Back-end | Python com FastAPI |
+| Front-end | React com Vite e pnpm |
+| Back-end | Python com FastAPI e uv |
 | Banco de dados | PostgreSQL por meio do Supabase |
 | Publicação do front-end | Vercel |
 | Publicação do back-end | Render |
@@ -44,29 +44,105 @@ O escopo do MVP e o cronograma estão na documentação:
 | Controle de versão | Git e GitHub |
 | Documentação | MkDocs com o tema Material |
 
-## Processo de desenvolvimento
+## Organização do repositório
 
-- **Processo:** ScrumXP, com sprints de 14 dias que terminam às quintas-feiras.
-- **Backlog e tarefas:** GitHub Issues e GitHub Projects (quadro Kanban).
-- **Validação:** revisão com o cliente ao final de cada sprint, com registro em ata.
-- **Práticas técnicas do XP:** TDD, refatoração contínua, design simples, programação em pares e propriedade coletiva do código.
+```text
+.github/          Formulários de issues e workflows
+backend/          FastAPI, testes, migrações e Dockerfile
+frontend/         React/Vite, testes e Dockerfile
+docs/             Páginas e recursos publicados no MkDocs
+tools/docs/       Dados, scripts, hooks, tema e testes da documentação
+compose.yaml      Ambiente local conjunto
+render.yaml       Configuração de deploy da API
+mkdocs.yml        Configuração do site
+```
 
-## Executando a documentação localmente
+Os arquivos `frontend/pnpm-lock.yaml` e `backend/uv.lock` são versionados.
+Dependências instaladas, ambientes virtuais, builds, caches e arquivos `.env`
+são locais e estão cobertos pelo `.gitignore`. Os exemplos `.env.example` são
+versionados sem credenciais reais. Ambientes Linux/WSL e Windows devem instalar
+suas próprias dependências; não compartilhe `node_modules` ou `.venv` entre eles.
 
-Requisitos: Python 3.
+## Executando a aplicação
+
+Com Docker Desktop/Engine e Docker Compose 2.24 ou superior, na raiz:
 
 ```bash
-pip install mkdocs-material
+docker compose up --build
+```
+
+- Front-end: <http://localhost:5173>.
+- API: <http://localhost:8000/health>.
+- OpenAPI: <http://localhost:8000/docs>.
+
+Os exemplos de ambiente têm valores locais padrão; os arquivos `.env` são opcionais
+no Compose. Os diretórios de código são montados para permitir recarga automática.
+Após alterar dependências, execute novamente `docker compose up --build`.
+Para encerrar o ambiente, use `docker compose down`.
+
+Para executar sem Docker, siga [Front-end](frontend/README.md) e
+[Back-end](backend/README.md). Use Node conforme `frontend/.nvmrc`, pnpm conforme
+`frontend/package.json` e Python 3.13 com uv. A base inicial verifica a comunicação
+entre os serviços; as funcionalidades do MVP serão implementadas pelas US.
+
+## Documentação e automação do backlog
+
+O conteúdo publicado permanece em `docs/`. A base do catálogo fica em
+`tools/docs/data/backlog.json`; narrativa e critérios vêm das issues. Os formulários
+continuam em `.github/ISSUE_TEMPLATE/`. Consulte
+[Organização e atualização](docs/visao-produto/historico-de-evolucao.md).
+
+Crie e ative um ambiente Python exclusivo da documentação em `tools/docs/.venv`
+antes de instalar os pacotes abaixo. Na raiz:
+
+```bash
+python -m pip install -r tools/docs/requirements.txt
+python tools/docs/scripts/backlog.py sync
+python tools/docs/scripts/backlog.py check
+python -m unittest discover -s tools/docs/tests -t tools/docs -v
 python -m mkdocs serve
 ```
 
-O site fica disponível em `http://127.0.0.1:8000/REQ-202562-T02-TSI-AutoPecas/`, com recarregamento automático. A publicação no GitHub Pages é feita por GitHub Actions a cada push na `main`.
+O site local atende em
+<http://127.0.0.1:8000/REQ-202562-T02-TSI-AutoPecas/>. Se a API estiver usando a porta
+8000, execute `python -m mkdocs serve -a 127.0.0.1:8002`.
+A coleta é somente de leitura e o snapshot descartável fica em
+`.cache/docs/backlog/github.json`. Sem coleta, o catálogo mantém as 40 US com os
+campos remotos identificados como pendentes. As dependências de documentação e API
+são instaladas em ambientes separados.
+
+## Publicação
+
+| Parte | Configuração |
+| --- | --- |
+| Documentação | GitHub Actions e GitHub Pages, mantendo `mkdocs.yml` na raiz |
+| Front-end | Vercel: diretório `frontend/`, Node 22, `ENABLE_EXPERIMENTAL_COREPACK=1` e `VITE_API_BASE_URL` com a URL HTTPS da API |
+| API | Render: Blueprint `render.yaml`, com build do Dockerfile de produção em `backend/` |
+| Banco | PostgreSQL no Supabase; conexão e migrações serão implementadas nas histórias de persistência |
+
+No Render, informe `CORS_ORIGINS` como lista JSON dos domínios autorizados da Vercel
+e `DATABASE_URL` com a conexão do banco. A API respeita a variável `PORT` do serviço.
+Credenciais do banco ficam somente no back-end; variáveis `VITE_` são públicas.
+Nenhum deploy é executado pela criação desses arquivos.
+
+O workflow de aplicação valida testes, lint, formatação, build e contêineres, sem
+publicar imagens. O workflow da documentação continua independente e preserva os
+gatilhos de atualização do backlog por issues, PRs e reconciliação periódica.
+
+## Processo de desenvolvimento
+
+- **Scrum:** papéis, eventos, artefatos e ciclos adaptados conforme as
+  [estratégias do projeto](docs/visao-produto/estrategias-engenharia-de-software.md).
+- **XP:** TDD, refatoração, integração contínua, padrões de código, design simples,
+  propriedade coletiva e testes de aceitação, conforme as práticas adotadas.
+- **Organização do trabalho:** GitHub Issues e GitHub Projects.
+- **Validação:** revisão com o cliente, com registro em ata.
 
 ---
 
 ## Padrões de codificação
 
-Estas regras valem para todo o código do projeto. O objetivo é que o código pareça escrito por uma só pessoa, o que facilita revisões, programação em pares e a propriedade coletiva.
+Estas regras valem para todo o código do projeto. O objetivo é que o código pareça escrito por uma só pessoa, facilitando revisões e a propriedade coletiva.
 
 ### 1. Princípios gerais
 
@@ -176,7 +252,7 @@ docs: corrige cronograma
 - O PR descreve o que mudou e por quê, e referencia a issue (`Closes #n`).
 - PRs pequenos e focados em uma única mudança.
 - Conflitos são resolvidos pelo autor do PR.
-- O trabalho segue a **Definition of Done** definida pela equipe. Código crítico é preferencialmente desenvolvido em **programação em pares**.
+- O trabalho segue a **Definition of Done** definida pela equipe.
 
 ### 9. Revisão de código
 
@@ -201,20 +277,3 @@ O revisor verifica, no mínimo, se:
 | Thiago Gomes Pereira de Abreu | Analista de requisitos | [@thgomxs](https://github.com/thgomxs) |
 
 Todos os integrantes também atuam como analistas de requisitos.
-
-## Backlog e documentação local
-
-O catálogo publicado é gerado de `data/backlog.json` e dos campos das issues. Os formulários ficam
-em `.github/ISSUE_TEMPLATE/`; as fontes e regras de manutenção estão em
-[Organização e atualização](docs/visao-produto/historico-de-evolucao.md).
-
-```bash
-python -m pip install -r requirements-docs.txt
-python scripts/backlog.py sync
-python scripts/backlog.py check
-python -m unittest discover -s tests -v
-mkdocs serve
-```
-
-A coleta local é somente de leitura. O snapshot em `.cache/` não é versionado. O build sem coleta
-preserva as 40 histórias e identifica os campos remotos ainda não consultados.

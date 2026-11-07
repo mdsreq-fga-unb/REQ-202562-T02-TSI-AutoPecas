@@ -1,0 +1,45 @@
+name: tsi-pecas
+
+services:
+  backend:
+    build:
+      context: ./backend
+      target: development
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      PORT: "8000"
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/tests:/app/tests
+      - ./backend/migrations:/app/migrations
+
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    env_file:
+      - path: ./frontend/.env
+        required: false
+    ports:
+      - "127.0.0.1:5173:5173"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/index.html:/app/index.html
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:5173').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
