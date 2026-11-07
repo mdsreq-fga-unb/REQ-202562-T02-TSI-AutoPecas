@@ -4,7 +4,7 @@ title: 'EP - '
 body:
 - type: markdown
   attributes:
-    value: 'Use o ID reservado em data/backlog.json. Exemplo de título: EP01 - Gestão do catálogo de peças.
+    value: 'Use o ID reservado em tools/docs/data/backlog.json. Exemplo de título: EP01 - Gestão do catálogo de peças.
       Vincule as histórias como sub-issues; selecionar um nome no formulário da US não cria essa relação
       automaticamente.'
 - type: input

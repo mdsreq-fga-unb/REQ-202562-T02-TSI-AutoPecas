@@ -8,7 +8,7 @@ body:
   attributes:
     value: Use o ID reservado no catálogo e preencha o título como US01 - Nome. O número da issue é diferente
       do ID da US. Os títulos dos campos devem ser preservados nas edições. A declaração do RF, CP, RNFs
-      aprovados e priorização são mantidos em data/backlog.json. Critérios podem ficar pendentes durante
+      aprovados e priorização são mantidos em tools/docs/data/backlog.json. Critérios podem ficar pendentes durante
       o refinamento.
 - type: input
   id: us

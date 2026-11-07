@@ -15,7 +15,7 @@ extra_javascript:
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: tools/docs/overrides
   language: pt-BR
   logo: assets/images/tsi-pecas-logo.png
   favicon: assets/images/tsi-pecas-favicon.svg
@@ -43,7 +43,7 @@ theme:
     - search.highlight
 
 hooks:
-  - hooks/backlog.py
+  - tools/docs/hooks/backlog.py
 
 plugins:
   - search

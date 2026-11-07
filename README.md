@@ -56,7 +56,7 @@ O escopo do MVP e o cronograma estão na documentação:
 Requisitos: Python 3.
 
 ```bash
-pip install mkdocs-material
+python -m pip install -r tools/docs/requirements.txt
 python -m mkdocs serve
 ```
 
@@ -204,15 +204,15 @@ Todos os integrantes também atuam como analistas de requisitos.
 
 ## Backlog e documentação local
 
-O catálogo publicado é gerado de `data/backlog.json` e dos campos das issues. Os formulários ficam
+O catálogo publicado é gerado de `tools/docs/data/backlog.json` e dos campos das issues. Os formulários ficam
 em `.github/ISSUE_TEMPLATE/`; as fontes e regras de manutenção estão em
 [Organização e atualização](docs/visao-produto/historico-de-evolucao.md).
 
 ```bash
-python -m pip install -r requirements-docs.txt
-python scripts/backlog.py sync
-python scripts/backlog.py check
-python -m unittest discover -s tests -v
+python -m pip install -r tools/docs/requirements.txt
+python tools/docs/scripts/backlog.py sync
+python tools/docs/scripts/backlog.py check
+python -m unittest discover -s tools/docs/tests -t tools/docs -v
 mkdocs serve
 ```
 

@@ -3,15 +3,10 @@ name: Validate documentation changes
 on:
   pull_request:
     paths:
-      - 'data/**'
-      - 'scripts/**'
-      - 'hooks/**'
-      - 'tests/**'
       - 'docs/**'
-      - 'overrides/**'
       - '.github/**'
       - 'mkdocs.yml'
-      - 'requirements-docs.txt'
+      - 'tools/docs/**'
 
 permissions:
   contents: read
@@ -26,9 +21,9 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
-      - run: python -m pip install -r requirements-docs.txt
-      - run: python -m unittest discover -s tests -v
-      - run: python scripts/backlog.py check
+      - run: python -m pip install -r tools/docs/requirements.txt
+      - run: python -m unittest discover -s tools/docs/tests -t tools/docs -v
+      - run: python tools/docs/scripts/backlog.py check
       # Build offline: sem acesso a secrets e sem publicar código de PRs.
       - run: mkdocs build --strict
-      - run: python scripts/check_links.py site
+      - run: python tools/docs/scripts/check_links.py site

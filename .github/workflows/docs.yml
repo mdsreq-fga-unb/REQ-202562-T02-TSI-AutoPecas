@@ -35,21 +35,21 @@ jobs:
         with:
           python-version: '3.13'
       - name: Install documentation dependencies
-        run: python -m pip install -r requirements-docs.txt
+        run: python -m pip install -r tools/docs/requirements.txt
       - name: Validate backlog and automation
-        run: python -m unittest discover -s tests -v
+        run: python -m unittest discover -s tools/docs/tests -t tools/docs -v
       - name: Read issues, epics, pull requests and commits
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Opcional: token com leitura do Project da organização.
           BACKLOG_PROJECT_TOKEN: ${{ secrets.BACKLOG_PROJECT_TOKEN }}
-        run: python scripts/backlog.py sync
+        run: python tools/docs/scripts/backlog.py sync
       - name: Check collected data
-        run: python scripts/backlog.py check
+        run: python tools/docs/scripts/backlog.py check
       - name: Validate generated documentation
         run: |
           mkdocs build --strict
-          python scripts/check_links.py site
+          python tools/docs/scripts/check_links.py site
       - name: Configure Git credentials
         run: |
           git config user.name "github-actions[bot]"

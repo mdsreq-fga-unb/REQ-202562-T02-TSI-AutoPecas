@@ -20,7 +20,8 @@ import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "data/backlog.json"
-CACHE = ROOT / ".cache/backlog/github.json"
+PROJECT_ROOT = ROOT.parents[1]
+CACHE = PROJECT_ROOT / ".cache/docs/backlog/github.json"
 WEIGHTS = {"Must Have": 3, "Should Have": 2, "Could Have": 1, "Won't Have": 0}
 STATUSES = {"Não iniciado", "Em andamento", "Em revisão", "Bloqueado", "Concluído"}
 
