@@ -1,5 +1,46 @@
-/.cache/
+# Documentação e coleta do GitHub
 /site/
+/tools/docs/site/
+.cache/
+
+# JavaScript / React
+node_modules/
+.pnpm-store/
+.vite/
+/frontend/dist/
+/frontend/coverage/
+*.tsbuildinfo
+
+# Python e testes (API e ferramentas da documentação)
+.venv/
+venv/
 __pycache__/
 *.py[cod]
-/.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+/backend/build/
+/backend/dist/
+/backend/*.db
+/backend/*.sqlite*
+
+# Configuração local: exemplos sem credenciais são versionados
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs e arquivos do sistema/editor
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+/.idea/
+/.vscode/*
+!/.vscode/extensions.json
