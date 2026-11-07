@@ -9,6 +9,7 @@ node_modules/
 .vite/
 /frontend/dist/
 /frontend/coverage/
+.vercel/
 *.tsbuildinfo
 
 # Python e testes (API e ferramentas da documentação)

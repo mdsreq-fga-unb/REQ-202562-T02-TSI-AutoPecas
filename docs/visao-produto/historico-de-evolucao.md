@@ -152,3 +152,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 1.0 | 03/11/2026 | Criação da página, reunindo a rotina de atualização, a propagação de mudanças, o histórico de decisões de escopo e as pendências em aberto | Equipe |
 | 1.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 05/11/2026 | Explicitação das fontes por campo, formulários, geração do catálogo, rastreabilidade e critérios da automação, preservando a memória das decisões. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.1 | 07/11/2026 | Reorganização das fontes de apoio em `tools/docs/`, com atualização dos caminhos de manutenção, testes e automação. | [Thiago Gomes](https://github.com/thgomxs) |
