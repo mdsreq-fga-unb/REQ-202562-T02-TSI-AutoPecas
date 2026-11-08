@@ -129,6 +129,59 @@ O workflow de aplicação valida testes, lint, formatação, build e contêinere
 publicar imagens. O workflow da documentação continua independente e preserva os
 gatilhos de atualização do backlog por issues, PRs e reconciliação periódica.
 
+## Desenvolvimento compartilhado com agentes
+
+O [AGENTS.md](AGENTS.md) reúne as regras comuns, sem substituir os padrões de
+codificação abaixo. As instruções de [front-end](frontend/AGENTS.md),
+[back-end](backend/AGENTS.md) e [documentação](tools/docs/AGENTS.md) detalham cada área.
+As mesmas regras valem para desenvolvimento sem IA.
+
+| Skill | Uso |
+| --- | --- |
+| `tsi-tdd` | Implementar ou corrigir comportamentos pelo ciclo teste falhando, implementação mínima e refatoração |
+| `tsi-debugging` | Reproduzir falhas e investigar a causa antes da correção |
+| `tsi-requisitos` | Manter os campos nas fontes corretas e preservar a rastreabilidade do catálogo |
+| `tsi-revisao` | Revisar o diff, critérios, verificações e evidências de uma entrega |
+
+As fontes completas ficam em `.agents/skills/`, descobertas pelo Codex. As entradas
+em `.claude/skills/` usam o mesmo nome e descrição e orientam o Claude Code a ler
+a fonte compartilhada. Os `CLAUDE.md` contêm somente `@AGENTS.md`, inclusive nas
+áreas específicas. Não são necessários links simbólicos ou configuração pessoal
+para manter essas entradas no Windows. O carregamento depende do suporte da
+ferramenta e de suas configurações; confirme as entradas disponíveis na sessão.
+
+No Codex, consulte `/skills` e invoque, por exemplo, `$tsi-tdd`. No Claude Code,
+consulte as skills disponíveis e use `/tsi-tdd`. Ferramentas sem suporte nativo
+podem ler o `AGENTS.md` e o `SKILL.md` correspondente como orientação textual.
+
+Após editar ou adicionar uma skill compartilhada:
+
+```bash
+python tools/agents/sync_skills.py
+python tools/agents/sync_skills.py --check
+python -m unittest discover -s tools/agents/tests -v
+```
+
+O primeiro comando gera as entradas; `--check` apenas confere e retorna falha se
+houver divergências ou referências locais inválidas. Edite as fontes compartilhadas,
+não os adaptadores. O registro de [fontes e revisões](tools/agents/sources.json)
+documenta os fundamentos externos; não há instalação nem atualização automática
+do pacote Superpowers ou de outros plugins.
+
+O workflow `agent-check.yml` confere os adaptadores e exercita, offline e com os
+formulários reais, os fluxos de detalhamento de US, correção vinculada a PR,
+alteração de requisito e conclusão com evidência. Esses testes conferem contratos
+da automação; não comprovam por si só o comportamento de uma IA. Ao avaliar uma
+ferramenta, confira se ela lê as instruções da área, observa uma falha antes de
+implementar um comportamento e atualiza a fonte correta do requisito.
+
+O workflow `app-check.yml` verifica PRs e integrações em `dev` e `main`, gera
+cobertura de front-end e back-end e disponibiliza os relatórios por 14 dias nos
+artefatos da execução. Os comandos locais estão nos READMEs das áreas. A equipe
+não definiu um percentual mínimo: examine as lacunas dos cenários relevantes.
+A CI aprovada não comprova TDD nem validação pelo cliente. A publicação do catálogo
+continua independente, usando as fontes e os gatilhos da documentação na `main`.
+
 ## Processo de desenvolvimento
 
 - **Scrum:** papéis, eventos, artefatos e ciclos adaptados conforme as
