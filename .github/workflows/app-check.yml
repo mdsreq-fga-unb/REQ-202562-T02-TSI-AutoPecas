@@ -9,7 +9,7 @@ on:
       - 'render.yaml'
       - '.github/workflows/app-check.yml'
   push:
-    branches: [main]
+    branches: [main, dev]
     paths:
       - 'frontend/**'
       - 'backend/**'
@@ -46,7 +46,15 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm format:check
-      - run: pnpm test
+      - run: pnpm test:coverage
+      - name: Publish frontend coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: coverage-frontend-${{ github.run_attempt }}
+          path: frontend/coverage/
+          retention-days: 14
+          if-no-files-found: warn
       - run: pnpm build
 
   backend:
@@ -67,7 +75,15 @@ jobs:
       - run: uv sync --locked
       - run: uv run ruff check .
       - run: uv run ruff format --check .
-      - run: uv run pytest
+      - run: uv run pytest --cov --cov-report=term-missing --cov-report=html --cov-report=xml
+      - name: Publish backend coverage report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: coverage-backend-${{ github.run_attempt }}
+          path: backend/coverage/
+          retention-days: 14
+          if-no-files-found: warn
 
   containers:
     runs-on: ubuntu-latest

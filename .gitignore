@@ -27,6 +27,7 @@ htmlcov/
 coverage.xml
 /backend/build/
 /backend/dist/
+/backend/coverage/
 /backend/*.db
 /backend/*.sqlite*
 
@@ -45,3 +46,9 @@ desktop.ini
 /.idea/
 /.vscode/*
 !/.vscode/extensions.json
+
+# Personalização local dos agentes; instruções e skills compartilhadas são versionadas
+AGENTS.override.md
+CLAUDE.local.md
+/.claude/settings.local.json
+/.claude/worktrees/

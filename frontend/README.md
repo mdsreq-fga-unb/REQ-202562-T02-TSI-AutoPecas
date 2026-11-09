@@ -20,6 +20,11 @@ pnpm format:check
 pnpm build
 ```
 
+Para gerar cobertura por linhas, funções e ramificações, execute
+`pnpm test:coverage`. Os relatórios HTML e LCOV ficam em `coverage/`, são
+publicados como artefatos da CI e ignorados pelo Git. Não há percentual mínimo
+definido; revise as lacunas dos comportamentos exigidos pela história.
+
 As chamadas HTTP ficam em `src/services/`. `VITE_API_BASE_URL` indica o endereço
 público da API, acessível pelo navegador. Variáveis com prefixo `VITE_` são públicas;
 credenciais do PostgreSQL/Supabase ficam exclusivamente no back-end.

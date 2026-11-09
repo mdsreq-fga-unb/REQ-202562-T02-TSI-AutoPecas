@@ -18,6 +18,16 @@ uv run ruff check .
 uv run ruff format --check .
 ```
 
+Para gerar cobertura por linhas e ramificações:
+
+```bash
+uv run pytest --cov --cov-report=term-missing --cov-report=html --cov-report=xml
+```
+
+Os relatórios ficam em `coverage/html/index.html` e `coverage/coverage.xml`.
+Eles são publicados como artefatos da CI e ignorados pelo Git. Não há percentual
+mínimo definido; revise as lacunas dos comportamentos exigidos pela história.
+
 A organização segue `routers` (HTTP), `services` (regras), `repositories` (dados)
 e `models`/`schemas` (persistência e contratos). A base implementa somente a
 verificação de funcionamento da API. As funcionalidades e a conexão com o banco

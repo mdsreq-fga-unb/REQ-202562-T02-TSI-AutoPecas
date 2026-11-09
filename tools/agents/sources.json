@@ -1,0 +1,66 @@
+{
+  "reviewed_on": "2026-11-08",
+  "note": "Procedimentos locais escritos para este projeto; fontes externas são referências, sem instalação do pacote original. Revisões registradas para permitir revisão de atualizações.",
+  "sources": [
+    {
+      "id": "tdd",
+      "repository": "openai/plugins",
+      "path": "plugins/superpowers/skills/test-driven-development/SKILL.md",
+      "revision": "33bd9529725fcee78c9e51fcbaa93cd963c3a47b",
+      "url": "https://github.com/openai/plugins/blob/33bd9529725fcee78c9e51fcbaa93cd963c3a47b/plugins/superpowers/skills/test-driven-development/SKILL.md",
+      "use": "Referência do ciclo red-green-refactor. Texto local próprio, comandos pytest/Vitest e preservação do código existente; sem a regra de apagar implementações.",
+      "license": "MIT",
+      "license_reference": "https://github.com/openai/plugins/blob/33bd9529725fcee78c9e51fcbaa93cd963c3a47b/plugins/superpowers/LICENSE"
+    },
+    {
+      "id": "debugging",
+      "repository": "openai/plugins",
+      "path": "plugins/superpowers/skills/systematic-debugging/SKILL.md",
+      "revision": "33bd9529725fcee78c9e51fcbaa93cd963c3a47b",
+      "url": "https://github.com/openai/plugins/blob/33bd9529725fcee78c9e51fcbaa93cd963c3a47b/plugins/superpowers/skills/systematic-debugging/SKILL.md",
+      "use": "Referência de investigação de causa antes da correção. Procedimento local sem dependência do pacote Superpowers ou de ferramentas de uma IA.",
+      "license": "MIT",
+      "license_reference": "https://github.com/openai/plugins/blob/33bd9529725fcee78c9e51fcbaa93cd963c3a47b/plugins/superpowers/LICENSE"
+    },
+    {
+      "id": "verification",
+      "repository": "openai/plugins",
+      "path": "plugins/superpowers/skills/verification-before-completion/SKILL.md",
+      "revision": "33bd9529725fcee78c9e51fcbaa93cd963c3a47b",
+      "url": "https://github.com/openai/plugins/blob/33bd9529725fcee78c9e51fcbaa93cd963c3a47b/plugins/superpowers/skills/verification-before-completion/SKILL.md",
+      "use": "Referência de evidência antes de afirmar conclusão, incorporada à revisão. Não substitui DoD, revisão de integrante ou aceite do cliente.",
+      "license": "MIT",
+      "license_reference": "https://github.com/openai/plugins/blob/33bd9529725fcee78c9e51fcbaa93cd963c3a47b/plugins/superpowers/LICENSE"
+    },
+    {
+      "id": "react",
+      "repository": "vercel-labs/agent-skills",
+      "path": "skills/react-best-practices/SKILL.md",
+      "revision": "805687f34e8c10b420e3d11335a0ca2c3c90d992",
+      "url": "https://github.com/vercel-labs/agent-skills/blob/805687f34e8c10b420e3d11335a0ca2c3c90d992/skills/react-best-practices/SKILL.md",
+      "use": "Referência externa opcional. Apenas regras aplicáveis a React/Vite no cliente; nenhum pacote ou arquivo dessa skill foi incorporado.",
+      "license": "MIT",
+      "license_reference": "https://github.com/vercel-labs/agent-skills/blob/805687f34e8c10b420e3d11335a0ca2c3c90d992/skills/react-best-practices/SKILL.md"
+    },
+    {
+      "id": "postgres",
+      "repository": "supabase/agent-skills",
+      "path": "skills/supabase-postgres-best-practices/SKILL.md",
+      "revision": "32912161e2732c3e5001c6811a76c1f8308ed0da",
+      "url": "https://github.com/supabase/agent-skills/blob/32912161e2732c3e5001c6811a76c1f8308ed0da/skills/supabase-postgres-best-practices/SKILL.md",
+      "use": "Referência externa opcional para SQL e migrações. Não adiciona serviços ou funcionalidades ao MVP.",
+      "license": "MIT",
+      "license_reference": "https://github.com/supabase/agent-skills/blob/32912161e2732c3e5001c6811a76c1f8308ed0da/LICENSE"
+    }
+  ],
+  "documentation": [
+    "https://agentskills.io/specification",
+    "https://learn.chatgpt.com/docs/build-skills",
+    "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+    "https://code.claude.com/docs/en/skills",
+    "https://code.claude.com/docs/en/memory",
+    "https://martinfowler.com/bliki/TestDrivenDevelopment.html",
+    "https://fastapi.tiangolo.com/tutorial/testing/",
+    "https://testing-library.com/docs/guiding-principles/"
+  ]
+}

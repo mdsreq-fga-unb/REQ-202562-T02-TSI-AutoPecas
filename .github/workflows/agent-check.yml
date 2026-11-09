@@ -1,0 +1,53 @@
+name: Validate shared development instructions
+
+on:
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - '**/AGENTS.md'
+      - '**/CLAUDE.md'
+      - '.agents/**'
+      - '.claude/**'
+      - 'tools/agents/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - 'tools/docs/scripts/**'
+      - 'tools/docs/data/**'
+      - '.github/workflows/agent-check.yml'
+  push:
+    branches: [main, dev]
+    paths:
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+      - '**/AGENTS.md'
+      - '**/CLAUDE.md'
+      - '.agents/**'
+      - '.claude/**'
+      - 'tools/agents/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - 'tools/docs/scripts/**'
+      - 'tools/docs/data/**'
+      - '.github/workflows/agent-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shared-instructions-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Check shared instructions and Claude entry points
+        run: python tools/agents/sync_skills.py --check
+      - name: Check compatibility and backlog integration
+        run: python -m unittest discover -s tools/agents/tests -v
