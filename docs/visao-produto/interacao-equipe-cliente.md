@@ -55,7 +55,7 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 | Sprint 0 | 03/09/2026 | Reunião interna — revisão do feedback do professor sobre a entrega inicial | [Sprint 0](../atas/sprint-0.md) |
 | Sprint 1 | 17/09/2026 | Entrevista com o cliente + planejamento interno da equipe                  | [Sprint 1](../atas/sprint-1.md) |
 | Sprint 2 | 30/09/2026 | Definição do valor de negócio dos requisitos com o cliente                 | [Sprint 2](../atas/sprint-2.md) |
-| Sprint 2 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP                    | [Sprint 3](../atas/sprint-3.md) |
+| Sprint 3 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP                    | [Sprint 3](../atas/sprint-3.md) |
 
 > Histórico completo, incluindo as atas das próximas sprints à medida que forem realizadas, em [Atas](../atas/index.md).
 
@@ -84,3 +84,4 @@ O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza 
 |  1.8   | 12/10/2026 | Adição, no item 7.1, do link para o registro da validação do cliente sobre a acumulação do papel de Gerente de projeto / Product Owner                                                                                                                                                                                                                 | [Luiz Moreira](https://github.com/luizhtmoreira) |
 |  1.9   | 12/10/2026 | Inclusão de evidência de software do GitHub Projects, com os épicos e as histórias de usuário vinculadas.                                                                                                                                                                                                                                              | [Thiago Gomes](https://github.com/thgomxs)       |
 | 1.10 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.11 | 09/11/2026 | Correção da identificação da Sprint 3 na tabela de rastreabilidade das atas. | [Bruno Ferreira](https://github.com/brunnf) |
