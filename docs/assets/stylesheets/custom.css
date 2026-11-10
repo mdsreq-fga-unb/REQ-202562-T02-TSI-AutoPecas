@@ -1108,9 +1108,27 @@ body {
 }
 
 .md-typeset .schedule-page .schedule-status--active {
-  border-color: var(--tsi-amber);
-  color: var(--tsi-amber);
-  background: color-mix(in srgb, var(--tsi-amber) 10%, var(--tsi-surface));
+  color: #1d4ed8;
+  border-color: #93c5fd;
+  background-color: #eff6ff;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .schedule-page .schedule-status--active {
+  color: #93c5fd;
+  border-color: #1e40af;
+  background-color: #172554;
+}
+
+.md-typeset .schedule-page .schedule-status--debt {
+  color: #a16207;
+  border-color: #facc15;
+  background-color: #fefce8;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .schedule-page .schedule-status--debt {
+  color: #fde047;
+  border-color: #ca8a04;
+  background-color: #422006;
 }
 
 .md-typeset .schedule-controls {

@@ -79,6 +79,7 @@ nav:
       - Estratégia e Engenharia:
           - Estratégias de engenharia de software: visao-produto/estrategias-engenharia-de-software.md
           - Engenharia de requisitos: visao-produto/engenharia-de-requisitos.md
+          - Padrões de codificação: visao-produto/padroes-de-codificacao.md
       - Equipe e Aprendizados:
           - Interação entre equipe e cliente: visao-produto/interacao-equipe-cliente.md
           - Lições aprendidas: visao-produto/licoes-aprendidas.md

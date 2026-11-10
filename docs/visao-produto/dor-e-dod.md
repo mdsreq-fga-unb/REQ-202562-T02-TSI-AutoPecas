@@ -44,7 +44,7 @@ A equipe considera uma funcionalidade concluída quando **todos os critérios ab
 - [ ] A funcionalidade atende aos critérios de aceitação da história de usuário.
 - [ ] O código foi revisado por outro integrante por meio de um Pull Request (PR).
 - [ ] Os testes previstos foram aprovados, sem introduzir regressões.
-- [ ] O código e o histórico de alterações seguem os padrões de codificação e versionamento da equipe.
+- [ ] O código e o histórico de alterações seguem os [padrões de codificação e versionamento da equipe](padroes-de-codificacao.md).
 - [ ] A funcionalidade foi validada com o cliente.
 
 ## Versionamento
