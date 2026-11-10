@@ -54,3 +54,9 @@ marketplaces. “Mercado Livre” identifica apenas o canal informado na venda.
 
 **Evidência a produzir:** avaliação do resumo, da confirmação e dos saldos por peça,
 seguindo o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+
+## Versionamento
+
+| Versão | Data | Descrição | Autor(es/as) |
+| :----: | :--: | --- | --- |
+| 1.0 | 10/11/2026 | Criação do roteiro de prototipação de registro e cancelamento de vendas, contemplando US15 e US16. | [Bruno Ferreira](https://github.com/brunnf) |

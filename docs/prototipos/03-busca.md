@@ -46,3 +46,9 @@ As mesmas telas são reutilizadas pelos grupos de estoque e vendas.
 
 **Evidência a produzir:** termos utilizados, dificuldades e decisões de busca,
 seguindo o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+
+## Versionamento
+
+| Versão | Data | Descrição | Autor(es/as) |
+| :----: | :--: | --- | --- |
+| 1.0 | 10/11/2026 | Criação do roteiro de prototipação de busca e consulta de disponibilidade, contemplando US04 e US12. | [Bruno Ferreira](https://github.com/brunnf) |

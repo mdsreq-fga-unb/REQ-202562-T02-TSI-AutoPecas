@@ -54,3 +54,9 @@ saldo compartilhado com o grupo 3. Na edição, o código permanece somente para
 
 **Evidência a produzir:** observações e decisões por cenário, vinculadas às issues,
 conforme o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+
+## Versionamento
+
+| Versão | Data | Descrição | Autor(es/as) |
+| :----: | :--: | --- | --- |
+| 1.0 | 10/11/2026 | Criação do roteiro de prototipação de cadastro e manutenção de peças, contemplando US01, US03, US05 e US06. | [Bruno Ferreira](https://github.com/brunnf) |

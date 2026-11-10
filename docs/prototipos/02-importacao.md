@@ -48,3 +48,9 @@ Reinicie a demonstração antes do lote válido para recuperar os dados iniciais
 
 **Evidência a produzir:** avaliação das mensagens, proposta de colunas e decisão sobre
 o lote com erros, registrada na issue. [Orientações de registro](index.md#registro-sugerido-para-a-issue-ou-ata).
+
+## Versionamento
+
+| Versão | Data | Descrição | Autor(es/as) |
+| :----: | :--: | --- | --- |
+| 1.0 | 10/11/2026 | Criação do roteiro de prototipação de importação de peças por planilha, contemplando US02. | [Bruno Ferreira](https://github.com/brunnf) |

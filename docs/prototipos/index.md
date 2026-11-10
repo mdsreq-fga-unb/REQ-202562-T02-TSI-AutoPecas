@@ -82,3 +82,9 @@ e no [processo de validação](../visao-produto/interacao-equipe-cliente.md#proc
 As pendências devem ser resolvidas conforme a [DoR](../visao-produto/dor-e-dod.md#definition-of-ready-dor)
 antes da implementação das histórias afetadas. A existência deste artefato não altera
 o estado de desenvolvimento das US nem comprova a [DoD](../visao-produto/dor-e-dod.md#definition-of-done-dod).
+
+## Versionamento
+
+| Versão | Data | Descrição | Autor(es/as) |
+| :----: | :--: | --- | --- |
+| 1.0 | 10/11/2026 | Criação da página de apresentação, organização e acesso aos cinco grupos de prototipação rápida do MVP. | [Bruno Ferreira](https://github.com/brunnf) |

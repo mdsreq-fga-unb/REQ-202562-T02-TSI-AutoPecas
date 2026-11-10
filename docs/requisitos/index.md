@@ -49,8 +49,7 @@ consultá-los e atualizá-los.
 ## Representação dos fluxos
 
 Os [cinco grupos de prototipação rápida](../prototipos/index.md) oferecem uma interface
-navegável e roteiros de avaliação das 12 US selecionadas para o MVP. Os artefatos estão
-pendentes de validação com o proprietário.
+navegável e roteiros de avaliação das 12 US selecionadas para o MVP.
 
 ## Documentos relacionados
 

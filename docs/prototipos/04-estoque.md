@@ -52,3 +52,9 @@ Não representa a implementação de um histórico de movimentações.
 
 **Evidência a produzir:** interpretação das operações, conferência dos saldos e
 decisões pendentes, conforme o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+
+## Versionamento
+
+| Versão | Data | Descrição | Autor(es/as) |
+| :----: | :--: | --- | --- |
+| 1.0 | 10/11/2026 | Criação do roteiro de prototipação de movimentação de estoque, contemplando US08, US09 e US10. | [Bruno Ferreira](https://github.com/brunnf) |
