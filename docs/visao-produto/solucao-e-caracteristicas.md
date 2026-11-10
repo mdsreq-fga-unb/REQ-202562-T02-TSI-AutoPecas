@@ -37,12 +37,12 @@ A solução proposta deverá contemplar, de forma preliminar, as característica
 
 | ID | Descrição resumida | ID VN | Valor de negócio (VN) |
 | --- | --- | :---: | --- |
-| [CP1](#cp1) | A solução deverá manter um catálogo único e padronizado das peças, com suas informações técnicas e de aplicação, permitindo que o mesmo cadastro sirva de referência para o estoque, os anúncios e os documentos fiscais. | VN1 | Redução do tempo de catalogação e fim do retrabalho de cadastrar a mesma peça em lugares diferentes. |
+| [CP1](#cp1) | A solução deverá manter um catálogo único e padronizado das peças, com suas informações técnicas e de aplicação, permitindo que o mesmo cadastro sirva de referência para o estoque, os anúncios e os documentos fiscais. | VN1 | Redução do tempo de catalogação e do retrabalho de cadastrar a mesma peça em lugares diferentes. |
 | [CP2](#cp2) | A solução deverá controlar as movimentações de estoque de cada peça, mantendo seu saldo e seu histórico atualizados, permitindo que o estoque registrado corresponda ao estoque real. | VN2 | Saldo de estoque confiável, condição para substituir o controle em planilhas. |
-| [CP3](#cp3) | A solução deverá registrar as vendas realizadas nos diferentes canais e acompanhar seus recebimentos, permitindo que o estoque seja atualizado a cada venda e que os valores a receber sejam conhecidos. | VN3 | Fim da baixa manual após cada venda e clareza sobre os valores pendentes de recebimento. |
+| [CP3](#cp3) | A solução deverá registrar as vendas realizadas nos diferentes canais e acompanhar seus recebimentos, permitindo que o estoque seja atualizado a cada venda e que os valores a receber sejam conhecidos. | VN3 | Redução da baixa manual após cada venda e clareza sobre os valores pendentes de recebimento. |
 | [CP4](#cp4) | A solução deverá analisar o desempenho do estoque e das vendas e apoiar o planejamento das compras, permitindo que as decisões de reposição e de precificação sejam tomadas com base em dados. | VN4 | Menor perda de vendas por ruptura de estoque e melhor uso do capital disponível para compras. |
 | [CP5](#cp5) | A solução deverá consolidar as informações financeiras da operação, permitindo acompanhar a necessidade de capital de giro do negócio. | VN5 | Substituição do fechamento manual entre planilhas e previsibilidade da necessidade de caixa. |
-| [CP6](#cp6) | A solução deverá apoiar as rotinas fiscais e de expedição das vendas, permitindo reaproveitar os dados já cadastrados e acompanhar o envio das peças. | VN6 | Eliminação do cadastro duplicado entre o marketplace e o emissor de notas fiscais. |
+| [CP6](#cp6) | A solução deverá apoiar as rotinas fiscais e de expedição das vendas, permitindo reaproveitar os dados já cadastrados e acompanhar o envio das peças. | VN6 | Redução do cadastro duplicado entre o marketplace e o emissor de notas fiscais, reaproveitando os dados já mantidos no catálogo. |
 | [CP7](#cp7) | A solução deverá garantir a integridade e a consistência dos dados de estoque e protegê-los no armazenamento e na transmissão, permitindo operar o sistema com segurança durante a rotina de separação e envio. | VN7 | Estoque e dados do negócio íntegros e protegidos, evitando perdas e duplicidades de registro quando a conexão falha ou há operações simultâneas, e mantendo seguras as credenciais e as informações da loja. |
 | [CP8](#cp8) | A solução deverá oferecer uma interface acessível e responsiva, adequada ao uso em telas de diferentes tamanhos, permitindo operar o sistema no próprio local de trabalho durante a rotina de separação e envio. | VN8 | Melhoria da experiência do usuário e ampliação da acessibilidade da solução, permitindo o uso confortável e inclusivo em diferentes dispositivos e tamanhos de tela. |
 | [CP9](#cp9) | A solução deverá controlar o acesso dos usuários e registrar a autoria das operações, permitindo que tarefas operacionais sejam delegadas com segurança. | VN9 | Preparação para a delegação de tarefas operacionais em caso de contratação futura. |
@@ -97,20 +97,37 @@ A viabilidade depende de manter o escopo do MVP controlado, preservar as priorid
 
 ## <span id="27-beneficios-esperados"></span>Benefícios esperados {#beneficios-esperados}
 
-### Para o cliente: TSI Peças
+Os benefícios estão separados pelo horizonte de entrega. Os do **MVP** derivam das características [CP1](#cp1), [CP2](#cp2) e [CP3](#cp3), cujos requisitos foram selecionados na [priorização](priorizacao.md). Os do **produto completo** dependem de características previstas na visão, mas fora da primeira versão ([CP4](#cp4), [CP5](#cp5), [CP6](#cp6) e [CP9](#cp9)), e não devem ser lidos como entregas do MVP.
+
+### Benefícios do MVP
 
 - Redução das perdas de vendas causadas por divergências entre o estoque real e o registrado, incluindo a diminuição dos cancelamentos no Mercado Livre e a preservação da reputação da loja.
-- Organização e padronização do cadastro de peças, com um catálogo único que serve de referência para o estoque, os anúncios e os documentos fiscais.
-- Maior previsibilidade financeira, com acompanhamento da necessidade de capital de giro e substituição do fechamento manual entre planilhas.
-- Apoio às decisões de compra e de precificação, baseado no desempenho do estoque e das vendas.
-- Redução do tempo gasto em tarefas operacionais repetitivas, liberando o proprietário para o atendimento e a gestão do negócio.
-### Para o usuário: proprietário e operador
-
-- Substituição do controle manual em planilhas por uma ferramenta única e adequada à sua rotina, com menor esforço operacional.
-- Estoque confiável e atualizado a cada venda, com prevenção de vendas acima do saldo disponível.
-- Reaproveitamento dos dados no apoio às rotinas fiscais e de expedição, eliminando o cadastro duplicado entre o marketplace e o emissor de notas.
+- Organização e padronização do cadastro de peças, com um catálogo único que serve de referência para o estoque e para as consultas de atendimento.
+- Substituição do controle manual em planilhas por uma ferramenta única e adequada à rotina do proprietário, com saldo atualizado a cada movimentação e a cada venda registrada.
+- Redução do tempo gasto na localização de peças e na consulta de disponibilidade durante o atendimento, liberando o proprietário para o atendimento e a gestão do negócio.
 - Menor risco de erro no controle, com a centralização das informações que hoje estão dispersas.
-- Como evolução futura, a integração automática com o Mercado Livre poderá ampliar esses benefícios ao sincronizar o estoque do sistema com o canal de vendas on-line, reduzindo o esforço de atualização. Essa funcionalidade é desejável, mas permanece fora do escopo do MVP.
+- Estoque confiável, atualizado a cada venda registrada.
+
+### Benefícios do produto completo (fora do MVP)
+
+Dependem de características que a equipe prevê na visão, mas que não estão no recorte da primeira versão. Serão alcançados conforme a evolução do produto:
+
+- **Previsibilidade financeira** e acompanhamento da necessidade de capital de giro, reduzindo o fechamento manual entre planilhas. Depende da [CP5](#cp5) (RF28 a RF31), fora do MVP.
+- **Apoio às decisões de compra e de precificação**, com base no desempenho do estoque e das vendas. Depende da [CP4](#cp4) (RF21 a RF27), cujos requisitos estão condicionados à capacidade da equipe ou fora do MVP.
+- **Reaproveitamento dos dados nas rotinas fiscais e de expedição**, para reduzir o cadastro duplicado entre o marketplace e o emissor de notas. Depende da [CP6](#cp6) (RF32 a RF36), fora do MVP.
+- **Delegação de tarefas operacionais com controle de autoria**, em caso de contratação futura. Depende da [CP9](#cp9) (RF37 a RF40), fora do MVP.
+- **Sincronização automática do estoque com o Mercado Livre**, que reduziria o esforço de atualização. É uma funcionalidade desejável, reconhecida como evolução futura e fora do escopo atual.
+
+### Condição para alcançar os benefícios do MVP
+
+Os benefícios de busca rápida e de disponibilidade confiável pressupõem um catálogo povoado. Hoje a situação é esta:
+
+- Cerca de **90% dos dados dos itens que o proprietário comercializa** já estão registrados em planilhas próprias e nos anúncios do Mercado Livre. Esses dados serão migrados pela importação em lote ([RF02](requisitos-de-software.md#rf02)), conforme validado com o cliente em [05/10/2026](../atas/sprint-3.md).
+- Cerca de **80% do estoque físico antigo não está catalogado formalmente** ([R05](intervencao-social.md#r05)). Essas peças dependem de um trabalho de **levantamento e conferência física** junto ao proprietário, previsto na [Sprint 6](cronograma-e-entregas.md#sprint-6) do cronograma.
+
+Os dois números descrevem coisas diferentes: o primeiro trata dos dados dos itens que o proprietário vende hoje e já tem registrados; o segundo, do estoque físico antigo que nunca foi catalogado.
+
+Enquanto esse levantamento não terminar, o sistema responde com confiabilidade apenas sobre as peças já cadastradas. A catalogação do estoque antigo é um trabalho do proprietário, apoiado pelo procedimento de carga inicial definido na decisão [D06](intervencao-social.md#d06); o sistema não a realiza sozinho.
 
 ## Versionamento
 
@@ -130,3 +147,4 @@ A viabilidade depende de manter o escopo do MVP controlado, preservar as priorid
 | 1.11 | 12/10/2026 | Reescrita do VN8, que passa a destacar a melhoria da experiência do usuário e a ampliação da acessibilidade da solução, conforme feedback da monitoria (issue #4) | [João Melo](https://github.com/jot4-ge) |
 | 1.12 | 13/10/2026 | Inclusão de âncoras para OEs e CPs e de links nos mapeamentos e nas citações da pesquisa de mercado. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.13 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.14 | 10/11/2026 | Separação dos benefícios esperados (2.7) entre MVP e produto completo, com a condição de catalogação do estoque antigo, e troca de "fim" e "eliminação" por "redução" nos VN1, VN3 e VN6, conforme a issue #44 | [João Melo](https://github.com/jot4-ge) |
