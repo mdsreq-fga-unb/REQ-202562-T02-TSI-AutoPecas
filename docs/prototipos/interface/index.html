@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TSI Peças · Protótipo do MVP</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="prototype.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Ir para o conteúdo</a>
+    <div class="prototype-bar"><strong>Protótipo para avaliação</strong><span>Dados fictícios · alterações apenas nesta sessão</span><button id="reset" type="button">Reiniciar demonstração</button></div>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">TSI</span><div><strong>Peças</strong><small>Rotina da loja</small></div></div>
+        <p class="eyebrow">Cinco grupos de prototipação</p>
+        <nav aria-label="Grupos do protótipo">
+          <button data-page="catalog"><span>01</span> Cadastro e manutenção</button>
+          <button data-page="import"><span>02</span> Importação de peças</button>
+          <button data-page="search"><span>03</span> Busca e disponibilidade</button>
+          <button data-page="stock"><span>04</span> Movimentação de estoque</button>
+          <button data-page="sales"><span>05</span> Vendas e cancelamento</button>
+        </nav>
+        <div class="sidebar-note"><strong>Uma rotina conectada</strong><p>Cadastre, movimente e venda. O saldo acompanha as operações simuladas.</p><p>Use “Reiniciar demonstração” para recuperar os exemplos.</p></div>
+      </aside>
+      <main id="main" tabindex="-1">
+        <header class="page-heading"><div><p id="group" class="eyebrow"></p><h1 id="title"></h1><p id="subtitle"></p></div><span class="badge">Baixa fidelidade</span></header>
+        <div id="notice" role="status" aria-live="polite"></div>
+        <div id="content"></div>
+        <details class="review-notes"><summary>Notas para quem conduz a avaliação</summary><p id="review"></p><p>Estes caminhos representam somente as 12 US selecionadas. Sem autenticação, perfis, cadastro de fornecedores, histórico geral de movimentações ou integrações. O saldo inicial zero de novos exemplos é uma convenção da demonstração.</p></details>
+      </main>
+    </div>
+    <noscript>Ative o JavaScript para navegar pelo protótipo. Os roteiros também estão disponíveis na documentação.</noscript>
+  </body>
+</html>

@@ -25,6 +25,7 @@
   * *Artefatos (User Stories e Critérios de Aceitação):* Detalhamento das histórias selecionadas para a sprint no formato padrão ("Como um... Quero... Para que..."). Nesta etapa, declara-se formalmente os critérios de aceitação testáveis de cada história que servirão como referência base para a Verificação e Validação.
 * **Representação:**
   * *Prototipação Rápida:* Utilização de esboços, *storyboards* ou *wireframes* para validar visualmente se o fluxo da história de usuário está correto e compreendido antes da codificação.
+  * *Artefatos para avaliação:* os [cinco grupos de prototipação do MVP](../prototipos/index.md) reúnem a interface navegável, os vínculos com as 12 US selecionadas e os roteiros de avaliação.
 * **Verificação e Validação:**
   * *Verificação de Prontidão (DoR):* Verificação prévia das histórias e regras de negócio antes do desenvolvimento, contribuindo para que os critérios de aceitação estejam prontos.
   * *Validação com Propietário:* Validação prévia com o propietário, para favorecer o esclarecimento de possiveis duvidas e problemas.

@@ -87,6 +87,13 @@ nav:
       - Catálogo de requisitos: visao-produto/requisitos-de-software.md
       - Priorização: visao-produto/priorizacao.md
       - Rastreabilidade: visao-produto/rastreabilidade.md
+      - Prototipação rápida:
+          - prototipos/index.md
+          - Cadastro e manutenção: prototipos/01-cadastro.md
+          - Importação de peças: prototipos/02-importacao.md
+          - Busca e disponibilidade: prototipos/03-busca.md
+          - Movimentação de estoque: prototipos/04-estoque.md
+          - Vendas e cancelamento: prototipos/05-vendas.md
       - DoR e DoD: visao-produto/dor-e-dod.md
       - Organização e atualização: visao-produto/historico-de-evolucao.md
   - Cronograma: visao-produto/cronograma-e-entregas.md

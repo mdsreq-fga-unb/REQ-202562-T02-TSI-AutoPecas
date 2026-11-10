@@ -46,6 +46,12 @@ consultá-los e atualizá-los.
   </a>
 </div>
 
+## Representação dos fluxos
+
+Os [cinco grupos de prototipação rápida](../prototipos/index.md) oferecem uma interface
+navegável e roteiros de avaliação das 12 US selecionadas para o MVP. Os artefatos estão
+pendentes de validação com o proprietário.
+
 ## Documentos relacionados
 
 - [Visão do Produto e Projeto](../visao-produto/index.md): contexto, problemas, objetivos e características do produto.
