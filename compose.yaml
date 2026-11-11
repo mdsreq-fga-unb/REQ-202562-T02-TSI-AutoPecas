@@ -1,6 +1,22 @@
 name: tsi-pecas
 
 services:
+  database:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: tsi
+      POSTGRES_USER: tsi
+      POSTGRES_PASSWORD: tsi_local
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tsi -d tsi"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   backend:
     build:
       context: ./backend
@@ -10,6 +26,11 @@ services:
         required: false
     environment:
       PORT: "8000"
+      DATABASE_URL: postgresql+psycopg://tsi:tsi_local@database:5432/tsi
+    depends_on:
+      database:
+        condition: service_healthy
+    command: ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"]
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
@@ -43,3 +64,6 @@ services:
       timeout: 5s
       start_period: 10s
       retries: 5
+
+volumes:
+  postgres_data:

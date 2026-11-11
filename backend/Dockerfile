@@ -11,6 +11,7 @@ FROM base AS development
 RUN uv sync --locked
 COPY app ./app
 COPY migrations ./migrations
+COPY alembic.ini ./
 COPY tests ./tests
 ENV PATH="/app/.venv/bin:$PATH"
 EXPOSE 8000
@@ -20,6 +21,7 @@ FROM base AS production
 RUN uv sync --locked --no-dev
 COPY app ./app
 COPY migrations ./migrations
+COPY alembic.ini ./
 RUN useradd --create-home --uid 10001 appuser && chown -R appuser:appuser /app
 USER appuser
 ENV PATH="/app/.venv/bin:$PATH"
