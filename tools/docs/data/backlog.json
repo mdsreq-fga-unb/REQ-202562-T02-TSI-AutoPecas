@@ -84,8 +84,10 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Códigos principal e equivalentes únicos no catálogo; duplicidade identifica a peça existente. Perfis retirados do MVP, conforme decisão do cliente de 04/11 e apontamentos #48, #50 e #53 (US01: #27)."
-      ]
+        "- 10/11/2026 · Códigos principal e equivalentes únicos no catálogo; duplicidade identifica a peça existente. Perfis retirados do MVP, conforme decisão do cliente de 04/11 e apontamentos #48, #50 e #53 (US01: #27).",
+        "- 10/11/2026 · Reestimativa do esforço sinalizada após inclusão dos códigos equivalentes; notas anteriores preservadas, sem atribuir uma nova estimativa não acordada (#27, #53)."
+      ],
+      "priority_note": "Reestimativa de esforço pendente: a inclusão de códigos equivalentes amplia o cadastro e a validação de unicidade. EI, CA e LC foram preservados até a equipe definir as novas notas; o ET e o Score exibidos ainda refletem a estimativa anterior."
     },
     {
       "id": "RF02",
@@ -103,7 +105,7 @@
       ],
       "dependencies": "RF01 — dependências derivadas da leitura da declaração, a validar no refinamento.",
       "priority": {
-        "vn": 4,
+        "vn": 2,
         "moscow": "Must Have",
         "ei": 2,
         "ca": 2,
@@ -114,8 +116,11 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Importação sem restrição por perfil e sem sobrescrita de códigos principais ou equivalentes, alinhada ao cadastro e ao recorte sem autenticação (#53; US02: #28). Modelo e colunas da planilha ainda dependem de refinamento."
-      ]
+        "- 10/11/2026 · Importação sem restrição por perfil e sem sobrescrita de códigos principais ou equivalentes, alinhada ao cadastro e ao recorte sem autenticação (#53; US02: #28). Modelo e colunas da planilha ainda dependem de refinamento.",
+        "- 10/11/2026 · VN corrigido de 4 para 2 com base nas respostas registradas nas atas de 30/09 e 05/10; Score 3 e Q3. Mantida no MVP por exceção, como Must Have, conforme decisão do cliente em 05/10 (#28, #53)."
+      ],
+      "priority_note": "VN = 0 (essencialidade) + 1 (frequência) + 0 (impacto na dor) + 1 (urgência) = 2. A ata de 30/09 registrou apenas urgência como Sim; a ata de 05/10 alterou frequência para Sim. Score = 2 + 3 (Must Have) - 2 (ET) = 3. Falta definir se o modelo .xlsx aceitará uma coluna de códigos equivalentes; essa possibilidade não é assumida como aprovada.",
+      "delivery_reason": "MVP por exceção ao corte de Score ≥ 4: importação mantida como Must Have por decisão do cliente em 05/10, para reaproveitar os dados existentes. O Score 3 é preservado; a decisão de entrega não altera o cálculo."
     },
     {
       "id": "RF03",
@@ -174,8 +179,10 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Busca também pelo código equivalente, conforme decisão do cliente de 04/11 (US04: #30)."
-      ]
+        "- 10/11/2026 · Busca também pelo código equivalente, conforme decisão do cliente de 04/11 (US04: #30).",
+        "- 10/11/2026 · Revisão do esforço sinalizada para a busca por códigos equivalentes; notas atuais preservadas até avaliação da equipe (#30)."
+      ],
+      "priority_note": "Revisão de esforço pendente: avaliar o impacto da busca por códigos equivalentes. EI, CA e LC atuais foram preservados até essa avaliação pela equipe."
     },
     {
       "id": "RF05",
@@ -446,8 +453,10 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
-      ]
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
+        "- 10/11/2026 · Consulta de histórico mantida como história independente e condicionada, sem sprint, conforme decisão atual de escopo. Não absorve a US14; seus identificadores RF13/US13 são preservados (#47, #48, #52, #53)."
+      ],
+      "delivery_reason": "Fora do MVP e condicionada à capacidade da equipe, sem sprint atribuída. A consulta de histórico permanece separada do filtro de período da US14; não há fusão de histórias nem reutilização de identificadores."
     },
     {
       "id": "RF14",
@@ -470,13 +479,15 @@
         "ca": 1,
         "lc": 2
       },
-      "delivery": "MVP",
-      "sprint": 5,
+      "delivery": "Condicionado",
+      "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
-      ]
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
+        "- 10/11/2026 · Retirada do MVP e da Sprint 5 por depender da US13, que está condicionada. Mantida separada, também como condicionada, sem aposentadoria nem fusão; RF14/US14 continuam significando filtrar histórico por período (#37, #47, #48, #52, #53). A divergência da descrição na ata de 05/10 permanece a retificar na origem."
+      ],
+      "delivery_reason": "Fora do MVP por decisão de escopo, apesar do Score 4: o filtro depende da consulta de histórico da US13, também condicionada. Permanece como história separada, sem sprint, e sua eventual entrega exige a disponibilidade da US13."
     },
     {
       "id": "RF15",
@@ -526,7 +537,7 @@
       "dependencies": "RF15 — dependências derivadas da leitura da declaração, a validar no refinamento.",
       "priority": {
         "vn": 4,
-        "moscow": "Should Have",
+        "moscow": "Must Have",
         "ei": 2,
         "ca": 2,
         "lc": 1
@@ -536,8 +547,10 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Cancelamento mantém a reversão da baixa de estoque, sem restrição por perfil no MVP (#53; US16: #39)."
-      ]
+        "- 10/11/2026 · Cancelamento mantém a reversão da baixa de estoque, sem restrição por perfil no MVP (#53; US16: #39).",
+        "- 10/11/2026 · MoSCoW corrigido de Should Have para Must Have, conforme ata de 05/10; Score de 4 para 5, sem alteração do ET ou da sprint (#39, #53)."
+      ],
+      "priority_note": "MoSCoW corrigido de Should Have para Must Have, conforme ata de 05/10. Score = 4 (VN) + 3 (Must Have) - 2 (ET) = 5; permanece no MVP."
     },
     {
       "id": "RF17",
@@ -1368,9 +1381,12 @@
       ]
     ],
     "pending": [
-      "RF14 está no MVP, mas RF13, de que depende, permanece condicionado. O recorte precisa de decisão com o proprietário.",
-      "As pontuações de valor de negócio aguardam confirmação formal do proprietário.",
-      "RNF04 permanece sem CP de origem definida."
+      "As issues ainda precisam alinhar narrativa, critérios e dependências às declarações aprovadas: remover exigências de perfis do MVP, atualizar a entrada sem fornecedor e incorporar as regras de códigos, saldo e peças inativas (#48, #50, #52, #53).",
+      "US01 exige reestimativa de esforço e US04 exige revisão do impacto da busca por códigos equivalentes; as notas atuais foram preservadas até avaliação da equipe.",
+      "US02: acordar o modelo da planilha e se haverá coluna de códigos equivalentes, sem assumir essa estrutura como aprovada.",
+      "A descrição de RF14 na ata de 05/10 diverge do significado atual de US14/RF14. Retificar a ata na origem; não usar a igualdade do código como prova de validação (#47, #53). US13 e US14 permanecem separadas e fora do MVP.",
+      "As demais pontuações de valor de negócio aguardam confirmação formal do proprietário.",
+      "RNF04 permanece sem CP de origem definida; as correções de RNFs da issue #49 não integram esta revisão."
     ]
   }
 }

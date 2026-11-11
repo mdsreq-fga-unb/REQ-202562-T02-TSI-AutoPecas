@@ -44,11 +44,25 @@ class BacklogTests(unittest.TestCase):
         base = read_base()
         self.assertEqual({s["us"] for s in base["stories"]}, {f"US{i:02}" for i in range(1, 41)})
         self.assertEqual([sum(s["delivery"] == cut for s in base["stories"]) for cut in
-                          ["MVP", "Condicionado", "Evolução futura"]], [13, 5, 22])
+                          ["MVP", "Condicionado", "Evolução futura"]], [12, 6, 22])
+
+    def test_mvp_cut_preserves_separate_history_stories_and_resolves_dependencies(self):
+        base = read_base()
+        stories = {s["us"]: s for s in merge(base)["stories"]}
+        expected = {f"US{i:02}" for i in [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16]}
+        self.assertEqual({us for us, s in stories.items() if s["delivery"] == "MVP"}, expected)
+        for us in ("US13", "US14"):
+            self.assertEqual(stories[us]["delivery"], "Condicionado")
+            self.assertIsNone(stories[us]["sprint"])
+        self.assertNotIn("filtr", stories["US13"]["declaration"].lower())
+        self.assertEqual(stories["US14"]["dependency_ids"], ["RF13"])
+        self.assertFalse(any(s["warnings"] for s in stories.values() if s["delivery"] == "MVP"))
+        self.assertEqual(priority(stories["US02"]["priority"]), (2, 3, "Q3"))
+        self.assertEqual(priority(stories["US16"]["priority"]), (2, 5, "Q1"))
 
     def test_conditioned_stories_have_no_sprint_assigned(self):
         stories = [s for s in read_base()['stories'] if s['delivery'] == 'Condicionado']
-        self.assertEqual(len(stories), 5)
+        self.assertEqual(len(stories), 6)
         self.assertTrue(all(s['sprint'] is None for s in stories))
 
     def test_rf_us_relation_and_epic_cp_are_validated(self):
