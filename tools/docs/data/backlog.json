@@ -61,7 +61,7 @@
       "id": "RF01",
       "us": "US01",
       "name": "Cadastrar peça",
-      "declaration": "O sistema deve permitir que utilizadores com perfil Administrador ou Operador cadastrem uma peça, com preenchimento obrigatório do código do fabricante, do nome e da categoria; e preenchimento opcional da descrição técnica, da localização física e de uma foto.",
+      "declaration": "O sistema deve permitir o cadastro de uma peça, com preenchimento obrigatório do código principal do fabricante, do nome e da categoria; e preenchimento opcional de códigos equivalentes (de outras marcas), da descrição técnica, da localização física e de uma foto. Cada código, principal ou equivalente, deve ser único no catálogo; ao tentar usar um código já existente, o sistema deve avisar qual peça já o utiliza.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -83,14 +83,15 @@
       "sprint": 3,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Códigos principal e equivalentes únicos no catálogo; duplicidade identifica a peça existente. Perfis retirados do MVP, conforme decisão do cliente de 04/11 e apontamentos #48, #50 e #53 (US01: #27)."
       ]
     },
     {
       "id": "RF02",
       "us": "US02",
       "name": "Importar peças via planilha",
-      "declaration": "O sistema deve permitir ao perfil Administrador selecionar uma planilha .xlsx de peças, validar os registros e cadastrá-los em lote, sem sobrescrever peças já cadastradas com o mesmo código do fabricante.",
+      "declaration": "O sistema deve permitir selecionar uma planilha .xlsx de peças, validar os registros e cadastrá-los em lote, sem sobrescrever peças já cadastradas com o mesmo código, principal ou equivalente.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -112,14 +113,15 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Importação sem restrição por perfil e sem sobrescrita de códigos principais ou equivalentes, alinhada ao cadastro e ao recorte sem autenticação (#53; US02: #28). Modelo e colunas da planilha ainda dependem de refinamento."
       ]
     },
     {
       "id": "RF03",
       "us": "US03",
       "name": "Associar veículo à peça",
-      "declaration": "O sistema deve permitir a associação de uma ou mais aplicações por veículo a uma peça cadastrada, com registo de marca, modelo e ano de compatibilidade.",
+      "declaration": "O sistema deve permitir a associação de uma ou mais aplicações por veículo a uma peça cadastrada, com registro de marca, modelo e ano de compatibilidade.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -141,14 +143,15 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF04",
       "us": "US04",
       "name": "Buscar peça",
-      "declaration": "O sistema deve permitir a localização de peças no catálogo por ao menos um dos seguintes filtros: código do fabricante, nome, categoria ou aplicação por veículo (marca, modelo ou ano).",
+      "declaration": "O sistema deve permitir a localização de peças no catálogo por ao menos um dos seguintes filtros: código do fabricante (principal ou equivalente), nome, categoria ou aplicação por veículo (marca, modelo ou ano).",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -170,14 +173,15 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Busca também pelo código equivalente, conforme decisão do cliente de 04/11 (US04: #30)."
       ]
     },
     {
       "id": "RF05",
       "us": "US05",
       "name": "Editar peça",
-      "declaration": "O sistema deve permitir a edição de qualquer campo do cadastro de uma peça já registrada, com exceção do código do fabricante, que é imutável após o cadastro inicial.",
+      "declaration": "O sistema deve permitir a edição dos campos do cadastro de uma peça já registrada (nome, categoria, códigos equivalentes, descrição técnica, localização física, foto e aplicação por veículo), com exceção do código principal, que é imutável após o cadastro inicial. Os dados fiscais da peça só podem ser alterados conforme a US33 (RF33).",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -199,14 +203,15 @@
       "sprint": 3,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Campos editáveis explicitados, código principal imutável e dados fiscais reservados à US33, eliminando a sobreposição apontada em #48 (US05: #31)."
       ]
     },
     {
       "id": "RF06",
       "us": "US06",
       "name": "Alterar status da peça",
-      "declaration": "O sistema deve permitir que o usuário altere o status de uma peça, alternando entre \"ativo\" e \"inativo\".",
+      "declaration": "O sistema deve permitir que o usuário altere o status de uma peça, alternando entre \"ativo\" e \"inativo\". A peça inativa continua aparecendo nas buscas, identificada como inativa, mas não recebe novas movimentações de estoque nem vendas; o saldo e os registros existentes não são alterados.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -228,14 +233,15 @@
       "sprint": 3,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Peça inativa permanece nas buscas, identificada, sem novas movimentações ou vendas e sem alteração dos registros existentes, conforme cliente em 04/11 e issue #48 (US06: #32)."
       ]
     },
     {
       "id": "RF07",
       "us": "US07",
       "name": "Cadastrar fornecedor",
-      "declaration": "O sistema deve permitir o cadastro de fornecedores.",
+      "declaration": "O sistema deve permitir o cadastro de fornecedores, com nome obrigatório e CNPJ, telefone e e-mail opcionais.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -257,14 +263,15 @@
       "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Cadastro de fornecedor detalhado com nome obrigatório e CNPJ, telefone e e-mail opcionais; permanece como evolução futura (#48)."
       ]
     },
     {
       "id": "RF08",
       "us": "US08",
-      "name": "Registar entrada de peças",
-      "declaration": "O sistema deve permitir o registo da entrada de um lote de peças no stock, com informação da peça, da quantidade, da data, do fornecedor e do preço de custo unitário.",
+      "name": "Registrar entrada de peças",
+      "declaration": "O sistema deve permitir o registro da entrada de um lote de peças no estoque, com informação da peça, da quantidade, da data e do preço de custo unitário.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -274,7 +281,7 @@
         "RNF03",
         "RNF05"
       ],
-      "dependencies": "RF01, RF07 — dependências derivadas da leitura da declaração, a validar no refinamento.",
+      "dependencies": "RF01 - peça cadastrada; a entrada não exige fornecedor cadastrado.",
       "priority": {
         "vn": 4,
         "moscow": "Must Have",
@@ -286,14 +293,16 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Entrada sem fornecedor; dependência da US07 removida, conforme decisão do cliente de 04/11 e issue #52 (US08: #33).",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF09",
       "us": "US09",
-      "name": "Registar saída manual",
-      "declaration": "O sistema deve permitir que utilizadores com perfil Administrador ou Operador registrem uma saída manual de peças do stock, com informação da peça, da quantidade, da data e do motivo.",
+      "name": "Registrar saída manual",
+      "declaration": "O sistema deve permitir o registro de uma saída manual de peças do estoque, com informação da peça, da quantidade, da data e do motivo. Saídas acima do saldo atual são bloqueadas, informando o saldo disponível.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -315,14 +324,16 @@
       "sprint": 5,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Saída acima do saldo bloqueada com informação do saldo disponível, sem restrição por perfil no MVP, conforme cliente em 04/11 e issues #48 e #53 (US09: #34).",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF10",
       "us": "US10",
-      "name": "Registar ajuste de inventário",
-      "declaration": "O sistema deve permitir que apenas o perfil Administrador realize o registo de um ajuste de inventário, com informação da peça, da diferença de quantidade (positiva ou negativa) e da justificativa do ajuste.",
+      "name": "Registrar ajuste de inventário",
+      "declaration": "O sistema deve permitir o registro de um ajuste de inventário, com informação da peça, da diferença de quantidade (positiva ou negativa) e da justificativa do ajuste. O ajuste não pode resultar em saldo negativo.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -344,13 +355,15 @@
       "sprint": 5,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Ajuste não pode produzir saldo negativo; restrição por perfil retirada do MVP, conforme cliente em 04/11 e issues #48 e #53 (US10: #35).",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF11",
       "us": "US11",
-      "name": "Registar devolução de peça",
+      "name": "Registrar devolução de peça",
       "declaration": "O sistema deve permitir que o usuário registre a devolução de uma peça vinculada a uma venda, restabelecendo a quantidade devolvida ao saldo do estoque.",
       "cp": "CP2",
       "epic": "EP02",
@@ -374,7 +387,8 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/10/2026 · Declaração ajustada: a devolução passou a ser vinculada a uma venda, conforme feedback da monitoria.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
@@ -410,7 +424,7 @@
       "id": "RF13",
       "us": "US13",
       "name": "Consultar histórico de movimentações",
-      "declaration": "O sistema deve exibir no ecrã o histórico de movimentações da peça.",
+      "declaration": "O sistema deve exibir em tela o histórico de movimentações da peça.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -431,14 +445,15 @@
       "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF14",
       "us": "US14",
       "name": "Filtrar histórico por período",
-      "declaration": "O sistema deve permitir que o utilizador aplique um filtro de período (data) na listagem do histórico de movimentações.",
+      "declaration": "O sistema deve permitir que o usuário aplique um filtro de período (data) na listagem do histórico de movimentações.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -459,14 +474,15 @@
       "sprint": 5,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF15",
       "us": "US15",
       "name": "Registrar venda",
-      "declaration": "O sistema deve permitir a utilizadores com perfil Administrador ou Operador o registro de uma venda com informação do canal de origem, das peças vendidas, das quantidades e do preço, atualizando o saldo em estoque.",
+      "declaration": "O sistema deve permitir o registro de uma venda, com informação do canal de origem (balcão, Mercado Livre ou contato direto), das peças vendidas, das quantidades e do preço unitário de cada item, atualizando o saldo em estoque. Vendas com quantidade acima do saldo são bloqueadas, informando o saldo atual.",
       "cp": "CP3",
       "epic": "EP03",
       "oe": "2",
@@ -489,14 +505,15 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/10/2026 · Declaração simplificada quanto à atualização do saldo em estoque, conforme feedback da monitoria.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Canais de venda e preço unitário explicitados; venda acima do saldo bloqueada, sem restrição por perfil no MVP, conforme cliente em 04/11 e issues #48, #50 e #53 (US15: #38)."
       ]
     },
     {
       "id": "RF16",
       "us": "US16",
       "name": "Cancelar venda",
-      "declaration": "O sistema deve permitir ao Administrador cancelar uma venda registrada previamente, revertendo a baixa de estoque correspondente.",
+      "declaration": "O sistema deve permitir cancelar uma venda registrada previamente, revertendo a baixa de estoque correspondente.",
       "cp": "CP3",
       "epic": "EP03",
       "oe": "2",
@@ -518,7 +535,8 @@
       "sprint": 5,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Cancelamento mantém a reversão da baixa de estoque, sem restrição por perfil no MVP (#53; US16: #39)."
       ]
     },
     {
@@ -554,7 +572,7 @@
       "id": "RF18",
       "us": "US18",
       "name": "Gerenciar status de recebimento",
-      "declaration": "O sistema deve permitir que o usuário registre o recebimento (total ou parcial) de uma venda e a forma de pagamento por meio de um botão dropdown, com as opções de status de recebimento. O status de novas vendas deve iniciar como \"a receber\", podendo o utilizador com perfil Administrador ou Operador atualizar esse status de forma autónoma ao registo.",
+      "declaration": "O sistema deve permitir que o usuário registre o recebimento (total ou parcial) de uma venda e a forma de pagamento, com as opções de status de recebimento. O status de novas vendas deve iniciar como \"a receber\", podendo ser atualizado a qualquer momento após o registro.",
       "cp": "CP3",
       "epic": "EP03",
       "oe": "2",
@@ -576,7 +594,8 @@
       "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Comportamento de recebimento separado da escolha de componente de interface, conforme #48; permanece como evolução futura."
       ]
     },
     {
@@ -1000,7 +1019,7 @@
       "id": "RF33",
       "us": "US33",
       "name": "Editar dados fiscais da peça",
-      "declaration": "O sistema deve permitir ao administrador alterar, no cadastro de uma peça, os dados fiscais já registrados: código NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável.",
+      "declaration": "O sistema deve permitir ao administrador alterar, no cadastro de uma peça, os dados fiscais já registrados: código NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável. Essa é a única forma de editar os dados fiscais da peça; a US05 (RF05) não os altera.",
       "cp": "CP6",
       "epic": "EP06",
       "oe": "3",
@@ -1024,7 +1043,8 @@
       "history": [
         "- 02/10/2026 · Corrigida a sobreposição entre os dados fiscais da peça e os da operação.",
         "- 13/10/2026 · Característica de origem realinhada à solução vigente, com a unificação de compras e análise na CP4.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Exclusividade da edição fiscal explicitada em relação à US05, conforme #48; permanece como evolução futura."
       ]
     },
     {

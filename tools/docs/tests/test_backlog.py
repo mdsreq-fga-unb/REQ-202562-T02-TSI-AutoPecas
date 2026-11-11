@@ -169,7 +169,9 @@ class BacklogTests(unittest.TestCase):
         self.assertTrue(any("autenticação" in w for w in result["warnings"]))
 
     def test_mvp_dependency_outside_cut_remains_visible(self):
-        result = merge(read_base())['stories'][7]
+        base = read_base()
+        base['stories'][7]['dependencies'] = 'RF01, RF07'
+        result = merge(base)['stories'][7]
         self.assertTrue(any('US07' in w for w in result['warnings']))
 
     def test_configured_project_status_has_precedence_over_form(self):
