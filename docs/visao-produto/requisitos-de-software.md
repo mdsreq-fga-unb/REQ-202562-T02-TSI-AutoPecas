@@ -10,8 +10,9 @@ priorização e evidências, sem uma lista geral ou um quadro de MVP paralelo.
 
 A narrativa e os critérios vêm das issues; os vínculos aprovados e a priorização vêm da base
 versionada. Consulte [Organização e atualização dos requisitos](historico-de-evolucao.md) para
-entender a manutenção e a automação. Os valores de negócio ainda aguardam confirmação formal do
-proprietário, conforme [Priorização](priorizacao.md#avaliacao-do-valor-de-negocio-vn).
+entender a manutenção e a automação. As decisões de entrega e as ressalvas de estimativa são
+exibidas junto à priorização de cada US. As pontuações de valor ainda não confirmadas permanecem
+pendentes, conforme [Priorização](priorizacao.md#avaliacao-do-valor-de-negocio-vn).
 
 <!-- BACKLOG:GERADO -->
 
@@ -31,3 +32,4 @@ proprietário, conforme [Priorização](priorizacao.md#avaliacao-do-valor-de-neg
 |  2.2   | 05/11/2026 | Padronização visual dos RFs e RNFs expansíveis, com notas, fórmulas e conclusões da priorização em destaque; remoção do aviso de situação de confirmação de cada RF.                                                                                                                                 | [Thiago Gomes](https://github.com/thgomxs) |
 |  2.3   | 05/11/2026 | Agrupamento dos RNFs por CP7 e CP8, identificação da CP nos cabeçalhos e esclarecimento da origem pendente do RNF04.                                                                                                                                                                                 | [Thiago Gomes](https://github.com/thgomxs) |
 | 3.0 | 05/11/2026 | Backlog único organizado por épicos e US, com geração a partir da base de requisitos e das issues, acompanhamento automático e incorporação do recorte do MVP. | [Thiago Gomes](https://github.com/thgomxs) |
+| 3.1 | 10/11/2026 | Revisão das declarações, dependências e priorização conforme decisões do cliente; MVP com 12 US, preservando US13 e US14 separadas e fora do recorte. Justificativas de entrega e pendências de esforço visíveis nos registros. | [Thiago Gomes](https://github.com/thgomxs) e [João Guilherme Amancio de Melo](https://github.com/jot4-ge) |

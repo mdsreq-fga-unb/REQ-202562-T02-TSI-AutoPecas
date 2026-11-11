@@ -11,7 +11,7 @@ from unittest.mock import patch
 from scripts.backlog import (BacklogError, BASE, GitHub, collect, identifiers,
                              issue_references, main, merge, parse_story, priority,
                              read_base, sections, validate_base)
-from scripts.backlog_render import render_catalog
+from scripts.backlog_render import render_catalog, render_story
 from scripts.check_links import check as check_links
 
 
@@ -44,11 +44,25 @@ class BacklogTests(unittest.TestCase):
         base = read_base()
         self.assertEqual({s["us"] for s in base["stories"]}, {f"US{i:02}" for i in range(1, 41)})
         self.assertEqual([sum(s["delivery"] == cut for s in base["stories"]) for cut in
-                          ["MVP", "Condicionado", "Evolução futura"]], [13, 5, 22])
+                          ["MVP", "Condicionado", "Evolução futura"]], [12, 6, 22])
+
+    def test_mvp_cut_preserves_separate_history_stories_and_resolves_dependencies(self):
+        base = read_base()
+        stories = {s["us"]: s for s in merge(base)["stories"]}
+        expected = {f"US{i:02}" for i in [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16]}
+        self.assertEqual({us for us, s in stories.items() if s["delivery"] == "MVP"}, expected)
+        for us in ("US13", "US14"):
+            self.assertEqual(stories[us]["delivery"], "Condicionado")
+            self.assertIsNone(stories[us]["sprint"])
+        self.assertNotIn("filtr", stories["US13"]["declaration"].lower())
+        self.assertEqual(stories["US14"]["dependency_ids"], ["RF13"])
+        self.assertFalse(any(s["warnings"] for s in stories.values() if s["delivery"] == "MVP"))
+        self.assertEqual(priority(stories["US02"]["priority"]), (2, 3, "Q3"))
+        self.assertEqual(priority(stories["US16"]["priority"]), (2, 5, "Q1"))
 
     def test_conditioned_stories_have_no_sprint_assigned(self):
         stories = [s for s in read_base()['stories'] if s['delivery'] == 'Condicionado']
-        self.assertEqual(len(stories), 5)
+        self.assertEqual(len(stories), 6)
         self.assertTrue(all(s['sprint'] is None for s in stories))
 
     def test_rf_us_relation_and_epic_cp_are_validated(self):
@@ -76,6 +90,31 @@ class BacklogTests(unittest.TestCase):
     def test_rounded_effort_and_scores(self):
         self.assertEqual(priority({"ei": 3, "ca": 3, "lc": 1, "vn": 4, "moscow": "Must Have"}), (2, 5, "Q1"))
         self.assertEqual(priority({"ei": 4, "ca": 4, "lc": 4, "vn": 0, "moscow": "Won't Have"}), (4, -4, "Q4"))
+
+    def test_delivery_exception_is_visible_without_changing_calculated_score(self):
+        base = read_base()
+        item = base["stories"][1]
+        item["priority"]["vn"] = 2
+        item["delivery_reason"] = "MVP por exceção: decisão do cliente; Score abaixo de 4."
+        item["priority_note"] = "Modelo da planilha <a definir>, sem novas notas de esforço."
+        record = merge(base)["stories"][1]
+        html = render_story(record)
+        self.assertEqual(priority(record["priority"]), (2, 3, "Q3"))
+        self.assertEqual(record["delivery"], "MVP")
+        self.assertIn("Score 3", html)
+        self.assertIn("Decisão de entrega", html)
+        self.assertIn(item["delivery_reason"], html)
+        self.assertIn("&lt;a definir&gt;", html)
+        self.assertNotIn("<a definir>", html)
+
+    def test_dependency_display_uses_us_and_preserves_rf_origin_and_anchor(self):
+        record = merge(read_base())["stories"][1]
+        html = render_story(record)
+        dependency_row = html.split("<dt>Dependências</dt>", 1)[1].split("</dd>", 1)[0]
+        self.assertIn('href="#us01"', dependency_row)
+        self.assertNotIn('href="#rf01"', dependency_row)
+        self.assertIn('id="rf02"', html)
+        self.assertIn("Declaração de origem - RF02", html)
 
     def test_legacy_issue_is_imported_without_recreation(self):
         data = parse_story(issue())
@@ -144,7 +183,9 @@ class BacklogTests(unittest.TestCase):
         self.assertTrue(any("autenticação" in w for w in result["warnings"]))
 
     def test_mvp_dependency_outside_cut_remains_visible(self):
-        result = merge(read_base())['stories'][7]
+        base = read_base()
+        base['stories'][7]['dependencies'] = 'RF01, RF07'
+        result = merge(base)['stories'][7]
         self.assertTrue(any('US07' in w for w in result['warnings']))
 
     def test_configured_project_status_has_precedence_over_form(self):
