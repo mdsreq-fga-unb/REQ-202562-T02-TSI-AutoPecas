@@ -19,6 +19,7 @@ export function buildTheme(mode = 'light') {
       text: { primary: isDark ? '#f3f4f6' : '#20232a', secondary: isDark ? '#adb3bf' : '#626975' },
       divider: isDark ? '#363a44' : '#dde1e7',
       success: { main: isDark ? '#7ed6a4' : '#28734b' },
+      error: { main: isDark ? '#ff8a80' : '#d32f2f' },
     },
     typography: {
       fontFamily: 'Inter, system-ui, sans-serif',

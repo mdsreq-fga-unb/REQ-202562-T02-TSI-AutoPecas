@@ -16,16 +16,6 @@ body {
 .skip-link:focus {
   top: 12px;
 }
-.section-number {
-  width: 25px;
-  height: 25px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: 600;
-}
 *:focus-visible {
   outline-offset: 3px;
 }

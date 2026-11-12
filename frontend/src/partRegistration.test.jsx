@@ -4,6 +4,21 @@ import App from './App.jsx';
 
 afterEach(() => vi.unstubAllGlobals());
 
+test('associa o aviso de código permanente ao campo e preserva a descrição dos erros', () => {
+  render(<App />);
+  const code = screen.getByRole('textbox', { name: /Código do fabricante/ });
+  const permanentCodeNotice = 'O código principal é permanente após o cadastro.';
+
+  expect(code).toHaveAccessibleDescription(permanentCodeNotice);
+  fireEvent.click(screen.getByRole('button', { name: 'Cadastrar peça' }));
+  expect(code).toHaveAccessibleDescription(`${permanentCodeNotice} Preencha este campo.`);
+  expect(code).toHaveFocus();
+
+  fireEvent.change(code, { target: { value: 'FLT-100' } });
+  expect(code).toHaveAccessibleDescription(permanentCodeNotice);
+  expect(code).not.toHaveAttribute('aria-invalid', 'true');
+});
+
 test('cadastra uma peça somente com os três campos obrigatórios', async () => {
   const request = vi.fn().mockResolvedValue({
     ok: true,

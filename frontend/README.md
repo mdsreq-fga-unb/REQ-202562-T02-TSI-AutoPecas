@@ -141,6 +141,27 @@ Validação com Node **22.23.4**, usando o binário temporário no `PATH`:
   de tema, persistência após recarregar e três mensagens de campos obrigatórios
   confirmados, sem erros ou avisos no console. Não houve envio à API real.
 
+## Ajustes de acessibilidade — 12/11/2026 (Refs #27)
+
+- As mensagens de erro no tema escuro usam `#ff8a80` sobre `#1e2127`, com contraste
+  calculado de **7,07:1** (antes: 4,38:1). A cor de erro do tema claro foi preservada.
+- O campo de código do fabricante referencia o aviso de permanência e, quando
+  aplicável, a mensagem de erro por `aria-describedby`. Ao corrigir o campo, o
+  aviso continua associado e a descrição do erro deixa de ser referenciada.
+- `src/components/SectionNumber.jsx` reúne a apresentação dos três indicadores,
+  substituindo o estilo global e as definições repetidas na página de cadastro.
+- O teste da descrição acessível falhou pela ausência do aviso antes da correção.
+  Após a implementação e a extração do componente, a suíte completa passou com
+  **10 testes em 3 arquivos**, usando Node **22.23.4** e a configuração padrão.
+- Comandos aprovados: `node node_modules/vitest/vitest.mjs run`,
+  `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`. O maior bundle permanece em 269,91 kB,
+  sem aviso de tamanho. `git diff --check` também passou.
+- No build de produção, foram conferidos a cor renderizada, o fundo das mensagens,
+  os três indicadores e os dois textos referenciados pelo campo com erro. A inspeção
+  do DOM não substitui testes com leitores de tela nem a matriz completa do RNF03.
+
 ## Publicação
 
 Para publicar na Vercel, use `frontend/` como **Root Directory** e configure

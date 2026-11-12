@@ -17,6 +17,7 @@ import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
 import CheckCircleOutlineRounded from '@mui/icons-material/CheckCircleOutlineRounded';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import Inventory2Outlined from '@mui/icons-material/Inventory2Outlined';
+import SectionNumber from '../../components/SectionNumber.jsx';
 import PhotoField from './PhotoField.jsx';
 import usePartRegistration from './usePartRegistration.js';
 
@@ -153,12 +154,7 @@ export default function PartRegistrationPage() {
           <Stack spacing={2.5}>
             <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 3.5 } }}>
               <Stack direction="row" spacing={1.5} sx={{ mb: 3, alignItems: 'center' }}>
-                <Box
-                  className="section-number"
-                  sx={{ bgcolor: 'primary.light', color: 'primary.main' }}
-                >
-                  1
-                </Box>
+                <SectionNumber>1</SectionNumber>
                 <Typography variant="h2" sx={{ flex: 1 }}>
                   Identificação
                 </Typography>
@@ -188,7 +184,14 @@ export default function PartRegistrationPage() {
                   {field('manufacturer_code', 'Código do fabricante', {
                     required: true,
                     placeholder: 'Ex.: FLT-100',
-                    slotProps: { htmlInput: { maxLength: 100 } },
+                    slotProps: {
+                      htmlInput: {
+                        maxLength: 100,
+                        'aria-describedby': errors.manufacturer_code
+                          ? 'manufacturer-code-help manufacturer_code-helper-text'
+                          : 'manufacturer-code-help',
+                      },
+                    },
                   })}
                   {field('category', 'Categoria', {
                     required: true,
@@ -207,7 +210,7 @@ export default function PartRegistrationPage() {
                   sx={{ alignItems: 'center', color: 'text.secondary' }}
                 >
                   <InfoOutlined sx={{ fontSize: 15 }} />
-                  <Typography variant="body2">
+                  <Typography id="manufacturer-code-help" variant="body2">
                     O código principal é permanente após o cadastro.
                   </Typography>
                 </Stack>
@@ -215,12 +218,7 @@ export default function PartRegistrationPage() {
             </Paper>
             <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 3.5 } }}>
               <Stack direction="row" spacing={1.5} sx={{ mb: 3, alignItems: 'center' }}>
-                <Box
-                  className="section-number"
-                  sx={{ bgcolor: 'primary.light', color: 'primary.main' }}
-                >
-                  2
-                </Box>
+                <SectionNumber>2</SectionNumber>
                 <Typography variant="h2" sx={{ flex: 1 }}>
                   Referências e detalhes
                 </Typography>
@@ -257,12 +255,7 @@ export default function PartRegistrationPage() {
                 sx={{ mb: 2.5, alignItems: 'center', justifyContent: 'space-between' }}
               >
                 <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
-                  <Box
-                    className="section-number"
-                    sx={{ bgcolor: 'primary.light', color: 'primary.main' }}
-                  >
-                    3
-                  </Box>
+                  <SectionNumber>3</SectionNumber>
                   <Typography variant="h2">Foto da peça</Typography>
                 </Stack>
                 <Typography variant="body2" color="text.secondary" sx={{ fontSize: 11 }}>
