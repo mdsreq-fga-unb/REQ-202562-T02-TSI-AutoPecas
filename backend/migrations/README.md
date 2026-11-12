@@ -14,6 +14,12 @@ A revisão `0001_parts` implementa a US01 (Refs #27): peças, registro compartil
 de códigos únicos e resultados de tentativas idempotentes. As três tabelas têm
 identificador e datas UTC. Fotos são armazenadas junto à peça, na mesma transação.
 
+A revisão `0002_part_updates` implementa o registro de tentativas idempotentes da
+edição na US05 (Refs #31). Ela acrescenta `part_update_requests`, sem alterar ou
+recriar as peças existentes. Aplique `upgrade head` antes de disponibilizar a
+edição. Seu `downgrade` remove o histórico das tentativas de edição, portanto
+elimina a proteção contra a repetição dessas tentativas anteriores.
+
 Para uma nova mudança, use `uv run alembic revision --autogenerate -m "descrição"`
 e revise o SQL gerado antes de aplicá-lo. `uv run alembic upgrade head --sql`
 permite inspecionar o SQL sem conectar ao banco. Nunca use `create_all` na aplicação.

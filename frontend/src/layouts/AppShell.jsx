@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { Box, Breadcrumbs, Drawer, IconButton, Stack, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Breadcrumbs,
+  Drawer,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import Inventory2Outlined from '@mui/icons-material/Inventory2Outlined';
 import MenuRounded from '@mui/icons-material/MenuRounded';
 import AddRounded from '@mui/icons-material/AddRounded';
@@ -9,7 +18,14 @@ import logo from '../assets/tsi-pecas-logo.png';
 
 const SIDEBAR_WIDTH = 130;
 
-export default function AppShell({ children, mode, onToggleTheme }) {
+export default function AppShell({
+  children,
+  mode,
+  onToggleTheme,
+  page = 'new',
+  onNavigate,
+  isNavigationLocked = false,
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigation = (
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 1.75, py: 3 }}>
@@ -33,27 +49,38 @@ export default function AppShell({ children, mode, onToggleTheme }) {
       >
         Gestão
       </Typography>
-      <Stack spacing={1} sx={{ alignItems: 'center', color: 'text.secondary', py: 2 }}>
-        <Inventory2Outlined fontSize="small" />
-        <Typography variant="body2">Catálogo</Typography>
-      </Stack>
-      <Stack
-        spacing={1}
-        aria-current="page"
-        sx={{
-          alignItems: 'center',
-          bgcolor: '#c9002c',
-          color: '#fff',
-          py: 2.5,
-          mt: 1.5,
-          borderRadius: 1,
+      <Button
+        aria-current={page === 'catalog' ? 'page' : undefined}
+        disabled={page === 'edit' || isNavigationLocked}
+        onClick={() => {
+          onNavigate('catalog');
+          setIsMenuOpen(false);
         }}
+        variant={page === 'catalog' ? 'contained' : 'text'}
+        color={page === 'catalog' ? 'primary' : 'secondary'}
+        sx={{ flexDirection: 'column', gap: 1, py: 2, px: 1, minWidth: 0 }}
+      >
+        <Inventory2Outlined fontSize="small" />
+        <Typography component="span" variant="body2">
+          Catálogo
+        </Typography>
+      </Button>
+      <Button
+        aria-current={page === 'new' ? 'page' : undefined}
+        disabled={page === 'edit' || isNavigationLocked}
+        onClick={() => {
+          onNavigate('new');
+          setIsMenuOpen(false);
+        }}
+        variant={page === 'new' ? 'contained' : 'text'}
+        color={page === 'new' ? 'primary' : 'secondary'}
+        sx={{ flexDirection: 'column', gap: 1, py: 2.5, mt: 1.5, px: 1, minWidth: 0 }}
       >
         <AddRounded />
-        <Typography variant="body2" sx={{ fontWeight: 600 }}>
+        <Typography component="span" variant="body2">
           Nova peça
         </Typography>
-      </Stack>
+      </Button>
       <Box sx={{ mt: 'auto', pt: 5, px: 1 }}>
         <Box sx={{ width: 24, height: 4, bgcolor: 'primary.main', mb: 2 }} />
         <Typography sx={{ fontSize: 23, lineHeight: 1.2, color: 'text.secondary' }}>TSI</Typography>
@@ -114,7 +141,11 @@ export default function AppShell({ children, mode, onToggleTheme }) {
               Catálogo
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Cadastro de peça
+              {page === 'edit'
+                ? 'Editar peça'
+                : page === 'catalog'
+                  ? 'Peças cadastradas'
+                  : 'Cadastro de peça'}
             </Typography>
           </Breadcrumbs>
           <Stack direction="row" spacing={1} sx={{ ml: 'auto', alignItems: 'center' }}>
@@ -126,7 +157,11 @@ export default function AppShell({ children, mode, onToggleTheme }) {
               <Box component="span" sx={{ color: 'primary.main', mr: 1 }}>
                 ●
               </Box>
-              Cadastro manual
+              {page === 'edit'
+                ? 'Edição manual'
+                : page === 'catalog'
+                  ? 'Gestão de catálogo'
+                  : 'Cadastro manual'}
             </Typography>
             <Tooltip title={themeLabel}>
               <IconButton aria-label={themeLabel} onClick={onToggleTheme}>

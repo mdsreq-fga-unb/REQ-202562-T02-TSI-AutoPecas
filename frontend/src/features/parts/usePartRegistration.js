@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { createPart } from '../../services/parts.js';
+import { serializePartForm, validatePartForm } from './partForm.js';
 
 const emptyForm = {
   manufacturer_code: '',
@@ -29,25 +30,8 @@ export default function usePartRegistration() {
   async function submit(event) {
     event.preventDefault();
     if (inFlight.current) return;
-    const data = {
-      ...form,
-      manufacturer_code: form.manufacturer_code.trim(),
-      name: form.name.trim(),
-      category: form.category.trim(),
-      equivalent_codes: form.equivalent_codes
-        .split(/[\n,;]+/)
-        .map((code) => code.trim())
-        .filter(Boolean),
-      technical_description: form.technical_description.trim() || null,
-      physical_location: form.physical_location.trim() || null,
-    };
-    const invalid = {};
-    for (const field of ['manufacturer_code', 'name', 'category']) {
-      if (!data[field]) invalid[field] = 'Preencha este campo.';
-    }
-    const codes = [data.manufacturer_code, ...data.equivalent_codes];
-    if (codes.length !== new Set(codes).size)
-      invalid.equivalent_codes = 'Não repita o código principal nem os códigos equivalentes.';
+    const data = serializePartForm(form);
+    const invalid = validatePartForm(data);
     setErrors(invalid);
     if (Object.keys(invalid).length) {
       event.currentTarget.querySelector(`[name="${Object.keys(invalid)[0]}"]`)?.focus();

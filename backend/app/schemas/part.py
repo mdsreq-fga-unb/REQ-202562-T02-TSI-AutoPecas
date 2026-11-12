@@ -1,8 +1,15 @@
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Annotated
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    StringConstraints,
+    field_validator,
+    model_validator,
+)
 
 Code = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
 
@@ -37,3 +44,38 @@ class PartResponse(BaseModel):
     photo_url: str | None
     created_at: datetime
     updated_at: datetime
+
+    @field_validator("created_at", "updated_at")
+    @classmethod
+    def normalize_utc(cls, value: datetime) -> datetime:
+        # SQLite devolve datas sem fuso; os valores persistidos pelo serviço são UTC.
+        return value.replace(tzinfo=UTC) if value.tzinfo is None else value.astimezone(UTC)
+
+
+class PartUpdate(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
+
+    name: str | None = Field(default=None, min_length=1, max_length=200)
+    category: str | None = Field(default=None, min_length=1, max_length=100)
+    equivalent_codes: list[Code] | None = Field(default=None, max_length=100)
+    technical_description: str | None = Field(default=None, max_length=5000)
+    physical_location: str | None = Field(default=None, max_length=200)
+    photo_data: str | None = Field(default=None, max_length=2_800_000)
+
+    @model_validator(mode="after")
+    def validate_update(self) -> "PartUpdate":
+        if not self.model_fields_set:
+            raise ValueError("Informe ao menos um campo para editar.")
+        for field in ("name", "category", "equivalent_codes"):
+            if field in self.model_fields_set and getattr(self, field) is None:
+                raise ValueError("Nome, categoria e lista de equivalentes não podem ser nulos.")
+        if self.equivalent_codes is not None and len(self.equivalent_codes) != len(
+            set(self.equivalent_codes)
+        ):
+            raise ValueError("Não repita um código na mesma peça.")
+        return self
+
+
+class PartListResponse(BaseModel):
+    items: list[PartResponse]
+    total: int

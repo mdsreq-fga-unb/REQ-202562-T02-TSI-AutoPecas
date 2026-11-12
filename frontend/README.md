@@ -12,6 +12,7 @@ pnpm dev
 No PowerShell, use `Copy-Item .env.example .env` para copiar o exemplo.
 O front-end atende em <http://localhost:5173>. Execute também a API para conferir
 a conexão. A página inicial implementa o cadastro manual da US01 (issue #27).
+O menu Catálogo permite selecionar peças e acessar a edição da US05 (issue #31).
 
 ```bash
 pnpm test
@@ -35,12 +36,14 @@ credenciais do PostgreSQL/Supabase ficam exclusivamente no back-end.
   tipografia Inter servida localmente e controles com área de toque mínima de 44 px.
 - `src/assets/`: logo original da TSI Peças, reutilizada de `docs/assets/`.
 - `src/layouts/`: estrutura de navegação e adaptação para celular.
-- `src/features/parts/`: formulário, seleção de foto e hook do fluxo de cadastro.
+- `src/features/parts/`: catálogo, campos compartilhados, seleção de foto e hooks
+  dos fluxos de cadastro e edição.
 - `src/services/`: contratos HTTP, tradução de falhas e endereço da API.
 
 Componentes cuidam da apresentação; o hook mantém o estado local e o serviço HTTP
 envia os dados. A API valida novamente os campos e garante a unicidade no banco.
-Não há estado global nem biblioteca de rotas enquanto existe apenas essa tela.
+A navegação entre cadastro, catálogo e edição usa estado local em `App`, sem
+biblioteca de rotas. Recarregar a página volta à tela de cadastro.
 
 O cadastro separa identificação obrigatória de referências e detalhes opcionais,
 com a foto na coluna lateral em desktop e abaixo dos campos no celular. O botão
@@ -59,8 +62,27 @@ o formulário mantém os dados e repete a mesma chave; a API devolve o cadastro
 original se ele já foi confirmado. Essa proteção vale enquanto a página permanece
 aberta; não há rascunho persistido nem fila offline nesta entrega.
 
+O catálogo pagina os registros em grupos de 20 e oferece a ação Editar. Essa
+listagem é o acesso à US05; não implementa a busca e os filtros de outras histórias.
+Também é possível editar uma peça imediatamente após cadastrá-la. Nome, categoria,
+equivalentes, localização, descrição e foto podem ser alterados. O código do
+fabricante é somente leitura. O PATCH envia apenas os campos alterados em relação
+ao formulário carregado, preservando os demais campos e os equivalentes originais.
+Foto não alterada não é reenviada; remover a foto envia `null`. Sem alterações,
+Salvar permanece desabilitado. O cadastro e a edição compartilham `PartFormFields`
+e `partForm.js`.
+
+A edição confirma o descarte de alterações e preserva os dados em falhas. Enquanto
+uma gravação está em andamento ou seu resultado é incerto, os campos e a navegação
+ficam bloqueados para repetir a mesma tentativa. A saída do cadastro preenchido
+para o catálogo também exige confirmação. Na edição, use Cancelar ou a confirmação
+de sucesso para retornar ao catálogo; o menu permanece desabilitado nesse fluxo.
+Durante o carregamento, Voltar ao catálogo cancela a consulta pendente.
+
 `partRegistration.test.jsx` cobre o fluxo observado pelo usuário com rede isolada.
 Os testes antigos do cliente de `/health` continuam em `services/api.test.js`.
+`partEditing.test.jsx` cobre edição, obrigatoriedade, foto, falhas, descarte,
+carregamento e paginação, sem depender da API remota.
 
 ## Evidências da implementação da US01
 
@@ -161,6 +183,67 @@ Validação com Node **22.23.4**, usando o binário temporário no `PATH`:
 - No build de produção, foram conferidos a cor renderizada, o fundo das mensagens,
   os três indicadores e os dois textos referenciados pelo campo com erro. A inspeção
   do DOM não substitui testes com leitores de tela nem a matriz completa do RNF03.
+
+## Evidências da implementação da US05 — 12/11/2026 (Refs #31)
+
+Status local: implementação verificada; revisão por outro integrante e aceite do
+cliente pendentes. O recorte foi confirmado pelo solicitante: apenas os campos
+atuais da US01, sem aplicações por veículo nem dados fiscais. Consulte a
+[issue #31](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/31)
+para os critérios CA05.1, CA05.2 e CA05.3. Não houve alteração de status remoto.
+
+- TDD: os cinco cenários iniciais de edição falharam pela ausência do acesso ao
+  catálogo antes da implementação. O teste de proteção do cadastro ao navegar
+  também falhou antes da confirmação de descarte ser adicionada. Testes de
+  carregamento, paginação e envio de foto foram acrescentados na revisão; não
+  constituem evidência retroativa de TDD.
+- Node **22.23.4**, usando o binário oficial temporário no `PATH`, com dependências
+  do lockfile e sem alterar o Node global.
+- Comandos: `node node_modules/vitest/vitest.mjs run --coverage`,
+  `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`.
+- Resultado: **19 testes aprovados em 4 arquivos**, com configuração padrão de
+  workers, ESLint, Prettier e build aprovados. Cobertura por linhas: **88,49%**;
+  ramificações: **90,36%**. As lacunas incluem erro de leitura de arquivo,
+  resposta JSON inválida e algumas ações do menu móvel; não há mínimo de cobertura.
+- Maior bundle: **270,37 kB** minificado (**86,74 kB** gzip). Aplicação: **27,31 kB**;
+  React: **218,75 kB**. Todos os arquivos JavaScript continuam abaixo de 500 kB,
+  sem aumentar o limite do aviso ou adicionar dependências.
+- Navegador integrado com API real e SQLite descartável: cadastro, edição,
+  obrigatoriedade, retorno ao catálogo e reabertura dos dados persistidos conferidos.
+  Temas claro e escuro inspecionados; edição sem transbordamento horizontal em
+  360, 390 e 414 px, com controles de pelo menos 44×44 px em 360 px.
+- Um aviso de propriedade `alignItems` no DOM foi corrigido usando `sx` no estado
+  de carregamento. Após recarregar e reabrir a edição, não surgiram novos avisos
+  ou erros no console. `git diff --check` aprovado.
+- Permanecem pendentes a matriz completa de navegadores do RNF03 e testes com
+  leitores de tela. Rascunhos não persistem após fechar ou recarregar a página.
+
+### Revisão da US05 — 12/11/2026 (Refs #31)
+
+- Revisados os arquivos alterados e novos, contratos HTTP, migração, critérios
+  CA05.1–CA05.3 e padrões dos AGENTS/READMEs. Mantidos MUI, camadas, código em inglês,
+  interface em português, lockfiles e o recorte autorizado.
+- Corrigido o reenvio de campos não editados no PATCH, que podia sobrescrever
+  mudanças em outros campos e reinterpretar equivalentes com separadores. O botão
+  Salvar não envia uma edição vazia; desfazer as mudanças também remove o estado
+  de formulário alterado.
+- Corrigida a ausência de retorno durante uma consulta lenta da peça. A saída
+  agora aborta a consulta ao desmontar a tela, sem aguardar seu timeout.
+- TDD: os testes de envio parcial, preservação de equivalentes e formulário sem
+  mudanças falharam antes da correção; o teste de saída durante carregamento
+  também falhou pela ausência do botão. Todos passaram após os ajustes.
+- Revalidação com **Node 22.23.4**: `node node_modules/vitest/vitest.mjs run --coverage`
+  aprovou **22 testes em 4 arquivos**, com configuração padrão de workers.
+  `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build` aprovados. `git diff --check` aprovado.
+- Maior bundle mantido em **270,37 kB**; aplicação em **27,42 kB**. Cobertura de
+  linhas: **88,44%**; ramificações: **90,80%**. Nenhuma dependência adicionada.
+- A inspeção visual registrada acima foi consultada; não foi repetida nesta
+  revisão. Os estados alterados foram verificados com Testing Library. A matriz
+  de navegadores, leitores de tela e aceite do cliente continuam pendentes.
 
 ## Publicação
 

@@ -61,7 +61,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             content={
                 "detail": {
                     "message": (
-                        "Não foi possível confirmar o cadastro. "
+                        "Não foi possível confirmar a operação. "
                         "Tente novamente com os mesmos dados."
                     )
                 }
