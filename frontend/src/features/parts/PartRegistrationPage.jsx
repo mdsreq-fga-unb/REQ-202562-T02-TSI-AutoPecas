@@ -3,12 +3,10 @@ import {
   Alert,
   Box,
   Button,
-  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Divider,
   Paper,
   Stack,
   TextField,
@@ -18,6 +16,7 @@ import AddRounded from '@mui/icons-material/AddRounded';
 import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
 import CheckCircleOutlineRounded from '@mui/icons-material/CheckCircleOutlineRounded';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
+import Inventory2Outlined from '@mui/icons-material/Inventory2Outlined';
 import PhotoField from './PhotoField.jsx';
 import usePartRegistration from './usePartRegistration.js';
 
@@ -33,16 +32,27 @@ export default function PartRegistrationPage() {
     setFormVersion((n) => n + 1);
   };
   const field = (name, label, options = {}) => (
-    <TextField
-      name={name}
-      label={label}
-      value={form[name]}
-      onChange={(event) => update(name, event.target.value)}
-      disabled={isLocked || isReadingPhoto}
-      error={Boolean(errors[name])}
-      {...options}
-      helperText={errors[name] || options.helperText}
-    />
+    <Box>
+      <Typography component="label" htmlFor={name} variant="body2" sx={{ display: 'block', mb: 1 }}>
+        {label}
+        {options.required && (
+          <Box component="span" sx={{ color: 'primary.main' }}>
+            {' '}
+            *
+          </Box>
+        )}
+      </Typography>
+      <TextField
+        id={name}
+        name={name}
+        value={form[name]}
+        onChange={(event) => update(name, event.target.value)}
+        disabled={isLocked || isReadingPhoto}
+        error={Boolean(errors[name])}
+        {...options}
+        helperText={errors[name] || options.helperText}
+      />
+    </Box>
   );
 
   if (savedPart)
@@ -89,31 +99,42 @@ export default function PartRegistrationPage() {
 
   return (
     <>
-      <Stack
-        direction="row"
-        sx={{ mb: 3.5, justifyContent: 'space-between', alignItems: 'center' }}
-      >
+      <Stack direction="row" sx={{ mb: 4, justifyContent: 'space-between', alignItems: 'center' }}>
         <Box>
           <Typography
             variant="overline"
-            color="primary"
-            sx={{ letterSpacing: 2, fontSize: 10, fontWeight: 700 }}
+            color="text.secondary"
+            sx={{ letterSpacing: 2.5, fontSize: 10, fontWeight: 700 }}
           >
-            Catálogo de peças
+            Organização que move a loja
           </Typography>
-          <Typography variant="h1" sx={{ mt: 0.5, mb: 1 }}>
+          <Typography variant="h1" sx={{ mt: 1.5, mb: 1, fontSize: { xs: 36, sm: 48 } }}>
             Nova peça
+            <Box component="span" sx={{ color: 'primary.main' }}>
+              .
+            </Box>
           </Typography>
           <Typography color="text.secondary">
-            Organize os detalhes da peça para encontrá-la com facilidade.
+            Identifique, detalhe e adicione ao seu catálogo.
           </Typography>
         </Box>
-        <Chip
-          label="Cadastro manual"
-          variant="outlined"
-          size="small"
-          sx={{ display: { xs: 'none', lg: 'flex' }, bgcolor: 'white', fontSize: 11 }}
-        />
+        <Box
+          aria-hidden="true"
+          sx={{
+            display: { xs: 'none', sm: 'grid' },
+            placeItems: 'center',
+            width: 90,
+            height: 90,
+            bgcolor: 'background.paper',
+            border: '1px solid',
+            borderColor: 'divider',
+            borderRadius: 2,
+            transform: 'rotate(-7deg)',
+            mr: 0.5,
+          }}
+        >
+          <Inventory2Outlined sx={{ color: 'primary.main', fontSize: 44 }} />
+        </Box>
       </Stack>
       <Box component="form" noValidate onSubmit={registration.submit}>
         {error && (
@@ -129,18 +150,34 @@ export default function PartRegistrationPage() {
             alignItems: 'start',
           }}
         >
-          <Stack spacing={3}>
+          <Stack spacing={2.5}>
             <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 3.5 } }}>
               <Stack direction="row" spacing={1.5} sx={{ mb: 3, alignItems: 'center' }}>
-                <Box className="section-number">01</Box>
-                <Box>
-                  <Typography variant="h2">Identificação da peça</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    As informações essenciais para o seu catálogo.
-                  </Typography>
+                <Box
+                  className="section-number"
+                  sx={{ bgcolor: 'primary.light', color: 'primary.main' }}
+                >
+                  1
                 </Box>
+                <Typography variant="h2" sx={{ flex: 1 }}>
+                  Identificação
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    fontSize: 10,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    borderRadius: 0.5,
+                    px: 1,
+                    py: 0.5,
+                  }}
+                >
+                  3 campos obrigatórios
+                </Typography>
               </Stack>
-              <Stack spacing={3}>
+              <Stack spacing={2.5}>
                 <Box
                   sx={{
                     display: 'grid',
@@ -152,7 +189,6 @@ export default function PartRegistrationPage() {
                     required: true,
                     placeholder: 'Ex.: FLT-100',
                     slotProps: { htmlInput: { maxLength: 100 } },
-                    helperText: 'Código principal. Não poderá ser alterado depois.',
                   })}
                   {field('category', 'Categoria', {
                     required: true,
@@ -165,35 +201,49 @@ export default function PartRegistrationPage() {
                   placeholder: 'Ex.: Filtro de óleo do motor',
                   slotProps: { htmlInput: { maxLength: 200 } },
                 })}
-                <Divider />
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ alignItems: 'center', color: 'text.secondary' }}
+                >
+                  <InfoOutlined sx={{ fontSize: 15 }} />
+                  <Typography variant="body2">
+                    O código principal é permanente após o cadastro.
+                  </Typography>
+                </Stack>
+              </Stack>
+            </Paper>
+            <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 3.5 } }}>
+              <Stack direction="row" spacing={1.5} sx={{ mb: 3, alignItems: 'center' }}>
+                <Box
+                  className="section-number"
+                  sx={{ bgcolor: 'primary.light', color: 'primary.main' }}
+                >
+                  2
+                </Box>
+                <Typography variant="h2" sx={{ flex: 1 }}>
+                  Referências e detalhes
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ fontSize: 10 }}>
+                  Opcional
+                </Typography>
+              </Stack>
+              <Stack spacing={2.5}>
                 {field('equivalent_codes', 'Códigos equivalentes (opcional)', {
                   multiline: true,
-                  minRows: 2,
+                  minRows: 1,
                   placeholder: 'Ex.: ABC-123, XYZ-456',
                   helperText:
                     'Códigos de outras marcas. Separe por vírgula ou use uma linha para cada código.',
                   slotProps: { htmlInput: { maxLength: 10200 } },
                 })}
-              </Stack>
-            </Paper>
-            <Paper variant="outlined" sx={{ p: { xs: 2.5, sm: 3.5 } }}>
-              <Stack direction="row" spacing={1.5} sx={{ mb: 3, alignItems: 'center' }}>
-                <Box className="section-number">02</Box>
-                <Box>
-                  <Typography variant="h2">Informações complementares</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Preencha o que ajudar na identificação e localização.
-                  </Typography>
-                </Box>
-              </Stack>
-              <Stack spacing={3}>
                 {field('physical_location', 'Localização física (opcional)', {
                   placeholder: 'Ex.: Corredor A · Prateleira 02',
                   slotProps: { htmlInput: { maxLength: 200 } },
                 })}
                 {field('technical_description', 'Descrição técnica (opcional)', {
                   multiline: true,
-                  minRows: 3,
+                  minRows: 2,
                   placeholder: 'Informe características, medidas ou outras especificações da peça.',
                   slotProps: { htmlInput: { maxLength: 5000 } },
                 })}
@@ -206,7 +256,15 @@ export default function PartRegistrationPage() {
                 direction="row"
                 sx={{ mb: 2.5, alignItems: 'center', justifyContent: 'space-between' }}
               >
-                <Typography variant="h2">Foto da peça</Typography>
+                <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
+                  <Box
+                    className="section-number"
+                    sx={{ bgcolor: 'primary.light', color: 'primary.main' }}
+                  >
+                    3
+                  </Box>
+                  <Typography variant="h2">Foto da peça</Typography>
+                </Stack>
                 <Typography variant="body2" color="text.secondary" sx={{ fontSize: 11 }}>
                   Opcional
                 </Typography>
@@ -220,16 +278,51 @@ export default function PartRegistrationPage() {
                 onReading={setIsReadingPhoto}
               />
             </Paper>
-            <Box sx={{ p: 2.5, borderRadius: 2, bgcolor: '#eeeff2' }}>
-              <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
-                <InfoOutlined sx={{ fontSize: 18, color: 'text.secondary', mt: 0.2 }} />
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                  Um código, uma peça
-                </Typography>
+            <Box sx={{ px: 0.5, pt: 0.5 }}>
+              <Typography
+                variant="overline"
+                sx={{ fontSize: 10, letterSpacing: 1.6, fontWeight: 700 }}
+              >
+                Antes de cadastrar
+              </Typography>
+              <Stack
+                component="ul"
+                spacing={1.5}
+                sx={{ listStyle: 'none', pl: 0, my: 2, color: 'text.secondary' }}
+              >
+                {[
+                  'Código principal exclusivo',
+                  'Equivalentes sem repetição',
+                  'Nome e categoria preenchidos',
+                ].map((text) => (
+                  <Typography component="li" variant="body2" key={text}>
+                    <Box
+                      component="span"
+                      sx={{ color: 'primary.main', mr: 1.5 }}
+                      aria-hidden="true"
+                    >
+                      •
+                    </Box>
+                    {text}
+                  </Typography>
+                ))}
               </Stack>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ borderTop: '1px solid', borderColor: 'divider', pt: 2.5, mt: 3 }}
+              >
                 Cada código principal ou equivalente identifica uma única peça. Se já estiver em
                 uso, mostraremos o cadastro correspondente.
+              </Typography>
+              <Typography
+                variant="overline"
+                color="text.secondary"
+                sx={{ display: 'block', fontSize: 10, letterSpacing: 1, mt: 3 }}
+              >
+                Menos tempo procurando.
+                <br />
+                Mais tempo vendendo.
               </Typography>
             </Box>
           </Stack>
@@ -237,7 +330,13 @@ export default function PartRegistrationPage() {
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={2}
-          sx={{ py: 3, mt: 1, alignItems: { sm: 'center' } }}
+          sx={{
+            py: 3,
+            mt: 3,
+            borderTop: '1px solid',
+            borderColor: 'divider',
+            alignItems: { sm: 'center' },
+          }}
         >
           <Typography variant="body2" color="text.secondary" sx={{ flex: 1 }}>
             <Box component="span" sx={{ color: 'primary.main' }}>

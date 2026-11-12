@@ -17,14 +17,12 @@ body {
   top: 12px;
 }
 .section-number {
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border: 1px solid #e7e9ed;
-  border-radius: 8px;
-  color: #9299a4;
+  border-radius: 5px;
   font-size: 11px;
   font-weight: 600;
 }

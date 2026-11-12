@@ -39,9 +39,9 @@ export default function PhotoField({ value, onChange, disabled, error, onReading
       <Box
         sx={{
           minHeight: 218,
-          bgcolor: '#fafbfc',
+          bgcolor: 'background.default',
           border: '1px dashed',
-          borderColor: 'grey.300',
+          borderColor: 'divider',
           borderRadius: 2,
           display: 'flex',
           alignItems: 'center',
@@ -62,19 +62,19 @@ export default function PhotoField({ value, onChange, disabled, error, onReading
               sx={{
                 p: 1.5,
                 borderRadius: '50%',
-                bgcolor: 'white',
+                bgcolor: 'background.paper',
                 border: '1px solid',
                 borderColor: 'divider',
                 lineHeight: 0,
               }}
             >
-              <AddPhotoAlternateOutlined sx={{ color: '#9299a4', fontSize: 30 }} />
+              <AddPhotoAlternateOutlined sx={{ color: 'text.secondary', fontSize: 30 }} />
             </Box>
             <Typography variant="body2" sx={{ fontWeight: 600 }}>
-              Uma imagem ajuda a identificar
+              Uma foto faz a diferença.
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Adicione uma foto da peça.
+              Facilite a identificação da peça no dia a dia.
             </Typography>
           </Stack>
         )}

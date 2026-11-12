@@ -1,69 +1,67 @@
 import { useState } from 'react';
-import { Box, Breadcrumbs, Drawer, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Breadcrumbs, Drawer, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 import Inventory2Outlined from '@mui/icons-material/Inventory2Outlined';
 import MenuRounded from '@mui/icons-material/MenuRounded';
 import AddRounded from '@mui/icons-material/AddRounded';
-import ChevronRightRounded from '@mui/icons-material/ChevronRightRounded';
+import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 import logo from '../assets/tsi-pecas-logo.png';
 
-const sidebarWidth = 248;
+const SIDEBAR_WIDTH = 130;
 
-export default function AppShell({ children }) {
+export default function AppShell({ children, mode, onToggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigation = (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 3 }}>
-      <Box sx={{ pb: 3, borderBottom: '1px solid', borderColor: 'divider' }}>
-        <Box
-          component="img"
-          src={logo}
-          alt="TSI Peças"
-          sx={{ width: 145, height: 145, objectFit: 'contain', display: 'block', mx: 'auto' }}
-        />
-      </Box>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 1.75, py: 3 }}>
+      <Box
+        component="img"
+        src={logo}
+        alt="TSI Peças"
+        sx={{
+          width: 90,
+          height: 90,
+          objectFit: 'contain',
+          bgcolor: '#fff',
+          borderRadius: 1.5,
+          mx: 'auto',
+        }}
+      />
       <Typography
         variant="overline"
         color="text.secondary"
-        sx={{ fontSize: 10, letterSpacing: 2, mt: 4, mb: 1.5 }}
+        sx={{ textAlign: 'center', fontSize: 10, letterSpacing: 2, mt: 5, mb: 3 }}
       >
-        Gestão da loja
+        Gestão
       </Typography>
-      <Stack
-        direction="row"
-        spacing={1.5}
-        sx={{
-          alignItems: 'center',
-          color: 'primary.main',
-          bgcolor: 'primary.light',
-          p: 1.5,
-          borderRadius: 2,
-        }}
-      >
+      <Stack spacing={1} sx={{ alignItems: 'center', color: 'text.secondary', py: 2 }}>
         <Inventory2Outlined fontSize="small" />
-        <Typography sx={{ fontWeight: 600, fontSize: 14 }}>Catálogo de peças</Typography>
+        <Typography variant="body2">Catálogo</Typography>
       </Stack>
       <Stack
-        direction="row"
         spacing={1}
-        sx={{ pl: 3, py: 2, alignItems: 'center' }}
         aria-current="page"
+        sx={{
+          alignItems: 'center',
+          bgcolor: '#c9002c',
+          color: '#fff',
+          py: 2.5,
+          mt: 1.5,
+          borderRadius: 1,
+        }}
       >
-        <AddRounded sx={{ fontSize: 16, color: 'primary.main' }} />
+        <AddRounded />
         <Typography variant="body2" sx={{ fontWeight: 600 }}>
           Nova peça
         </Typography>
       </Stack>
-      <Box sx={{ mt: 'auto', pt: 4 }}>
-        <Box sx={{ width: 28, height: 3, bgcolor: 'primary.main', mb: 1.5 }} />
-        <Typography variant="body2" sx={{ fontWeight: 600 }}>
-          Cada peça no seu lugar.
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-          Um catálogo organizado começa com um bom cadastro.
-        </Typography>
+      <Box sx={{ mt: 'auto', pt: 5, px: 1 }}>
+        <Box sx={{ width: 24, height: 4, bgcolor: 'primary.main', mb: 2 }} />
+        <Typography sx={{ fontSize: 23, lineHeight: 1.2, color: 'text.secondary' }}>TSI</Typography>
+        <Typography sx={{ fontSize: 23, fontWeight: 700 }}>Peças.</Typography>
       </Box>
     </Box>
   );
-
+  const themeLabel = mode === 'light' ? 'Ativar tema escuro' : 'Ativar tema claro';
   return (
     <Box sx={{ minHeight: '100vh' }}>
       <Box component="a" href="#main-content" className="skip-link">
@@ -74,7 +72,7 @@ export default function AppShell({ children }) {
         aria-label="Navegação principal"
         sx={{
           display: { xs: 'none', md: 'block' },
-          width: sidebarWidth,
+          width: SIDEBAR_WIDTH,
           position: 'fixed',
           inset: '0 auto 0 0',
           bgcolor: 'background.paper',
@@ -87,20 +85,19 @@ export default function AppShell({ children }) {
       <Drawer
         open={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        slotProps={{ paper: { sx: { width: sidebarWidth } } }}
+        slotProps={{ paper: { sx: { width: SIDEBAR_WIDTH } } }}
       >
         {navigation}
       </Drawer>
-      <Box sx={{ ml: { md: `${sidebarWidth}px` } }}>
+      <Box sx={{ ml: { md: `${SIDEBAR_WIDTH}px` } }}>
         <Box
           component="header"
           sx={{
-            height: 76,
-            px: { xs: 2, md: 5 },
+            minHeight: 76,
+            px: { xs: 2, md: 6 },
             display: 'flex',
             alignItems: 'center',
             gap: 1,
-            bgcolor: 'background.paper',
             borderBottom: '1px solid',
             borderColor: 'divider',
           }}
@@ -112,33 +109,41 @@ export default function AppShell({ children }) {
           >
             <MenuRounded />
           </IconButton>
-          <Breadcrumbs
-            separator={<ChevronRightRounded sx={{ fontSize: 16 }} />}
-            aria-label="Localização"
-          >
+          <Breadcrumbs separator="/" aria-label="Localização">
             <Typography variant="body2" color="text.secondary">
               Catálogo
             </Typography>
-            <Typography variant="body2" sx={{ fontWeight: 600 }}>
-              Nova peça
+            <Typography variant="body2" color="text.secondary">
+              Cadastro de peça
             </Typography>
           </Breadcrumbs>
-          <Typography
-            variant="body2"
-            sx={{ ml: 'auto', display: { xs: 'none', sm: 'block' }, color: 'text.secondary' }}
-          >
-            TSI Peças{' '}
-            <Box component="span" sx={{ mx: 1, color: 'divider' }}>
-              /
-            </Box>{' '}
-            Gestão de catálogo
-          </Typography>
+          <Stack direction="row" spacing={1} sx={{ ml: 'auto', alignItems: 'center' }}>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              <Box component="span" sx={{ color: 'primary.main', mr: 1 }}>
+                ●
+              </Box>
+              Cadastro manual
+            </Typography>
+            <Tooltip title={themeLabel}>
+              <IconButton aria-label={themeLabel} onClick={onToggleTheme}>
+                {mode === 'light' ? (
+                  <DarkModeOutlined fontSize="small" />
+                ) : (
+                  <LightModeOutlined fontSize="small" />
+                )}
+              </IconButton>
+            </Tooltip>
+          </Stack>
         </Box>
         <Box
           component="main"
           id="main-content"
           tabIndex={-1}
-          sx={{ maxWidth: 1350, mx: 'auto', px: { xs: 2, sm: 3, lg: 5 }, py: { xs: 3, md: 5 } }}
+          sx={{ maxWidth: 1440, mx: 'auto', px: { xs: 2, sm: 3, lg: 6 }, py: { xs: 3, md: 5 } }}
         >
           {children}
         </Box>
