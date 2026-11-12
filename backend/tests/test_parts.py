@@ -399,3 +399,95 @@ def test_partial_edits_preserve_other_changes_and_equivalents_with_separators(cl
     assert updated.json()["physical_location"] == "B3"
     assert updated.json()["equivalent_codes"] == original["equivalent_codes"]
     assert updated.json()["id"] == original["id"]
+
+
+def test_status_changes_preserve_part_data_and_photo(client):
+    original = register(
+        client,
+        payload(
+            equivalent_codes=["EQ-100"],
+            physical_location="A2",
+            technical_description="Original",
+            photo_data=photo_data("red"),
+        ),
+    ).json()
+    original_photo = client.get(original["photo_url"]).content
+    for status in ("active", "inactive", "active"):
+        response = edit(client, original["id"], {"status": status})
+        assert response.status_code == 200
+        assert response.json()["status"] == status
+        assert client.get(f"/parts/{original['id']}").json()["status"] == status
+        for field, value in original.items():
+            if field not in {"status", "updated_at"}:
+                assert response.json()[field] == value
+        assert client.get(original["photo_url"]).content == original_photo
+    with client.test_factory() as session:
+        assert session.scalar(select(func.count()).select_from(Part)) == 1
+
+
+def test_status_retry_does_not_reapply_old_transition_after_reactivation(client):
+    original = register(client).json()
+    key = str(uuid4())
+    first = edit(client, original["id"], {"status": "inactive"}, key)
+    assert first.status_code == 200
+    latest = edit(client, original["id"], {"status": "active"})
+    assert latest.status_code == 200
+    url = str(client.test_factory.kw["bind"].url)
+    with TestClient(create_app(Settings(_env_file=None, database_url=url))) as restarted:
+        repeated = edit(restarted, original["id"], {"status": "inactive"}, key)
+    assert repeated.json() == first.json()
+    assert client.get(f"/parts/{original['id']}").json() == latest.json()
+    assert edit(client, original["id"], {"status": "active"}, key).status_code == 409
+
+
+def test_status_failure_rolls_back_and_allows_same_attempt(client, monkeypatch):
+    original = register(client).json()
+    key = str(uuid4())
+
+    def fail_to_remember(*args):
+        raise OperationalError("simulated", {}, Exception("private detail"))
+
+    with monkeypatch.context() as patch:
+        patch.setattr(PartRepository, "remember_update", fail_to_remember)
+        response = edit(client, original["id"], {"status": "inactive"}, key)
+    assert response.status_code == 503
+    assert client.get(f"/parts/{original['id']}").json() == original
+    assert edit(client, original["id"], {"status": "inactive"}, key).status_code == 200
+
+
+def test_status_defaults_to_active_and_inactive_parts_remain_visible_and_editable(client):
+    original = register(client).json()
+    assert original["status"] == "active"
+    assert edit(client, original["id"], {"status": "inactive"}).status_code == 200
+    catalog = client.get("/parts").json()
+    assert catalog["items"][0]["status"] == "inactive"
+    assert catalog["total"] == 1
+    updated = edit(client, original["id"], {"name": "Nome corrigido"})
+    assert updated.status_code == 200
+    assert updated.json()["status"] == "inactive"
+    assert updated.json()["name"] == "Nome corrigido"
+    assert register(client).status_code == 409
+
+
+@pytest.mark.parametrize("status", [None, "", "deleted", "ativo", True, 1])
+def test_invalid_status_does_not_change_part(client, status):
+    original = register(client).json()
+    assert edit(client, original["id"], {"status": status}).status_code == 422
+    assert client.get(f"/parts/{original['id']}").json() == original
+
+
+def test_legacy_idempotent_responses_without_status_remain_replayable(client):
+    creation_key = uuid4()
+    update_key = uuid4()
+    original = register(client, key=str(creation_key)).json()
+    first_edit = edit(client, original["id"], {"name": "Corrigido"}, str(update_key)).json()
+    with client.test_factory.begin() as session:
+        for model, key in ((PartCreationRequest, creation_key), (PartUpdateRequest, update_key)):
+            previous = session.get(model, key)
+            previous.response = {
+                field: value for field, value in previous.response.items() if field != "status"
+            }
+    latest = edit(client, original["id"], {"status": "inactive"}).json()
+    assert register(client, key=str(creation_key)).json() == original
+    assert edit(client, original["id"], {"name": "Corrigido"}, str(update_key)).json() == first_edit
+    assert client.get(f"/parts/{original['id']}").json() == latest

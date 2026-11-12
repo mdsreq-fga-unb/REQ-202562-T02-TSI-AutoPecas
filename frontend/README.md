@@ -245,6 +245,110 @@ para os critérios CA05.1, CA05.2 e CA05.3. Não houve alteração de status rem
   revisão. Os estados alterados foram verificados com Testing Library. A matriz
   de navegadores, leitores de tela e aceite do cliente continuam pendentes.
 
+## Status da peça — US06 (Refs #32)
+
+O recorte confirmado pelo solicitante em 12/11/2026 usa o status apenas como
+sinalização: peças inativas continuam visíveis e editáveis, sem novos bloqueios
+de busca, movimentação ou venda. Peças novas e existentes começam ativas.
+Os critérios estão na [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32).
+
+O catálogo oferece Ativar/Inativar com confirmação MUI. `PartStatusBadge` é
+compartilhado pelo catálogo e pela edição. `usePartStatusChange` envia apenas o
+status desejado no PATCH existente, com uma chave idempotente por tentativa.
+Durante o envio ou em resultado incerto, o diálogo impede fechamento e permite
+repetir a mesma tentativa. A proteção permanece enquanto a página está aberta;
+não há fila offline nem persistência da tentativa ao fechar a aba.
+
+### Evidências — 12/11/2026
+
+Status local: implementação verificada; revisão por outro integrante, matriz de
+navegadores do RNF03, leitores de tela e aceite do cliente pendentes.
+
+- TDD: quatro cenários de status falharam pela ausência das ações e do indicador
+  antes da implementação. Depois passaram. A verificação de envio duplo e
+  fechamento durante gravação foi acrescentada como regressão complementar.
+- Node **22.23.4**, definido em `.nvmrc`, usando o binário oficial temporário no
+  `PATH`, sem alterar a versão global ou os lockfiles.
+- Comandos: `node node_modules/vitest/vitest.mjs run --coverage`,
+  `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`.
+- **27 testes aprovados em 5 arquivos**, com configuração padrão de workers.
+  ESLint, Prettier e build aprovados. Maior bundle: **278,90 kB**; aplicação:
+  **30,01 kB**; React: **218,75 kB**. Todos continuam abaixo de 500 kB.
+  Cobertura de linhas: **89,34%**; ramificações: **91,03%**. As lacunas incluem
+  o aviso ao fechar a aba e caminhos já existentes de foto, menu e resposta inválida.
+- Navegador integrado e API local com SQLite descartável: cadastro ativo,
+  inativação, abertura da edição inativa, reativação e persistência após recarregar
+  conferidos. Temas claro e escuro inspecionados; confirmação em 360 px sem
+  transbordamento horizontal, com botões de 46 px de altura.
+- Removida a propriedade `disableEscapeKeyDown`, não suportada pela versão
+  instalada do MUI. O controle de fechamento fica no `onClose`, coberto por teste.
+  Após recarregar e reabrir o diálogo, não surgiram novos erros ou avisos no console.
+- CA06.1 e CA06.2 cobertos pelo fluxo de inativação/reativação; o PATCH com apenas
+  status preserva os campos do cadastro (CA06.3). Saldo ainda não existe no projeto;
+  sua preservação depende de verificação quando o módulo de estoque for integrado.
+
+### Revisão da US06 — 12/11/2026 (Refs #32)
+
+- Revisados todos os arquivos alterados e novos, os componentes MUI, o hook de
+  status, os contratos HTTP, os testes e a documentação conforme os AGENTS/READMEs.
+  Não foram encontrados problemas adicionais que exigissem alteração de código.
+  Preservados o recorte autorizado, as dependências e os lockfiles.
+- Reexecutado `node node_modules/vitest/vitest.mjs run --coverage` com
+  **Node 22.23.4** e configuração padrão: **27 testes aprovados em 5 arquivos**.
+  Cobertura de linhas: **89,34%**; ramificações: **91,03%**, com as mesmas lacunas
+  registradas acima. Esta revisão não acrescentou testes nem alterou o histórico TDD.
+- Reexecutados `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`: aprovados. Maior bundle mantido em
+  **278,90 kB**, aplicação em **30,01 kB**, sem aviso de tamanho.
+  `git diff --check` também aprovado.
+- A inspeção visual anterior em desktop/celular e nos dois temas foi consultada;
+  não foi repetida nesta revisão, que não alterou a interface. Permanecem as
+  pendências de navegadores, leitores de tela, saldo e aceite registradas acima.
+
+### Falha de cadastro no Docker — 12/11/2026 (Refs #32)
+
+As capturas enviadas pelo solicitante mostraram erro no catálogo e o formulário
+preservado após falha de cadastro. A API local retornava 503 porque o PostgreSQL
+ainda estava em `0002_part_updates`, sem a coluna `status` exigida pela US06.
+Aplicar `0003_part_status` no Docker recuperou a consulta HTTP do catálogo
+(200, total de 2 peças). Não foi necessária alteração na interface.
+
+A gravação foi conferida pelo serviço no PostgreSQL local, com rollback para não
+deixar dados de teste. O cadastro pelo navegador não foi repetido nesta correção;
+o solicitante foi orientado a usar Tentar novamente na tentativa preservada.
+Consulte o [diagnóstico e as evidências no back-end](../backend/README.md#correção-do-ambiente-docker--12112026-refs-32).
+Os testes com Node 22.23.4 registrados acima pertencem à revisão anterior.
+
+### Interface desatualizada no Docker — 12/11/2026 (Refs #32)
+
+Após a correção da migração, o solicitante mostrou a edição sem o indicador de
+status. Os arquivos montados em `/app/src` já continham `PartStatusBadge`, mas
+`GET /src/features/parts/PartEditForm.jsx` no Vite retornava 200 com código antigo,
+sem o componente. A atualização do navegador sozinha não corrigia essa diferença.
+
+O serviço `frontend` em `compose.yaml` passou a usar `CHOKIDAR_USEPOLLING=true`
+e `CHOKIDAR_INTERVAL=500`, permitindo detectar alterações em volumes do Docker
+Desktop no Windows. A configuração vale apenas para o ambiente de desenvolvimento
+do Compose; a consulta periódica dos arquivos tem um custo adicional de CPU.
+
+- `docker compose config --quiet`: aprovado.
+- `docker compose up -d --no-deps frontend`: recriou somente o front-end,
+  mantendo o banco e a API em execução, sem alterar cadastros.
+- `docker compose exec -T frontend node --version`: **v22.23.4**.
+- Módulo temporário criado no host, carregado pelo Vite e alterado no host:
+  a mesma URL passou a servir o novo conteúdo após 2 segundos, sem reiniciar.
+  O arquivo de verificação foi removido ao final.
+- Navegador integrado em `http://localhost:5173`: indicador Ativo e ação Inativar
+  conferidos no catálogo; indicador Ativo conferido na edição da peça existente.
+  Nenhum campo ou status foi alterado. Console sem erros ou avisos.
+
+Esta correção altera configuração de desenvolvimento, não regras de negócio.
+As suítes e o build da revisão anterior não foram repetidos; a configuração e a
+detecção de mudanças foram verificadas diretamente no Docker com Node 22.
+
 ## Publicação
 
 Para publicar na Vercel, use `frontend/` como **Root Directory** e configure

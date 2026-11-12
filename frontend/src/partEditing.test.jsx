@@ -7,6 +7,7 @@ const PART = {
   manufacturer_code: 'FLT-100',
   name: 'Filtro de óleo',
   category: 'Filtros',
+  status: 'active',
   equivalent_codes: ['EQ-1'],
   physical_location: 'A2',
   technical_description: 'Original',

@@ -5,6 +5,7 @@ import SaveOutlined from '@mui/icons-material/SaveOutlined';
 import DiscardChangesDialog from '../../components/DiscardChangesDialog.jsx';
 import PartFormFields from './PartFormFields.jsx';
 import usePartEditing from './usePartEditing.js';
+import PartStatusBadge from './PartStatusBadge.jsx';
 
 export default function PartEditForm({ part, onDone }) {
   const editing = usePartEditing(part);
@@ -58,6 +59,9 @@ export default function PartEditForm({ part, onDone }) {
       <Typography color="text.secondary" sx={{ mb: 4 }}>
         Atualize os detalhes. O código do fabricante permanece o mesmo.
       </Typography>
+      <Box sx={{ mb: 2 }}>
+        <PartStatusBadge status={part.status} />
+      </Box>
       <Box component="form" noValidate onSubmit={editing.submit}>
         {error && (
           <Alert severity={error.isUncertain ? 'warning' : 'error'} sx={{ mb: 3 }} role="alert">

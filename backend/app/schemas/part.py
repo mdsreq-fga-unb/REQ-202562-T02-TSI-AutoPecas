@@ -1,5 +1,5 @@
 from datetime import UTC, datetime
-from typing import Annotated
+from typing import Annotated, Literal
 from uuid import UUID
 
 from pydantic import (
@@ -12,6 +12,7 @@ from pydantic import (
 )
 
 Code = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
+PartStatus = Literal["active", "inactive"]
 
 
 class PartCreate(BaseModel):
@@ -44,6 +45,8 @@ class PartResponse(BaseModel):
     photo_url: str | None
     created_at: datetime
     updated_at: datetime
+    # Respostas idempotentes gravadas antes da US06 representam peças inicialmente ativas.
+    status: PartStatus = "active"
 
     @field_validator("created_at", "updated_at")
     @classmethod
@@ -61,14 +64,17 @@ class PartUpdate(BaseModel):
     technical_description: str | None = Field(default=None, max_length=5000)
     physical_location: str | None = Field(default=None, max_length=200)
     photo_data: str | None = Field(default=None, max_length=2_800_000)
+    status: PartStatus | None = None
 
     @model_validator(mode="after")
     def validate_update(self) -> "PartUpdate":
         if not self.model_fields_set:
             raise ValueError("Informe ao menos um campo para editar.")
-        for field in ("name", "category", "equivalent_codes"):
+        for field in ("name", "category", "equivalent_codes", "status"):
             if field in self.model_fields_set and getattr(self, field) is None:
-                raise ValueError("Nome, categoria e lista de equivalentes não podem ser nulos.")
+                raise ValueError(
+                    "Nome, categoria, lista de equivalentes e status não podem ser nulos."
+                )
         if self.equivalent_codes is not None and len(self.equivalent_codes) != len(
             set(self.equivalent_codes)
         ):

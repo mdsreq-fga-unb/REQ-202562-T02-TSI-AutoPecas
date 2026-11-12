@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
-from sqlalchemy import JSON, DateTime, ForeignKey, LargeBinary, String, Text, Uuid
+from sqlalchemy import JSON, CheckConstraint, DateTime, ForeignKey, LargeBinary, String, Text, Uuid
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -22,11 +22,13 @@ class Timestamps:
 
 class Part(Timestamps, Base):
     __tablename__ = "parts"
+    __table_args__ = (CheckConstraint("status IN ('active', 'inactive')", name="ck_parts_status"),)
 
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
     manufacturer_code: Mapped[str] = mapped_column(String(100))
     name: Mapped[str] = mapped_column(String(200))
     category: Mapped[str] = mapped_column(String(100))
+    status: Mapped[str] = mapped_column(String(8), default="active", server_default="active")
     technical_description: Mapped[str | None] = mapped_column(Text)
     physical_location: Mapped[str | None] = mapped_column(String(200))
     photo: Mapped[bytes | None] = mapped_column(LargeBinary, deferred=True)

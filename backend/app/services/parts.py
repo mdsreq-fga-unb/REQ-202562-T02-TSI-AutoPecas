@@ -18,6 +18,7 @@ def present(part: Part) -> PartResponse:
         manufacturer_code=part.manufacturer_code,
         name=part.name,
         category=part.category,
+        status=part.status,
         equivalent_codes=sorted(
             code.code for code in part.codes if code.code != part.manufacturer_code
         ),
@@ -169,6 +170,6 @@ class PartService:
             part.codes.extend(PartCode(code=code) for code in sorted(desired - current))
         if "photo_data" in changes:
             part.photo, part.photo_media_type = validate_photo(changes["photo_data"])
-        for field in ("name", "category", "physical_location", "technical_description"):
+        for field in ("name", "category", "physical_location", "technical_description", "status"):
             if field in changes:
                 setattr(part, field, changes[field] or None)

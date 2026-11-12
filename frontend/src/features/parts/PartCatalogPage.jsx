@@ -2,11 +2,15 @@ import { useEffect, useState } from 'react';
 import { Alert, Box, Button, CircularProgress, Paper, Stack, Typography } from '@mui/material';
 import EditOutlined from '@mui/icons-material/EditOutlined';
 import { listParts } from '../../services/parts.js';
+import PartStatusBadge from './PartStatusBadge.jsx';
+import PartStatusDialog from './PartStatusDialog.jsx';
 
 export default function PartCatalogPage({ onEdit, onCreate }) {
   const [offset, setOffset] = useState(0);
   const [retry, setRetry] = useState(0);
   const [state, setState] = useState({ status: 'loading' });
+  const [selectedPart, setSelectedPart] = useState(null);
+  const [statusMessage, setStatusMessage] = useState('');
   useEffect(() => {
     const controller = new AbortController();
     listParts(offset, { signal: controller.signal }).then(
@@ -22,6 +26,16 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
   function changePage(next) {
     setState({ status: 'loading' });
     setOffset(next);
+  }
+  function finishStatusChange(part) {
+    setState((current) => ({
+      ...current,
+      items: current.items.map((item) => (item.id === part.id ? part : item)),
+    }));
+    setSelectedPart(null);
+    setStatusMessage(
+      part.status === 'active' ? 'Peça ativada com sucesso.' : 'Peça inativada com sucesso.',
+    );
   }
   return (
     <>
@@ -42,6 +56,11 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
           Cadastrar peça
         </Button>
       </Stack>
+      {statusMessage && (
+        <Alert severity="success" role="status" sx={{ mb: 2 }}>
+          {statusMessage}
+        </Alert>
+      )}
       {state.status === 'loading' && <CircularProgress aria-label="Carregando catálogo" />}
       {state.status === 'error' && (
         <Alert
@@ -81,19 +100,35 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
                         {part.manufacturer_code}
                       </Typography>
                       <Typography variant="h2">{part.name}</Typography>
+                      <Box sx={{ my: 1 }}>
+                        <PartStatusBadge status={part.status} />
+                      </Box>
                       <Typography color="text.secondary">{part.category}</Typography>
                       <Typography variant="body2" color="text.secondary">
                         {part.physical_location || 'Localização não informada'}
                       </Typography>
                     </Box>
-                    <Button
-                      variant="outlined"
-                      startIcon={<EditOutlined />}
-                      aria-label={`Editar ${part.name}`}
-                      onClick={() => onEdit(part.id)}
-                    >
-                      Editar
-                    </Button>
+                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+                      <Button
+                        variant="outlined"
+                        startIcon={<EditOutlined />}
+                        aria-label={`Editar ${part.name}`}
+                        onClick={() => onEdit(part.id)}
+                      >
+                        Editar
+                      </Button>
+                      <Button
+                        color="secondary"
+                        variant="outlined"
+                        aria-label={`${part.status === 'inactive' ? 'Ativar' : 'Inativar'} ${part.name}`}
+                        onClick={() => {
+                          setStatusMessage('');
+                          setSelectedPart(part);
+                        }}
+                      >
+                        {part.status === 'inactive' ? 'Ativar' : 'Inativar'}
+                      </Button>
+                    </Stack>
                   </Stack>
                 </Paper>
               ))}
@@ -115,6 +150,14 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
             </Button>
           </Stack>
         </>
+      )}
+      {selectedPart && (
+        <PartStatusDialog
+          key={selectedPart.id}
+          part={selectedPart}
+          onClose={() => setSelectedPart(null)}
+          onSuccess={finishStatusChange}
+        />
       )}
     </>
   );

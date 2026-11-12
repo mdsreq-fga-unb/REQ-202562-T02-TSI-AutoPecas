@@ -45,6 +45,10 @@ services:
     env_file:
       - path: ./frontend/.env
         required: false
+    environment:
+      # Detecta alterações em volumes compartilhados pelo Docker Desktop no Windows.
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: "500"
     ports:
       - "127.0.0.1:5173:5173"
     volumes:

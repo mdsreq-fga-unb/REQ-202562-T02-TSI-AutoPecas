@@ -170,6 +170,105 @@ a restrição única e o rollback, mas não simula duas transações PostgreSQL 
   sem diferenças entre os modelos e as migrações. Mantidas as pendências de
   concorrência PostgreSQL e aceite descritas acima.
 
+## Status da peça — US06 (Refs #32)
+
+Conforme o recorte confirmado pelo solicitante em 12/11/2026, o status apenas
+sinaliza peças ativas/inativas. Ambas continuam visíveis e editáveis, sem novos
+bloqueios de busca, movimentação ou venda. Peças novas e existentes começam
+ativas. Critérios: [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32).
+
+`PATCH /parts/{id}` aceita `status: "active"` ou `status: "inactive"`, com a mesma
+`Idempotency-Key` e transação da edição. Omitir status preserva seu valor; `null`
+ou valores diferentes retornam 422. Enviar somente status preserva ID, códigos,
+nome, categoria, localização, descrição e foto. Apenas status e data de atualização
+podem mudar; repetir uma tentativa antiga retorna sua resposta sem reaplicá-la.
+Respostas idempotentes armazenadas antes da US06 recebem `active` na leitura,
+mantendo a compatibilidade do histórico sem alterar o estado atual da peça.
+
+A revisão `0003_part_status` acrescenta a coluna com padrão `active` e restrição
+de valores no banco. Aplique a migração antes de executar esta versão da API.
+
+### Evidências — 12/11/2026
+
+Status local: implementação verificada; revisão por outro integrante e aceite
+do cliente pendentes. Não houve alteração remota da issue ou do banco.
+
+- TDD: três cenários de transição, repetição e rollback falharam com 422 antes
+  da implementação. O cenário de padrão ativo/edição de inativas falhou pela
+  ausência do campo. A migração falhou no teste pela coluna inexistente. Todos
+  passaram após a implementação. Casos inválidos já eram rejeitados antes;
+  compatibilidade do histórico e preservação de códigos na migração receberam
+  testes complementares, sem alegação retroativa de TDD.
+- `.venv/Scripts/python.exe -m pytest --cov --cov-report=term-missing`:
+  **64 testes aprovados**, Python **3.13.14**, cobertura combinada de **96%**.
+  Permanece apenas o aviso já existente de depreciação de `httpx` pelo TestClient.
+- `.venv/Scripts/ruff.exe check .` e `.venv/Scripts/ruff.exe format --check .`:
+  aprovados. Ambiente existente sincronizado com o lockfile, sem novas dependências.
+- `.venv/Scripts/python.exe -m alembic upgrade head` e
+  `.venv/Scripts/python.exe -m alembic check`: aprovados em SQLite descartável.
+  Teste automatizado cobre upgrade com peça existente, restrição de status,
+  preservação do ID/código/dados e downgrade para `0002_part_updates`.
+- `.venv/Scripts/python.exe -m alembic upgrade 0002_part_updates:head --sql`:
+  SQL PostgreSQL inspecionado offline, com coluna, padrão e restrição esperados.
+- CA06.1/CA06.2 cobertos por transições persistidas; CA06.3 coberto para os dados
+  existentes, inclusive conteúdo da foto. O módulo de saldo ainda não existe:
+  sua preservação deve ser verificada ao integrar estoque. Concorrência efetiva
+  em PostgreSQL e disputa simultânea da mesma chave continuam pendentes.
+
+### Revisão da US06 — 12/11/2026 (Refs #32)
+
+- Revisados todos os arquivos alterados e novos da API, migração e testes,
+  incluindo os contratos da US05 reutilizados pelo status. Não foram encontrados
+  problemas adicionais que exigissem alteração de código. Preservados o recorte
+  confirmado, as camadas, a validação no banco, a transação e a idempotência.
+- Reexecutados `.venv/Scripts/python.exe -m pytest --cov --cov-report=term-missing`,
+  `.venv/Scripts/ruff.exe check .` e `.venv/Scripts/ruff.exe format --check .`:
+  **64 testes aprovados**, cobertura de **96%**, lint e formatação aprovados com
+  Python **3.13.14**. Permanece o aviso de depreciação do TestClient já registrado.
+- Reexecutados `alembic upgrade head` e `alembic check` pelo Python da `.venv`
+  em novo SQLite descartável: aprovados, sem diferenças com os modelos.
+  O teste da migração também verificou novamente upgrade e downgrade com dados.
+- As evidências anteriores de SQL PostgreSQL offline foram consultadas. Naquele
+  momento, a execução em PostgreSQL ainda estava pendente; a aplicação no Docker
+  local foi verificada na correção de ambiente registrada abaixo. Concorrência,
+  saldo de estoque e aceite permanecem pendentes.
+
+### Correção do ambiente Docker — 12/11/2026 (Refs #32)
+
+O solicitante relatou falha ao cadastrar e abrir o catálogo em `localhost:5173`.
+`GET http://localhost:8000/parts?limit=1` reproduziu HTTP **503**, com a mensagem
+"Não foi possível confirmar a operação. Tente novamente com os mesmos dados."
+Os contêineres estavam saudáveis, mas `docker compose exec -T backend alembic current`
+retornou `0002_part_updates`. A consulta a `information_schema.columns` confirmou
+a ausência de `parts.status`. Havia **2 peças** no banco antes da correção.
+
+A recarga do Uvicorn havia carregado o código da US06 sem executar a nova migração.
+As validações anteriores usaram bancos descartáveis e não atualizaram esse
+PostgreSQL local já em execução. A correção foi de ambiente, sem mudança de código:
+
+```bash
+docker compose exec -T backend alembic upgrade head
+docker compose exec -T backend alembic current
+docker compose exec -T backend alembic check
+```
+
+- Revisão confirmada: **`0003_part_status (head)`**; `alembic check` sem diferenças.
+- Contagem após a migração: **2 peças**, ambas com status **`active`**.
+- A mesma consulta HTTP passou a retornar **200**, com `total: 2`.
+- Cadastro validado pelo `PartService` dentro do contêiner, usando o PostgreSQL
+  local e uma transação externa com savepoint: a peça temporária foi criada com
+  status `active` e a contagem chegou a 3 dentro da transação. O rollback externo
+  desfez a gravação e a tentativa idempotente; a contagem final permaneceu em 2.
+  Essa verificação não foi um POST HTTP nem um cadastro pelo navegador.
+- Não houve remoção de volumes, cadastros de teste persistidos, alteração em banco
+  remoto ou deploy. O procedimento para migrações com Docker em execução está no
+  [README de migrações](migrations/README.md#migração-nova-com-o-docker-já-em-execução).
+
+As suítes de 64 testes de back-end e 27 de front-end com Node 22.23.4 são as da
+revisão anterior; não foram repetidas para esta correção de ambiente. A execução
+local em PostgreSQL acima não substitui testes de concorrência, integração com
+saldo, matriz de navegadores ou aceite do cliente, que continuam pendentes.
+
 ## Ambiente e publicação
 
 `DATABASE_URL` é uma configuração exclusiva do back-end. `CORS_ORIGINS` recebe
