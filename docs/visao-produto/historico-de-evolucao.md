@@ -127,6 +127,7 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 | 03/11/2026 | **Consolidação do escopo em um catálogo integrado.** Cada requisito passou a ter um registro único, reunindo declaração, intenção e valor, origem, condições, priorização, entrega, situação e evolução. As listas paralelas de requisitos mantidas no Backlog de produto foram eliminadas, e as páginas de priorização, MVP e rastreabilidade passaram a consultar o catálogo. | Todos os registros; páginas 8 a 12 na numeração original | Estudo de caso do Capítulo 12 |
 | 03/11/2026 | Adoção dos nomes das características definidos na Visão do Produto como versão vigente, corrigindo a divergência com os nomes usados na página de requisitos (CP1 e CP2). | [CP1](solucao-e-caracteristicas.md#cp1), [CP2](solucao-e-caracteristicas.md#cp2) e seus requisitos | Revisão de consistência |
 | 03/11/2026 | Registro das dependências entre requisitos, derivadas da leitura das declarações, com marcação explícita de que aguardam validação no refinamento. | Campo *Condições e avaliação* de 35 registros | Revisão de consistência |
+| 12/11/2026 | Correção da fundamentação da área de toque do RNF01 (44×44 px como decisão adicional baseada no critério AAA) e delimitação do RNF02 por resultado: confirmação, pendência, reenvio e rejeição, sem impor o mecanismo no critério de aceitação. | [RNF01](requisitos-de-software.md#rnf01-responsividade-da-interface-em-dispositivos-moveis), [RNF02](requisitos-de-software.md#rnf02-tolerancia-a-falhas-de-conexao), [D04](intervencao-social.md#d04) | Feedback do professor (issue #49) |
 
 ## <span id="124-pendencias-de-escopo-em-aberto"></span>Pendências de escopo em aberto {#pendencias-de-escopo-em-aberto}
 
@@ -153,3 +154,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 1.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 05/11/2026 | Explicitação das fontes por campo, formulários, geração do catálogo, rastreabilidade e critérios da automação, preservando a memória das decisões. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.1 | 07/11/2026 | Reorganização das fontes de apoio em `tools/docs/`, com atualização dos caminhos de manutenção, testes e automação. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.2 | 12/11/2026 | Registro das correções do RNF01 e do RNF02 e de sua origem na issue #49. | Equipe |
