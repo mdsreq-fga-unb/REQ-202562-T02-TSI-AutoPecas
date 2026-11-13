@@ -257,10 +257,22 @@ para os critérios CA05.1, CA05.2 e CA05.3. Não houve alteração de status rem
 
 ## Status da peça — US06 (Refs #32)
 
-O recorte confirmado pelo solicitante em 12/11/2026 usa o status apenas como
-sinalização: peças inativas continuam visíveis e editáveis, sem novos bloqueios
-de busca, movimentação ou venda. Peças novas e existentes começam ativas.
-Os critérios estão na [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32).
+A regra adotada para a US06 segue o [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63):
+a peça inativa permanece visível no catálogo e nas buscas, identificada como
+inativa. A inativação preserva o cadastro, o saldo e os registros existentes,
+mas impede novas movimentações de estoque e vendas enquanto a peça estiver
+inativa. A reativação libera novamente essas operações.
+
+A interface atual implementa a alternância de status, o indicador e a edição
+cadastral de peças ativas e inativas. Peças novas e existentes começam ativas.
+Como os fluxos de estoque e vendas ainda não foram implementados, seus bloqueios
+serão integrados quando esses fluxos forem adicionados, com validação obrigatória
+na API e apresentação do motivo na interface. A preservação do saldo será testada
+quando o módulo de estoque existir.
+
+Alinhamento de escopo registrado em 12/11/2026. Os critérios de alternância estão
+na [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32),
+cujo texto de refinamento ainda aguarda atualização para refletir essa regra.
 
 O catálogo oferece Ativar/Inativar com confirmação MUI. `PartStatusBadge` é
 compartilhado pelo catálogo e pela edição. `usePartStatusChange` envia apenas o

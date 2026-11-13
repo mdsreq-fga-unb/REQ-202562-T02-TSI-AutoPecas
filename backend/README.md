@@ -172,10 +172,23 @@ a restrição única e o rollback, mas não simula duas transações PostgreSQL 
 
 ## Status da peça — US06 (Refs #32)
 
-Conforme o recorte confirmado pelo solicitante em 12/11/2026, o status apenas
-sinaliza peças ativas/inativas. Ambas continuam visíveis e editáveis, sem novos
-bloqueios de busca, movimentação ou venda. Peças novas e existentes começam
-ativas. Critérios: [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32).
+A regra adotada para a US06 segue o [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63):
+peças inativas permanecem visíveis no catálogo e nas buscas, identificadas como
+inativas, mas não podem receber novas movimentações de estoque nem vendas.
+Inativar preserva o cadastro, o saldo e os registros existentes; reativar permite
+novamente essas operações.
+
+A implementação atual contempla a alternância de status e a preservação dos dados
+já disponíveis. Peças novas e existentes começam ativas e a edição cadastral
+continua disponível para peças inativas. Os fluxos de estoque e vendas ainda não
+foram implementados: seus serviços deverão verificar o status e rejeitar novas
+operações para peças inativas quando esses fluxos forem adicionados. A preservação
+do saldo também deverá ser testada nessa integração.
+
+Alinhamento de escopo registrado em 12/11/2026, sem antecipar a implementação dos
+módulos dependentes. Os critérios de alternância estão na
+[issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32),
+cujo texto de refinamento ainda aguarda atualização para refletir essa regra.
 
 `PATCH /parts/{id}` aceita `status: "active"` ou `status: "inactive"`, com a mesma
 `Idempotency-Key` e transação da edição. Omitir status preserva seu valor; `null`
