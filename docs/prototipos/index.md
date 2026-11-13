@@ -1,3 +1,7 @@
+---
+icon: material/drawing
+---
+
 # Prototipação rápida do MVP
 
 Artefatos de **representação de requisitos**, produzidos para avaliar os fluxos com o
@@ -37,7 +41,7 @@ docs/prototipos/
 
 A pasta pertence à documentação porque contém artefatos de engenharia de requisitos.
 O MkDocs copia a interface estática junto às páginas, e a navegação fica em
-**Requisitos → Prototipação rápida**. A aplicação de produção permanece em `frontend/`
+**Requisitos → Protótipos**. A aplicação de produção permanece em `frontend/`
 e `backend/`; este JavaScript não deve ser incorporado como implementação das US.
 
 ## Como abrir
@@ -88,3 +92,4 @@ o estado de desenvolvimento das US nem comprova a [DoD](../visao-produto/dor-e-d
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 10/11/2026 | Criação da página de apresentação, organização e acesso aos cinco grupos de prototipação rápida do MVP. | [Bruno Ferreira](https://github.com/brunnf) |
+| 1.1 | 10/11/2026 | Identificação do grupo como Protótipos, com ícone próprio e posicionamento após os documentos de requisitos na navegação lateral. | [Thiago Gomes](https://github.com/thgomxs) |
