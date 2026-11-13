@@ -4,7 +4,7 @@ export function serializePartForm(form) {
     name: form.name.trim(),
     category: form.category.trim(),
     equivalent_codes: form.equivalent_codes
-      .split(/[\n,;]+/)
+      .split(/\r?\n/)
       .map((code) => code.trim())
       .filter(Boolean),
     technical_description: form.technical_description.trim() || null,

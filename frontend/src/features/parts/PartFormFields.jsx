@@ -126,9 +126,9 @@ export default function PartFormFields({
             {field('equivalent_codes', 'Códigos equivalentes (opcional)', {
               multiline: true,
               minRows: 1,
-              placeholder: 'Ex.: ABC-123, XYZ-456',
+              placeholder: 'Ex.: ABC-123\nXYZ-456',
               helperText:
-                'Códigos de outras marcas. Separe por vírgula ou use uma linha para cada código.',
+                'Informe um código por linha. Vírgulas e ponto e vírgula fazem parte do código.',
               slotProps: { htmlInput: { maxLength: 10200 } },
             })}
             {field('physical_location', 'Localização física (opcional)', {

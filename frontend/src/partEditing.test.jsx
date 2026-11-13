@@ -255,3 +255,16 @@ test('envia a foto selecionada na edição e bloqueia envios enquanto salva', as
   finishSave(response(PART));
   await screen.findByText('Peça atualizada com sucesso');
 });
+
+test('acrescenta equivalentes sem fragmentar códigos com pontuação', async () => {
+  const part = { ...PART, equivalent_codes: ['ACME;01', 'ACME,02'] };
+  const request = await openEdit(undefined, part);
+  const field = await screen.findByRole('textbox', { name: /Códigos equivalentes/ });
+  fireEvent.change(field, { target: { value: `${field.value}\nNEW-CODE` } });
+  fireEvent.click(screen.getByRole('button', { name: 'Salvar alterações' }));
+  await screen.findByText('Peça atualizada com sucesso');
+  const [, options] = request.mock.calls.find(([, options]) => options?.method === 'PATCH');
+  expect(JSON.parse(options.body)).toEqual({
+    equivalent_codes: ['ACME;01', 'ACME,02', 'NEW-CODE'],
+  });
+});

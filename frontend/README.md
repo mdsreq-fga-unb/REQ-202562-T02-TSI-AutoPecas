@@ -55,12 +55,22 @@ claro e o bloqueio do armazenamento não impede a alternância durante a sessão
 O cadastro exige código do fabricante, nome e categoria. Códigos equivalentes,
 descrição técnica, localização e foto são opcionais. O fluxo mostra validação,
 carregamento, conflito com a identificação da peça existente e confirmação de
-sucesso. Limpar um formulário preenchido exige confirmação.
+sucesso. Limpar um formulário preenchido exige confirmação. Códigos equivalentes
+são informados um por linha; vírgulas e ponto e vírgula pertencem ao código e não
+são separadores. A edição apresenta cada equivalente em sua própria linha.
 
-Cada tentativa recebe uma `Idempotency-Key`. Em falha de rede ou resposta incerta,
-o formulário mantém os dados e repete a mesma chave; a API devolve o cadastro
-original se ele já foi confirmado. Essa proteção vale enquanto a página permanece
-aberta; não há rascunho persistido nem fila offline nesta entrega.
+Antes de enviar um cadastro, os dados normalizados, a foto e a `Idempotency-Key`
+são preservados no `localStorage`, em uma chave específica da URL da API. Após
+recarregar ou reabrir a página no mesmo navegador e origem, o formulário recupera
+a tentativa e mantém os campos bloqueados. O usuário escolhe **Tentar novamente**:
+o envio reutiliza os mesmos dados e a mesma chave, e a API devolve o cadastro
+original se ele já foi confirmado. Não há reenvio automático nem fila offline.
+
+A tentativa é removida após sucesso ou rejeição definitiva; uma resposta incerta
+a mantém disponível. Se o armazenamento estiver bloqueado ou sem espaço, a tela
+informa o problema e não envia a requisição. Um cadastro pendente de outra aba não
+é sobrescrito por uma nova tentativa. Rascunhos que ainda não foram enviados
+continuam apenas em memória; limpar os dados do navegador remove a recuperação.
 
 O catálogo pagina os registros em grupos de 20 e oferece a ação Editar. Essa
 listagem é o acesso à US05; não implementa a busca e os filtros de outras histórias.
@@ -348,6 +358,31 @@ do Compose; a consulta periódica dos arquivos tem um custo adicional de CPU.
 Esta correção altera configuração de desenvolvimento, não regras de negócio.
 As suítes e o build da revisão anterior não foram repetidos; a configuração e a
 detecção de mudanças foram verificadas diretamente no Docker com Node 22.
+
+## Correções da revisão de US01 e US05 — 12/11/2026 (Refs #27, #31)
+
+- **Equivalentes:** entrada e edição usam um código por linha, preservando vírgulas
+  e ponto e vírgula que pertençam ao código. A regressão reproduziu o bloqueio ao
+  adicionar outro equivalente antes da correção.
+- **Recuperação de cadastro:** dados, foto e chave são preservados antes do POST e
+  recuperados após recarregar a página. A retomada é manual e reutiliza exatamente
+  o mesmo corpo e a mesma chave; após sucesso, a tentativa é removida. A proteção
+  contra falhas de armazenamento impede enviar uma nova solicitação sem preservá-la
+  e mantém bloqueados os campos de uma tentativa ainda incerta.
+- **XP/TDD:** foram aplicadas as skills `tsi-tdd` e `tsi-revisao`. Cinco cenários novos
+  foram observados falhando antes das correções: equivalentes, recuperação com
+  foto/chave, saída antes da resposta, armazenamento indisponível e manutenção do
+  bloqueio em uma repetição incerta. O cenário adicional de outra aba é uma
+  verificação complementar, sem alegação de teste primeiro para ele.
+- **Verificação:** suíte com 33 testes aprovada em Node 22.23.4, lint, formatação e
+  build aprovados. A inspeção no Edge utilizou a interface real com escritas da API
+  simuladas: recarga, restauração, ausência de reenvio automático, repetição com a
+  mesma chave/corpo, limpeza após sucesso e edição dos equivalentes conferidos.
+  Tela de recuperação em 390 px sem rolagem horizontal. Nenhuma gravação foi feita
+  no banco existente durante essa inspeção.
+- A persistência adicionada é para tentativas de **cadastro**; rascunhos ainda não
+  enviados, edição e alteração de status não receberam recuperação após recarga
+  nesta correção. A matriz de navegadores e o aceite do cliente continuam pendentes.
 
 ## Publicação
 

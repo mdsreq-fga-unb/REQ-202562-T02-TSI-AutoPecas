@@ -7,7 +7,7 @@ export default function usePartEditing(part) {
     manufacturer_code: part.manufacturer_code,
     name: part.name,
     category: part.category,
-    equivalent_codes: part.equivalent_codes.join(', '),
+    equivalent_codes: part.equivalent_codes.join('\n'),
     physical_location: part.physical_location || '',
     technical_description: part.technical_description || '',
     photo_data: getPartPhotoUrl(part),
