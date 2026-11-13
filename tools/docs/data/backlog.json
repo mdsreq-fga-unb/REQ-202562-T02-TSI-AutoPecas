@@ -1275,11 +1275,12 @@
       "name": "Responsividade da interface em dispositivos móveis",
       "anchor": "rnf01-responsividade-da-interface-em-dispositivos-moveis",
       "declaration": "A interface web do sistema deve ser responsiva e operável por toque em dispositivos móveis com largura de viewport a partir de 360 pixels CSS em orientação retrato, cobrindo a faixa de 360px a 428px CSS, garantindo ergonomia para as rotinas operacionais da loja (consulta de saldo, registro de movimentação e consulta de vendas).",
-      "criterion": "Conformidade com WCAG 2.1 AA — área de toque mínima de 44×44 pixels CSS para todos os elementos interativos, nas larguras de viewport de 360px, 390px e 414px CSS em orientação retrato.",
+      "criterion": "Conformidade com a WCAG 2.1 nível AA nas larguras de viewport de 360px, 390px e 414px CSS em orientação retrato.\n\nComo decisão de projeto, todos os elementos interativos devem ter área de toque mínima de 44×44 pixels CSS, para favorecer a operação por toque no balcão. Esse valor é baseado no critério 2.5.5 (Tamanho do alvo), de nível AAA da WCAG 2.1; adotá-lo não significa exigir conformidade com todo o nível AAA. Referência: https://www.w3.org/WAI/WCAG21/Understanding/target-size.html\n\nA WCAG 2.2 introduziu o critério 2.5.8, de nível AA, com referência de 24×24 pixels CSS e exceções próprias. Essa comparação não altera a referência adotada pelo projeto: WCAG 2.1 AA e área de toque de 44×44 pixels CSS. Referência: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html\n\nVerificação: auditoria automática com Lighthouse ou axe sem violações detectadas de nível A ou AA, complementada pela avaliação manual dos critérios aplicáveis não cobertos pela ferramenta e pela medição dos elementos interativos nas três larguras. A auditoria automática isolada não comprova a conformidade completa.",
       "classification": "Usabilidade (URPS+) / produto — usabilidade (Sommerville).",
       "cp": "CP8",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 12/11/2026 · Correção da issue #49: área de toque de 44×44 pixels CSS identificada como decisão de projeto baseada no critério 2.5.5 (AAA), preservando WCAG 2.1 AA como referência; verificação automática complementada por inspeção manual."
       ]
     },
     {

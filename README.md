@@ -246,7 +246,7 @@ Termos do domínio mantêm um vocabulário único em todo o sistema:
 - **Componentes funcionais** com hooks, um componente por arquivo. Componentes pequenos e reutilizáveis.
 - **Separação de responsabilidades:** componentes cuidam da apresentação; chamadas à API ficam em uma camada própria (`services/`), nunca espalhadas pelos componentes.
 - **Estado:** manter o estado o mais próximo possível de onde é usado. Evitar estado global sem necessidade.
-- **Interface:** responsiva a partir de 360 px, com áreas de toque de pelo menos 44×44 px (RNF01). Mensagens de erro e validação claras, em português.
+- **Interface:** responsiva a partir de 360 px, conforme WCAG 2.1 AA, com áreas de toque de pelo menos 44×44 px como decisão adicional do RNF01, baseada no critério 2.5.5 (AAA). Isso não exige conformidade com todo o nível AAA. Mensagens de erro e validação claras, em português; verificação automática complementada por avaliação manual.
 - **Compatibilidade** com Chrome, Firefox, Edge e Safari, nas duas versões mais recentes (RNF03).
 
 ### 5. API

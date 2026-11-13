@@ -61,7 +61,7 @@ Para transformar a análise dos riscos e efeitos emergentes em medidas práticas
 - **Requisitos e critérios verificáveis do MVP:**
   - **RF04 (Buscar peça — no MVP, Sprint 4):** localização ágil por código do fabricante, nome, categoria ou aplicação veicular;
   - **RF15 (Registrar venda — no MVP, Sprint 5):** registro direto da venda com identificação obrigatória do canal de origem (Mercado Livre, balcão ou contato direto) e baixa imediata no saldo;
-  - **RNF01 (Usabilidade em dispositivos móveis):** conformidade com **WCAG 2.1 AA** e área de toque mínima de **44×44 pixels CSS** em larguras de viewport de 360px a 428px CSS em orientação retrato, favorecendo a operação em telas menores;
+  - **RNF01 (Usabilidade em dispositivos móveis):** conformidade com **WCAG 2.1 AA** em larguras de viewport de 360px a 428px CSS em orientação retrato e, como decisão adicional de projeto para operação por toque, área mínima de **44×44 pixels CSS**, baseada no critério 2.5.5 (nível AAA). A adoção dessa dimensão não exige conformidade com todo o nível AAA. A verificação inclui auditoria automática, avaliação manual e medição dos controles, conforme o [RNF01](requisitos-de-software.md#rnf01-responsividade-da-interface-em-dispositivos-moveis);
   - **RNF04 (Desempenho de resposta):** tempo de resposta **P95 ≤ 3 segundos** para consultas de catálogo e saldo sob conexão mínima de 10 Mbps, contribuindo para a fluidez das pesquisas.
 
 ### <span id="d05"></span>D05 — Protocolo de operação degradada e contingência (mitigação de R02)
@@ -125,3 +125,4 @@ Assim, a intervenção social deixa de ser uma reflexão puramente teórica e pa
 | 1.4 | 12/10/2026 | Alinhamento com cronograma do MVP (13 RFs), ajuste de mitigações de escopo, novas colunas na matriz e moderação de termos absolutistas | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
 | 1.5 | 13/10/2026 | Inclusão de links entre riscos, decisões, requisitos e características na matriz de rastreabilidade. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.6 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.7 | 12/11/2026 | Correção da fundamentação da área de toque na D04: WCAG 2.1 AA mantida e 44×44 pixels CSS como decisão adicional baseada no critério AAA, conforme issue #49. | Equipe |
