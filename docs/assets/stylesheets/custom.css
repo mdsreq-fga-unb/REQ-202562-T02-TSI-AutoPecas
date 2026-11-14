@@ -1305,7 +1305,9 @@ body {
 .md-typeset .backlog-epic > p { margin: .25rem 0; }
 .md-typeset .backlog-epic-meta { font-size: .67rem; color: var(--md-default-fg-color--light); }
 .md-typeset .backlog-catalog details.req-record { margin: .4rem 0; }
-.md-typeset .backlog-catalog details.req-record > summary { gap: .35rem; padding: .5rem .6rem .5rem 1.6rem; font-size: .73rem; line-height: 1.4; }
+.md-typeset .backlog-catalog details.req-record > summary { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; align-items: center; gap: .35rem; margin: 0; padding: .5rem .6rem .5rem 1.6rem; font-size: .73rem; line-height: 1.4; }
+.md-typeset .backlog-catalog .req-record__chips { align-items: center; justify-content: flex-end; min-width: 0; gap: .25rem; }
+.md-typeset .backlog-catalog .req-record__chips .req-chip { padding-inline: .35rem; }
 .md-typeset .backlog-catalog .req-record__body { display: block; padding: .2rem .65rem .5rem; font-size: .72rem; line-height: 1.5; }
 .md-typeset .backlog-catalog .req-record__body > p { margin: .35rem 0; }
 .md-typeset .backlog-catalog .req-chip { white-space: normal; overflow-wrap: anywhere; }
@@ -1377,11 +1379,18 @@ body {
 .md-typeset .backlog-catalog details > summary::before { content: ""; display: block; position: absolute; top: .6rem; left: .55rem; width: .4rem; height: .4rem; border: solid var(--tsi-accent); border-width: 0 .08rem .08rem 0; border-radius: 0; background: none; mask: none; transform: rotate(-45deg); }
 .md-typeset .backlog-catalog details[open] > summary::before { transform: rotate(45deg); }
 .md-typeset .backlog-catalog details > summary::after { display: none; }
+.md-typeset .backlog-catalog details.req-record > summary::before { top: 50%; transform: translateY(-50%) rotate(-45deg); }
+.md-typeset .backlog-catalog details.req-record[open] > summary::before { transform: translateY(-50%) rotate(45deg); }
 @media (max-width: 760px) {
   .md-typeset .backlog-filter-primary,
   .md-typeset .backlog-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+@media (max-width: 600px) {
+  .md-typeset .backlog-catalog details.req-record > summary { grid-template-columns: max-content minmax(0, 1fr); }
+  .md-typeset .backlog-catalog .req-record__chips { grid-column: 1 / -1; justify-content: flex-start; }
+}
 @media (max-width: 380px) {
+  .md-typeset .backlog-catalog .backlog-rf-origin { display: block; }
   .md-typeset .backlog-filter-grid { grid-template-columns: minmax(0, 1fr); }
   .md-typeset .backlog-filter-actions output { width: 100%; margin-left: 0; }
 }
