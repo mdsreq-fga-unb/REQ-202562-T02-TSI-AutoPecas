@@ -61,7 +61,7 @@
       "id": "RF01",
       "us": "US01",
       "name": "Cadastrar peça",
-      "declaration": "O sistema deve permitir que utilizadores com perfil Administrador ou Operador cadastrem uma peça, com preenchimento obrigatório do código do fabricante, do nome e da categoria; e preenchimento opcional da descrição técnica, da localização física e de uma foto.",
+      "declaration": "O sistema deve permitir o cadastro de uma peça, com preenchimento obrigatório do código principal do fabricante, do nome e da categoria; e preenchimento opcional de códigos equivalentes (de outras marcas), da descrição técnica, da localização física e de uma foto. Cada código, principal ou equivalente, deve ser único no catálogo; ao tentar usar um código já existente, o sistema deve avisar qual peça já o utiliza.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -83,14 +83,17 @@
       "sprint": 3,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
-      ]
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Códigos principal e equivalentes únicos no catálogo; duplicidade identifica a peça existente. Perfis retirados do MVP, conforme decisão do cliente de 04/11 e apontamentos #48, #50 e #53 (US01: #27).",
+        "- 10/11/2026 · Reestimativa do esforço sinalizada após inclusão dos códigos equivalentes; notas anteriores preservadas, sem atribuir uma nova estimativa não acordada (#27, #53)."
+      ],
+      "priority_note": "Reestimativa de esforço pendente: a inclusão de códigos equivalentes amplia o cadastro e a validação de unicidade. EI, CA e LC foram preservados até a equipe definir as novas notas; o ET e o Score exibidos ainda refletem a estimativa anterior."
     },
     {
       "id": "RF02",
       "us": "US02",
       "name": "Importar peças via planilha",
-      "declaration": "O sistema deve permitir ao perfil Administrador selecionar uma planilha .xlsx de peças, validar os registros e cadastrá-los em lote, sem sobrescrever peças já cadastradas com o mesmo código do fabricante.",
+      "declaration": "O sistema deve permitir selecionar uma planilha .xlsx de peças, validar os registros e cadastrá-los em lote, sem sobrescrever peças já cadastradas com o mesmo código, principal ou equivalente.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -102,7 +105,7 @@
       ],
       "dependencies": "RF01 — dependências derivadas da leitura da declaração, a validar no refinamento.",
       "priority": {
-        "vn": 4,
+        "vn": 2,
         "moscow": "Must Have",
         "ei": 2,
         "ca": 2,
@@ -112,14 +115,18 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
-      ]
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Importação sem restrição por perfil e sem sobrescrita de códigos principais ou equivalentes, alinhada ao cadastro e ao recorte sem autenticação (#53; US02: #28). Modelo e colunas da planilha ainda dependem de refinamento.",
+        "- 10/11/2026 · VN corrigido de 4 para 2 com base nas respostas registradas nas atas de 30/09 e 05/10; Score 3 e Q3. Mantida no MVP por exceção, como Must Have, conforme decisão do cliente em 05/10 (#28, #53)."
+      ],
+      "priority_note": "VN = 0 (essencialidade) + 1 (frequência) + 0 (impacto na dor) + 1 (urgência) = 2. A ata de 30/09 registrou apenas urgência como Sim; a ata de 05/10 alterou frequência para Sim. Score = 2 + 3 (Must Have) - 2 (ET) = 3. Falta definir se o modelo .xlsx aceitará uma coluna de códigos equivalentes; essa possibilidade não é assumida como aprovada.",
+      "delivery_reason": "MVP por exceção ao corte de Score ≥ 4: importação mantida como Must Have por decisão do cliente em 05/10, para reaproveitar os dados existentes. O Score 3 é preservado; a decisão de entrega não altera o cálculo."
     },
     {
       "id": "RF03",
       "us": "US03",
       "name": "Associar veículo à peça",
-      "declaration": "O sistema deve permitir a associação de uma ou mais aplicações por veículo a uma peça cadastrada, com registo de marca, modelo e ano de compatibilidade.",
+      "declaration": "O sistema deve permitir a associação de uma ou mais aplicações por veículo a uma peça cadastrada, com registro de marca, modelo e ano de compatibilidade.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -141,14 +148,15 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF04",
       "us": "US04",
       "name": "Buscar peça",
-      "declaration": "O sistema deve permitir a localização de peças no catálogo por ao menos um dos seguintes filtros: código do fabricante, nome, categoria ou aplicação por veículo (marca, modelo ou ano).",
+      "declaration": "O sistema deve permitir a localização de peças no catálogo por ao menos um dos seguintes filtros: código do fabricante (principal ou equivalente), nome, categoria ou aplicação por veículo (marca, modelo ou ano).",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -170,14 +178,17 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
-      ]
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Busca também pelo código equivalente, conforme decisão do cliente de 04/11 (US04: #30).",
+        "- 10/11/2026 · Revisão do esforço sinalizada para a busca por códigos equivalentes; notas atuais preservadas até avaliação da equipe (#30)."
+      ],
+      "priority_note": "Revisão de esforço pendente: avaliar o impacto da busca por códigos equivalentes. EI, CA e LC atuais foram preservados até essa avaliação pela equipe."
     },
     {
       "id": "RF05",
       "us": "US05",
       "name": "Editar peça",
-      "declaration": "O sistema deve permitir a edição de qualquer campo do cadastro de uma peça já registrada, com exceção do código do fabricante, que é imutável após o cadastro inicial.",
+      "declaration": "O sistema deve permitir a edição dos campos do cadastro de uma peça já registrada (nome, categoria, códigos equivalentes, descrição técnica, localização física, foto e aplicação por veículo), com exceção do código principal, que é imutável após o cadastro inicial. Os dados fiscais da peça só podem ser alterados conforme a US33 (RF33).",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -199,14 +210,15 @@
       "sprint": 3,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Campos editáveis explicitados, código principal imutável e dados fiscais reservados à US33, eliminando a sobreposição apontada em #48 (US05: #31)."
       ]
     },
     {
       "id": "RF06",
       "us": "US06",
       "name": "Alterar status da peça",
-      "declaration": "O sistema deve permitir que o usuário altere o status de uma peça, alternando entre \"ativo\" e \"inativo\".",
+      "declaration": "O sistema deve permitir que o usuário altere o status de uma peça, alternando entre \"ativo\" e \"inativo\". A peça inativa continua aparecendo nas buscas, identificada como inativa, mas não recebe novas movimentações de estoque nem vendas; o saldo e os registros existentes não são alterados.",
       "cp": "CP1",
       "epic": "EP01",
       "oe": "1",
@@ -228,14 +240,15 @@
       "sprint": 3,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Peça inativa permanece nas buscas, identificada, sem novas movimentações ou vendas e sem alteração dos registros existentes, conforme cliente em 04/11 e issue #48 (US06: #32)."
       ]
     },
     {
       "id": "RF07",
       "us": "US07",
       "name": "Cadastrar fornecedor",
-      "declaration": "O sistema deve permitir o cadastro de fornecedores.",
+      "declaration": "O sistema deve permitir o cadastro de fornecedores, com nome obrigatório e CNPJ, telefone e e-mail opcionais.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -257,14 +270,15 @@
       "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Cadastro de fornecedor detalhado com nome obrigatório e CNPJ, telefone e e-mail opcionais; permanece como evolução futura (#48)."
       ]
     },
     {
       "id": "RF08",
       "us": "US08",
-      "name": "Registar entrada de peças",
-      "declaration": "O sistema deve permitir o registo da entrada de um lote de peças no stock, com informação da peça, da quantidade, da data, do fornecedor e do preço de custo unitário.",
+      "name": "Registrar entrada de peças",
+      "declaration": "O sistema deve permitir o registro da entrada de um lote de peças no estoque, com informação da peça, da quantidade, da data e do preço de custo unitário.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -274,7 +288,7 @@
         "RNF03",
         "RNF05"
       ],
-      "dependencies": "RF01, RF07 — dependências derivadas da leitura da declaração, a validar no refinamento.",
+      "dependencies": "RF01 - peça cadastrada; a entrada não exige fornecedor cadastrado.",
       "priority": {
         "vn": 4,
         "moscow": "Must Have",
@@ -286,14 +300,16 @@
       "sprint": 4,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Entrada sem fornecedor; dependência da US07 removida, conforme decisão do cliente de 04/11 e issue #52 (US08: #33).",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF09",
       "us": "US09",
-      "name": "Registar saída manual",
-      "declaration": "O sistema deve permitir que utilizadores com perfil Administrador ou Operador registrem uma saída manual de peças do stock, com informação da peça, da quantidade, da data e do motivo.",
+      "name": "Registrar saída manual",
+      "declaration": "O sistema deve permitir o registro de uma saída manual de peças do estoque, com informação da peça, da quantidade, da data e do motivo. Saídas acima do saldo atual são bloqueadas, informando o saldo disponível.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -315,14 +331,16 @@
       "sprint": 5,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Saída acima do saldo bloqueada com informação do saldo disponível, sem restrição por perfil no MVP, conforme cliente em 04/11 e issues #48 e #53 (US09: #34).",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF10",
       "us": "US10",
-      "name": "Registar ajuste de inventário",
-      "declaration": "O sistema deve permitir que apenas o perfil Administrador realize o registo de um ajuste de inventário, com informação da peça, da diferença de quantidade (positiva ou negativa) e da justificativa do ajuste.",
+      "name": "Registrar ajuste de inventário",
+      "declaration": "O sistema deve permitir o registro de um ajuste de inventário, com informação da peça, da diferença de quantidade (positiva ou negativa) e da justificativa do ajuste. O ajuste não pode resultar em saldo negativo.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -344,13 +362,15 @@
       "sprint": 5,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Ajuste não pode produzir saldo negativo; restrição por perfil retirada do MVP, conforme cliente em 04/11 e issues #48 e #53 (US10: #35).",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
       "id": "RF11",
       "us": "US11",
-      "name": "Registar devolução de peça",
+      "name": "Registrar devolução de peça",
       "declaration": "O sistema deve permitir que o usuário registre a devolução de uma peça vinculada a uma venda, restabelecendo a quantidade devolvida ao saldo do estoque.",
       "cp": "CP2",
       "epic": "EP02",
@@ -374,7 +394,8 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/10/2026 · Declaração ajustada: a devolução passou a ser vinculada a uma venda, conforme feedback da monitoria.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
       ]
     },
     {
@@ -410,7 +431,7 @@
       "id": "RF13",
       "us": "US13",
       "name": "Consultar histórico de movimentações",
-      "declaration": "O sistema deve exibir no ecrã o histórico de movimentações da peça.",
+      "declaration": "O sistema deve exibir em tela o histórico de movimentações da peça.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -431,14 +452,17 @@
       "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
-      ]
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
+        "- 10/11/2026 · Consulta de histórico mantida como história independente e condicionada, sem sprint, conforme decisão atual de escopo. Não absorve a US14; seus identificadores RF13/US13 são preservados (#47, #48, #52, #53)."
+      ],
+      "delivery_reason": "Fora do MVP e condicionada à capacidade da equipe, sem sprint atribuída. A consulta de histórico permanece separada do filtro de período da US14; não há fusão de histórias nem reutilização de identificadores."
     },
     {
       "id": "RF14",
       "us": "US14",
       "name": "Filtrar histórico por período",
-      "declaration": "O sistema deve permitir que o utilizador aplique um filtro de período (data) na listagem do histórico de movimentações.",
+      "declaration": "O sistema deve permitir que o usuário aplique um filtro de período (data) na listagem do histórico de movimentações.",
       "cp": "CP2",
       "epic": "EP02",
       "oe": "6",
@@ -455,18 +479,21 @@
         "ca": 1,
         "lc": 2
       },
-      "delivery": "MVP",
-      "sprint": 5,
+      "delivery": "Condicionado",
+      "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
-      ]
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
+        "- 10/11/2026 · Retirada do MVP e da Sprint 5 por depender da US13, que está condicionada. Mantida separada, também como condicionada, sem aposentadoria nem fusão; RF14/US14 continuam significando filtrar histórico por período (#37, #47, #48, #52, #53). A divergência da descrição na ata de 05/10 permanece a retificar na origem."
+      ],
+      "delivery_reason": "Fora do MVP por decisão de escopo, apesar do Score 4: o filtro depende da consulta de histórico da US13, também condicionada. Permanece como história separada, sem sprint, e sua eventual entrega exige a disponibilidade da US13."
     },
     {
       "id": "RF15",
       "us": "US15",
       "name": "Registrar venda",
-      "declaration": "O sistema deve permitir a utilizadores com perfil Administrador ou Operador o registro de uma venda com informação do canal de origem, das peças vendidas, das quantidades e do preço, atualizando o saldo em estoque.",
+      "declaration": "O sistema deve permitir o registro de uma venda, com informação do canal de origem (balcão, Mercado Livre ou contato direto), das peças vendidas, das quantidades e do preço unitário de cada item, atualizando o saldo em estoque. Vendas com quantidade acima do saldo são bloqueadas, informando o saldo atual.",
       "cp": "CP3",
       "epic": "EP03",
       "oe": "2",
@@ -489,14 +516,15 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/10/2026 · Declaração simplificada quanto à atualização do saldo em estoque, conforme feedback da monitoria.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Canais de venda e preço unitário explicitados; venda acima do saldo bloqueada, sem restrição por perfil no MVP, conforme cliente em 04/11 e issues #48, #50 e #53 (US15: #38)."
       ]
     },
     {
       "id": "RF16",
       "us": "US16",
       "name": "Cancelar venda",
-      "declaration": "O sistema deve permitir ao Administrador cancelar uma venda registrada previamente, revertendo a baixa de estoque correspondente.",
+      "declaration": "O sistema deve permitir cancelar uma venda registrada previamente, revertendo a baixa de estoque correspondente.",
       "cp": "CP3",
       "epic": "EP03",
       "oe": "2",
@@ -509,7 +537,7 @@
       "dependencies": "RF15 — dependências derivadas da leitura da declaração, a validar no refinamento.",
       "priority": {
         "vn": 4,
-        "moscow": "Should Have",
+        "moscow": "Must Have",
         "ei": 2,
         "ca": 2,
         "lc": 1
@@ -518,8 +546,11 @@
       "sprint": 5,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
-      ]
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Cancelamento mantém a reversão da baixa de estoque, sem restrição por perfil no MVP (#53; US16: #39).",
+        "- 10/11/2026 · MoSCoW corrigido de Should Have para Must Have, conforme ata de 05/10; Score de 4 para 5, sem alteração do ET ou da sprint (#39, #53)."
+      ],
+      "priority_note": "MoSCoW corrigido de Should Have para Must Have, conforme ata de 05/10. Score = 4 (VN) + 3 (Must Have) - 2 (ET) = 5; permanece no MVP."
     },
     {
       "id": "RF17",
@@ -554,7 +585,7 @@
       "id": "RF18",
       "us": "US18",
       "name": "Gerenciar status de recebimento",
-      "declaration": "O sistema deve permitir que o usuário registre o recebimento (total ou parcial) de uma venda e a forma de pagamento por meio de um botão dropdown, com as opções de status de recebimento. O status de novas vendas deve iniciar como \"a receber\", podendo o utilizador com perfil Administrador ou Operador atualizar esse status de forma autónoma ao registo.",
+      "declaration": "O sistema deve permitir que o usuário registre o recebimento (total ou parcial) de uma venda e a forma de pagamento, com as opções de status de recebimento. O status de novas vendas deve iniciar como \"a receber\", podendo ser atualizado a qualquer momento após o registro.",
       "cp": "CP3",
       "epic": "EP03",
       "oe": "2",
@@ -576,7 +607,8 @@
       "sprint": null,
       "planned_status": "Não iniciado",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Comportamento de recebimento separado da escolha de componente de interface, conforme #48; permanece como evolução futura."
       ]
     },
     {
@@ -1000,7 +1032,7 @@
       "id": "RF33",
       "us": "US33",
       "name": "Editar dados fiscais da peça",
-      "declaration": "O sistema deve permitir ao administrador alterar, no cadastro de uma peça, os dados fiscais já registrados: código NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável.",
+      "declaration": "O sistema deve permitir ao administrador alterar, no cadastro de uma peça, os dados fiscais já registrados: código NCM, unidade tributável, alíquotas, origem da mercadoria e CST ou CSOSN, conforme aplicável. Essa é a única forma de editar os dados fiscais da peça; a US05 (RF05) não os altera.",
       "cp": "CP6",
       "epic": "EP06",
       "oe": "3",
@@ -1024,7 +1056,8 @@
       "history": [
         "- 02/10/2026 · Corrigida a sobreposição entre os dados fiscais da peça e os da operação.",
         "- 13/10/2026 · Característica de origem realinhada à solução vigente, com a unificação de compras e análise na CP4.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 10/11/2026 · Exclusividade da edição fiscal explicitada em relação à US05, conforme #48; permanece como evolução futura."
       ]
     },
     {
@@ -1348,9 +1381,12 @@
       ]
     ],
     "pending": [
-      "RF14 está no MVP, mas RF13, de que depende, permanece condicionado. O recorte precisa de decisão com o proprietário.",
-      "As pontuações de valor de negócio aguardam confirmação formal do proprietário.",
-      "RNF04 permanece sem CP de origem definida."
+      "As issues ainda precisam alinhar narrativa, critérios e dependências às declarações aprovadas: remover exigências de perfis do MVP, atualizar a entrada sem fornecedor e incorporar as regras de códigos, saldo e peças inativas (#48, #50, #52, #53).",
+      "US01 exige reestimativa de esforço e US04 exige revisão do impacto da busca por códigos equivalentes; as notas atuais foram preservadas até avaliação da equipe.",
+      "US02: acordar o modelo da planilha e se haverá coluna de códigos equivalentes, sem assumir essa estrutura como aprovada.",
+      "A descrição de RF14 na ata de 05/10 diverge do significado atual de US14/RF14. Retificar a ata na origem; não usar a igualdade do código como prova de validação (#47, #53). US13 e US14 permanecem separadas e fora do MVP.",
+      "As demais pontuações de valor de negócio aguardam confirmação formal do proprietário.",
+      "RNF04 permanece sem CP de origem definida; as correções de RNFs da issue #49 não integram esta revisão."
     ]
   }
 }
