@@ -86,16 +86,19 @@ def render_story(story):
     out.append('<section class="backlog-text"><p class="backlog-label">Declaração de origem - ' + rf + '</p>' + paragraphs(story["declaration"]) + '</section>')
     out.append('<section class="backlog-text"><p class="backlog-label">Critérios de aceitação</p>' + paragraphs(story["criteria"], "A definir no refinamento, conforme a DoR.") + '</section>')
     out.append('<dl class="backlog-facts">' + row("RNFs", " · ".join(ref(i) for i in story["rnfs"]) or "Nenhum vínculo registrado"))
-    out.append(row("Dependências", text(story["dependencies"])))
+    out.append(row("Dependências", text(re.sub(r"\bRF(\d{2,})\b", r"US\1", story["dependencies"]))))
     if issue and issue.get("dependencies") and issue["dependencies"].casefold().rstrip(".") != story["dependencies"].casefold().rstrip("."):
-        out.append(row("Issue: dependências", text(issue["dependencies"])))
+        out.append(row("Issue: dependências", text(re.sub(r"\bRF(\d{2,})\b", r"US\1", issue["dependencies"]))))
     if issue and issue.get("rnfs") is not None and set(issue["rnfs"]) != set(story["rnfs"]):
         out.append(row("Issue: RNFs", " · ".join(ref(i) for i in issue["rnfs"]) or "Nenhum informado"))
     out.append('</dl>')
     out.append('<section class="backlog-priority"><p class="backlog-label">Priorização</p>'
                f'<p class="backlog-score">VN {p["vn"]} + {escape(p["moscow"])} ({WEIGHTS[p["moscow"]]}) - ET {et} = <strong>Score {score}</strong> · <strong>{quadrant}</strong></p>'
                f'<p><small>ET = arred(({p["ei"]} + {p["ca"]} + {p["lc"]}) / 3) = {et}. Notas: EI {p["ei"]}, CA {p["ca"]}, LC {p["lc"]}. '
-               + link('../priorizacao/', 'Critérios e escalas') + '</small></p></section>')
+               + link('../priorizacao/', 'Critérios e escalas') + '</small></p>'
+               + (paragraphs(story['priority_note']) if story.get('priority_note') else '')
+               + ('<dl class="backlog-facts">' + row('Decisão de entrega', text(story['delivery_reason'])) + '</dl>'
+                  if story.get('delivery_reason') else '') + '</section>')
     out.append('<section class="backlog-text"><p class="backlog-label">A refinar</p>' + paragraphs(story["refinement"], "Detalhamento pendente" if not issue else "Nenhum ponto informado na issue") + '</section>')
     if story["warnings"]:
         out.append('<aside class="backlog-pending"><strong>Alinhamentos pendentes</strong><ul>' + ''.join('<li>' + text(w) + '</li>' for w in story["warnings"]) + '</ul></aside>')
