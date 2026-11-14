@@ -35,8 +35,8 @@ O escopo do MVP e o cronograma estão na documentação:
 
 | Componente | Tecnologia |
 | --- | --- |
-| Front-end | React com Vite e pnpm |
-| Back-end | Python com FastAPI e uv |
+| Front-end | React com MUI, Vite e pnpm |
+| Back-end | Python com FastAPI, SQLAlchemy, Alembic e uv |
 | Banco de dados | PostgreSQL por meio do Supabase |
 | Publicação do front-end | Vercel |
 | Publicação do back-end | Render |
@@ -80,10 +80,17 @@ no Compose. Os diretórios de código são montados para permitir recarga autom�
 Após alterar dependências, execute novamente `docker compose up --build`.
 Para encerrar o ambiente, use `docker compose down`.
 
+O Compose inclui PostgreSQL local na porta 5433 e aplica as migrações da API.
+Os dados permanecem no volume `postgres_data` após encerrar os contêineres.
+
 Para executar sem Docker, siga [Front-end](frontend/README.md) e
 [Back-end](backend/README.md). Use Node conforme `frontend/.nvmrc`, pnpm conforme
-`frontend/package.json` e Python 3.13 com uv. A base inicial verifica a comunicação
-entre os serviços; as funcionalidades do MVP serão implementadas pelas US.
+`frontend/package.json` e Python 3.13 com uv. A aplicação implementa o cadastro
+manual da US01 (issue #27), com a logo da loja, campos obrigatórios e opcionais,
+foto, códigos únicos e recuperação de tentativas após falha de conexão.
+A arquitetura e os contratos estão nos READMEs das áreas. Este incremento segue
+o recorte do PR #63 autorizado para a tarefa, sem implementar perfis, edição ou
+exclusão. A revisão da equipe e o aceite do cliente continuam pendentes.
 
 ## Documentação e automação do backlog
 
@@ -118,7 +125,7 @@ são instaladas em ambientes separados.
 | Documentação | GitHub Actions e GitHub Pages, mantendo `mkdocs.yml` na raiz |
 | Front-end | Vercel: diretório `frontend/`, Node 22, `ENABLE_EXPERIMENTAL_COREPACK=1` e `VITE_API_BASE_URL` com a URL HTTPS da API |
 | API | Render: Blueprint `render.yaml`, com build do Dockerfile de produção em `backend/` |
-| Banco | PostgreSQL no Supabase; conexão e migrações serão implementadas nas histórias de persistência |
+| Banco | PostgreSQL no Supabase; conexão SQLAlchemy/psycopg e migrações Alembic em `backend/migrations/` |
 
 No Render, informe `CORS_ORIGINS` como lista JSON dos domínios autorizados da Vercel
 e `DATABASE_URL` com a conexão do banco. A API respeita a variável `PORT` do serviço.
