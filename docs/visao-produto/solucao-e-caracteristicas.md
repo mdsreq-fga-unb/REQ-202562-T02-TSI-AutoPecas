@@ -106,7 +106,7 @@ Os benefícios estão separados pelo horizonte de entrega. Os do **MVP** derivam
 - Substituição do controle manual em planilhas por uma ferramenta única e adequada à rotina do proprietário, com saldo atualizado a cada movimentação e a cada venda registrada.
 - Redução do tempo gasto na localização de peças e na consulta de disponibilidade durante o atendimento, liberando o proprietário para o atendimento e a gestão do negócio.
 - Menor risco de erro no controle, com a centralização das informações que hoje estão dispersas.
-- Estoque confiável, atualizado a cada venda registrada.
+- Estoque confiável, com bloqueio de saídas e vendas acima do saldo disponível ([RF09](requisitos-de-software.md#rf09) e [RF15](requisitos-de-software.md#rf15)).
 
 ### Benefícios do produto completo (fora do MVP)
 
