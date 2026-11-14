@@ -1,6 +1,8 @@
 # Grupo 3 — Busca e consulta de disponibilidade
 
-[Abrir o grupo no protótipo](interface/index.html?grupo=search){ .md-button }
+[← Todos os grupos](index.md)
+
+[Abrir o grupo no protótipo](interface/index.html?grupo=search){ .md-button .md-button--primary }
 
 ## Vínculos e objetivo
 
@@ -45,7 +47,7 @@ A resposta imediata usa dados em memória e **não comprova o desempenho do RNF0
 As mesmas telas são reutilizadas pelos grupos de estoque e vendas.
 
 **Evidência a produzir:** termos utilizados, dificuldades e decisões de busca,
-seguindo o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+seguindo o [registro sugerido](avaliacao.md#registro-sugerido-para-a-issue-ou-ata).
 
 ## Versionamento
 

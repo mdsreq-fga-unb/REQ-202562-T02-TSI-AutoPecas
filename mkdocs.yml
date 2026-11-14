@@ -96,6 +96,7 @@ nav:
           - Busca e disponibilidade: prototipos/03-busca.md
           - Movimentação de estoque: prototipos/04-estoque.md
           - Vendas e cancelamento: prototipos/05-vendas.md
+          - Guia de avaliação: prototipos/avaliacao.md
   - Cronograma: visao-produto/cronograma-e-entregas.md
   - Atas:
       - atas/index.md
