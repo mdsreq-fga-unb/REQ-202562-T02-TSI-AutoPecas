@@ -8,6 +8,7 @@ edit_uri: edit/main/docs/
 
 extra_css:
   - assets/stylesheets/custom.css
+  - assets/stylesheets/diagram-alternatives.css
 
 extra_javascript:
   - assets/javascripts/catalog.js
@@ -44,6 +45,7 @@ theme:
 
 hooks:
   - tools/docs/hooks/backlog.py
+  - tools/docs/hooks/traceability.py
 
 plugins:
   - search
