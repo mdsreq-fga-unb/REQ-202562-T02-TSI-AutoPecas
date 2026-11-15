@@ -2,7 +2,7 @@
 from html import escape, unescape
 import re
 
-from scripts.backlog import WEIGHTS, priority
+from scripts.backlog import WEIGHTS, priority, normalize
 
 
 def link(url, label):
@@ -77,6 +77,21 @@ def render_checklist(label, checklist):
 
 
 
+def dependency_key(value):
+    """Normaliza redações de ausência e aliases RF/US sem apagar condições distintas."""
+    value = re.sub(r"\b(?:RF|US)0*(\d+)\b", lambda m: f"US{int(m[1]):02}", value or "", flags=re.I)
+    key = normalize(re.sub(r"\s+", " ", value)).rstrip(". ")
+    if re.fullmatch(r"nenhuma(?: dependencia(?: funcional)?(?: identificada)?(?: na declaracao)?)?|sem dependencias(?: funcionais)?|nao (?:ha|existem) dependencias(?: funcionais)?", key):
+        return "none"
+    return key
+
+
+def dependency_text(value):
+    if dependency_key(value) == "none":
+        return "Nenhuma dependência funcional."
+    return text(re.sub(r"\bRF(\d{2,})\b", r"US\1", value))
+
+
 def render_story(story):
     p = story["priority"]
     et, score, quadrant = priority(p)
@@ -111,9 +126,9 @@ def render_story(story):
     out.append('<section class="backlog-text"><p class="backlog-label">Declaração de origem - ' + rf + '</p>' + paragraphs(story["declaration"]) + '</section>')
     out.append('<section class="backlog-text"><p class="backlog-label">Critérios de aceitação</p>' + paragraphs(story["criteria"], "A definir no refinamento, conforme a DoR.") + '</section>')
     out.append('<dl class="backlog-facts">' + row("RNFs", render_rnf_relation(story["rnfs"])))
-    out.append(row("Dependências", text(re.sub(r"\bRF(\d{2,})\b", r"US\1", story["dependencies"]))))
-    if issue and issue.get("dependencies") and issue["dependencies"].casefold().rstrip(".") != story["dependencies"].casefold().rstrip("."):
-        out.append(row("Issue: dependências", text(re.sub(r"\bRF(\d{2,})\b", r"US\1", issue["dependencies"]))))
+    out.append(row("Dependências", dependency_text(story["dependencies"])))
+    if issue and issue.get("dependencies") and dependency_key(issue["dependencies"]) != dependency_key(story["dependencies"]):
+        out.append(row("Issue: dependências", dependency_text(issue["dependencies"])))
     if issue and issue.get("rnfs") is not None and set(issue["rnfs"]) != set(story["rnfs"]):
         out.append(row("Issue: RNFs", render_rnf_relation(issue["rnfs"])))
     out.append('</dl>')
