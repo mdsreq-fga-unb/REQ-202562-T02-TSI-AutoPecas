@@ -12,8 +12,8 @@ Aplique também o [AGENTS.md geral](../../AGENTS.md). O conteúdo publicado fica
 - Ao ajustar um formulário, confira `scripts/backlog.py` e seus testes. Preserve os
   títulos reconhecidos, o ID da US e o RF de origem. Selecionar um épico no campo
   não cria o vínculo de sub-issue; esse parentesco também precisa estar correto.
-- PRs e commits usam referências à issue GitHub, como `Refs #27`. O Projects tem
-  prioridade para status somente quando sua leitura está configurada. O coletor
+- PRs e commits usam referências à issue GitHub, como `Refs #27`. No novo formato o Projects é a fonte do status; sem leitura disponível,
+  informe a indisponibilidade. O campo da issue é alternativa apenas no legado. O coletor
   não confirma sozinho o cumprimento da DoD nem a validação pelo cliente.
 - A seção de evolução vem de `history`, na base; registre decisões significativas
   com data e origem. A publicação não cria um histórico de cada edição da issue.
@@ -21,3 +21,5 @@ Aplique também o [AGENTS.md geral](../../AGENTS.md). O conteúdo publicado fica
   leitura e deve anteceder a validação quando for necessário conferir dados remotos.
 - Preserve URLs, âncoras e o marcador de geração. Mudanças de apresentação não
   devem alterar os textos ou vínculos dos requisitos. Confira o build e os links.
+
+- Novas US usam **Checklist de DoR**, **Checklist de DoD** e **Evidências**. Preserve os itens de `scripts/story_contract.py`, conferidos com a definição documentada. Conclusão exige DoD completa e link HTTPS, além de Done no Projects; não volte a criar uma confirmação adicional. Checks de CI são evidências técnicas, não aceite.

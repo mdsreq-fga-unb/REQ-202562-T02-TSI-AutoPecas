@@ -262,6 +262,16 @@ class BacklogTests(unittest.TestCase):
         self.assertIn('CP a definir', html)
 
 
+    def test_legacy_scope_pending_is_not_published_or_deleted_from_source(self):
+        base = read_base()
+        base["scope"]["pending"] = ["PENDENCIA_INTERNA_NAO_PUBLICAR"]
+        original = deepcopy(base)
+        html = render_catalog(merge(base), None)
+        self.assertNotIn("Pontos em aberto do recorte", html)
+        self.assertNotIn("PENDENCIA_INTERNA_NAO_PUBLICAR", html)
+        self.assertIn("Recorte e validação do MVP", html)
+        self.assertEqual(base, original)
+
     def test_filter_metadata_distinguishes_linked_and_undetailed_stories(self):
         class Records(HTMLParser):
             def __init__(self):
