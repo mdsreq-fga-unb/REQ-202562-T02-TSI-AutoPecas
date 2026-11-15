@@ -85,14 +85,14 @@ como alternativa ao Projects.
 
 ## Vínculos de implementação e evidências {#vinculos-e-evidencias}
 
-Use **`Refs #27`** na descrição do PR ou no commit para associá-lo à issue sem solicitar fechamento
-automático. Referências como `Closes #27` também são reconhecidas, mas podem fechar a issue ao
-integrar o trabalho à branch padrão, antes de outras verificações da DoD.
+Vincule o PR à issue da US pela seção **Development** do GitHub, inclusive quando o PR já
+estiver integrado. O coletor consulta apenas os vínculos atuais registrados pelo GitHub.
+Ao desvincular o PR, ele deixa de aparecer na lista automática de PRs e checks na próxima coleta.
 
-O coletor também reconhece vínculos manuais pelo **Development** e URLs completas de PRs em
-**Evidências**, inclusive quando adicionados após o merge. Um PR encontrado por várias fontes
-aparece uma vez. Desvincular manualmente remove essa associação; uma referência independente
-mantida na descrição do PR ou em Evidências continua válida.
+Menções como **`Refs #27`**, referências em comentários e URLs de PRs no campo **Evidências**
+continuam como informação textual, mas não associam o PR ao Backlog. Palavras como `Closes #27`
+só são consideradas quando o GitHub efetivamente registra o vínculo; elas também podem fechar a
+issue ao integrar o PR à branch padrão, antes das outras verificações da DoD.
 
 São coletados PRs, seus commits e os checks do último commit de cada PR, com resultado e link.
 Somente os repositórios listados em `implementation_repositories`, na base, são consultados.

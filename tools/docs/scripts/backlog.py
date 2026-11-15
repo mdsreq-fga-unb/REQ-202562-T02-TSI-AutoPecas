@@ -213,7 +213,7 @@ class GitHub:
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
             raise BacklogError(f"Falha ao consultar {urllib.parse.urlsplit(url).path}: {exc}") from exc
         if isinstance(result, dict) and result.get("errors"):
-            raise BacklogError("Consulta ao Projects recusada ou inválida.")
+            raise BacklogError("Consulta GraphQL recusada ou inválida.")
         return result
 
     def pages(self, path):
@@ -238,10 +238,40 @@ def issue_references(text, repository):
 
 
 
-def pull_references(value):
-    """URLs de PRs, sem confundir hosts, números ou repositórios."""
-    pattern = r"https://github\.com/([\w.-]+/[\w.-]+)/pull/([1-9]\d*)(?=$|[\s/)>,.;\]?#])"
-    return {f"{m[1].casefold()}#{int(m[2])}" for m in re.finditer(pattern, value or "", re.I)}
+def linked_pull_requests(client, repository, number):
+    """Vínculos atuais de Development; menções na timeline não são associações."""
+    owner, name = repository.split("/")
+    query = """query($owner:String!,$name:String!,$number:Int!,$cursor:String){
+      repository(owner:$owner,name:$name){issue(number:$number){
+        closedByPullRequestsReferences(first:100,after:$cursor,includeClosedPrs:true){
+          nodes{number repository{nameWithOwner}} pageInfo{hasNextPage endCursor}
+        }
+      }}
+    }"""
+    pulls = []
+    cursor = None
+    for _ in range(500):
+        response = client.request("graphql", {"query": query, "variables": {
+            "owner": owner, "name": name, "number": number, "cursor": cursor}})
+        try:
+            connection = response["data"]["repository"]["issue"]["closedByPullRequestsReferences"]
+            nodes, page = connection["nodes"], connection["pageInfo"]
+            if not isinstance(nodes, list) or not isinstance(page["hasNextPage"], bool):
+                raise ValueError("Conexão inválida")
+            for pr in nodes:
+                if (not isinstance(pr["number"], int) or pr["number"] <= 0
+                        or not re.fullmatch(r"[\w.-]+/[\w.-]+", pr["repository"]["nameWithOwner"])):
+                    raise ValueError("PR inválido")
+            pulls.extend(nodes)
+            if not page["hasNextPage"]:
+                return pulls
+            next_cursor = page["endCursor"]
+            if not isinstance(next_cursor, str) or not next_cursor or next_cursor == cursor:
+                raise ValueError("Cursor inválido")
+            cursor = next_cursor
+        except (KeyError, TypeError, ValueError) as exc:
+            raise BacklogError(f"Falha ao consultar os PRs vinculados à issue #{number}; coleta incompleta não será publicada.") from exc
+    raise BacklogError("Paginação de PRs vinculados excedida.")
 
 
 def project_statuses(client, project):
@@ -323,49 +353,28 @@ def collect(base, client, project_client=None):
                 if known[us]["epic"] != epic:
                     raise BacklogError(f"Parentesco de {us} diverge do épico previsto.")
                 parsed[us]["parent"] = epic
-    pulls = {}
-    associations = {us: set() for us in parsed}
+    sources = {}
     for source in base["implementation_repositories"]:
         if not re.fullmatch(r"[\w.-]+/[\w.-]+", source):
             raise BacklogError("Repositório de implementação inválido.")
-        for pr in client.pages(f"repos/{source}/pulls?state=all"):
-            key = f"{source}#{pr['number']}"
-            refs = issue_references(pr.get("body") or "", source)
-            pulls[key] = (source, pr)
-            for number, us in number_to_us.items():
-                if (repo, number) in refs:
-                    associations[us].add(key)
-    pull_index = {key.casefold(): key for key in pulls}
+        sources[source.casefold()] = source
+    pulls = {}
+    associations = {us: set() for us in parsed}
     for us, issue in parsed.items():
-        for reference in pull_references(issue.get("completion_evidence", "")):
-            if reference in pull_index:
-                associations[us].add(pull_index[reference])
-        manual = set()
-        for event in client.pages(f"repos/{repo}/issues/{issue['number']}/timeline"):
-            src = (event.get("source") or {}).get("issue") or {}
-            if event.get("event") == "cross-referenced" and "pull_request" in src:
-                for reference in pull_references(src.get("html_url", "")):
-                    if reference in pull_index:
-                        associations[us].add(pull_index[reference])
-            subject = event.get("subject") or {}
-            if event.get("event") in {"connected", "disconnected"} and subject.get("type") == "pull_request":
-                source = (subject.get("repository") or {}).get("full_name", "")
-                reference = f"{source}#{subject.get('number')}".casefold()
-                key = pull_index.get(reference)
-                if key:
-                    if event["event"] == "connected":
-                        manual.add(key)
-                    else:
-                        manual.discard(key)
-        associations[us].update(manual)
+        for pr in linked_pull_requests(client, repo, issue["number"]):
+            source = sources.get(pr["repository"]["nameWithOwner"].casefold())
+            if source:
+                key = f"{source}#{pr['number']}"
+                pulls[key] = (source, pr["number"])
+                associations[us].add(key)
     evidence = {us: {"pulls": [], "commits": []} for us in parsed}
     for key in sorted(set().union(*associations.values()) if associations else []):
-        source, pr = pulls[key]
-        detail = client.request(f"repos/{source}/pulls/{pr['number']}")
+        source, number = pulls[key]
+        pr = client.request(f"repos/{source}/pulls/{number}")
         commits = client.pages(f"repos/{source}/pulls/{pr['number']}/commits")
         proof = {"number": pr["number"], "url": pr["html_url"], "repository": source,
-                 "title": pr["title"], "state": "Integrado" if detail.get("merged_at") else "Aberto" if pr["state"] == "open" else "Fechado sem integração"}
-        sha = (detail.get("head") or {}).get("sha")
+                 "title": pr["title"], "state": "Integrado" if pr.get("merged_at") else "Aberto" if pr["state"] == "open" else "Fechado sem integração"}
+        sha = (pr.get("head") or {}).get("sha")
         proof["checks"] = commit_checks(client, source, sha) if sha else []
         for us, keys in associations.items():
             if key in keys:

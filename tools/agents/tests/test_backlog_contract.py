@@ -100,13 +100,20 @@ class GitHubFixture:
         raise AssertionError("Consulta não prevista no cenário: " + path)
 
     def request(self, path, payload=None):
+        if path == "graphql" and "closedByPullRequestsReferences" in payload["query"]:
+            nodes = ([{"number": 80, "repository": {"nameWithOwner": self.base["repository"]}}]
+                     if self.with_pull else [])
+            return {"data": {"repository": {"issue": {"closedByPullRequestsReferences": {
+                "nodes": nodes, "pageInfo": {"hasNextPage": False, "endCursor": None}}}}}}
         if path == "graphql":
             return {"data": {"organization": {"projectV2": {"items": {
                 "pageInfo": {"hasNextPage": False, "endCursor": None},
                 "nodes": [{"content": {"number": 27, "repository": {"nameWithOwner": self.base["repository"]}},
                            "fieldValueByName": {"name": self.status}}]}}}}}
         if path.endswith("/pulls/80"):
-            return {"merged_at": "2026-11-08T12:30:00Z"}
+            return {"number": 80, "title": "Corrige cadastro", "state": "closed",
+                    "html_url": f"https://github.com/{self.base['repository']}/pull/80",
+                    "merged_at": "2026-11-08T12:30:00Z"}
         raise AssertionError("Consulta não prevista no cenário: " + path)
 
 

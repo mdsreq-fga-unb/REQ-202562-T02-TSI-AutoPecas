@@ -233,8 +233,12 @@ class BacklogTests(unittest.TestCase):
                 if '/pulls?state=' in path: return [pr]
                 if '/pulls/80/commits' in path or '/commits?since=' in path: return [commit]
                 return []
-            def request(self, path):
-                return {"merged_at": "2026-11-05T10:00:00Z"}
+            def request(self, path, payload=None):
+                if path == "graphql":
+                    return {"data": {"repository": {"issue": {"closedByPullRequestsReferences": {
+                        "nodes": [{"number": 80, "repository": {"nameWithOwner": repo}}],
+                        "pageInfo": {"hasNextPage": False, "endCursor": None}}}}}}
+                return {**pr, "merged_at": "2026-11-05T10:00:00Z"}
         result = collect(base, Fake())
         self.assertEqual(result['stories']['US01']['parent'], 'EP01')
         self.assertEqual(len(result['evidence']['US01']['commits']), 1)
