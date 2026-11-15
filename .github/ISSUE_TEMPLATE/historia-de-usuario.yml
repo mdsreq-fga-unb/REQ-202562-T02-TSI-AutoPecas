@@ -6,10 +6,10 @@ labels:
 body:
 - type: markdown
   attributes:
-    value: Use o ID reservado no catálogo e preencha o título como US01 - Nome. O número da issue é diferente
-      do ID da US. Os títulos dos campos devem ser preservados nas edições. A declaração do RF, CP, RNFs
-      aprovados e priorização são mantidos em tools/docs/data/backlog.json. Critérios podem ficar pendentes durante
-      o refinamento.
+    value: Use o ID reservado no catálogo e preserve os títulos das seções e os textos das checklists.
+      O andamento é mantido no GitHub Projects. Preencha o DoR antes do desenvolvimento e o DoD conforme
+      as verificações forem concluídas. Marque apenas o que foi efetivamente verificado. RNFs, origem
+      e priorização aprovados permanecem na base versionada.
 - type: input
   id: us
   attributes:
@@ -90,21 +90,23 @@ body:
   id: acceptance
   attributes:
     label: Critérios de aceitação
-    description: Condições verificáveis. Use Dado / Quando / Então e contemple erros e exceções. Se ainda
-      não definidos, registre a pendência em A refinar.
+    description: Use Dado / Quando / Então, cobrindo erros e exceções. Resolva dúvidas nos comentários
+      e incorpore as decisões aos critérios antes do desenvolvimento.
   validations:
     required: false
-- type: dropdown
+- type: textarea
   id: rnfs
   attributes:
     label: RNFs aplicáveis
-    multiple: true
-    options:
-    - RNF01 - Responsividade da interface em dispositivos móveis
-    - RNF02 - Tolerância a falhas de conexão
-    - RNF03 - Compatibilidade com navegadores web
-    - RNF04 - Desempenho de resposta
-    - RNF05 - Segurança de dados
+    description: Relacione os RNFs aplicáveis em bullets, com ID e nome. Esta seção registra vínculos,
+      sem caixas de verificação ou resultado de atendimento. Preserve os vínculos aprovados no catálogo.
+    placeholder: '- RNF01 - Responsividade da interface em dispositivos móveis
+
+      - RNF02 - Tolerância a falhas de conexão
+
+      - RNF03 - Compatibilidade com navegadores web
+
+      - RNF05 - Segurança de dados'
   validations:
     required: false
 - type: textarea
@@ -114,40 +116,57 @@ body:
     description: 'Use IDs existentes: US01 ou RF01. Escreva Nenhuma quando isso tiver sido confirmado.'
   validations:
     required: false
-- type: textarea
-  id: refinement
-  attributes:
-    label: A refinar
-    description: Dúvidas e decisões pendentes. Não use este campo para declarar conclusão.
-  validations:
-    required: false
-- type: dropdown
-  id: status
-  attributes:
-    label: Situação do desenvolvimento
-    options:
-    - Não iniciado
-    - Em andamento
-    - Em revisão
-    - Bloqueado
-    - Concluído
-    default: 0
-  validations:
-    required: true
 - type: checkboxes
-  id: done
+  id: dor
   attributes:
-    label: Confirmação de conclusão
-    description: Marque somente após cumprir a DoD e registrar a evidência. Fechar uma issue ou integrar
-      um PR não substitui essa verificação.
+    label: Checklist de DoR
+    description: 'Referência: DoR e DoD do projeto. Preserve todos os itens; marque somente após verificar.'
     options:
-    - label: A DoD foi atendida e a validação aplicável foi registrada.
-- type: input
+    - label: O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito
+        e seu objetivo de negócio está explícito na US?
+    - label: O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW
+        foi registrada e a prioridade foi registrada no catálogo de requisitos, conforme o método de Priorização?
+    - label: Os critérios de aceitação são verificáveis, estão escritos no formato Dado / Quando / Então,
+        cobrem os fluxos de exceção e erro e estão explicitamente vinculados ao requisito funcional (RF),
+        ao objetivo específico (OE) e à característica de produto (CP) correspondentes?
+    - label: 'As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos:
+        imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de
+        planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre.'
+    - label: O validador (Antônio Marcos, proprietário), o canal de validação (reuniões quinzenais pelo
+        Google Meet, encontros presenciais ou WhatsApp) e o critério de aprovação pelo cliente estão definidos?
+    - label: As dependências técnicas foram mapeadas, incluindo tabelas no PostgreSQL/Supabase, endpoints
+        do FastAPI e componentes React, quando aplicáveis?
+    - label: 'Os impedimentos conhecidos foram removidos ou possuem um plano de mitigação documentado?
+        Exemplos: limites dos planos gratuitos e higienização das planilhas legadas.'
+    - label: 'Os requisitos não funcionais (RNFs) aplicáveis à história foram mapeados e seus critérios
+        verificáveis são viáveis de implementar? Exemplos: RNF01 para uso em dispositivos móveis no balcão;
+        RNF02 para tolerância a falhas de conexão e prevenção de duplicidades; RNF04 para buscas com P95
+        ≤ 3 s; RNF05 para segurança dos dados, nas condições definidas nos registros dos RNFs.'
+    - label: O escopo da história cabe na sprint de 14 dias, considerando a capacidade da equipe?
+    - label: Todas as dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram
+        resolvidas e acordadas antes do início do desenvolvimento?
+    - label: Cada integrante envolvido (Product Owner, frontend, backend e QA) consegue explicar exatamente
+        o que será construído, como será testado e o prazo estimado, sem perguntas adicionais?
+    - label: As dependências entre itens, incluindo outras US necessárias, foram mapeadas e estão concluídas
+        ou possuem uma sequência de entrega explicitamente acordada?
+- type: checkboxes
+  id: dod
+  attributes:
+    label: Checklist de DoD
+    description: 'Referência: DoR e DoD do projeto. Preserve todos os itens; marque somente após verificar.'
+    options:
+    - label: A funcionalidade atende aos critérios de aceitação da história de usuário.
+    - label: O código foi revisado por outro integrante por meio de um Pull Request (PR).
+    - label: Os testes previstos foram aprovados, sem introduzir regressões.
+    - label: O código e o histórico de alterações seguem os padrões de codificação e versionamento da
+        equipe.
+    - label: A funcionalidade foi validada com o cliente.
+- type: textarea
   id: evidence
   attributes:
-    label: Evidência de conclusão
-    description: Link HTTPS para o registro de verificação e validação. Obrigatório para contabilizar
-      uma US como concluída.
-    placeholder: https://...
+    label: Evidências
+    description: 'Links HTTPS e resultados que sustentam os itens da DoD: critérios e testes, revisão
+      por PR, padrões e validação com o cliente. Pode apontar para o PR e uma ata compartilhada. A CI
+      não substitui a avaliação manual ou o aceite do cliente.'
   validations:
     required: false

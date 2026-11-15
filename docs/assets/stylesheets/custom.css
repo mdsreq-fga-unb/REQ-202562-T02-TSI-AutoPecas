@@ -1394,3 +1394,19 @@ body {
   .md-typeset .backlog-filter-grid { grid-template-columns: minmax(0, 1fr); }
   .md-typeset .backlog-filter-actions output { width: 100%; margin-left: 0; }
 }
+
+
+/* Checklists consultadas na issue: compactas, acessíveis e somente leitura. */
+.md-typeset .backlog-checklist { margin: .3rem 0; padding: 0 .5rem .2rem; font-size: .66rem; }
+.md-typeset .backlog-checklist > summary { margin: 0 -.5rem; padding: .35rem .5rem .35rem 1.55rem; }
+.md-typeset .backlog-task-list { list-style: none; margin: .3rem 0; padding: 0; }
+.md-typeset .backlog-task-list li { margin: .2rem 0; overflow-wrap: anywhere; }
+.md-typeset .backlog-task-list label { display: flex; align-items: baseline; gap: .35rem; }
+.md-typeset .backlog-task-list input { flex: 0 0 auto; accent-color: var(--md-primary-fg-color); }
+
+.md-typeset .backlog-ci-list { margin: 0; padding-left: .8rem; overflow-wrap: anywhere; }
+
+.md-typeset .backlog-task-list label > span { min-width: 0; }
+
+.md-typeset .backlog-rnf-list { margin: 0; padding-left: .85rem; }
+.md-typeset .backlog-rnf-list li { margin: 0; }

@@ -10,11 +10,11 @@ consultados no próprio registro; não há uma lista ou página de acompanhament
 | Informação | Onde é mantida | Como chega ao catálogo |
 | --- | --- | --- |
 | IDs, declaração do RF, CP/OE, épico, RNFs, dependências aprovadas, prioridade e sprint | `tools/docs/data/backlog.json` | Geração automática a partir da base versionada |
-| Narrativa, critérios de aceitação e pontos a refinar da US | Corpo da issue | Coleta das seções padronizadas, preservando o número da issue |
+| Narrativa, critérios, checklists de DoR/DoD e evidências da US | Corpo da issue | Coleta das seções padronizadas, preservando o número da issue |
 | Objetivo do épico | Issue do épico | Coleta do campo Objetivo e consulta às sub-issues |
 | Responsáveis, marco e estado da issue | Metadados do GitHub | Leitura pela API |
-| Situação do desenvolvimento | Status do Projects, quando configurado; na ausência, campo da issue | Exibida com indicação da origem |
-| PRs e commits | Relações explícitas com a issue | Coleta de referências, timeline e commits dos PRs; commits diretos na branch padrão desde a criação das issues |
+| Situação do desenvolvimento | GitHub Projects no formato novo; campo da issue apenas no legado | Exibida com indicação da origem e aviso quando o Projects estiver indisponível |
+| PRs, commits e checks | Relações explícitas com a issue e checks dos PRs | Coleta de referências, timeline, commits e resultados dos checks do último commit de cada PR |
 | Conceitos, descrições de CPs e OEs | [Visão do produto](solucao-e-caracteristicas.md) | Links de origem, sem copiar a especificação |
 
 **Uma fonte por campo.** A aplicação inversa dos RNFs, os totais e os cálculos são derivados dos
@@ -32,9 +32,14 @@ situação inicial vem do planejamento, não da simples ausência de atividade n
 
 1. Reserve o vínculo RF/US e seu épico na base. A numeração da US é independente do número da issue.
 2. Em **Issues → New issue**, escolha **História de usuário** e utilize o ID reservado.
-3. Preencha narrativa, critérios, RNFs, dependências e pendências. Preserve os títulos das seções ao editar o corpo da issue.
+3. Preencha narrativa, critérios, RNFs em bullets (`- RNF01 - Nome`), dependências, checklists de DoR/DoD e **Evidências**. Preserve os títulos das seções e todos os itens oficiais das checklists ao editar a issue.
 4. Vincule a história ao épico como **sub-issue** no GitHub. O dropdown registra a escolha, mas não cria esse parentesco automaticamente; a automação confere ambos.
-5. Use **A refinar** para pendências. Uma história com critérios incompletos continua visível, mas só entra em desenvolvimento quando atende à [DoR](dor-e-dod.md).
+5. Resolva dúvidas nos comentários da própria issue e incorpore as decisões aos critérios antes do desenvolvimento. Não há seção obrigatória de **A refinar** no novo formato. Uma história com critérios incompletos continua visível, mas não atende à [DoR](dor-e-dod.md).
+6. Preencha as checklists conforme as verificações ocorrerem. Elas aparecem em blocos expansíveis e somente leitura no catálogo; a edição acontece no GitHub. O DoR incompleto em uma US em andamento gera um alerta, sem inventar aprovação anterior.
+7. Mantenha o andamento no GitHub Projects. O novo corpo não repete o status nem exige uma confirmação adicional de conclusão. Marcar caixas não altera o Projects e não fecha a issue.
+8. Use **Evidências** para os links HTTPS e resultados que sustentam a DoD, como PR, testes e registro de validação com o cliente. Uma mesma evidência pode cobrir várias US, desde que identifique quais foram verificadas.
+
+As issues antigas continuam reconhecidas, incluindo **A refinar**, **Situação do desenvolvimento**, **Confirmação de conclusão** e **Evidência de conclusão**. Ao migrar uma issue, preencha ambas as checklists com os textos completos do template e substitua os campos antigos por **Evidências**. Não marque retrospectivamente atividades cuja execução não foi verificada.
 
 Os formulários ficam em `.github/ISSUE_TEMPLATE/historia-de-usuario.yml` e `epico.yml`. As issues
 anteriores também são reconhecidas pelos campos Origem, RNFs, Dependências, Critérios de
@@ -62,7 +67,7 @@ permitem localizar os elementos envolvidos; a automação não decide o escopo p
 
 A geração tem três passos: **consultar a API → validar os vínculos → publicar o catálogo**. O
 workflow `.github/workflows/docs.yml` usa o código da `main` e executa a coleta em mudanças de
-issues, comentários, PRs, pushes na `main`, execução manual e reconciliação a cada 30 minutos.
+issues, comentários, PRs, conclusão do workflow **Validate application**, pushes na `main`, execução manual e reconciliação a cada 30 minutos.
 Assim, alterações de parentesco ou do Projects também podem ser recuperadas pela reconciliação.
 
 O script `tools/docs/scripts/backlog.py` pagina as consultas, reconhece as issues pelo ID da US e consulta o
@@ -71,6 +76,8 @@ parentesco dos épicos. Associa PRs e commits por referências exatas à issue: 
 A lista de repositórios de implementação é configurada na base; repositórios não listados não são
 consultados. Se o código for movido para outro repositório, inclua-o nessa configuração.
 
+Os PRs também são associados por vínculos manuais do **Development** e URLs completas na seção **Evidências** da US, inclusive após o merge. Os eventos `connected` e `disconnected` determinam o vínculo manual vigente; a desvinculação não apaga uma referência independente ainda presente em Evidências ou na descrição do PR. Um PR encontrado por várias fontes aparece uma única vez, com seus commits e checks. Somente PRs dos repositórios de implementação cadastrados são considerados. Vínculos manuais podem ser recuperados na reconciliação periódica ou por `sync` local; a coleta não fecha issues nem altera o GitHub.
+
 O hook `tools/docs/hooks/backlog.py` gera os registros em memória durante o build. A coleta nunca altera
 issues, não cria histórias, não reescreve o Markdown e não faz commits automáticos na `main`.
 Uma falha de API ou validação impede uma nova publicação; não transforma ausência de dados em
@@ -78,16 +85,15 @@ conclusão nem sobrescreve o último snapshot válido.
 
 **Conclusão é diferente de evidência de implementação.** PR integrado, commit vinculado ou issue
 encerrada não comprovam, sozinhos, a DoD. Para contar como concluída, a US precisa ter a situação
-Concluído, a confirmação da DoD e um link HTTPS de evidência de verificação/validação. Na falta
-disso, o catálogo informa que a conclusão precisa ser confirmada. O progresso do épico conta
-somente histórias com essa confirmação.
+Concluído no Projects, todos os cinco itens oficiais da **Checklist de DoD** marcados e ao menos um link HTTPS válido em **Evidências**. Itens ausentes, duplicados ou desmarcados não confirmam a DoD. Na falta dessas condições, a conclusão não é contabilizada no épico. O coletor verifica o preenchimento, não o conteúdo das evidências nem o aceite do cliente. No formato legado, a confirmação geral continua sendo lida para permitir a transição.
 
 O acesso às issues e aos PRs usa `GITHUB_TOKEN`. Para consultar o status do Project da organização,
 configure o secret **`BACKLOG_PROJECT_TOKEN`** com leitura do Project e dos repositórios envolvidos.
-Sem ele, a geração continua funcionando com as informações das issues, as evidências e o
-planejamento, sem presumir o status do quadro. Quando disponível, o status do Projects tem precedência, evitando repetir manualmente as mudanças
-do quadro na issue. Sem ele, é utilizado o campo da issue; na falta de ambos, evidências indicam
-implementação/revisão sem inferir aceite.
+Sem ele, o catálogo continua publicando o conteúdo, mas as US no novo formato mostram **Status do Projects indisponível**. Confira também se a issue está no Project e se o campo **Status** está preenchido. O andamento não é inferido da DoD, dos PRs, dos commits ou do fechamento da issue. Somente issues legadas mantêm o campo de situação e as inferências anteriores como alternativa durante a migração.
+
+**CI e RNFs.** Os checks do último commit de cada PR vinculado são coletados em leitura, com resultado e link da execução. O workflow de documentação possui `checks: read`; a conclusão do workflow da aplicação dispara uma nova coleta. Um check aprovado não comprova TDD, todos os RNFs ou validação do cliente. A suíte automatiza os cenários que efetivamente possui; não é uma certificação global.
+
+Para verificar os RNFs, use os critérios já definidos no catálogo: RNF01 combina auditoria automática e inspeção manual; RNF02 pode ter cenários de interrupção e reenvio automatizados; RNF03 requer os navegadores previstos; RNF04 requer medição nas condições e volumes definidos; RNF05 depende das condições de segurança aplicáveis no ambiente publicado. A CI atual não executa, por si só, auditoria completa de acessibilidade, matriz de navegadores, carga de produção ou inspeção de TLS. Registre resultados e limitações no PR e referencie-o em **Evidências**. A seção **RNFs aplicáveis** é apenas uma relação em bullets, exibida com links para os requisitos. Ela não possui checkboxes, percentuais de atendimento ou bloqueio adicional de conclusão. A automação confere os IDs e os vínculos aprovados; relacionar um RNF não declara seu atendimento.
 
 Para conferir localmente:
 
@@ -153,3 +159,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 1.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 05/11/2026 | Explicitação das fontes por campo, formulários, geração do catálogo, rastreabilidade e critérios da automação, preservando a memória das decisões. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.1 | 07/11/2026 | Reorganização das fontes de apoio em `tools/docs/`, com atualização dos caminhos de manutenção, testes e automação. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.2 | 15/11/2026 | Novo formato de US com DoR/DoD e Evidências, status pelo Projects, transição das issues legadas e coleta dos checks dos PRs. | [Thiago Gomes](https://github.com/thgomxs) |
