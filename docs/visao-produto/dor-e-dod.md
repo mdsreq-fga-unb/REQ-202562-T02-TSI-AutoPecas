@@ -30,7 +30,7 @@ O objetivo do acordo não é exigir especificação exaustiva nem eliminar toda 
 
 Verifica se o que será desenvolvido e seu valor para o negócio estão suficientemente claros para a equipe iniciar a implementação e planejar os testes.
 
-- [ ] O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?
+- [ ] O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?
 - [ ] O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW foi registrada e a prioridade foi registrada no [catálogo de requisitos](requisitos-de-software.md#registros-dos-requisitos-funcionais), conforme o método de [Priorização](priorizacao.md)?
 - [ ] Os critérios de aceitação são verificáveis, estão escritos no formato **Dado / Quando / Então**, cobrem os fluxos de exceção e erro e estão explicitamente vinculados ao requisito funcional (RF), ao objetivo específico (OE) e à característica de produto (CP) correspondentes?
 - [ ] As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre.
@@ -127,3 +127,4 @@ A mesma lógica se aplica às demais US: as evidências podem ser compartilhadas
 | 1.5 | 15/11/2026 | Aplicação das checklists nas US, com pendências tratadas nos critérios e comentários e evidências mantidas na issue. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.6 | 15/11/2026 | Correção das issues #50 e #51: moderação de termos absolutos no DoR, explicitação da não prontidão automática das USs com pendências em "A refinar", unificação da DoD (verificação técnica interna com relatório de cobertura e deploy em homologação seguida de validação externa) e inclusão das tabelas de aplicação prática do DoR e da DoD na US01 com evidências da implementação integrada no PR #65. | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
 | 1.7 | 15/11/2026 | Detalhamento das etapas de conclusão e dos registros da US01, com cálculo de prioridade, checklists e evidências do processo. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.8 | 15/11/2026 | Adequação do ator do DoR ao escopo do MVP (proprietário), alinhando a checklist às decisões de produto. | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |

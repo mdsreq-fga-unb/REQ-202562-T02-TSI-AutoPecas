@@ -106,7 +106,12 @@ def sections(body):
 
 def checklist_key(value):
     value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value).replace("**", "")
-    return normalize(re.sub(r"\s+", " ", value))
+    key = normalize(re.sub(r"\s+", " ", value))
+    old_actor = normalize("O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?")
+    new_actor = normalize("O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?")
+    if key == old_actor:
+        return new_actor
+    return key
 
 
 def parse_checklist(value, expected):

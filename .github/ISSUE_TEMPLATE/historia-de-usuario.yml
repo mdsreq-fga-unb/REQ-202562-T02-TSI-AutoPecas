@@ -122,7 +122,7 @@ body:
     label: Checklist de DoR
     description: 'Referência: DoR e DoD do projeto. Preserve todos os itens; marque somente após verificar.'
     options:
-    - label: O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito
+    - label: O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito
         e seu objetivo de negócio está explícito na US?
     - label: O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW
         foi registrada e a prioridade foi registrada no catálogo de requisitos, conforme o método de Priorização?
