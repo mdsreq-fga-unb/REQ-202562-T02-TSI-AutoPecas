@@ -255,7 +255,7 @@ def render_catalog(data, snapshot):
     out.extend(row(a, text(b)) for a, b in scope['rationale'])
     out.extend(['</dl>', paragraphs(scope['limits']), aliases('105-validacao-do-mvp', 'validacao-do-mvp'), '<dl class="backlog-facts">'])
     out.extend(row(a, text(b)) for a, b in scope['validation'])
-    out.extend(['</dl></details>', aliases('106-pontos-em-aberto-do-recorte'), '<h3 id="pontos-em-aberto-do-recorte">Pontos em aberto do recorte</h3>', '<ul>' + ''.join('<li>' + text(v) + '</li>' for v in scope['pending']) + '</ul>', '</div>'])
+    out.extend(['</dl></details>', '</div>'])
     output = '\n\n'.join(out)
     return re.sub(r'<h([23]) id="([^"]+)">(.*?)</h\1>',
                   lambda m: '\n\n' + '#' * int(m[1]) + ' ' + unescape(m[3]) + ' {#' + m[2] + '}\n\n', output)

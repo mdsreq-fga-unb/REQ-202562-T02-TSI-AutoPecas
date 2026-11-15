@@ -1,4 +1,4 @@
-# <span id="8-catalogo-integrado-de-requisitos"></span>Catálogo de requisitos {#catalogo-de-requisitos}
+# <span id="8-catalogo-integrado-de-requisitos"></span><span id="catalogo-de-requisitos"></span>Backlog {#backlog}
 
 O backlog está organizado por **épicos e histórias de usuário**. Cada épico informa sua CP de
 origem; cada US mantém o RF correspondente, em uma relação **1:1**. Todas as 40 histórias estão
@@ -34,3 +34,4 @@ pendentes, conforme [Priorização](priorizacao.md#avaliacao-do-valor-de-negocio
 | 3.0 | 05/11/2026 | Backlog único organizado por épicos e US, com geração a partir da base de requisitos e das issues, acompanhamento automático e incorporação do recorte do MVP. | [Thiago Gomes](https://github.com/thgomxs) |
 | 3.1 | 10/11/2026 | Revisão das declarações, dependências e priorização conforme decisões do cliente; MVP com 12 US, preservando US13 e US14 separadas e fora do recorte. Justificativas de entrega e pendências de esforço visíveis nos registros. | [Thiago Gomes](https://github.com/thgomxs) e [João Guilherme Amancio de Melo](https://github.com/jot4-ge) |
 | 3.2 | 15/11/2026 | Exibição das checklists de DoR/DoD e Evidências, com status pelo Projects e checks dos PRs vinculados. | [Thiago Gomes](https://github.com/thgomxs) |
+| 3.3 | 15/11/2026 | Renomeação da página para Backlog e remoção da seção geral de pontos em aberto do recorte. | [Thiago Gomes](https://github.com/thgomxs) |
