@@ -24,7 +24,7 @@ O escopo do MVP e o cronograma estão na documentação:
 | [Visão do produto e projeto](docs/visao-produto/index.md) | Contexto, problema, solução e estratégias do projeto |
 | [Requisitos](docs/requisitos/index.md) | Especificação, priorização, MVP, rastreabilidade e evolução do escopo |
 | [Cronograma](docs/visao-produto/cronograma-e-entregas.md) | Períodos, objetivos, histórias previstas e validações de cada sprint |
-| [Catálogo de requisitos](docs/visao-produto/requisitos-de-software.md) | Registro único de cada RF e RNF, com origem, condições, priorização, entrega e situação |
+| [Backlog](docs/visao-produto/requisitos-de-software.md) | Épicos, histórias de usuário e RNFs, com origem, prioridade, entrega, situação e evidências |
 | [Priorização](docs/visao-produto/priorizacao.md) | Método de priorização e decisões gerais de escopo |
 | [Rastreabilidade](docs/visao-produto/rastreabilidade.md) | Tipos de vínculo entre os elementos do escopo |
 | [Organização e atualização](docs/visao-produto/historico-de-evolucao.md) | Rotina de atualização e decisões que alteraram o escopo |

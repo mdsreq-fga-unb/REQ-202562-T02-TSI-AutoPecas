@@ -46,6 +46,8 @@ function navigate(next, focus = true) {
   document.querySelector('#title').textContent = title;
   document.querySelector('#subtitle').textContent = subtitle;
   document.querySelector('#review').textContent = review;
+  const guides = { catalog: '01-cadastro', import: '02-importacao', search: '03-busca', stock: '04-estoque', sales: '05-vendas' };
+  document.querySelector('#group-guide').href = `../${guides[page]}/`;
   document.querySelectorAll('nav button').forEach((item) => {
     if (item.dataset.page === page) item.setAttribute('aria-current', 'page');
     else item.removeAttribute('aria-current');

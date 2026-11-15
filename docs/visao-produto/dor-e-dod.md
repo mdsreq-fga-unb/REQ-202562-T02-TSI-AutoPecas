@@ -7,7 +7,7 @@ Uma História de Usuário (US) só pode passar do Product Backlog refinado para 
 
 ### Tratamento da resposta “Não”
 
-- **Na equipe:** o item retorna ao refinamento para esclarecer dúvidas e definir as regras pendentes da seção **“A refinar”** ou **“Pontos a esclarecer”** da US.
+- **Na equipe:** o item retorna ao refinamento para esclarecer dúvidas e definir as regras pendentes nos critérios da US. As discussões ficam nos comentários da própria issue.
 - **Individualmente:** quando houver uma lacuna de conhecimento, será aberta uma issue de estudo, capacitação ou alinhamento técnico para o integrante responsável.
 
 ### Dimensão de clareza
@@ -33,7 +33,7 @@ Verifica a existência de bloqueios externos, de infraestrutura ou de dependênc
 Verifica o entendimento compartilhado e se o trabalho cabe na sprint.
 
 - [ ] O escopo da história cabe na sprint de 14 dias, considerando a capacidade da equipe?
-- [ ] Todos os pontos da seção **“A refinar”** ou **“Pontos a esclarecer”** foram resolvidos e acordados pela equipe antes do início do desenvolvimento?
+- [ ] Todas as dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram resolvidas e acordadas antes do início do desenvolvimento?
 - [ ] Cada integrante envolvido (Product Owner, frontend, backend e QA) consegue explicar exatamente o que será construído, como será testado e o prazo estimado, sem perguntas adicionais?
 - [ ] As dependências entre itens, incluindo outras US necessárias, foram mapeadas e estão concluídas ou possuem uma sequência de entrega explicitamente acordada?
 
@@ -47,6 +47,8 @@ A equipe considera uma funcionalidade concluída quando **todos os critérios ab
 - [ ] O código e o histórico de alterações seguem os padrões de codificação e versionamento da equipe.
 - [ ] A funcionalidade foi validada com o cliente.
 
+As checklists são preenchidas na issue da US e exibidas no catálogo. O andamento vem do GitHub Projects. Marcar a DoD registra a verificação da equipe; a automação não realiza nem substitui o aceite do cliente. Os links dos resultados de testes, revisão e validação ficam em **Evidências**.
+
 ## Versionamento
 
 | Versão | Data | Descrição | Autor(es/as) |
@@ -56,3 +58,4 @@ A equipe considera uma funcionalidade concluída quando **todos os critérios ab
 | 1.2 | 12/10/2026 | Elaboração do conteúdo da Definition of Ready (DoR) | [Leonardo da Silva Lopes Júnior (@LeonardoLopesJr)](https://github.com/LeonardoLopesJr) |
 | 1.3 | 12/10/2026 | Inserção dos textos fornecidos no documento, revisão gramatical, formatação e adequação da referência de entrada na sprint à estratégia adotada | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.4 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.5 | 15/11/2026 | Aplicação das checklists nas US, com pendências tratadas nos critérios e comentários e evidências mantidas na issue. | [Thiago Gomes](https://github.com/thgomxs) |

@@ -4,10 +4,10 @@
 Esta página descreve **como** a equipe prioriza os requisitos e **quais decisões gerais** resultaram
 desse método. A prioridade de cada requisito — valor de negócio, esforço técnico, MoSCoW, Score e
 quadrante — é mantida na base versionada e exibida no registro correspondente do
-[Catálogo de requisitos](requisitos-de-software.md). A matriz abaixo é uma visão derivada dessa mesma base, sem outra especificação para manter.
+[Backlog](requisitos-de-software.md). A matriz abaixo é uma visão derivada dessa mesma base, sem outra especificação para manter.
 
 !!! tip "Consultar a prioridade vigente"
-    O [catálogo](requisitos-de-software.md#registros-dos-requisitos-funcionais) reúne as histórias
+    O [backlog](requisitos-de-software.md#registros-dos-requisitos-funcionais) reúne as histórias
     por épico, com VN, ET, Score e recorte de entrega no próprio registro.
 
 ## <span id="91-avaliacao-do-valor-de-negocio-vn"></span>Avaliação do valor de negócio (VN) {#avaliacao-do-valor-de-negocio-vn}
@@ -27,7 +27,7 @@ de **0 a 4 pontos**.
 
 !!! warning "Situação de confirmação"
     As pontuações de valor de negócio vigentes foram atribuídas pela equipe a partir das conversas
-    de elicitação e **aguardam confirmação formal do proprietário**. Cada registro do catálogo
+    de elicitação e **aguardam confirmação formal do proprietário**. Cada registro do backlog
     exibe essa situação no campo *Priorização*. A confirmação está prevista para a próxima sessão
     de validação de escopo com o cliente.
 
@@ -118,7 +118,7 @@ cada requisito utiliza VN e ET e está registrada no campo *Priorização* do se
 
 ## <span id="96-decisoes-gerais-da-priorizacao"></span>Decisões gerais da priorização {#decisoes-gerais-da-priorizacao}
 
-O recorte de cada história é exibido no [catálogo](requisitos-de-software.md#registros-dos-requisitos-funcionais),
+O recorte de cada história é exibido no [backlog](requisitos-de-software.md#registros-dos-requisitos-funcionais),
 com os totais calculados a partir da base vigente. Os critérios utilizados são:
 
 | Recorte de entrega | Critério aplicado |
@@ -139,7 +139,7 @@ Decisões gerais acordadas pela equipe ao aplicar o método:
   técnica da integração são incompatíveis com o prazo do semestre, e o problema central — saldo de
   estoque confiável — é resolvido sem ela. A decisão foi registrada como evolução futura na
   [Solução e características](solucao-e-caracteristicas.md).
-- **O núcleo do MVP concentra-se nas CP1, CP2 e CP3** (catálogo, movimentações e vendas). São as
+- **O núcleo do MVP concentra-se nas CP1, CP2 e CP3** (backlog, movimentações e vendas). São as
   características que sustentam os objetivos [OE1](solucao-e-caracteristicas.md#oe1),
   [OE2](solucao-e-caracteristicas.md#oe2) e [OE6](solucao-e-caracteristicas.md#oe6), ligados
   diretamente à dor relatada pelo proprietário.
@@ -159,7 +159,7 @@ A prioridade registrada não é definitiva. Ela é reavaliada quando:
 
 - o proprietário confirma ou altera o valor de negócio de um requisito;
 - o refinamento revela um esforço técnico diferente do estimado;
-- uma dependência identificada no catálogo muda a ordem viável de implementação;
+- uma dependência identificada no backlog muda a ordem viável de implementação;
 - a revisão de uma sprint traz feedback que altera a importância de um requisito.
 
 Em qualquer desses casos, a alteração é feita **na fonte do campo afetado** (base versionada ou issue), e o motivo

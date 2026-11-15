@@ -1,6 +1,8 @@
 # Grupo 1 — Cadastro e manutenção de peças
 
-[Abrir o grupo no protótipo](interface/index.html?grupo=catalog){ .md-button }
+[← Todos os grupos](index.md)
+
+[Abrir o grupo no protótipo](interface/index.html?grupo=catalog){ .md-button .md-button--primary }
 
 ## Vínculos e objetivo
 
@@ -53,7 +55,7 @@ saldo compartilhado com o grupo 3. Na edição, o código permanece somente para
 - Qual será o saldo inicial de uma peça nova? Zero é somente a convenção visual utilizada.
 
 **Evidência a produzir:** observações e decisões por cenário, vinculadas às issues,
-conforme o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+conforme o [registro sugerido](avaliacao.md#registro-sugerido-para-a-issue-ou-ata).
 
 ## Versionamento
 

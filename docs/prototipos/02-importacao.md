@@ -1,6 +1,8 @@
 # Grupo 2 — Importação de peças por planilha
 
-[Abrir o grupo no protótipo](interface/index.html?grupo=import){ .md-button }
+[← Todos os grupos](index.md)
+
+[Abrir o grupo no protótipo](interface/index.html?grupo=import){ .md-button .md-button--primary }
 
 ## Vínculo e objetivo
 
@@ -47,7 +49,7 @@ Reinicie a demonstração antes do lote válido para recuperar os dados iniciais
   Esse critério não é simulado.
 
 **Evidência a produzir:** avaliação das mensagens, proposta de colunas e decisão sobre
-o lote com erros, registrada na issue. [Orientações de registro](index.md#registro-sugerido-para-a-issue-ou-ata).
+o lote com erros, registrada na issue. [Orientações de registro](avaliacao.md#registro-sugerido-para-a-issue-ou-ata).
 
 ## Versionamento
 

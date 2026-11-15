@@ -1,6 +1,8 @@
 # Grupo 5 — Registro e cancelamento de vendas
 
-[Abrir o grupo no protótipo](interface/index.html?grupo=sales){ .md-button }
+[← Todos os grupos](index.md)
+
+[Abrir o grupo no protótipo](interface/index.html?grupo=sales){ .md-button .md-button--primary }
 
 ## Vínculos e objetivo
 
@@ -53,7 +55,7 @@ Não são representados recebimentos, emissão fiscal, devoluções ou integraç
 marketplaces. “Mercado Livre” identifica apenas o canal informado na venda.
 
 **Evidência a produzir:** avaliação do resumo, da confirmação e dos saldos por peça,
-seguindo o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+seguindo o [registro sugerido](avaliacao.md#registro-sugerido-para-a-issue-ou-ata).
 
 ## Versionamento
 
