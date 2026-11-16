@@ -61,4 +61,4 @@ decisões pendentes, conforme o [registro sugerido](avaliacao.md#registro-sugeri
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 10/11/2026 | Criação do roteiro de prototipação de movimentação de estoque, contemplando US08, US09 e US10. | [Bruno Ferreira](https://github.com/brunnf) |
-| 1.1 | 16/11/2026 | Remoção do fornecedor da entrada de peças e registro da dependência com a US07 como resolvida, conforme a decisão de escopo da issue #52. | Equipe |
+| 1.1 | 16/11/2026 | Remoção do fornecedor da entrada de peças e registro da dependência com a US07 como resolvida, conforme a decisão de escopo da issue #52. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
