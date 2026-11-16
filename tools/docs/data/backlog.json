@@ -485,7 +485,8 @@
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
         "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
-        "- 10/11/2026 · Retirada do MVP e da Sprint 5 por depender da US13, que está condicionada. Mantida separada, também como condicionada, sem aposentadoria nem fusão; RF14/US14 continuam significando filtrar histórico por período (#37, #47, #48, #52, #53). A divergência da descrição na ata de 05/10 permanece a retificar na origem."
+        "- 10/11/2026 · Retirada do MVP e da Sprint 5 por depender da US13, que está condicionada. Mantida separada, também como condicionada, sem aposentadoria nem fusão; RF14/US14 continuam significando filtrar histórico por período (#37, #47, #48, #52, #53). A divergência da descrição na ata de 05/10 permanece a retificar na origem.",
+        "- 14/11/2026 · Descrição de RF14 corrigida na ata de 05/10 para filtrar histórico por período."
       ],
       "delivery_reason": "Fora do MVP por decisão de escopo, apesar do Score 4: o filtro depende da consulta de histórico da US13, também condicionada. Permanece como história separada, sem sprint, e sua eventual entrega exige a disponibilidade da US13."
     },
@@ -1384,7 +1385,6 @@
       "As issues ainda precisam alinhar narrativa, critérios e dependências às declarações aprovadas: remover exigências de perfis do MVP, atualizar a entrada sem fornecedor e incorporar as regras de códigos, saldo e peças inativas (#48, #50, #52, #53).",
       "US01 exige reestimativa de esforço e US04 exige revisão do impacto da busca por códigos equivalentes; as notas atuais foram preservadas até avaliação da equipe.",
       "US02: acordar o modelo da planilha e se haverá coluna de códigos equivalentes, sem assumir essa estrutura como aprovada.",
-      "A descrição de RF14 na ata de 05/10 diverge do significado atual de US14/RF14. Retificar a ata na origem; não usar a igualdade do código como prova de validação (#47, #53). US13 e US14 permanecem separadas e fora do MVP.",
       "As demais pontuações de valor de negócio aguardam confirmação formal do proprietário.",
       "RNF04 permanece sem CP de origem definida; as correções de RNFs da issue #49 não integram esta revisão."
     ]
