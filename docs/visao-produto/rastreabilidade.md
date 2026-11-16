@@ -16,7 +16,7 @@ flowchart TD
     OE --> CP["Características de produto<br/><small>CP1 a CP9</small>"]
     CP --> EP["Épicos<br/><small>EP01 a EP07</small>"]
     CP --> RF["Requisitos funcionais<br/><small>RF01 a RF40</small>"]
-    CP --> RNF["Requisitos não funcionais<br/><small>RNF01 a RNF05</small>"]
+    CP --> RNF["Requisitos não funcionais<br/><small>RNF01 a RNF06</small>"]
     RNF -. condicionam .-> RF
     RF -. origem .-> US["Histórias de usuário<br/><small>US01 a US40</small>"]
     EP --> US
@@ -85,3 +85,4 @@ A rotina completa, com os cuidados de cada momento do ciclo, está em
 | 1.0 | 12/10/2026 | Árvore de histórias de usuário relacionando OE, CP, RF e US, originalmente publicada na seção 10.6 do Backlog de produto | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 03/11/2026 | Página dedicada aos **tipos de vínculo e ao acesso à rastreabilidade**. Os vínculos por requisito passaram a ser mantidos nos registros do [Catálogo de requisitos](requisitos-de-software.md) | Equipe |
 | 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.2 | 16/11/2026 | Inclusão do RNF06 na hierarquia de rastreabilidade (#49). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |

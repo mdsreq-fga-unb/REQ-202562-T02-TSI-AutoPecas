@@ -1331,6 +1331,19 @@
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
       ]
+    },
+    {
+      "id": "RNF06",
+      "name": "Backup e recuperação de dados",
+      "anchor": "rnf06-backup-e-recuperacao-de-dados",
+      "declaration": "O banco de dados de produção deve ter uma cópia de segurança completa gerada automaticamente uma vez por dia, criptografada com senha e guardada fora do Supabase, como artefato do GitHub Actions do repositório do projeto, para permitir a recuperação dos dados em caso de falha da infraestrutura, corrupção ou exclusão acidental.\n\nFrequência: uma cópia por dia.\nRetenção: as cópias dos últimos 30 dias, apagadas automaticamente depois desse prazo.\nPerda máxima de dados (RPO): 24 horas de registros.\nPrazo de recuperação (RTO): até 8 horas, contadas da decisão de restaurar até o sistema voltar a operar com os dados recuperados, seguindo o procedimento do Guia de Manutenção.\n\nObservação de infraestrutura: o plano gratuito do Supabase não realiza backups automáticos, e a recuperação em ponto no tempo (PITR) é um adicional disponível apenas em planos pagos. Por isso, a rotina usa uma exportação lógica do banco (pg_dump) agendada no GitHub Actions, sem custo. A criptografia é obrigatória porque o repositório é público. Arquivos guardados no Storage, como fotos das peças, não fazem parte da exportação do banco e precisam ser incluídos na rotina se forem usados. O PITR fica registrado como evolução possível caso o proprietário migre para um plano pago.",
+      "criterion": "Verificação: (1) histórico de execuções do workflow de backup sem mais de um dia consecutivo sem cópia concluída; (2) cópias dos últimos 30 dias disponíveis entre os artefatos do repositório; (3) teste de restauração em um projeto separado antes da implantação (Sprint 5) e, depois, ao menos uma vez por mês, concluído em até 8 horas, com a contagem de registros das tabelas principais e o saldo de uma amostra de peças iguais aos do momento da cópia.",
+      "classification": "Confiabilidade — recuperabilidade (URPS+) / organizacional — operacional (Sommerville).",
+      "cp": "CP7",
+      "applies_note": "Toda a base de dados de produção (requisito transversal de infraestrutura, sem vínculo com histórias específicas).",
+      "history": [
+        "- 16/11/2026 · Criação do requisito a partir do feedback da issue #49: backup com frequência, retenção, RPO e RTO próprios, compatível com o plano gratuito do Supabase, substituindo a previsão de PITR."
+      ]
     }
   ],
   "scope": {

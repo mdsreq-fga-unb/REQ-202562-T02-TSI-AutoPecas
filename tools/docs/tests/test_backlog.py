@@ -254,7 +254,7 @@ class BacklogTests(unittest.TestCase):
         snap = snapshot(item)
         html = render_catalog(merge(read_base(), snap), snap)
         self.assertEqual(html.count('class="req-record" id="rf'), 40)
-        self.assertEqual(html.count('class="req-record req-record--rnf"'), 5)
+        self.assertEqual(html.count('class="req-record req-record--rnf"'), 6)
         self.assertNotIn('<table', html)
         self.assertNotIn('<script>', html)
         self.assertIn('&lt;script&gt;', html)

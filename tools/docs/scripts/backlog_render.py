@@ -130,7 +130,8 @@ def render_rnf(rnf):
            '<section class="backlog-priority"><p class="backlog-label">Critério verificável</p>' + paragraphs(rnf["criterion"]) + '</section>',
            '<dl class="backlog-facts">', row("Classificação", escape(rnf["classification"])),
            row("CP de origem", ref(cp) if cp else 'Pendente de definição no refinamento'),
-           row("Aplica-se a", '<span class="backlog-links">' + ' · '.join(ref(x.replace('RF', 'US', 1)) for x in rnf['applies_to']) + '</span>'),
+           row("Aplica-se a", '<span class="backlog-links">' + ' · '.join(ref(x.replace('RF', 'US', 1)) for x in rnf['applies_to']) + '</span>'
+               if rnf['applies_to'] else escape(rnf.get('applies_note') or 'Nenhuma história vinculada')),
            '</dl></div></details>']
     return '\n'.join(out)
 
