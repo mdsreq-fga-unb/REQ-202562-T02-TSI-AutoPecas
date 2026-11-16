@@ -787,8 +787,8 @@
     {
       "id": "RF25",
       "us": "US25",
-      "name": "Listar itens mais vendidos",
-      "declaration": "O sistema deve fornecer uma interface de consulta, permitindo filtrar e ordenar itens por: volume de vendas (maior/menor) e itens sem movimentação (indicando dias desde a última saída), com período de tempo configurável.",
+      "name": "Consultar giro de itens",
+      "declaration": "O sistema deve fornecer uma interface de consulta do giro dos itens, com período de tempo configurável, em duas visões: itens mais e menos vendidos, ordenados por volume de vendas; e itens sem movimentação, indicando os dias desde a última saída.",
       "cp": "CP4",
       "epic": "EP04",
       "oe": "4",
@@ -811,7 +811,8 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 13/10/2026 · Característica de origem realinhada à solução vigente, com a unificação de compras e análise na CP4.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 14/11/2026 · Nome e declaração esclarecidos para cobrir as duas visões (mais vendidos e itens sem movimentação), sem alterar escopo, prioridade nem identificadores RF25/US25 (monitoria)."
       ]
     },
     {
