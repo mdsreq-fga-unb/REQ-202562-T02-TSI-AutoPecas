@@ -61,6 +61,11 @@ export function listParts(offset = 0, { signal } = {}) {
   return requestParts(`?offset=${offset}&limit=20`, { signal });
 }
 
+export function searchParts(filters, offset = 0, { signal } = {}) {
+  const query = new URLSearchParams({ ...filters, offset: String(offset), limit: '20' });
+  return requestParts(`/search?${query}`, { signal });
+}
+
 export function getPartPhotoUrl(part) {
   return part.photo_url
     ? `${apiBaseUrl}${part.photo_url}?v=${encodeURIComponent(part.updated_at)}`

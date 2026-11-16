@@ -72,8 +72,8 @@ informa o problema e não envia a requisição. Um cadastro pendente de outra ab
 é sobrescrito por uma nova tentativa. Rascunhos que ainda não foram enviados
 continuam apenas em memória; limpar os dados do navegador remove a recuperação.
 
-O catálogo pagina os registros em grupos de 20 e oferece a ação Editar. Essa
-listagem é o acesso à US05; não implementa a busca e os filtros de outras histórias.
+O catálogo pagina os registros em grupos de 20 e oferece a ação Editar. A US04
+acrescenta os filtros descritos na seção de busca abaixo.
 Também é possível editar uma peça imediatamente após cadastrá-la. Nome, categoria,
 equivalentes, localização, descrição e foto podem ser alterados. O código do
 fabricante é somente leitura. O PATCH envia apenas os campos alterados em relação
@@ -478,3 +478,63 @@ node node_modules/vite/bin/vite.js build
 Status: implementação verificada localmente; revisão por outro integrante e aceite
 do cliente pendentes. A nova migração precisa ser aplicada antes de usar a tela
 contra um banco existente; veja os [contratos e testes PostgreSQL](../backend/README.md#aplicações-por-veículo--us03).
+
+## Busca de peças — US04 (Refs #30)
+
+O menu **Catálogo** oferece filtros por código principal ou equivalente, nome,
+categoria, marca, modelo e ano. A tela reutiliza MUI, a logo e os temas existentes.
+Digite ao menos um filtro e pressione **Buscar** ou Enter. **Limpar filtros**
+retorna ao catálogo geral. Código/categoria/ano são exatos; nome/marca/modelo
+aceitam trechos. Espaços nas extremidades e caixa são ignorados pela consulta.
+
+Os campos em edição são separados dos filtros aplicados, exibidos acima dos
+resultados. Alterar um campo não dispara uma busca nem muda os filtros da
+paginação até confirmar. Cada busca começa na primeira página; rascunho, filtros
+aplicados e página são preservados ao abrir edição/aplicações e voltar. Esse
+estado dura a sessão da aplicação; não é persistido após recarregar a página.
+
+A interface identifica busca vazia e ano inválido antes de chamar a API, informa
+quando não há correspondência, preserva peças inativas com seu indicador e
+permite repetir uma consulta que falhou. Requisições antigas são canceladas e
+suas respostas atrasadas não substituem a pesquisa mais recente.
+
+### TDD e evidências — 16/11/2026
+
+- Primeiro, o teste de seis filtros falhou pela ausência dos campos; passou após
+  integrar formulário e serviço HTTP. Os testes de busca vazia/ano inválido,
+  ausência de resultado e limpeza falharam antes de cada comportamento ser
+  implementado. Os quatro cenários iniciais ficaram verdes.
+- Os dois testes de retorno da edição/aplicações falharam por perder o filtro,
+  e o teste de rascunho/paginação falhou pela ausência da indicação dos filtros
+  aplicados. O estado foi elevado para `App`, mantendo a mesma arquitetura de
+  navegação. Depois, **9 testes da US04 aprovados**. Falha de conexão e resposta
+  atrasada já estavam protegidas pelo fluxo reutilizado; seus testes são
+  complementares, sem alegação retroativa de TDD.
+- Node **22.23.4**: `node node_modules/vitest/vitest.mjs run --coverage --maxWorkers=1 --testTimeout=20000`:
+  **53 testes aprovados em 7 arquivos**; cobertura de linhas **92,60%** e de
+  ramificações **93,31%**. Cobertura não comprova TDD. Lacunas existentes incluem
+  navegação móvel automatizada e alguns caminhos de recuperação de cadastro/foto.
+- `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`: aprovados. O build emitiu apenas
+  diagnóstico de tempo de callbacks de plugins; não houve erro de compilação.
+- Navegador integrado, conectado à API e ao PostgreSQL reais do Docker: consulta
+  por código com caixa/espaços, busca por nome via Enter, validação vazia/ano,
+  ausência de resultados, limpeza e retorno da edição conferidos. Nenhum dado
+  de teste foi inserido no banco operacional. O banco local não tinha aplicações;
+  as buscas positivas por veículos foram verificadas no PostgreSQL descartável.
+- Temas claro/escuro inspecionados; larguras **360, 390 e 414 px** sem overflow
+  horizontal. Campos do formulário medidos em 44 px e botões em 46 px de altura.
+  Não foram encontrados erros/avisos de console durante essa inspeção. Capturas
+  locais em `.cache/us04-desktop.jpg` e `.cache/us04-mobile.jpg`, fora do Git.
+
+Projeto reconstruído com `docker compose up --build -d --wait --wait-timeout 180`:
+banco, API e front-end saudáveis, mantidos em execução. Acesse
+<http://localhost:5173/> e abra **Catálogo**. `alembic current` confirmou
+`0004_vehicle_applications (head)` e `alembic check` não encontrou diferenças.
+A peça existente foi preservada. Esta história não precisa de nova migração.
+
+A matriz completa das duas últimas versões de Chrome, Firefox, Edge e Safari,
+RNF04 nas condições de produção, revisão por outro integrante e aceite do cliente
+permanecem pendentes. A implementação foi verificada localmente; a DoD não foi
+marcada concluída. Nenhum commit, push ou alteração da issue foi realizado.

@@ -1,19 +1,30 @@
 import { useEffect, useState } from 'react';
 import { Alert, Box, Button, CircularProgress, Paper, Stack, Typography } from '@mui/material';
 import EditOutlined from '@mui/icons-material/EditOutlined';
-import { listParts } from '../../services/parts.js';
+import { listParts, searchParts } from '../../services/parts.js';
+import PartSearchForm from './PartSearchForm.jsx';
+import { createCatalogSearchState, searchFieldLabels } from './partSearchState.js';
 import PartStatusBadge from './PartStatusBadge.jsx';
 import PartStatusDialog from './PartStatusDialog.jsx';
 
-export default function PartCatalogPage({ onEdit, onCreate, onApplications }) {
-  const [offset, setOffset] = useState(0);
+export default function PartCatalogPage({
+  onEdit,
+  onCreate,
+  onApplications,
+  searchState,
+  onSearchStateChange,
+}) {
+  const { draft, filters, offset } = searchState;
   const [retry, setRetry] = useState(0);
   const [state, setState] = useState({ status: 'loading' });
   const [selectedPart, setSelectedPart] = useState(null);
   const [statusMessage, setStatusMessage] = useState('');
   useEffect(() => {
     const controller = new AbortController();
-    listParts(offset, { signal: controller.signal }).then(
+    (filters
+      ? searchParts(filters, offset, { signal: controller.signal })
+      : listParts(offset, { signal: controller.signal })
+    ).then(
       (data) => {
         if (!controller.signal.aborted) setState({ status: 'ready', ...data });
       },
@@ -22,10 +33,10 @@ export default function PartCatalogPage({ onEdit, onCreate, onApplications }) {
       },
     );
     return () => controller.abort();
-  }, [offset, retry]);
+  }, [offset, retry, filters]);
   function changePage(next) {
     setState({ status: 'loading' });
-    setOffset(next);
+    onSearchStateChange((current) => ({ ...current, offset: next }));
   }
   function finishStatusChange(part) {
     setState((current) => ({
@@ -56,6 +67,26 @@ export default function PartCatalogPage({ onEdit, onCreate, onApplications }) {
           Cadastrar peça
         </Button>
       </Stack>
+      <PartSearchForm
+        draft={draft}
+        onDraftChange={(next) => onSearchStateChange((current) => ({ ...current, draft: next }))}
+        onSearch={(next) => {
+          onSearchStateChange((current) => ({ ...current, filters: next, offset: 0 }));
+          setState({ status: 'loading' });
+        }}
+        onClear={() => {
+          onSearchStateChange(createCatalogSearchState());
+          setRetry((current) => current + 1);
+          setState({ status: 'loading' });
+        }}
+      />
+      {filters && (
+        <Typography role="status" color="text.secondary" sx={{ mb: 2, overflowWrap: 'anywhere' }}>
+          {`Filtros aplicados: ${Object.entries(filters)
+            .map(([name, value]) => `${searchFieldLabels[name]}: ${value}`)
+            .join(' · ')}`}
+        </Typography>
+      )}
       {statusMessage && (
         <Alert severity="success" role="status" sx={{ mb: 2 }}>
           {statusMessage}
@@ -84,7 +115,11 @@ export default function PartCatalogPage({ onEdit, onCreate, onApplications }) {
         <>
           {state.items.length === 0 ? (
             <Paper variant="outlined" sx={{ p: 4 }}>
-              <Typography>Nenhuma peça cadastrada.</Typography>
+              <Typography>
+                {filters
+                  ? 'Nenhuma peça corresponde aos filtros informados.'
+                  : 'Nenhuma peça cadastrada.'}
+              </Typography>
             </Paper>
           ) : (
             <Stack component="ul" spacing={2} sx={{ p: 0, listStyle: 'none' }}>

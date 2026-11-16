@@ -410,3 +410,74 @@ execute explicitamente `docker compose exec backend alembic upgrade head`.
 A migração distribui a estrutura do banco; os cadastros continuam em cada volume
 local. As alterações desta entrega ainda precisam de commit/push para chegarem
 aos demais integrantes pelo Git; esta execução não realizou publicação remota.
+
+## Busca de peças — US04 (Refs #30)
+
+`GET /parts/search` recebe `code`, `name`, `category`, `brand`, `model` e `year`,
+além de `offset` (padrão 0) e `limit` (padrão 20, máximo 100). Retorna `items` e
+`total`. A listagem geral `GET /parts` continua disponível. Os critérios estão na
+[issue #30](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/30).
+
+- Código principal ou equivalente, categoria e ano usam correspondência exata.
+  Nome, marca e modelo usam trecho literal: `%`, `_` e barras não são curingas.
+- Busca ignora caixa e espaços nas extremidades. Zeros, separadores, acentos e
+  espaços internos continuam significativos. Isso não altera a unicidade do cadastro.
+- Todos os filtros preenchidos são combinados com AND. Marca/modelo/ano precisam
+  corresponder à mesma aplicação; uma peça aparece uma vez, mesmo com várias aplicações.
+- Ano aceita quatro dígitos ASCII. Busca sem filtros válidos retorna 422 antes de
+  consultar o repositório; nenhum resultado retorna 200 com lista vazia e total 0.
+- Peças inativas permanecem nos resultados com seu status. Paginação usa ordem
+  estável por criação e ID. Credenciais continuam exclusivas do back-end.
+
+A consulta utiliza `EXISTS` sobre códigos e aplicações. Não houve mudança de
+estrutura: a revisão continua `0004_vehicle_applications`. O ensaio local abaixo
+não indicou necessidade de índices adicionais. Todas as migrações existentes
+continuam versionadas e aplicadas pelo comando de início do Compose.
+
+### TDD e verificação — 16/11/2026
+
+| Etapa | Falha observada antes da implementação | Resultado após implementação |
+| --- | --- | --- |
+| Identificação e ausência de resultado | `/search` retornava 422 como ID inválido | 5 testes aprovados — CA04.1/CA04.3 |
+| Normalização, trechos literais, busca vazia e limites | 17 falhas de correspondência/validação | 25 testes aprovados — CA04.4/CA04.6 |
+| Veículos e combinação na mesma aplicação | 13 falhas, incluindo falsos positivos e ano inválido aceito | 40 testes aprovados no PostgreSQL — CA04.2/CA04.5 |
+
+Os testes adicionais de paginação, inativas (CA04.7), preservação de códigos e
+unicidade que já passaram ao serem adicionados são verificações complementares,
+sem alegação retroativa de TDD. A fixture compartilhada migra cada banco/schema
+descartável até a revisão real do projeto e remove apenas o schema do teste.
+
+- `.venv/Scripts/python.exe -m pytest -q --cov --cov-report=term-missing`:
+  **136 aprovados, 4 ignorados**, cobertura combinada de **96%**. Os quatro casos
+  ignorados dependem de PostgreSQL (concorrência e comparação de Unicode).
+- Com `US03_TEST_DATABASE_URL` apontando ao PostgreSQL 17 local descartável:
+  `uv run pytest tests/test_part_search.py tests/test_vehicle_applications.py -q`:
+  **76 aprovados**, incluindo todos os 40 da US04 e os 36 da US03.
+- `ruff check .` e `ruff format --check .`: aprovados. Permanecem avisos de
+  depreciação do TestClient; a execução concorrente também emitiu aviso do Pydantic
+  sobre metadado `alias`, sem falha de teste.
+- A CI foi estendida para executar ambas as histórias no PostgreSQL. A execução
+  remota depende da publicação destas alterações, não realizada nesta entrega.
+
+### Ensaio reproduzível de desempenho
+
+Use o banco descartável descrito na US03, nunca o banco operacional. Na pasta
+`backend/`, com `US03_TEST_DATABASE_URL` configurada, execute:
+
+```bash
+uv run python -m tools.benchmark_part_search
+```
+
+O script cria um schema exclusivo, aplica migrações, insere 5.000 peças, 15.000
+códigos e 15.000 aplicações e inicia uma API temporária. Mede 200 requisições HTTP
+com dois usuários concorrentes e dez cenários (filtros individuais, combinados,
+paginação e resultado vazio), além de registrar `EXPLAIN (ANALYZE, BUFFERS)`.
+Ao terminar, encerra a API e remove apenas seu schema. O relatório local fica em
+`.cache/us04-performance.json`, fora do Git.
+
+Resultado observado: **P95 140,64 ms**, máximo **247,15 ms**, sem falhas. O acesso
+foi por loopback, com PostgreSQL em Docker local. Isso verifica o recorte do
+catálogo, mas não comprova integralmente RNF04 em produção/rede de 10 Mbps; o
+módulo de movimentações e sua massa de 20.000 registros ainda não existem.
+TLS em produção, matriz completa de navegadores, revisão por outro integrante
+e aceite do cliente permanecem pendentes. A DoD não é declarada concluída.

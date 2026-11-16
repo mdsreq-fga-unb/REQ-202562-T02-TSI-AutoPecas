@@ -7,9 +7,11 @@ import PartCatalogPage from './features/parts/PartCatalogPage.jsx';
 import PartEditPage from './features/parts/PartEditPage.jsx';
 import VehicleApplicationsPage from './features/parts/VehicleApplicationsPage.jsx';
 import { readPendingAssociation } from './features/parts/pendingVehicleAssociation.js';
+import { createCatalogSearchState } from './features/parts/partSearchState.js';
 import { buildTheme } from './theme/theme.js';
 
 export default function App() {
+  const [catalogSearch, setCatalogSearch] = useState(createCatalogSearchState);
   const [view, setView] = useState(() => {
     const pending = readPendingAssociation();
     return pending ? { page: 'applications', partId: pending.partId } : { page: 'new' };
@@ -71,6 +73,8 @@ export default function App() {
         )}
         {view.page === 'catalog' && (
           <PartCatalogPage
+            searchState={catalogSearch}
+            onSearchStateChange={setCatalogSearch}
             onEdit={openEdit}
             onCreate={openCreate}
             onApplications={(partId) => setView({ page: 'applications', partId })}

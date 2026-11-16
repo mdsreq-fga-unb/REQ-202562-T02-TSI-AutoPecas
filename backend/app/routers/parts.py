@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, Header, Query, Request, Response
 
 from app.core.errors import DomainError
 from app.schemas.part import PartCreate, PartListResponse, PartResponse, PartUpdate
+from app.schemas.part_search import PartSearch
 from app.services.parts import PartService
 
 router = APIRouter(prefix="/parts", tags=["Peças"])
@@ -25,6 +26,11 @@ def create_part(
     data: PartCreate, service: Service, idempotency_key: Annotated[UUID, Header()]
 ) -> PartResponse:
     return service.create(data, idempotency_key)
+
+
+@router.get("/search", response_model=PartListResponse)
+def search_parts(filters: Annotated[PartSearch, Query()], service: Service) -> PartListResponse:
+    return service.search(filters)
 
 
 @router.get("/{part_id}", response_model=PartResponse)

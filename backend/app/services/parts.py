@@ -9,6 +9,7 @@ from app.core.errors import DomainError
 from app.models.part import Part, PartCode, utc_now
 from app.repositories.parts import PartRepository
 from app.schemas.part import PartCreate, PartListResponse, PartResponse, PartUpdate
+from app.schemas.part_search import PartSearch
 from app.services.photos import validate_photo
 
 
@@ -114,6 +115,22 @@ class PartService:
     def list(self, offset: int, limit: int) -> PartListResponse:
         with self.factory() as session:
             parts, total = PartRepository(session).list(offset, limit)
+            return PartListResponse(items=[present(part) for part in parts], total=total)
+
+    def search(self, filters: PartSearch) -> PartListResponse:
+        if not any(
+            (
+                filters.code,
+                filters.name,
+                filters.category,
+                filters.brand,
+                filters.model,
+                filters.year,
+            )
+        ):
+            raise DomainError("Informe ao menos um filtro para buscar peças.", 422)
+        with self.factory() as session:
+            parts, total = PartRepository(session).search(filters)
             return PartListResponse(items=[present(part) for part in parts], total=total)
 
     def _existing_update(
