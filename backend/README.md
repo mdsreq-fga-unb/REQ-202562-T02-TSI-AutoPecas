@@ -298,3 +298,115 @@ as migrações, mas o comando de produção não as executa automaticamente. A A
 acessa o PostgreSQL diretamente; não habilite acesso público às tabelas pelo
 Data API do Supabase. Configure HTTPS na hospedagem. Nenhum deploy ou alteração
 do banco remoto foi realizado nesta entrega.
+
+## Aplicações por veículo — US03
+
+Implementação dos critérios fornecidos pelo solicitante em 16/11/2026, vinculados
+a RF03, CP1, OE1 e EP01. A peça pode receber várias aplicações, cada uma com marca,
+modelo e um único ano. Correção e remoção dessas associações permanecem na US05.
+
+| Rota | Contrato |
+| --- | --- |
+| `POST /parts/{id}/vehicle-applications` | `{ "brand": "Fiat", "model": "Uno", "year": "2010" }` e `Idempotency-Key` UUID; 201 |
+| `GET /parts/{id}/vehicle-applications?offset=0&limit=20` | `items` e `total`; paginação de 1 a 100 registros |
+
+Marca e modelo recebem trim e não aceitam vazio. O ano é uma string de quatro
+dígitos ASCII, sem intervalos, texto livre ou faixa cronológica adicional.
+Validação retorna 422 com identificação dos campos; peça inexistente retorna 404.
+A mesma marca/modelo/ano pode existir em peças diferentes. Na mesma peça, a chave
+normalizada com `casefold()` e trim impede duplicidade e retorna 409 com
+`existing_application`. Acentos, pontuação e espaços internos são preservados.
+Peças inativas continuam disponíveis para associação cadastral.
+
+A revisão `0004_vehicle_applications` cria `vehicle_applications` e
+`vehicle_application_requests`, sem alterar o cadastro de peças. Aplique
+`uv run alembic upgrade head` antes de iniciar a API atualizada. Em um Compose
+já iniciado, execute `docker compose exec backend uv run alembic upgrade head`.
+O downgrade desta revisão remove as aplicações e o histórico de tentativas;
+não é uma forma de desfazer associações individuais.
+
+O serviço bloqueia a peça durante a transação PostgreSQL. Associação e resposta
+idempotente são confirmadas juntas; uma falha desfaz ambas. A restrição única no
+banco também protege contra conflitos após a consulta inicial. Repetir a chave
+com os mesmos dados devolve a resposta original, inclusive após reinício;
+outros dados ou outra peça com a mesma chave retornam 409.
+
+### Testes e evidências — 16/11/2026
+
+Ciclos TDD observados em `tests/test_vehicle_applications.py`:
+
+| Etapa | Falha observada antes da implementação | Resultado após implementação |
+| --- | --- | --- |
+| Associação válida | POST retornava 404 | 201 e vínculo com a peça — CA03.1 |
+| Múltiplas aplicações/listagem | GET retornava 405 | Associações preservadas e paginação — CA03.2 |
+| Obrigatórios | Vazio/espaços retornavam 201 | 422 por campo — CA03.3 |
+| Representação do ano | Formatos inválidos retornavam 201 | Apenas quatro dígitos — CA03.4 |
+| Peça inexistente | POST retornava 201 | 404 |
+| Duplicidade no PostgreSQL | Repetições, inclusive concorrentes, retornavam 201 | Um registro e conflito identificado — CA03.5 |
+| Idempotência/atomicidade | Reenvio retornava 409; chave ausente/reutilizada e falha de gravação retornavam 201 | Reenvio estável, validação da chave e rollback — RNF02 |
+
+Os testes complementares de concorrência com a mesma chave/anos distintos,
+restrição única após a consulta, migração com dados existentes e preservação de
+acentos/espaços internos reforçam a verificação; não são alegados como TDD retroativo.
+
+- Python 3.13.14: `.venv/Scripts/python.exe -m pytest -q --cov --cov-report=term-missing`:
+  **97 aprovados e 3 ignorados**, cobertura combinada de **96%**. Os três ignorados
+  exigem PostgreSQL. `ruff check .` e `ruff format --check .` aprovados.
+- PostgreSQL **17**, contêiner local exclusivo `tsi-us03-test-db`, banco
+  `tsi_us03_test`, porta **55433**: **36 testes aprovados**, incluindo os três
+  de concorrência. Cada teste usa um schema exclusivo, criado e removido pela
+  fixture. Foram verificados upgrade/downgrade com peça existente e
+  `alembic check`, sem diferença entre os modelos e as migrações.
+- A CI passa a disponibilizar PostgreSQL e executar esse módulo após a regressão
+  padrão. A alteração da CI foi inspecionada localmente; execução remota pendente.
+- Permanece o aviso existente de depreciação de `httpx` no TestClient do Starlette.
+  As lacunas de cobertura incluem recuperação após conflito de chave no commit
+  entre peças diferentes e erros de configuração; cobertura não comprova TDD.
+
+Para reproduzir no PowerShell, com Docker disponível, a partir de `backend/`:
+
+```powershell
+docker run --detach --name tsi-us03-test-db --env POSTGRES_USER=tsi --env POSTGRES_PASSWORD=tsi_us03_local --env POSTGRES_DB=tsi_us03_test --publish 127.0.0.1:55433:5432 postgres:17-alpine
+docker exec tsi-us03-test-db pg_isready -U tsi -d tsi_us03_test
+$env:US03_TEST_DATABASE_URL = 'postgresql+psycopg://tsi:tsi_us03_local@127.0.0.1:55433/tsi_us03_test'
+uv run pytest tests/test_vehicle_applications.py -q
+Remove-Item Env:US03_TEST_DATABASE_URL
+docker stop tsi-us03-test-db
+```
+
+A credencial acima pertence exclusivamente ao banco descartável. A fixture rejeita
+outro nome de banco ou host remoto; não aponte testes para dados operacionais.
+Se o contêiner já existir, inicie-o com `docker start tsi-us03-test-db`.
+A regressão das outras US continua usando SQLite; a validação concorrente em
+PostgreSQL registrada aqui cobre especificamente a US03.
+
+Status: implementação verificada localmente. Revisão por outro integrante e aceite
+do cliente permanecem pendentes. Nenhuma issue foi fechada, e nenhuma migração foi
+aplicada ao banco operacional ou ao Supabase. RNF05 mantém credenciais no back-end
+e erros sem detalhes internos; HTTPS/TLS depende da implantação, não validada
+pelo ambiente HTTP local. Autenticação não foi acrescentada a este recorte.
+
+### Migração e execução no Docker local — 16/11/2026
+
+A pedido do solicitante, o banco local do Compose foi atualizado de `0001_parts`
+para `0004_vehicle_applications`, incluindo as revisões intermediárias. A peça
+existente foi preservada (uma antes e uma depois); nenhuma aplicação de teste foi
+inserida nesse banco.
+
+- `docker compose config --quiet`: aprovado.
+- `docker compose up --build -d --wait --wait-timeout 180`: imagens reconstruídas;
+  banco, API e front-end saudáveis, mantidos em execução para teste do solicitante.
+- `docker compose exec -T backend alembic current`: `0004_vehicle_applications (head)`.
+- `docker compose exec -T backend alembic check`: sem alterações pendentes.
+- `/health`, catálogo e listagem de aplicações da peça existente responderam
+  corretamente. Front-end em `http://localhost:5173/` e módulo da US03: HTTP 200.
+
+O comando de início da API no Compose já executa `alembic upgrade head` antes do
+Uvicorn. Em outra máquina, após obter esta versão completa do código (incluindo a
+nova migração), `docker compose up --build -d` constrói as imagens e aplica as
+revisões pendentes ao iniciar a API. Atualizar arquivos com os contêineres já
+rodando não reaplica automaticamente migrações: reconstrua/inicie o Compose ou
+execute explicitamente `docker compose exec backend alembic upgrade head`.
+A migração distribui a estrutura do banco; os cadastros continuam em cada volume
+local. As alterações desta entrega ainda precisam de commit/push para chegarem
+aos demais integrantes pelo Git; esta execução não realizou publicação remota.

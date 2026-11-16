@@ -5,7 +5,7 @@ import { listParts } from '../../services/parts.js';
 import PartStatusBadge from './PartStatusBadge.jsx';
 import PartStatusDialog from './PartStatusDialog.jsx';
 
-export default function PartCatalogPage({ onEdit, onCreate }) {
+export default function PartCatalogPage({ onEdit, onCreate, onApplications }) {
   const [offset, setOffset] = useState(0);
   const [retry, setRetry] = useState(0);
   const [state, setState] = useState({ status: 'loading' });
@@ -109,6 +109,13 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
                       </Typography>
                     </Box>
                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+                      <Button
+                        variant="outlined"
+                        aria-label={`Aplicações de ${part.name}`}
+                        onClick={() => onApplications(part.id)}
+                      >
+                        Aplicações
+                      </Button>
                       <Button
                         variant="outlined"
                         startIcon={<EditOutlined />}

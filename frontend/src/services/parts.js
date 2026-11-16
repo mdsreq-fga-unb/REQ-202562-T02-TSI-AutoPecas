@@ -66,3 +66,17 @@ export function getPartPhotoUrl(part) {
     ? `${apiBaseUrl}${part.photo_url}?v=${encodeURIComponent(part.updated_at)}`
     : null;
 }
+
+export function associateVehicle(id, data, idempotencyKey) {
+  return requestParts(`/${encodeURIComponent(id)}/vehicle-applications`, {
+    method: 'POST',
+    data,
+    idempotencyKey,
+  });
+}
+
+export function listVehicleApplications(id, offset = 0, { signal } = {}) {
+  return requestParts(`/${encodeURIComponent(id)}/vehicle-applications?offset=${offset}&limit=20`, {
+    signal,
+  });
+}

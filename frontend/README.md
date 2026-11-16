@@ -404,3 +404,77 @@ contém a configuração de build e o encaminhamento das rotas para a aplicaçã
 Configure também `ENABLE_EXPERIMENTAL_COREPACK=1` na Vercel para utilizar a versão
 de pnpm fixada em `packageManager`, e selecione Node 22 nas configurações do projeto.
 O Dockerfile é destinado ao ambiente de desenvolvimento do Compose.
+
+## Aplicações por veículo — US03
+
+O catálogo oferece a ação **Aplicações** para a peça selecionada. A tela mantém
+MUI, a logo e os temas existentes, identifica a peça e permite associar marca,
+modelo e um único ano de quatro dígitos. A lista apresenta 20 aplicações por
+página; uma nova associação preserva as anteriores. Não há edição ou remoção de
+aplicações neste incremento.
+
+`VehicleApplicationsPage` apresenta formulário, paginação e estados de consulta;
+`useVehicleAssociation` controla validação/envio e `pendingVehicleAssociation`
+preserva tentativas. As chamadas HTTP permanecem em `src/services/parts.js`.
+O ano segue como string no JSON para preservar sua representação exata.
+
+A tentativa é salva no navegador antes do POST, separada por URL da API. Após
+falha de conexão ou resposta incerta, campos e saída ficam bloqueados até repetir
+a mesma tentativa. Recarregar recupera peça, campos e chave, sem envio automático.
+Falha de armazenamento impede iniciar um envio sem preservação; erro definitivo
+libera a correção. Dados ainda não enviados recebem confirmação de descarte ao
+voltar ao catálogo, mas não persistem após fechar a aba. O servidor é a autoridade
+para validação, duplicidade e idempotência.
+
+### Evidências — 16/11/2026
+
+Ciclos TDD em `src/vehicleApplications.test.jsx`, com falhas observadas antes de
+implementar cada comportamento:
+
+- Acesso à associação e envio: ação inexistente no catálogo.
+- Obrigatoriedade/formato: ausência das mensagens de campo.
+- Duplicidade: conflito sem tratamento e sem identificação da aplicação.
+- Recuperação na mesma tela: ausência de repetição e dois POSTs no clique duplo.
+- Recuperação após recarga e armazenamento indisponível: campos não restaurados
+  e envio realizado sem preservação.
+- Navegação, carregamento/erro e paginação: saída sem proteção, ausência do estado
+  de consulta, erro não tratado e ausência dos controles de página.
+
+Os **11 testes da US03** passaram após esses ciclos. A adaptação de um teste para
+aguardar a animação de fechamento do diálogo MUI corrigiu a sincronização do
+próprio teste, sem alteração adicional de comportamento.
+
+Verificação com Node **22.23.4**, binário definido em `.nvmrc` no `PATH`, sem
+alterar a instalação global ou os lockfiles:
+
+```text
+node node_modules/vitest/vitest.mjs run --coverage --maxWorkers=1 --testTimeout=20000
+node node_modules/eslint/bin/eslint.js .
+node node_modules/prettier/bin/prettier.cjs --check .
+node node_modules/vite/bin/vite.js build
+```
+
+- Regressão completa: **44 testes aprovados em 6 arquivos**, cobertura de linhas
+  **91,95%** e ramificações **91,74%**. Foram usados um worker e timeout de 20 s
+  na máquina Windows; a configuração padrão da CI não foi alterada. Uma tentativa
+  anterior não iniciou o worker e foi repetida; isso não foi contado como RED.
+- Os arquivos temporários de comparações visuais em `.cache/` foram excluídos
+  de ESLint/Prettier, preservando-os. Essa pasta já era ignorada pelo Git.
+- ESLint, Prettier e build final aprovados. Maior bundle: **278,90 kB**;
+  aplicação: **38,84 kB**, sem aviso de tamanho ou dependências novas.
+- Navegador integrado com API real e PostgreSQL 17 descartável: dois anos
+  associados, repetição com diferenças de caixa/espaços rejeitada, campos
+  obrigatórios e intervalo de anos identificados, descarte confirmado e lista
+  preservada após recarga. Não houve escrita no banco operacional.
+- Temas claro e escuro inspecionados. Sem transbordamento horizontal em
+  **360, 390 e 414 px**; inputs de **44 px**, botões de **46 px** e ícones de
+  **44×44 px**. Console sem erros ou avisos durante essa inspeção. Capturas locais:
+  `.cache/us03-desktop.jpg` e `.cache/us03-mobile.jpg`, na raiz do repositório.
+- Recuperação de conexão/recarga foi validada por Testing Library com rede
+  simulada e no serviço com PostgreSQL; não foi simulada queda de rede no navegador
+  integrado. A inspeção de DOM não substitui leitores de tela ou a matriz completa
+  de duas versões de Chrome, Firefox, Edge e Safari, que permanece pendente.
+
+Status: implementação verificada localmente; revisão por outro integrante e aceite
+do cliente pendentes. A nova migração precisa ser aplicada antes de usar a tela
+contra um banco existente; veja os [contratos e testes PostgreSQL](../backend/README.md#aplicações-por-veículo--us03).

@@ -5,14 +5,24 @@ import DiscardChangesDialog from './components/DiscardChangesDialog.jsx';
 import PartRegistrationPage from './features/parts/PartRegistrationPage.jsx';
 import PartCatalogPage from './features/parts/PartCatalogPage.jsx';
 import PartEditPage from './features/parts/PartEditPage.jsx';
+import VehicleApplicationsPage from './features/parts/VehicleApplicationsPage.jsx';
+import { readPendingAssociation } from './features/parts/pendingVehicleAssociation.js';
 import { buildTheme } from './theme/theme.js';
 
 export default function App() {
-  const [view, setView] = useState({ page: 'new' });
+  const [view, setView] = useState(() => {
+    const pending = readPendingAssociation();
+    return pending ? { page: 'applications', partId: pending.partId } : { page: 'new' };
+  });
   const [navigationState, setNavigationState] = useState({ isDirty: false, isLocked: false });
   const [pendingPage, setPendingPage] = useState(null);
   useEffect(() => {
-    const title = { new: 'Nova peça', catalog: 'Catálogo', edit: 'Editar peça' }[view.page];
+    const title = {
+      new: 'Nova peça',
+      catalog: 'Catálogo',
+      edit: 'Editar peça',
+      applications: 'Aplicações por veículo',
+    }[view.page];
     document.title = `${title} · TSI Peças`;
   }, [view.page]);
   const openCatalog = () => setView({ page: 'catalog' });
@@ -52,12 +62,23 @@ export default function App() {
         onToggleTheme={toggleTheme}
         page={view.page}
         onNavigate={navigate}
-        isNavigationLocked={view.page === 'new' && navigationState.isLocked}
+        isNavigationLocked={
+          view.page === 'applications' || (view.page === 'new' && navigationState.isLocked)
+        }
       >
         {view.page === 'new' && (
           <PartRegistrationPage onEdit={openEdit} onNavigationStateChange={setNavigationState} />
         )}
-        {view.page === 'catalog' && <PartCatalogPage onEdit={openEdit} onCreate={openCreate} />}
+        {view.page === 'catalog' && (
+          <PartCatalogPage
+            onEdit={openEdit}
+            onCreate={openCreate}
+            onApplications={(partId) => setView({ page: 'applications', partId })}
+          />
+        )}
+        {view.page === 'applications' && (
+          <VehicleApplicationsPage key={view.partId} partId={view.partId} onDone={openCatalog} />
+        )}
         {view.page === 'edit' && (
           <PartEditPage key={view.partId} partId={view.partId} onDone={openCatalog} />
         )}

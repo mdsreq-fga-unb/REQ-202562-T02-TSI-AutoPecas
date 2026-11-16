@@ -4,6 +4,7 @@ from sqlalchemy.engine import make_url
 from sqlalchemy.pool import NullPool
 
 from app.core.config import Settings
+from app.models import vehicle_application  # noqa: F401
 from app.models.part import Base
 
 settings = Settings()
