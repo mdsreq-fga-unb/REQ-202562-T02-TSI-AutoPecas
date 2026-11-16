@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "tools/docs"))
 from scripts.backlog import collect, merge, read_base  # noqa: E402
 from scripts.backlog_render import render_catalog  # noqa: E402
+from scripts.story_contract import DOD_ITEMS  # noqa: E402
 
 
 def form_body(filename, values):
@@ -29,7 +30,6 @@ def story(base, **changes):
         "Critérios de aceitação": "Dado um cadastro válido\nQuando salvar\nEntão registrar a peça.",
         "RNFs aplicáveis": ", ".join(base["stories"][0]["rnfs"]),
         "Dependências": base["stories"][0]["dependencies"],
-        "Situação do desenvolvimento": "Em andamento",
     }
     values.update(changes)
     return {
@@ -46,8 +46,8 @@ def story(base, **changes):
 
 
 class GitHubFixture:
-    def __init__(self, base, item, with_pull=False):
-        self.base, self.item, self.with_pull = base, item, with_pull
+    def __init__(self, base, item, with_pull=False, status="In progress"):
+        self.base, self.item, self.with_pull, self.status = base, item, with_pull, status
 
     def pages(self, path):
         repo = self.base["repository"]
@@ -99,10 +99,27 @@ class GitHubFixture:
             )
         raise AssertionError("Consulta não prevista no cenário: " + path)
 
-    def request(self, path):
+    def request(self, path, payload=None):
+        if path == "graphql" and "closedByPullRequestsReferences" in payload["query"]:
+            nodes = ([{"number": 80, "repository": {"nameWithOwner": self.base["repository"]}}]
+                     if self.with_pull else [])
+            return {"data": {"repository": {"issue": {"closedByPullRequestsReferences": {
+                "nodes": nodes, "pageInfo": {"hasNextPage": False, "endCursor": None}}}}}}
+        if path == "graphql":
+            return {"data": {"organization": {"projectV2": {"items": {
+                "pageInfo": {"hasNextPage": False, "endCursor": None},
+                "nodes": [{"content": {"number": 27, "repository": {"nameWithOwner": self.base["repository"]}},
+                           "fieldValueByName": {"name": self.status}}]}}}}}
         if path.endswith("/pulls/80"):
-            return {"merged_at": "2026-11-08T12:30:00Z"}
+            return {"number": 80, "title": "Corrige cadastro", "state": "closed",
+                    "html_url": f"https://github.com/{self.base['repository']}/pull/80",
+                    "merged_at": "2026-11-08T12:30:00Z"}
         raise AssertionError("Consulta não prevista no cenário: " + path)
+
+
+def collected(base, item, with_pull=False, status="In progress"):
+    client = GitHubFixture(base, item, with_pull, status)
+    return collect(base, client, client)
 
 
 class BacklogWorkflowTests(unittest.TestCase):
@@ -110,7 +127,7 @@ class BacklogWorkflowTests(unittest.TestCase):
         base = read_base()
         original = deepcopy(base)
         item = story(base)
-        snapshot = collect(base, GitHubFixture(base, item))
+        snapshot = collected(base, item)
         data = merge(base, snapshot)
         record = data["stories"][0]
         self.assertEqual(record["narrative"], snapshot["stories"]["US01"]["narrative"])
@@ -125,8 +142,8 @@ class BacklogWorkflowTests(unittest.TestCase):
 
     def test_bugfix_evidence_links_to_issue_without_assuming_acceptance(self):
         base = read_base()
-        item = story(base, **{"Situação do desenvolvimento": "Em revisão"})
-        snapshot = collect(base, GitHubFixture(base, item, with_pull=True))
+        item = story(base)
+        snapshot = collected(base, item, with_pull=True, status="In review")
         record = merge(base, snapshot)["stories"][0]
         self.assertEqual(record["evidence"]["pulls"][0]["number"], 80)
         self.assertEqual(len(record["evidence"]["commits"]), 1)
@@ -149,7 +166,7 @@ class BacklogWorkflowTests(unittest.TestCase):
                 "RNFs aplicáveis": "RNF01",
             },
         )
-        snapshot = collect(revised, GitHubFixture(revised, item))
+        snapshot = collected(revised, item)
         record = merge(revised, snapshot)["stories"][0]
         self.assertEqual(record["rnfs"], original["stories"][0]["rnfs"])
         self.assertTrue(record["warnings"])
@@ -163,18 +180,12 @@ class BacklogWorkflowTests(unittest.TestCase):
 
     def test_completion_from_form_requires_dod_and_evidence(self):
         base = read_base()
-        item = story(base, **{"Situação do desenvolvimento": "Concluído"})
-        snapshot = collect(base, GitHubFixture(base, item))
+        item = story(base)
+        snapshot = collected(base, item, status="Done")
         self.assertEqual(merge(base, snapshot)["stories"][0]["status"], "Conclusão a confirmar")
-        item = story(
-            base,
-            **{
-                "Situação do desenvolvimento": "Concluído",
-                "Confirmação de conclusão": (
-                    "- [x] A DoD foi atendida e a validação aplicável foi registrada."
-                ),
-                "Evidência de conclusão": "https://example.com/validacao",
-            },
-        )
-        snapshot = collect(base, GitHubFixture(base, item))
+        item = story(base, **{
+            "Checklist de DoD": "\n".join("- [x] " + label for label in DOD_ITEMS),
+            "Evidências": "https://example.com/validacao",
+        })
+        snapshot = collected(base, item, status="Done")
         self.assertEqual(merge(base, snapshot)["stories"][0]["status"], "Concluído")

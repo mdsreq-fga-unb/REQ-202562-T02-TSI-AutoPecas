@@ -233,8 +233,12 @@ class BacklogTests(unittest.TestCase):
                 if '/pulls?state=' in path: return [pr]
                 if '/pulls/80/commits' in path or '/commits?since=' in path: return [commit]
                 return []
-            def request(self, path):
-                return {"merged_at": "2026-11-05T10:00:00Z"}
+            def request(self, path, payload=None):
+                if path == "graphql":
+                    return {"data": {"repository": {"issue": {"closedByPullRequestsReferences": {
+                        "nodes": [{"number": 80, "repository": {"nameWithOwner": repo}}],
+                        "pageInfo": {"hasNextPage": False, "endCursor": None}}}}}}
+                return {**pr, "merged_at": "2026-11-05T10:00:00Z"}
         result = collect(base, Fake())
         self.assertEqual(result['stories']['US01']['parent'], 'EP01')
         self.assertEqual(len(result['evidence']['US01']['commits']), 1)
@@ -261,6 +265,16 @@ class BacklogTests(unittest.TestCase):
         self.assertIn('id="us40"', html)
         self.assertIn('CP a definir', html)
 
+
+    def test_legacy_scope_pending_is_not_published_or_deleted_from_source(self):
+        base = read_base()
+        base["scope"]["pending"] = ["PENDENCIA_INTERNA_NAO_PUBLICAR"]
+        original = deepcopy(base)
+        html = render_catalog(merge(base), None)
+        self.assertNotIn("Pontos em aberto do recorte", html)
+        self.assertNotIn("PENDENCIA_INTERNA_NAO_PUBLICAR", html)
+        self.assertIn("Recorte e validação do MVP", html)
+        self.assertEqual(base, original)
 
     def test_filter_metadata_distinguishes_linked_and_undetailed_stories(self):
         class Records(HTMLParser):

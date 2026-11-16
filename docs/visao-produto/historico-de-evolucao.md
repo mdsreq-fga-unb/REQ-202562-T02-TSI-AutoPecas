@@ -1,108 +1,151 @@
 # <span id="12-historico-de-evolucao-dos-requisitos"></span><span id="historico-de-evolucao-dos-requisitos"></span>Organização e atualização dos requisitos {#organizacao-e-atualizacao-dos-requisitos}
 
-O [catálogo](requisitos-de-software.md) é a **única apresentação completa do backlog**. Ele é
-organizado por épicos, que apontam para suas características de produto (CPs), e por histórias
-(US01 a US40), cada uma vinculada ao RF do mesmo número. O recorte do MVP e as evidências são
-consultados no próprio registro; não há uma lista ou página de acompanhamento paralela.
+O [Backlog](requisitos-de-software.md) reúne os requisitos em uma única lista, organizada por
+**épicos e histórias de usuário**. Cada épico informa a CP de origem e cada US mantém o RF
+correspondente. O mesmo registro apresenta detalhamento, RNFs, prioridade, recorte de entrega,
+checklists e evidências; as páginas de priorização e rastreabilidade explicam como consultar esses dados.
 
 ## Fonte de cada informação {#fontes-dos-dados}
 
-| Informação | Onde é mantida | Como chega ao catálogo |
+Cada informação tem uma fonte de edição. O Backlog combina essas fontes automaticamente:
+
+| Informação | Onde editar | Como aparece no Backlog |
 | --- | --- | --- |
-| IDs, declaração do RF, CP/OE, épico, RNFs, dependências aprovadas, prioridade e sprint | `tools/docs/data/backlog.json` | Geração automática a partir da base versionada |
-| Narrativa, critérios de aceitação e pontos a refinar da US | Corpo da issue | Coleta das seções padronizadas, preservando o número da issue |
-| Objetivo do épico | Issue do épico | Coleta do campo Objetivo e consulta às sub-issues |
-| Responsáveis, marco e estado da issue | Metadados do GitHub | Leitura pela API |
-| Situação do desenvolvimento | Status do Projects, quando configurado; na ausência, campo da issue | Exibida com indicação da origem |
-| PRs e commits | Relações explícitas com a issue | Coleta de referências, timeline e commits dos PRs; commits diretos na branch padrão desde a criação das issues |
-| Conceitos, descrições de CPs e OEs | [Visão do produto](solucao-e-caracteristicas.md) | Links de origem, sem copiar a especificação |
+| Declaração do RF, origem CP/OE, vínculo RF/US/épico, RNFs, dependências aprovadas, prioridade, recorte e sprint | `tools/docs/data/backlog.json` | Dados aprovados e cálculos de prioridade no registro da US |
+| Narrativa, critérios, dependências detalhadas, DoR, DoD e Evidências | Corpo da issue da US | Conteúdo atualizado e checklists somente para consulta |
+| Objetivo do épico e vínculo de suas histórias | Issue do épico e sub-issues no GitHub | Objetivo e agrupamento das US; o parentesco é conferido com a base |
+| Andamento da US | Campo **Status** do [GitHub Projects](https://github.com/orgs/mdsreq-fga-unb/projects/126) | Situação e origem da informação |
+| Responsáveis e estado aberto/fechado da issue | Metadados da issue | Identificação e acompanhamento, sem inferir conclusão |
+| PRs, commits e checks da CI | Repositório de implementação e vínculos com a US | Links e resultados coletados do GitHub |
+| Evolução do requisito | Campo `history` da base e histórico da issue | Decisões no registro; edições da issue continuam consultáveis no GitHub |
 
-**Uma fonte por campo.** A aplicação inversa dos RNFs, os totais e os cálculos são derivados dos
-vínculos e das notas registrados, sem manutenção de tabelas paralelas. A base versionada mantém o escopo aprovado, inclusive histórias ainda sem
-issue. Ela não armazena cópias da narrativa e dos critérios do GitHub. O Markdown do catálogo
-contém o ponto de geração, não uma segunda lista. O snapshot local em `.cache/docs/backlog/github.json`
-é descartável, ignorado pelo Git e nunca deve ser editado como fonte de requisitos.
+A base mantém todas as histórias, inclusive as que ainda não têm issue. Narrativas e critérios
+não são copiados para o JSON. O arquivo Markdown do Backlog contém o ponto de geração;
+o cache em `.cache/docs/backlog/github.json` é descartável e não deve ser editado manualmente.
 
-Quando a issue informa RNFs ou dependências diferentes dos vínculos aprovados, a divergência é
-mostrada no registro. Ela exige análise antes de alterar a base, evitando mudanças silenciosas de
-escopo. Na ausência de issue, a US permanece visível, com narrativa e critérios pendentes; a
-situação inicial vem do planejamento, não da simples ausência de atividade no GitHub.
+Se a issue informar vínculos diferentes da base, o registro apresenta a diferença para revisão.
+Redações equivalentes de ausência de dependências e referências RF/US equivalentes não geram
+uma segunda linha. Alterar o corpo da issue não muda automaticamente o escopo aprovado na base.
 
 ## Preenchimento e refinamento das issues {#padrao-das-issues}
 
-1. Reserve o vínculo RF/US e seu épico na base. A numeração da US é independente do número da issue.
-2. Em **Issues → New issue**, escolha **História de usuário** e utilize o ID reservado.
-3. Preencha narrativa, critérios, RNFs, dependências e pendências. Preserve os títulos das seções ao editar o corpo da issue.
-4. Vincule a história ao épico como **sub-issue** no GitHub. O dropdown registra a escolha, mas não cria esse parentesco automaticamente; a automação confere ambos.
-5. Use **A refinar** para pendências. Uma história com critérios incompletos continua visível, mas só entra em desenvolvimento quando atende à [DoR](dor-e-dod.md).
+1. Use o ID reservado na base e o formulário **História de usuário**. US01 é o ID da história;
+   **#27**, por exemplo, é o número da issue usado nas referências de commits e PRs.
+2. Preencha narrativa, critérios no formato **Dado / Quando / Então**, RNFs em bullets,
+   dependências, checklists de DoR/DoD e **Evidências**. Preserve os títulos e os itens das checklists.
+3. Vincule a US ao épico como **sub-issue**. Selecionar o épico no formulário não cria esse parentesco.
+4. Discuta dúvidas nos comentários e incorpore as decisões aos critérios. Não há uma seção
+   obrigatória de **A refinar** no formato atual. Mudanças relevantes registram motivo, data e origem.
+5. Antes do desenvolvimento, confira a [DoR](dor-e-dod.md#definition-of-ready-dor).
+   Marque apenas o que foi verificado. O andamento é atualizado no Projects, sem repeti-lo na descrição.
+6. Durante a entrega, preencha a [DoD](dor-e-dod.md#definition-of-done-dod) e os links de Evidências.
+   Uma ata ou PR pode demonstrar verificações de várias US, desde que identifique quais foram avaliadas.
 
-Os formulários ficam em `.github/ISSUE_TEMPLATE/historia-de-usuario.yml` e `epico.yml`. As issues
-anteriores também são reconhecidas pelos campos Origem, RNFs, Dependências, Critérios de
-aceitação e A refinar. Não é necessário recriá-las. IDs duplicados, RF/US incompatíveis ou
-parentesco divergente interrompem a coleta, sem substituir a última publicação válida.
+Os **RNFs aplicáveis são uma relação de vínculos**, sem checklist adicional. Seus critérios
+continuam definidos nos registros dos RNFs. Relacioná-los não comprova seu atendimento.
+
+Issues antigas continuam reconhecidas. Ao migrar, use o formulário atual e preserve evidências
+já registradas; não é necessário recriar a issue nem marcar retroativamente verificações não realizadas.
 
 ## <span id="121-rotina-de-atualizacao"></span>Rotina de atualização {#rotina-de-atualizacao}
 
-| Passo | Ação | Registro |
-| --- | --- | --- |
-| Descoberta | Identificar necessidade, feedback ou inconsistência | Issue ou ata específica |
-| Análise e decisão | Avaliar valor, regras, dependências, impacto e recorte | Decisão na issue ou na ata |
-| Atualização | Alterar somente a fonte do campo afetado | Base versionada ou issue |
-| Comunicação | Alinhar a mudança com quem depende dela | Review, ata ou comentário na issue |
-| Memória | Registrar data, motivo e origem | Evolução do registro e histórico abaixo |
+<span id="122-propagacao-de-uma-mudanca"></span><span id="propagacao-de-uma-mudanca"></span>
 
-## <span id="122-propagacao-de-uma-mudanca"></span>Propagação de uma mudança {#propagacao-de-uma-mudanca}
+| Passo | Ação e registro |
+| --- | --- |
+| Identificar e decidir | Registrar a necessidade, discutir o impacto e documentar a decisão na issue ou em uma ata. Decisões do cliente não podem ser presumidas pela ferramenta. |
+| Atualizar a fonte | Editar a issue para o detalhamento; alterar a base versionada quando mudar declaração, vínculos, prioridade, recorte ou sprint. Mudanças no repositório passam por PR. |
+| Conferir o impacto | Revisar RF/US, CP/OE, épico, RNFs, dependências e prioridade. Atualizar cronograma e diagramas quando forem afetados. |
+| Preservar a memória | Registrar mudanças significativas no `history` do requisito e, quando alterarem o escopo geral, no histórico desta página. |
+| Verificar e publicar | Executar a validação e conferir o Backlog gerado. A publicação ocorre após sucesso do workflow de documentação. |
 
-Antes de concluir uma alteração, confira a declaração e as regras, os critérios de aceitação, os
-RNFs e as dependências, o épico, o recorte de entrega e a sprint. Atualize o cronograma ou um
-diagrama quando a mudança afetar essas representações. As [relações de rastreabilidade](rastreabilidade.md)
-permitem localizar os elementos envolvidos; a automação não decide o escopo pelo cliente.
+As [relações de rastreabilidade](rastreabilidade.md) ajudam a localizar os itens afetados. A coleta
+não transforma cada edição da issue em uma entrada de `history` e não decide o escopo pela equipe.
+
+## Andamento e conclusão da US {#andamento-e-conclusao}
+
+O **Projects informa o andamento**. A **DoD e as evidências sustentam a conclusão**:
+
+| Condição | Resultado no Backlog |
+| --- | --- |
+| Status disponível no Projects | Exibe a situação do quadro. |
+| US em andamento, revisão ou concluída com DoR incompleta | Mantém a situação e apresenta um alerta de prontidão. |
+| Projects em **Done/Concluído**, DoD completa e link HTTPS válido em Evidências | Contabiliza a US como concluída e atualiza o progresso do épico. |
+| Projects em **Done/Concluído**, mas falta item da DoD ou link de evidência | Exibe **Conclusão a confirmar**, sem contabilizar a conclusão. |
+| Projects sem leitura disponível ou item sem Status | Exibe **Status do Projects indisponível** no formato atual. |
+
+A DoD precisa conter os cinco itens oficiais, sem omissões, duplicações ou itens desmarcados.
+A automação verifica o preenchimento e a presença do link; não valida seu conteúdo nem realiza
+aceite pelo cliente. Marcar caixas não altera o Projects e não fecha a issue. Fechar a issue ou
+integrar um PR, isoladamente, também não conclui a US.
+
+Histórias sem issue continuam visíveis, com o planejamento da base e o detalhamento ainda não
+preenchido. Apenas o formato legado usa o campo de situação da descrição e as inferências anteriores
+como alternativa ao Projects.
+
+## Vínculos de implementação e evidências {#vinculos-e-evidencias}
+
+Vincule o PR à issue da US pela seção **Development** do GitHub, inclusive quando o PR já
+estiver integrado. O coletor consulta apenas os vínculos atuais registrados pelo GitHub.
+Ao desvincular o PR, ele deixa de aparecer na lista automática de PRs e checks na próxima coleta.
+
+Menções como **`Refs #27`**, referências em comentários e URLs de PRs no campo **Evidências**
+continuam como informação textual, mas não associam o PR ao Backlog. Palavras como `Closes #27`
+só são consideradas quando o GitHub efetivamente registra o vínculo; elas também podem fechar a
+issue ao integrar o PR à branch padrão, antes das outras verificações da DoD.
+
+São coletados PRs, seus commits e os checks do último commit de cada PR, com resultado e link.
+Somente os repositórios listados em `implementation_repositories`, na base, são consultados.
+Commits diretos da branch padrão também são buscados desde a criação das issues das histórias.
+
+A CI da aplicação executa testes e verificações técnicas; a automação do Backlog consulta os
+resultados. CI aprovada não comprova, sozinha, TDD, todos os RNFs ou validação com o cliente.
+Os resultados complementares podem ser registrados no PR e referenciados em Evidências.
 
 ## Publicação e acompanhamento automático {#automacao-do-backlog}
 
-A geração tem três passos: **consultar a API → validar os vínculos → publicar o catálogo**. O
-workflow `.github/workflows/docs.yml` usa o código da `main` e executa a coleta em mudanças de
-issues, comentários, PRs, pushes na `main`, execução manual e reconciliação a cada 30 minutos.
-Assim, alterações de parentesco ou do Projects também podem ser recuperadas pela reconciliação.
+O fluxo é **GitHub → coleta e cache → validação → geração → publicação no GitHub Pages**.
+O workflow `.github/workflows/docs.yml` usa o código da `main` e executa em alterações de issues,
+comentários e PRs, pushes na `main`, conclusão do workflow **Validate application**, execução
+manual e reconciliação programada a cada 30 minutos. Mudanças de Projects e de vínculos manuais
+podem ser recuperadas nessa reconciliação.
 
-O script `tools/docs/scripts/backlog.py` pagina as consultas, reconhece as issues pelo ID da US e consulta o
-parentesco dos épicos. Associa PRs e commits por referências exatas à issue: `Refs #27`,
-`Closes #27` ou a URL completa. Em outro repositório, use `organização/repositório#27` ou a URL.
-A lista de repositórios de implementação é configurada na base; repositórios não listados não são
-consultados. Se o código for movido para outro repositório, inclua-o nessa configuração.
+O acesso ao repositório usa `GITHUB_TOKEN`, fornecido pelo GitHub Actions. A leitura do Projects
+exige o secret `BACKLOG_PROJECT_TOKEN`, com acesso ao quadro e às issues envolvidas. Se o secret
+não estiver configurado, o restante do conteúdo continua disponível e o status é identificado como
+indisponível. Se um token for informado e sua consulta ao Projects falhar, a coleta é interrompida
+e a última publicação válida permanece disponível.
 
-O hook `tools/docs/hooks/backlog.py` gera os registros em memória durante o build. A coleta nunca altera
-issues, não cria histórias, não reescreve o Markdown e não faz commits automáticos na `main`.
-Uma falha de API ou validação impede uma nova publicação; não transforma ausência de dados em
-conclusão nem sobrescreve o último snapshot válido.
+A coleta é somente leitura: não cria nem edita issues, não marca checklists e não faz commits
+na `main`. Os registros são gerados durante o build pelo hook `tools/docs/hooks/backlog.py`,
+sem reescrever o Markdown. Uma falha de coleta preserva o cache anterior; uma falha de coleta,
+validação ou build interrompe a nova publicação.
 
-**Conclusão é diferente de evidência de implementação.** PR integrado, commit vinculado ou issue
-encerrada não comprovam, sozinhos, a DoD. Para contar como concluída, a US precisa ter a situação
-Concluído, a confirmação da DoD e um link HTTPS de evidência de verificação/validação. Na falta
-disso, o catálogo informa que a conclusão precisa ser confirmada. O progresso do épico conta
-somente histórias com essa confirmação.
+## Consulta e verificação local {#consulta-local}
 
-O acesso às issues e aos PRs usa `GITHUB_TOKEN`. Para consultar o status do Project da organização,
-configure o secret **`BACKLOG_PROJECT_TOKEN`** com leitura do Project e dos repositórios envolvidos.
-Sem ele, a geração continua funcionando com as informações das issues, as evidências e o
-planejamento, sem presumir o status do quadro. Quando disponível, o status do Projects tem precedência, evitando repetir manualmente as mudanças
-do quadro na issue. Sem ele, é utilizado o campo da issue; na falta de ambos, evidências indicam
-implementação/revisão sem inferir aceite.
+No terminal, configure `GITHUB_TOKEN` para ler o repositório e `BACKLOG_PROJECT_TOKEN` para ler o
+Projects. A autenticação do `gh`, sozinha, não define essas variáveis para o script.
 
-Para conferir localmente:
-
-```bash
-python -m pip install -r tools/docs/requirements.txt
+```powershell
 python tools/docs/scripts/backlog.py sync
+python -m mkdocs serve
+```
+
+**O servidor local usa a última coleta salva.** Alterar uma issue no GitHub ou recarregar o
+navegador não executa `sync`. Depois de sincronizar, reinicie o servidor para carregar os dados.
+Sem cache, o Backlog apresenta o inventário da base e identifica os campos remotos não coletados.
+
+Para verificar mudanças no repositório antes do PR:
+
+```powershell
 python tools/docs/scripts/backlog.py check
 python -m unittest discover -s tools/docs/tests -t tools/docs -v
-mkdocs build --strict
+python -m mkdocs build --strict
 python tools/docs/scripts/check_links.py site
 ```
 
-Sem executar `sync`, o build funciona com o inventário completo e informa a ausência de coleta.
-As validações de PRs são executadas sem secrets e sem publicação. Os formulários e os gatilhos
-passam a estar disponíveis depois que os arquivos forem integrados à branch padrão.
+O comando `check` valida os dados locais; não consulta o GitHub. As verificações de PR são
+executadas sem secrets e sem publicar o código da branch em análise.
 
 ## <span id="123-decisoes-que-alteraram-o-escopo"></span>Decisões que alteraram o escopo {#decisoes-que-alteraram-o-escopo}
 
@@ -127,13 +170,9 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 | 03/11/2026 | **Consolidação do escopo em um catálogo integrado.** Cada requisito passou a ter um registro único, reunindo declaração, intenção e valor, origem, condições, priorização, entrega, situação e evolução. As listas paralelas de requisitos mantidas no Backlog de produto foram eliminadas, e as páginas de priorização, MVP e rastreabilidade passaram a consultar o catálogo. | Todos os registros; páginas 8 a 12 na numeração original | Estudo de caso do Capítulo 12 |
 | 03/11/2026 | Adoção dos nomes das características definidos na Visão do Produto como versão vigente, corrigindo a divergência com os nomes usados na página de requisitos (CP1 e CP2). | [CP1](solucao-e-caracteristicas.md#cp1), [CP2](solucao-e-caracteristicas.md#cp2) e seus requisitos | Revisão de consistência |
 | 03/11/2026 | Registro das dependências entre requisitos, derivadas da leitura das declarações, com marcação explícita de que aguardam validação no refinamento. | Campo *Condições e avaliação* de 35 registros | Revisão de consistência |
+| 10/11/2026 | Consolidação do MVP com 12 US, mantendo US13 e US14 separadas e fora do recorte, com revisão das declarações e justificativas de entrega. | Backlog e recorte do MVP | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63) |
 | 12/11/2026 | Correção da fundamentação da área de toque do RNF01 (44×44 px como decisão adicional baseada no critério AAA) e delimitação do RNF02 por resultado: confirmação, pendência, reenvio e rejeição, sem impor o mecanismo no critério de aceitação. | [RNF01](requisitos-de-software.md#rnf01-responsividade-da-interface-em-dispositivos-moveis), [RNF02](requisitos-de-software.md#rnf02-tolerancia-a-falhas-de-conexao), [D04](intervencao-social.md#d04) | Feedback do professor (issue #49) |
 | 16/11/2026 | Criação do RNF06, com backup diário criptografado no GitHub Actions, retenção de 30 dias, RPO de 24 horas e RTO de 8 horas, compatível com o plano gratuito do Supabase no lugar do PITR. | [RNF06](requisitos-de-software.md#rnf06-backup-e-recuperacao-de-dados), [D01](intervencao-social.md#d01) | Feedback do professor (issue #49) |
-
-## <span id="124-pendencias-de-escopo-em-aberto"></span>Pendências de escopo em aberto {#pendencias-de-escopo-em-aberto}
-
-As pendências vigentes estão no [recorte do catálogo](requisitos-de-software.md#pontos-em-aberto-do-recorte)
-e nos próprios registros das histórias. Elas não são reproduzidas em uma segunda lista nesta página.
 
 ## <span id="125-referencia-de-cada-entrega"></span>Referência de cada entrega {#referencia-de-cada-entrega}
 
@@ -155,4 +194,6 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 1.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 05/11/2026 | Explicitação das fontes por campo, formulários, geração do catálogo, rastreabilidade e critérios da automação, preservando a memória das decisões. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.1 | 07/11/2026 | Reorganização das fontes de apoio em `tools/docs/`, com atualização dos caminhos de manutenção, testes e automação. | [Thiago Gomes](https://github.com/thgomxs) |
-| 2.2 | 12/11/2026 | Registro das correções do RNF01 e do RNF02 e de sua origem na issue #49. | Equipe |
+| 2.2 | 15/11/2026 | Novo formato de US com DoR/DoD e Evidências, status pelo Projects, transição das issues legadas e coleta dos checks dos PRs. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.3 | 15/11/2026 | Revisão do fluxo de organização e atualização, adoção do nome Backlog e remoção da seção de pendências gerais de escopo. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.4 | 12/11/2026 | Registro das correções do RNF01 e do RNF02 e de sua origem na issue #49. | Equipe |

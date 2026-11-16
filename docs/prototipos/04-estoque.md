@@ -1,6 +1,8 @@
 # Grupo 4 — Movimentação de estoque
 
-[Abrir o grupo no protótipo](interface/index.html?grupo=stock){ .md-button }
+[← Todos os grupos](index.md)
+
+[Abrir o grupo no protótipo](interface/index.html?grupo=stock){ .md-button .md-button--primary }
 
 ## Vínculos e objetivo
 
@@ -51,7 +53,7 @@ O resumo mostra apenas a operação recém-simulada, para avaliar sua confirmaç
 Não representa a implementação de um histórico de movimentações.
 
 **Evidência a produzir:** interpretação das operações, conferência dos saldos e
-decisões pendentes, conforme o [registro sugerido](index.md#registro-sugerido-para-a-issue-ou-ata).
+decisões pendentes, conforme o [registro sugerido](avaliacao.md#registro-sugerido-para-a-issue-ou-ata).
 
 ## Versionamento
 
