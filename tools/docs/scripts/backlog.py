@@ -107,11 +107,17 @@ def sections(body):
 def checklist_key(value):
     value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value).replace("**", "")
     key = normalize(re.sub(r"\s+", " ", value))
-    old_actor = normalize("O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?")
-    new_actor = normalize("O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?")
-    if key == old_actor:
-        return new_actor
-    return key
+    aliases = {
+        normalize("O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?"):
+            normalize("O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?"),
+        normalize("As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre."):
+            normalize("As regras de negócio do contexto de autopeças estão suficientemente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre."),
+        normalize("Todas as dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram resolvidas e acordadas antes do início do desenvolvimento?"):
+            normalize("As dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram esclarecidas e acordadas para o início do desenvolvimento?"),
+        normalize("Cada integrante envolvido (Product Owner, frontend, backend e QA) consegue explicar exatamente o que será construído, como será testado e o prazo estimado, sem perguntas adicionais?"):
+            normalize("Cada integrante envolvido (Product Owner, frontend, backend e QA) possui entendimento compartilhado suficiente sobre o que será construído, como será testado e o trabalho estimado para a sprint?"),
+    }
+    return aliases.get(key, key)
 
 
 def parse_checklist(value, expected):

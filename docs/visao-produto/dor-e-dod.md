@@ -17,7 +17,7 @@ Uma História de Usuário (US) só passa do Product Backlog para o Sprint Backlo
 
 O objetivo do acordo não é exigir especificação exaustiva nem eliminar toda possibilidade de dúvida, mas assegurar **entendimento compartilhado suficiente** para desenvolver e verificar o incremento, preservando o espaço de aprendizado técnico e de refinamento incremental ao longo das iterações:
 
-- **Moderação de termos absolutos:** quando a pergunta 4 menciona regras “completamente definidas” ou a pergunta 11 menciona entendimento “sem perguntas adicionais”, o critério praticado pela equipe é o de suficiência técnica e negocial para a sprint, mantendo a abertura para aprendizado contínuo e esclarecimentos pontuais durante o ciclo.
+- **Critério de suficiência e moderação dos termos:** as perguntas da checklist foram redigidas com foco em suficiência técnica e negocial para a sprint (em vez de especificação exaustiva ou certezas absolutas), mantendo a abertura para aprendizado contínuo e esclarecimentos pontuais durante o ciclo de desenvolvimento.
 - **Histórias registradas não são automaticamente prontas:** existir no Backlog ou no GitHub Issues não comprova a DoR. Dúvidas que impeçam definir escopo, regras, critérios ou dependências devem ser discutidas nos comentários e incorporadas aos critérios antes de iniciar o trabalho. Não há seção obrigatória de “A refinar” no corpo da US.
 - **Ator no recorte do MVP:** na pergunta 1, o ator no MVP corresponde ao operador/proprietário da loja (Antônio Marcos), operando em terminal único sem distinção de perfis de autenticação nessa fase inicial.
 
@@ -33,7 +33,7 @@ Verifica se o que será desenvolvido e seu valor para o negócio estão suficien
 - [ ] O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?
 - [ ] O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW foi registrada e a prioridade foi registrada no [catálogo de requisitos](requisitos-de-software.md#registros-dos-requisitos-funcionais), conforme o método de [Priorização](priorizacao.md)?
 - [ ] Os critérios de aceitação são verificáveis, estão escritos no formato **Dado / Quando / Então**, cobrem os fluxos de exceção e erro e estão explicitamente vinculados ao requisito funcional (RF), ao objetivo específico (OE) e à característica de produto (CP) correspondentes?
-- [ ] As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre.
+- [ ] As regras de negócio do contexto de autopeças estão suficientemente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre.
 - [ ] O validador (Antônio Marcos, proprietário), o canal de validação (reuniões quinzenais pelo Google Meet, encontros presenciais ou WhatsApp) e o critério de aprovação pelo cliente estão definidos?
 
 ### Dimensão de viabilidade {#dimensao-de-viabilidade}
@@ -49,8 +49,8 @@ Verifica se há bloqueios externos, de infraestrutura ou de dependência sistêm
 Verifica o entendimento compartilhado entre os integrantes e a adequação do tamanho do item à capacidade da sprint.
 
 - [ ] O escopo da história cabe na sprint de 14 dias, considerando a capacidade da equipe?
-- [ ] Todas as dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram resolvidas e acordadas antes do início do desenvolvimento?
-- [ ] Cada integrante envolvido (Product Owner, frontend, backend e QA) consegue explicar exatamente o que será construído, como será testado e o prazo estimado, sem perguntas adicionais?
+- [ ] As dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram esclarecidas e acordadas para o início do desenvolvimento?
+- [ ] Cada integrante envolvido (Product Owner, frontend, backend e QA) possui entendimento compartilhado suficiente sobre o que será construído, como será testado e o trabalho estimado para a sprint?
 - [ ] As dependências entre itens, incluindo outras US necessárias, foram mapeadas e estão concluídas ou possuem uma sequência de entrega explicitamente acordada?
 
 ### Aplicação prática do DoR na US01 {#aplicacao-pratica-do-dor}
@@ -128,3 +128,4 @@ A mesma lógica se aplica às demais US: as evidências podem ser compartilhadas
 | 1.6 | 15/11/2026 | Correção das issues #50 e #51: moderação de termos absolutos no DoR, explicitação da não prontidão automática das USs com pendências em "A refinar", unificação da DoD (verificação técnica interna com relatório de cobertura e deploy em homologação seguida de validação externa) e inclusão das tabelas de aplicação prática do DoR e da DoD na US01 com evidências da implementação integrada no PR #65. | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
 | 1.7 | 15/11/2026 | Detalhamento das etapas de conclusão e dos registros da US01, com cálculo de prioridade, checklists e evidências do processo. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.8 | 15/11/2026 | Adequação do ator do DoR ao escopo do MVP (proprietário), alinhando a checklist às decisões de produto. | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
+| 1.9 | 16/11/2026 | Moderação dos termos absolutos nas perguntas do DoR (itens 4, 10 e 11) com foco em suficiência técnica e entendimento compartilhado (#50). | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
