@@ -113,6 +113,10 @@ python -m mkdocs serve
 O site local atende em
 <http://127.0.0.1:8000/REQ-202562-T02-TSI-AutoPecas/>. Se a API estiver usando a porta
 8000, execute `python -m mkdocs serve -a 127.0.0.1:8002`.
+A alternativa textual detalhada da árvore de rastreabilidade também é gerada da
+base versionada pelo hook `tools/docs/hooks/traceability.py`; altere os vínculos na
+fonte, sem manter outra tabela de requisitos manualmente.
+
 A coleta é somente de leitura e o snapshot descartável fica em
 `.cache/docs/backlog/github.json`. Sem coleta, o catálogo mantém as 40 US com os
 campos remotos identificados como pendentes. As dependências de documentação e API
