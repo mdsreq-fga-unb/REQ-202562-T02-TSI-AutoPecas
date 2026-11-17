@@ -263,7 +263,7 @@ Completar as movimentações e as vendas do MVP e validá-lo com o proprietário
 - testes de sistema do fluxo cadastro → entrada → venda → cancelamento → saldo
 - testes de aceitação executados com o proprietário
 - preparação da configuração de produção e das instruções de implantação, com verificação do procedimento pela equipe
-- rotina de backup preparada e restauração testada antes da implantação
+- rotina de backup diária preparada e restauração testada antes da implantação, conforme o [RNF06](requisitos-de-software.md#rnf06-backup-e-recuperacao-de-dados)
 - versão preliminar do manual do proprietário e documentação técnica
 - refatoração final antes da implantação
 
@@ -275,7 +275,7 @@ Completar as movimentações e as vendas do MVP e validá-lo com o proprietário
 - registro e cancelamento de vendas
 - MVP validado com o proprietário
 - instruções de implantação
-- procedimento de backup e restauração testado
+- procedimento de backup e restauração testado (RNF06)
 - manual preliminar
 
 **Validação com o cliente**
@@ -300,7 +300,7 @@ Implantar o MVP em produção, realizar a carga inicial dos cadastros de peças 
 **Trabalho previsto**
 
 - Deploy do MVP em produção no início da sprint, após os testes e a validação com o proprietário
-- ativação e verificação da rotina de backup em produção
+- ativação e verificação da rotina de backup em produção, com conferência da primeira cópia diária (RNF06)
 - carga inicial dos cadastros de peças via US02, com correção de duplicidades e campos incompletos
 - registro dos saldos iniciais conforme o procedimento validado nas sprints anteriores e conferência com o estoque físico junto ao proprietário antes do início da operação real
 - treinamento do proprietário com o manual finalizado em linguagem simples
@@ -334,7 +334,7 @@ Conferência dos cadastros e saldos iniciais, acompanhamento dos fluxos em produ
 - **Validação do cliente foca em negócio:** o proprietário valida se o produto atende à operação da loja; decisões técnicas são responsabilidade da equipe.
 - **Carga inicial com escopo definido:** serão transferidos os cadastros de peças e estabelecidos os saldos iniciais de estoque. A US02 importa os cadastros; os saldos serão registrados pelas funcionalidades de entrada (US08) e, quando necessário, ajuste de inventário (US10), conforme procedimento ensaiado com dados de teste para evitar contagem duplicada. O proprietário confere os saldos antes do início da operação real. A importação do histórico de vendas e movimentações não integra essa carga inicial.
 - **Responsabilidade coletiva:** todas as entregas de cada sprint são responsabilidade de toda a equipe. O Product Owner coordena as validações com o cliente ao final de cada sprint. A atribuição individual de tarefas ocorre no planejamento interno de cada sprint, registrada no GitHub Projects.
-- **Requisitos não funcionais transversais:** RNF01 a RNF05 (responsividade, tolerância a falhas de conexão, compatibilidade com navegadores, desempenho e segurança de dados) não ocupam uma sprint isolada; orientam as decisões técnicas e de interface em todas as sprints de desenvolvimento, garantindo consistência dos dados de estoque e uso adequado em diferentes dispositivos durante a operação da loja.
+- **Requisitos não funcionais transversais:** RNF01 a RNF06 (responsividade, tolerância a falhas de conexão, compatibilidade com navegadores, desempenho, segurança de dados e backup) não ocupam uma sprint isolada; orientam as decisões técnicas e de interface em todas as sprints de desenvolvimento, garantindo consistência dos dados de estoque e uso adequado em diferentes dispositivos durante a operação da loja.
 
 ## Versionamento
 
@@ -349,3 +349,4 @@ Conferência dos cadastros e saldos iniciais, acompanhamento dos fluxos em produ
 | 1.6 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.7 | 04/11/2026 | Reorganização visual do cronograma em resumo responsivo e detalhes expansíveis por sprint, preservando períodos, objetivos, histórias, entregáveis e validações. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.8 | 05/11/2026 | Acesso direto pela aba Cronograma, simplificação do título e inclusão de links para as atas preenchidas e a entrega citada no planejamento. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.9 | 16/11/2026 | Vínculo das atividades de backup das Sprints 5 e 6 ao RNF06 e inclusão do RNF06 entre os requisitos transversais (#49). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |

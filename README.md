@@ -248,7 +248,8 @@ Termos do domínio mantêm um vocabulário único em todo o sistema:
 - **Valores monetários** com `Decimal`, nunca `float`. Quantidades de estoque como inteiros.
 - **Datas e horas** em UTC, no formato ISO 8601.
 - **Erros:** levantar exceções de domínio nas camadas internas e traduzi-las em respostas HTTP com status adequado (`400`, `404`, `409`, `422`). Nunca expor detalhes internos ao usuário.
-- **Operações de escrita** (entradas, saídas, vendas) executadas em transação, com suporte a chave de idempotência, para atender ao RNF02 (sem perda ou duplicidade de dados em falhas de conexão).
+- **Operações de escrita** (cadastros, edições, entradas, saídas, ajustes, vendas e cancelamentos) executadas em transação, com suporte a chave de idempotência, para atender ao RNF02: operações aceitas efetivadas uma única vez, operações rejeitadas sem efeitos de negócio e estado confirmado, não confirmado ou rejeitado informado ao usuário. O critério do RNF02 verifica os resultados; transação e idempotência são os mecanismos adotados pela equipe.
+- **Backup** diário do banco por um workflow agendado no GitHub Actions, com a cópia criptografada guardada como artefato por 30 dias (RNF06). O plano gratuito do Supabase não oferece backup automático nem PITR.
 - **Segurança:** segredos apenas em variáveis de ambiente, nunca no repositório. Senhas com hash `bcrypt` (RNF05). Toda comunicação por HTTPS.
 
 ### 4. Front-end (React / Vite)
@@ -257,7 +258,7 @@ Termos do domínio mantêm um vocabulário único em todo o sistema:
 - **Componentes funcionais** com hooks, um componente por arquivo. Componentes pequenos e reutilizáveis.
 - **Separação de responsabilidades:** componentes cuidam da apresentação; chamadas à API ficam em uma camada própria (`services/`), nunca espalhadas pelos componentes.
 - **Estado:** manter o estado o mais próximo possível de onde é usado. Evitar estado global sem necessidade.
-- **Interface:** responsiva a partir de 360 px, com áreas de toque de pelo menos 44×44 px (RNF01). Mensagens de erro e validação claras, em português.
+- **Interface:** responsiva a partir de 360 px, conforme WCAG 2.1 AA, com áreas de toque de pelo menos 44×44 px como decisão adicional do RNF01, baseada no critério 2.5.5 (AAA). Isso não exige conformidade com todo o nível AAA. Mensagens de erro e validação claras, em português; verificação automática complementada por avaliação manual.
 - **Compatibilidade** com Chrome, Firefox, Edge e Safari, nas duas versões mais recentes (RNF03).
 
 ### 5. API

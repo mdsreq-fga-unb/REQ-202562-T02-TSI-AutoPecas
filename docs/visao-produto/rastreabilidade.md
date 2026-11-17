@@ -16,7 +16,7 @@ flowchart TD
     OE --> CP["Características de produto<br/><small>CP1 a CP9</small>"]
     CP --> EP["Épicos<br/><small>EP01 a EP07</small>"]
     CP --> RF["Requisitos funcionais<br/><small>RF01 a RF40</small>"]
-    CP --> RNF["Requisitos não funcionais<br/><small>RNF01 a RNF05</small>"]
+    CP --> RNF["Requisitos não funcionais<br/><small>RNF01 a RNF06</small>"]
     RNF -. condicionam .-> RF
     RF -. origem .-> US["Histórias de usuário<br/><small>US01 a US40</small>"]
     EP --> US
@@ -100,3 +100,4 @@ A rotina completa, com os cuidados de cada momento do ciclo, está em
 | 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.2 | 14/11/2026 | Alternativa textual detalhada gerada da base para as 12 US do MVP, acesso direto ao Miro (#47). | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.3 | 16/11/2026 | Atualização do quadro do Miro da árvore de histórias de usuário. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 2.4 | 16/11/2026 | Inclusão do RNF06 na hierarquia de rastreabilidade (#49). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
