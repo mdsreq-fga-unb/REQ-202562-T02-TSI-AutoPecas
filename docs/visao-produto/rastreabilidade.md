@@ -52,8 +52,11 @@ As três consultas mais frequentes, e o caminho de cada uma:
 
 ## <span id="114-arvore-de-historias-de-usuario"></span>Árvore de histórias de usuário {#arvore-de-historias-de-usuario}
 
-Representação visual da cadeia entre objetivos específicos, características de produto, requisitos
-funcionais e histórias de usuário do MVP.
+Representação da cadeia entre objetivos específicos, características de produto, épicos,
+histórias de usuário e seus requisitos de origem.
+
+[Abrir a árvore diretamente no Miro](https://miro.com/app/board/uXjVEbegEVQ=/)
+· [Consultar a alternativa textual detalhada](#alternativa-textual-da-arvore).
 
 <iframe width="768" height="432" title="Árvore de histórias de usuário: OE, CP, RF e US" src="https://miro.com/app/live-embed/uXjVEbegEVQ=/?embedMode=view_only_without_ui" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
@@ -61,6 +64,16 @@ funcionais e histórias de usuário do MVP.
     O diagrama reproduz os vínculos registrados no backlog em uma data específica. Quando um
     vínculo muda, a alteração é feita na fonte do vínculo e o diagrama é atualizado a partir
     dela — nunca o contrário.
+
+<details class="diagram-alternative" id="alternativa-textual-da-arvore">
+<summary>Ver alternativa textual da árvore</summary>
+<div class="diagram-alternative__body">
+<p>Vínculos entre objetivos, características, épicos e histórias do MVP.</p>
+
+<!-- RASTREABILIDADE:ARVORE -->
+
+</div>
+</details>
 
 ## <span id="115-como-a-rastreabilidade-e-mantida"></span>Como a rastreabilidade é mantida {#como-a-rastreabilidade-e-mantida}
 
@@ -85,4 +98,5 @@ A rotina completa, com os cuidados de cada momento do ciclo, está em
 | 1.0 | 12/10/2026 | Árvore de histórias de usuário relacionando OE, CP, RF e US, originalmente publicada na seção 10.6 do Backlog de produto | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.0 | 03/11/2026 | Página dedicada aos **tipos de vínculo e ao acesso à rastreabilidade**. Os vínculos por requisito passaram a ser mantidos nos registros do [Catálogo de requisitos](requisitos-de-software.md) | Equipe |
 | 2.1 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
-| 2.2 | 16/11/2026 | Atualização do quadro do Miro da árvore de histórias de usuário. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 2.2 | 14/11/2026 | Alternativa textual detalhada gerada da base para as 12 US do MVP, acesso direto ao Miro (#47). | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.3 | 16/11/2026 | Atualização do quadro do Miro da árvore de histórias de usuário. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
