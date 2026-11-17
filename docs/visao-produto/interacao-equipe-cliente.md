@@ -55,7 +55,9 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 | Sprint 0 | 03/09/2026 | Reunião interna — revisão do feedback do professor sobre a entrega inicial | [Sprint 0](../atas/sprint-0.md) |
 | Sprint 1 | 17/09/2026 | Entrevista com o cliente + planejamento interno da equipe                  | [Sprint 1](../atas/sprint-1.md) |
 | Sprint 2 | 30/09/2026 | Definição do valor de negócio dos requisitos com o cliente                 | [Sprint 2](../atas/sprint-2.md) |
-| Sprint 2 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP                    | [Sprint 3](../atas/sprint-3.md) |
+| Sprint 3 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP                    | [Sprint 3](../atas/sprint-3.md) |
+
+> A identificação “Sprint 3” e a data de 05/10/2026 reproduzem a ata original. Essa data antecede o período de 09/10 a 22/10 atribuído à Sprint 3 no cronograma; a equipe precisa esclarecer essa divergência no registro de origem.
 
 > Histórico completo, incluindo as atas das próximas sprints à medida que forem realizadas, em [Atas](../atas/index.md).
 
@@ -63,7 +65,7 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 
 ### Evidência de software
 
-O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza os três épicos e suas histórias de usuário. As histórias estão vinculadas aos respectivos épicos como sub-issues, permitindo acompanhar seu status e o progresso de cada épico. A captura abaixo é de 12/10/2026, quando o MVP tinha 13 histórias; desde a revisão do recorte em 10/11/2026, o MVP tem 12, e a US14 passou a ser condicionada à capacidade da equipe.
+A captura de 12/10/2026 abaixo registra a organização original do quadro **TSI Peças - Backlog**, no GitHub Projects, com três épicos e 13 histórias de usuário vinculadas como sub-issues. Desde a revisão do recorte em 10/11/2026, o MVP possui 12 histórias: a US14 foi retirada desse recorte e permanece condicionada, conforme a [base do catálogo](requisitos-de-software.md#rf14). A imagem preserva o registro histórico e não representa uma consulta atual ao status do quadro.
 
 [![Backlog no GitHub Projects com três épicos e suas histórias de usuário vinculadas como sub-issues.](../assets/images/visao-produto/evidencia_software.png)](../assets/images/visao-produto/evidencia_software.png)
 
@@ -84,6 +86,7 @@ O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza 
 |  1.8   | 12/10/2026 | Adição, no item 7.1, do link para o registro da validação do cliente sobre a acumulação do papel de Gerente de projeto / Product Owner                                                                                                                                                                                                                 | [Luiz Moreira](https://github.com/luizhtmoreira) |
 |  1.9   | 12/10/2026 | Inclusão de evidência de software do GitHub Projects, com os épicos e as histórias de usuário vinculadas.                                                                                                                                                                                                                                              | [Thiago Gomes](https://github.com/thgomxs)       |
 | 1.10 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
-| 1.11 | 15/11/2026 | Unificação da descrição de DoR, DoD (incluindo relatório de cobertura de testes e homologação) e validação externa com o documento de DoR e DoD (issues #50 e #51). | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
-| 1.12 | 15/11/2026 | Descrição dos critérios de prontidão, das etapas da DoD e do registro de evidências nas histórias. | [Thiago Gomes](https://github.com/thgomxs) |
-| 1.13 | 16/11/2026 | Atualização da evidência do GitHub Projects ao recorte de 12 histórias do MVP (issue #52). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 1.11 | 09/11/2026 | Correção da identificação da Sprint 3 na tabela de rastreabilidade das atas. | [Bruno Ferreira](https://github.com/brunnf) |
+| 1.12 | 15/11/2026 | Unificação da descrição de DoR, DoD (incluindo relatório de cobertura de testes e homologação) e validação externa com o documento de DoR e DoD (issues #50 e #51). | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
+| 1.13 | 15/11/2026 | Descrição dos critérios de prontidão, das etapas da DoD e do registro de evidências nas histórias. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.14 | 16/11/2026 | Atualização da evidência do GitHub Projects ao recorte de 12 histórias do MVP (issue #52). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |

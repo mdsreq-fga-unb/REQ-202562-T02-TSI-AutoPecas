@@ -33,7 +33,7 @@ Esta seção reúne as atas das reuniões de cada sprint do projeto **TSI Peças
     <span class="section-card__number" aria-hidden="true">03</span>
     <span class="section-card__title">Sprint 3</span>
     <span class="section-card__description">Validação dos ajustes em requisitos e confirmação do MVP.</span>
-    <span class="delivery-status">Em andamento</span>
+    <span class="delivery-status">Concluída</span>
     <span class="section-card__action">Acessar ata <span aria-hidden="true">→</span></span>
   </a>
 </div>

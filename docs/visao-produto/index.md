@@ -41,6 +41,7 @@ estão em [Requisitos](../requisitos/index.md), e o planejamento das sprints est
     <ul class="section-card__links">
       <li><a href="estrategias-engenharia-de-software/">Estratégias de engenharia de software</a></li>
       <li><a href="engenharia-de-requisitos/">Engenharia de requisitos</a></li>
+      <li><a href="padroes-de-codificacao/">Padrões de codificação</a></li>
     </ul>
   </div>
 
