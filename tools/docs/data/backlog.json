@@ -1335,12 +1335,13 @@
       "id": "RNF05",
       "name": "Segurança de dados",
       "anchor": "rnf05-seguranca-de-dados",
-      "declaration": "As senhas dos usuários devem ser armazenadas obrigatoriamente utilizando função de hash criptográfico com salt (bcrypt), sendo vedado o armazenamento de credenciais em texto simples. Todo o tráfego de dados entre cliente e servidor deve ser protegido pelo protocolo HTTPS com TLS 1.2 ou superior em todos os ambientes operacionais.",
-      "criterion": "100% das senhas armazenadas com hash bcrypt com salt; todo o tráfego protegido por TLS 1.2 ou superior, sem fallback para HTTP.",
+      "declaration": "Todo o tráfego de dados entre cliente e servidor deve ser protegido pelo protocolo HTTPS com TLS 1.2 ou superior em todos os ambientes operacionais.",
+      "criterion": "Todo o tráfego entre cliente e servidor protegido por HTTPS com TLS 1.2 ou superior, sem fallback para HTTP.",
       "classification": "Segurança (URPS+) / produto — segurança da informação (Sommerville).",
       "cp": "CP7",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 17/11/2026 · Exigência de armazenamento de senhas removida do RNF05, pois o MVP não possui login. Declaração e critério de verificação passam a tratar somente de HTTPS com TLS 1.2 ou superior, em correspondência com a D09, conforme orientação da monitoria e decisão da equipe."
       ]
     },
     {
