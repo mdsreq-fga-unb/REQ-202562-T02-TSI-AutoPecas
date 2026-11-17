@@ -11,6 +11,7 @@ export default function PartCatalogPage({
   onEdit,
   onCreate,
   onApplications,
+  onEntry,
   searchState,
   onSearchStateChange,
 }) {
@@ -126,9 +127,9 @@ export default function PartCatalogPage({
               {state.items.map((part) => (
                 <Paper component="li" variant="outlined" key={part.id} sx={{ p: 3 }}>
                   <Stack
-                    direction={{ xs: 'column', sm: 'row' }}
+                    direction={{ xs: 'column', lg: 'row' }}
                     spacing={2}
-                    sx={{ alignItems: { sm: 'center' } }}
+                    sx={{ alignItems: { lg: 'center' } }}
                   >
                     <Box sx={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>
                       <Typography variant="overline" color="text.secondary">
@@ -143,7 +144,20 @@ export default function PartCatalogPage({
                         {part.physical_location || 'Localização não informada'}
                       </Typography>
                     </Box>
-                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+                    <Stack
+                      direction={{ xs: 'column', sm: 'row' }}
+                      spacing={1}
+                      useFlexGap
+                      sx={{ flexWrap: 'wrap' }}
+                    >
+                      <Button
+                        variant="outlined"
+                        aria-label={`Registrar entrada de ${part.name}`}
+                        disabled={part.status === 'inactive'}
+                        onClick={() => onEntry(part.id)}
+                      >
+                        Registrar entrada
+                      </Button>
                       <Button
                         variant="outlined"
                         aria-label={`Aplicações de ${part.name}`}

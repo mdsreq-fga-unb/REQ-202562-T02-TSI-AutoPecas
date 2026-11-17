@@ -26,6 +26,7 @@ class Part(Timestamps, Base):
 
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
     manufacturer_code: Mapped[str] = mapped_column(String(100))
+    stock_balance: Mapped[int] = mapped_column(default=0, server_default="0")
     name: Mapped[str] = mapped_column(String(200))
     category: Mapped[str] = mapped_column(String(100))
     status: Mapped[str] = mapped_column(String(8), default="active", server_default="active")

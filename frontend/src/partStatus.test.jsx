@@ -40,7 +40,7 @@ test('inativa e reativa a peça enviando apenas o status e mantendo o cadastro v
   fireEvent.click(within(dialog).getByRole('button', { name: 'Confirmar inativação' }));
   await screen.findByText('Peça inativada com sucesso.');
   expect(screen.getByText('Inativo', { exact: true })).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Editar Filtro de óleo' })).toBeEnabled();
+  expect(await screen.findByRole('button', { name: 'Editar Filtro de óleo' })).toBeEnabled();
   fireEvent.click(screen.getByRole('button', { name: 'Ativar Filtro de óleo' }));
   fireEvent.click(await screen.findByRole('button', { name: 'Confirmar ativação' }));
   await screen.findByText('Peça ativada com sucesso.');

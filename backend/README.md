@@ -481,3 +481,59 @@ catálogo, mas não comprova integralmente RNF04 em produção/rede de 10 Mbps; 
 módulo de movimentações e sua massa de 20.000 registros ainda não existem.
 TLS em produção, matriz completa de navegadores, revisão por outro integrante
 e aceite do cliente permanecem pendentes. A DoD não é declarada concluída.
+
+## Entrada de estoque — US08 (Refs #33)
+
+`POST /parts/{id}/stock-entries` recebe `quantity` (inteiro positivo),
+`entry_date` (data ISO) e `unit_cost` (decimal, inclusive zero, até duas casas).
+O cabeçalho `Idempotency-Key` deve conter um UUID. Não exige fornecedor.
+`GET /parts/{id}/stock-balance` consulta o saldo vigente.
+
+A migração `0005_stock_entries` acrescenta o saldo às peças existentes com valor
+inicial zero e cria movimentações e respostas idempotentes. O Compose aplica
+`alembic upgrade head` antes da API; todos os ambientes devem usar a mesma revisão
+versionada. Não execute alterações manuais de estrutura para instalar esta US.
+
+O serviço bloqueia a peça com `SELECT FOR UPDATE`, compartilhando a ordem de
+serialização com a inativação. Movimento, saldo e resposta são confirmados na
+mesma transação. Uma entrada retroativa soma ao saldo vigente sem reprocessar o
+passado. A data máxima usa o calendário `America/Sao_Paulo`.
+
+Reenvios com a mesma chave e dados devolvem a resposta original, inclusive após
+reinício ou inativação. Outra peça ou outros dados com a mesma chave retornam
+409. O saldo dessa resposta é histórico: consulte a rota de saldo para obter o
+valor atual. Concorrência entre peças com a mesma chave desfaz integralmente a
+transação perdedora. Não há cálculo monetário com ponto flutuante no back-end.
+
+Os testes `tests/test_stock_entries.py` cobrem os seis critérios, rollback,
+reenvio, concorrência e migração. O PostgreSQL usa o banco descartável já adotado
+nos testes da US03, com um schema exclusivo por teste; nunca o banco operacional.
+A revisão por outro integrante e o aceite do cliente permanecem etapas humanas.
+
+### Evidências TDD da US08
+
+Os comportamentos foram trabalhados individualmente, com execução da falha antes
+da implementação e nova execução aprovada. Na API, os ciclos observaram:
+registro ausente (404); saldo ausente na resposta; aceitação indevida de peça
+inativa, quantidade zero/booleana, custo negativo/com três casas e data futura;
+reenvio duplicando o saldo; mesma chave aceitando outro conteúdo; representações
+monetárias equivalentes produzindo conflito; concorrência entre peças retornando
+503 em vez de 409; ausência da restrição SQL de quantidade positiva. Cada falha
+foi corrigida antes de iniciar o comportamento seguinte.
+
+Os cenários que já passaram na primeira execução são verificações complementares:
+preservação das outras peças, quantidade negativa/fracionária, rollback, fuso,
+campos obrigatórios, custo zero, retroatividade, reinício, migração e serialização
+com inativação. Eles não são apresentados como ciclos RED/GREEN novos.
+
+Verificação em 16/11/2026: 29 testes da US08 aprovados no PostgreSQL; regressão
+conjunta de `test_vehicle_applications.py`, `test_part_search.py` e
+`test_stock_entries.py`: 105 aprovados. `ruff check .` e `ruff format --check .`
+aprovados. O teste histórico da US03 passou a preparar e comparar dados com as
+colunas da revisão 0003, sem usar o modelo atual contra uma estrutura antiga.
+
+Resultado final: regressão do backend no Docker com `pytest -q`: 161 aprovados
+e 8 cenários de PostgreSQL ignorados nessa execução SQLite. Os 105 testes das
+US03/US04/US08 passaram separadamente no PostgreSQL. No banco operacional,
+`alembic current` indicou `0005_stock_entries (head)` e `alembic check` não
+identificou divergências. Os três serviços do Compose permaneceram saudáveis.

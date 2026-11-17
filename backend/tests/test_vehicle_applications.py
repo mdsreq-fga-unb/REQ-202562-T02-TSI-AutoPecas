@@ -221,19 +221,57 @@ def test_database_constraint_protects_against_conflict_missed_by_precheck(client
 
 @pytest.mark.parametrize("client", ["0003_part_status"], indirect=True)
 def test_migration_preserves_existing_part_and_allows_new_applications(client):
-    part_id = create_part(client)
-    client.patch(
-        f"/parts/{part_id}",
-        json={"status": "inactive", "equivalent_codes": ["EQ-LEGACY"]},
-        headers={"Idempotency-Key": str(uuid4())},
-    )
-    before = client.get(f"/parts/{part_id}").json()
+    from datetime import UTC, datetime
+
+    from sqlalchemy import MetaData, Table, create_engine, select
+
+    # O modelo atual não representa uma revisão antiga. Prepare e compare o
+    # catálogo diretamente com as colunas realmente presentes na revisão 0003.
+    engine = create_engine(client.database_url)
+    metadata = MetaData()
+    parts = Table("parts", metadata, autoload_with=engine)
+    codes = Table("part_codes", metadata, autoload_with=engine)
+    part_id = uuid4()
+    stored_id = part_id if engine.dialect.name == "postgresql" else part_id.hex
+    timestamps = {"created_at": datetime.now(UTC), "updated_at": datetime.now(UTC)}
+    with engine.begin() as connection:
+        connection.execute(
+            parts.insert().values(
+                id=stored_id,
+                manufacturer_code="LEGACY",
+                name="Filtro",
+                category="Filtros",
+                status="inactive",
+                **timestamps,
+            )
+        )
+        for code in ("LEGACY", "EQ-LEGACY"):
+            code_id = uuid4()
+            connection.execute(
+                codes.insert().values(
+                    id=code_id if engine.dialect.name == "postgresql" else code_id.hex,
+                    part_id=stored_id,
+                    code=code,
+                    **timestamps,
+                )
+            )
+
+    def snapshot():
+        with engine.connect() as connection:
+            return (
+                connection.execute(select(parts)).all(),
+                connection.execute(select(codes).order_by(codes.c.code)).all(),
+            )
+
+    before = snapshot()
     command.upgrade(Config("alembic.ini"), "head")
     command.check(Config("alembic.ini"))
-    assert client.get(f"/parts/{part_id}").json() == before
+    assert snapshot() == before
+    assert client.get(f"/parts/{part_id}").json()["equivalent_codes"] == ["EQ-LEGACY"]
     assert associate(client, part_id).status_code == 201
     command.downgrade(Config("alembic.ini"), "0003_part_status")
-    assert client.get(f"/parts/{part_id}").json() == before
+    assert snapshot() == before
+    engine.dispose()
 
 
 def test_normalization_preserves_accents_punctuation_and_internal_spaces(client):

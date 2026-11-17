@@ -12,6 +12,7 @@ from app.core.database import create_session_factory
 from app.core.errors import DomainError
 from app.routers.health import router as health_router
 from app.routers.parts import router as parts_router
+from app.routers.stock import router as stock_router
 from app.routers.vehicle_applications import router as vehicle_applications_router
 
 
@@ -75,6 +76,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         allow_headers=["Content-Type", "Authorization", "Idempotency-Key"],
     )
+    app.include_router(stock_router)
     app.include_router(health_router)
     app.include_router(parts_router)
     app.include_router(vehicle_applications_router)

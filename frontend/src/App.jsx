@@ -6,6 +6,8 @@ import PartRegistrationPage from './features/parts/PartRegistrationPage.jsx';
 import PartCatalogPage from './features/parts/PartCatalogPage.jsx';
 import PartEditPage from './features/parts/PartEditPage.jsx';
 import VehicleApplicationsPage from './features/parts/VehicleApplicationsPage.jsx';
+import StockEntryPage from './features/stock/StockEntryPage.jsx';
+import { readPendingEntry } from './features/stock/pendingStockEntry.js';
 import { readPendingAssociation } from './features/parts/pendingVehicleAssociation.js';
 import { createCatalogSearchState } from './features/parts/partSearchState.js';
 import { buildTheme } from './theme/theme.js';
@@ -13,6 +15,8 @@ import { buildTheme } from './theme/theme.js';
 export default function App() {
   const [catalogSearch, setCatalogSearch] = useState(createCatalogSearchState);
   const [view, setView] = useState(() => {
+    const entry = readPendingEntry();
+    if (entry) return { page: 'entry', partId: entry.partId };
     const pending = readPendingAssociation();
     return pending ? { page: 'applications', partId: pending.partId } : { page: 'new' };
   });
@@ -24,6 +28,7 @@ export default function App() {
       catalog: 'Catálogo',
       edit: 'Editar peça',
       applications: 'Aplicações por veículo',
+      entry: 'Registrar entrada',
     }[view.page];
     document.title = `${title} · TSI Peças`;
   }, [view.page]);
@@ -65,7 +70,9 @@ export default function App() {
         page={view.page}
         onNavigate={navigate}
         isNavigationLocked={
-          view.page === 'applications' || (view.page === 'new' && navigationState.isLocked)
+          view.page === 'entry' ||
+          view.page === 'applications' ||
+          (view.page === 'new' && navigationState.isLocked)
         }
       >
         {view.page === 'new' && (
@@ -77,11 +84,15 @@ export default function App() {
             onSearchStateChange={setCatalogSearch}
             onEdit={openEdit}
             onCreate={openCreate}
+            onEntry={(partId) => setView({ page: 'entry', partId })}
             onApplications={(partId) => setView({ page: 'applications', partId })}
           />
         )}
         {view.page === 'applications' && (
           <VehicleApplicationsPage key={view.partId} partId={view.partId} onDone={openCatalog} />
+        )}
+        {view.page === 'entry' && (
+          <StockEntryPage key={view.partId} partId={view.partId} onDone={openCatalog} />
         )}
         {view.page === 'edit' && (
           <PartEditPage key={view.partId} partId={view.partId} onDone={openCatalog} />

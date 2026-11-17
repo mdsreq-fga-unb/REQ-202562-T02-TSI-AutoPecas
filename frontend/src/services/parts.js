@@ -61,6 +61,18 @@ export function listParts(offset = 0, { signal } = {}) {
   return requestParts(`?offset=${offset}&limit=20`, { signal });
 }
 
+export function getStockBalance(id, { signal } = {}) {
+  return requestParts(`/${encodeURIComponent(id)}/stock-balance`, { signal });
+}
+
+export function registerStockEntry(id, data, idempotencyKey) {
+  return requestParts(`/${encodeURIComponent(id)}/stock-entries`, {
+    method: 'POST',
+    data,
+    idempotencyKey,
+  });
+}
+
 export function searchParts(filters, offset = 0, { signal } = {}) {
   const query = new URLSearchParams({ ...filters, offset: String(offset), limit: '20' });
   return requestParts(`/search?${query}`, { signal });

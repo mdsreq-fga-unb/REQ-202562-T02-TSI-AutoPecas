@@ -538,3 +538,43 @@ A matriz completa das duas últimas versões de Chrome, Firefox, Edge e Safari,
 RNF04 nas condições de produção, revisão por outro integrante e aceite do cliente
 permanecem pendentes. A implementação foi verificada localmente; a DoD não foi
 marcada concluída. Nenhum commit, push ou alteração da issue foi realizado.
+
+## Entrada de estoque — US08 (Refs #33)
+
+No Catálogo, escolha **Registrar entrada** em uma peça ativa. Informe quantidade,
+data e custo unitário, inclusive zero. A interface usa MUI, a logo e o tema
+compartilhados. `features/stock/StockEntryPage.jsx` apresenta o formulário;
+`useStockEntry.js` controla estado e submissão; `services/parts.js` realiza HTTP.
+O saldo é calculado exclusivamente pela API.
+
+Antes do POST, a tentativa é preservada no navegador. Falha de conexão mantém
+campos bloqueados e permite **Tentar novamente** com a mesma chave e os mesmos
+dados, inclusive após recarregar. Sem armazenamento disponível, nenhum novo POST
+é enviado. Após sucesso, o formulário é encerrado e o saldo vigente é consultado
+separadamente da resposta histórica da entrada. Para outra entrada, volte ao
+catálogo e selecione a peça novamente.
+
+### Evidências da US08
+
+`src/stockEntry.test.jsx` foi desenvolvido com um comportamento por ciclo:
+registro; rejeição por campo; reenvio incerto; recuperação após recarregar;
+falha de armazenamento; quantidade; precisão do custo; data obrigatória;
+data futura em São Paulo; confirmação com consulta do saldo vigente; bloqueio
+da ação para peça inativa. Em cada ciclo foi observada a ausência do comportamento
+antes da implementação mínima e a aprovação depois. A extração do hook preservou
+os comportamentos cobertos. Falhas de inicialização por recursos do computador
+não foram contadas como RED.
+
+Conferência no navegador local: formulário, saldo vindo da API, erros de campos
+obrigatórios, retorno ao catálogo e larguras 360, 390 e 414 px, sem rolagem
+horizontal; campos e botões com área mínima de 44 px. Nenhuma movimentação de teste
+foi inserida no banco operacional. A matriz completa de navegadores do RNF03,
+TLS do ambiente publicado e o aceite do cliente não foram verificados localmente.
+
+Resultado final: os 11 testes da US08 passaram após a extração do hook. A execução
+completa (`vitest run --maxWorkers=1 --testTimeout=60000`) teve 63 aprovações e uma
+falha de sincronização no teste antigo de status. A consulta foi alterada para
+aguardar o botão ficar acessível após o fechamento do diálogo; a repetição de
+`src/partStatus.test.jsx` aprovou seus 5 testes. Não houve nova execução completa
+após esse ajuste exclusivo do teste. `pnpm lint`, `pnpm format:check` e `pnpm build`
+foram aprovados. Os tempos dos testes foram maiores por pressão de memória local.
