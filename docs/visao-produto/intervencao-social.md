@@ -98,7 +98,7 @@ entregas correspondentes, conforme o planejamento, sem presumir aceite antecipad
   - *Tecnologias de desenvolvimento e código-fonte:* A aplicação utiliza linguagens e bibliotecas abertas (React, Python com FastAPI e PostgreSQL). O repositório acadêmico do projeto é público no GitHub sob licença permissiva MIT, visando permitir que o código possa ser auditado, adaptado e mantido no futuro;
   - *Infraestrutura e hospedagem de terceiros (serviços proprietários em plano gratuito):* A hospedagem utiliza plataformas proprietárias operadas em suas camadas gratuitas (*free-tier*): **Vercel** (deploy do front-end), **Render** (deploy do back-end) e **Supabase** (gerenciamento do banco PostgreSQL).
 - **Alinhamento com o cliente e transferência de titularidade:**
-  - O cliente é formalmente informado de que as credenciais e dados de negócio são mantidos privados e de que o tráfego é protegido por HTTPS/TLS 1.2+ (**RNF05**);
+  - O cliente é formalmente informado de que todo o tráfego de dados entre cliente e servidor deve ser protegido por HTTPS com TLS 1.2 ou superior, conforme o **RNF05**;
   - Na Sprint 6, a equipe finaliza o *Guia de Manutenção* e transfere formalmente a titularidade das contas desses serviços em nuvem (Vercel, Render e Supabase) para o proprietário, favorecendo a autonomia operacional e contribuindo para a continuidade do projeto após o encerramento da disciplina.
 
 ## <span id="34-matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos"></span>Matriz de rastreabilidade: riscos versus decisões e requisitos {#matriz-de-rastreabilidade-riscos-versus-decisoes-e-requisitos}
@@ -135,3 +135,4 @@ Assim, a intervenção social deixa de ser uma reflexão puramente teórica e pa
 | 1.8 | 12/11/2026 | Correção da fundamentação da área de toque na D04: WCAG 2.1 AA mantida e 44×44 pixels CSS como decisão adicional baseada no critério AAA, conforme issue #49. | Equipe |
 | 1.9 | 16/11/2026 | Compatibilização do backup com o plano gratuito do Supabase (sem PITR) e vínculo da D01 e do R03 ao novo RNF06 (#49). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
 | 1.10 | 16/11/2026 | Remoção da referência a autenticação com hash bcrypt na D09, mantendo apenas o tráfego protegido por HTTPS/TLS 1.2+ (RNF05), pois o MVP não tem login. | [João Melo](https://github.com/jot4-ge) |
+| 1.11 | 17/11/2026 | Adequação da D09 ao RNF05 revisado, com referência somente à proteção do tráfego por HTTPS com TLS 1.2 ou superior no MVP sem login. | [Thiago Gomes](https://github.com/thgomxs) |
