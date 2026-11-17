@@ -35,6 +35,16 @@ O conteúdo da Visão de Produto e Projeto foi validado pelo cliente, Antônio M
 
 *Figura — Aprovação do documento completo pelo cliente.*
 
+Em 04/11/2026, a equipe validou com o cliente, pelo WhatsApp, as regras que fecharam o recorte do MVP: acesso sem login, bloqueio de saída e venda acima do saldo, entrada sem fornecedor, histórico por período, ajuste de inventário sem saldo negativo e peças com mais de um código. As decisões resultantes estão registradas no [Backlog](requisitos-de-software.md) e na [priorização](priorizacao.md#decisoes-gerais-da-priorizacao).
+
+![Respostas do cliente sobre login, venda acima do saldo e fornecedor.](../assets/images/visao-produto/validacao-cliente-login.png)
+
+*Figura — Validação, em 04/11/2026, sobre login, venda acima do saldo e fornecedor.*
+
+![Respostas do cliente sobre histórico por período, ajuste de inventário e códigos de peças.](../assets/images/visao-produto/validacao-cliente-cadastro.png)
+
+*Figura — Validação sobre histórico por período, ajuste de inventário e códigos de peças.*
+
 ## Versionamento
 
 | Versão | Data | Descrição | Autor(es/as) |
@@ -43,3 +53,4 @@ O conteúdo da Visão de Produto e Projeto foi validado pelo cliente, Antônio M
 | 1.1 | 07/09/2026 | Preenchimento dos itens 1.1 e 1.2 e revisão textual | [João Melo](https://github.com/jot4-ge) |
 | 1.2 | 09/09/2026 | Inclusão das evidências de validação do cliente | [João Melo](https://github.com/jot4-ge) |
 | 1.3 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.4 | 15/11/2026 | Inclusão das evidências da validação das decisões de escopo do MVP com o cliente (04/11/2026), no contexto da issue #53. | [João Melo](https://github.com/jot4-ge) |
