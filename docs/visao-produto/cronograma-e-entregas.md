@@ -208,8 +208,6 @@ Definir o DoR e o DoD; corrigir os apontamentos da Unidade 2; iniciar o catálog
 
 Além da confirmação histórica da lista de 13 RFs do MVP ([Ata da Sprint 3](../atas/sprint-3.md)) e da [validação do papel de PO](../atas/validacao-papel-po.md), as funcionalidades de cadastro, edição e alteração de status foram validadas com o cliente em **ambiente local integrado**, com interface, API e banco de dados, conforme confirmação da equipe registrada nesta atualização. Para esta validação, foi adotado o ambiente local, sem exigir um ambiente de homologação separado neste momento — *Acompanhamento: João Melo (PO) e Luiz Moreira*.
 
-**Pendência documental:** anexar a comprovação da validação às [issues #27 (US01)](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/27), [#31 (US05)](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/31) e [#32 (US06)](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32), identificando a data da sessão, os participantes, a versão testada e o resultado. O registro de conclusão da sprint não substitui as evidências individuais da DoD.
-
 **Registro da sprint:** [Ata da Sprint 3](../atas/sprint-3.md) · [Validação assíncrona do papel de PO](../atas/validacao-papel-po.md)
 
 </div>
