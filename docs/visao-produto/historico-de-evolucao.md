@@ -183,15 +183,15 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 
 ## <span id="125-referencia-de-cada-entrega"></span>Referência de cada entrega {#referencia-de-cada-entrega}
 
-Cada entrega preserva uma referência do escopo naquele momento, permitindo comparar o que mudou sem
-congelar o documento. A referência é o estado do repositório na data da entrega.
+A tabela resume o escopo apresentado em cada unidade. As páginas de cada entrega reúnem o vídeo,
+os artefatos e as correções correspondentes; os registros anteriores preservam o contexto de sua época.
 
-| Entrega | Período | Estado do escopo registrado |
+| Entrega | Período | Escopo registrado |
 | --- | --- | --- |
-| [Entrega 1](../entregas/entrega-1.md) | Unidade 1 | Visão do produto: problema, objetivos e características, sem requisitos declarados |
-| [Entrega 2](../entregas/entrega-2.md) | Unidade 2 | 40 requisitos funcionais, 5 não funcionais, priorização aplicada e MVP de 13 requisitos definido |
-| [Entrega 3](../entregas/entrega-3.md) | Unidade 3 | Escopo consolidado no catálogo integrado; início da implementação do MVP |
-| [Entrega 4](../entregas/entrega-4.md) | Unidade 4 | A registrar |
+| [Entrega 1](../entregas/entrega-1.md) | Unidade 1 | Visão do produto e do projeto: contexto do cliente, problema, objetivos, características do produto, intervenção social, estratégia de desenvolvimento e planejamento inicial. |
+| [Entrega 2](../entregas/entrega-2.md) | Unidade 2 | Declaração dos requisitos funcionais e não funcionais, DoR/DoD, priorização e definição inicial do MVP com 13 histórias de usuário, além das correções da Unidade 1. |
+| [Entrega 3](../entregas/entrega-3.md) | Unidade 3 | Representação dos requisitos por protótipos; verificação e validação; organização do backlog e atualização automatizada; revisão do MVP para 12 US; incremento das US01, US05 e US06 e correções da Unidade 2. |
+| [Entrega 4](../entregas/entrega-4.md) | Unidade 4 | Escopo a registrar após a realização da entrega. |
 
 ## Versionamento
 
@@ -206,3 +206,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 2.4 | 15/11/2026 | Registro das decisões de 14/11 e de suas relações com o MVP e a rastreabilidade. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.5 | 12/11/2026 | Registro das correções do RNF01 e do RNF02 e de sua origem na issue #49. | Equipe |
 | 2.6 | 16/11/2026 | Registro da validação de 04/11 com o cliente, que resolve a pendência da solução de acesso (issue #53). | [João Melo](https://github.com/jot4-ge) |
+| 2.7 | 16/11/2026 | Revisão do resumo do escopo de cada entrega, destacando os temas da Unidade 3 e preservando o recorte histórico da Unidade 2. | [Thiago Gomes](https://github.com/thgomxs) |
