@@ -55,10 +55,10 @@ As três consultas mais frequentes, e o caminho de cada uma:
 Representação da cadeia entre objetivos específicos, características de produto, épicos,
 histórias de usuário e seus requisitos de origem.
 
-[Abrir a árvore diretamente no Miro](https://miro.com/app/board/uXjVEbegEVQ=/)
+[Abrir a árvore diretamente no Miro](https://miro.com/app/board/uXjVENQG9So=/)
 · [Consultar a alternativa textual detalhada](#alternativa-textual-da-arvore).
 
-<iframe width="768" height="432" title="Árvore de histórias de usuário: OE, CP, RF e US" src="https://miro.com/app/live-embed/uXjVEbegEVQ=/?embedMode=view_only_without_ui" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+<iframe width="768" height="432" title="Árvore de histórias de usuário: OE, CP, RF e US" src="https://miro.com/app/live-embed/uXjVENQG9So=/?embedMode=view_only_without_ui" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
 !!! note "A árvore é uma visão, não a fonte"
     O diagrama reproduz os vínculos registrados no backlog em uma data específica. Quando um
@@ -101,3 +101,4 @@ A rotina completa, com os cuidados de cada momento do ciclo, está em
 | 2.2 | 14/11/2026 | Alternativa textual detalhada gerada da base para as 12 US do MVP, acesso direto ao Miro (#47). | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.3 | 16/11/2026 | Atualização do quadro do Miro da árvore de histórias de usuário. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
 | 2.4 | 16/11/2026 | Inclusão do RNF06 na hierarquia de rastreabilidade (#49). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 2.5 | 16/11/2026 | Substituição do quadro do Miro da árvore de histórias de usuário (OE, CP, RF e US) pelo novo quadro, no link direto e na visualização incorporada. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
