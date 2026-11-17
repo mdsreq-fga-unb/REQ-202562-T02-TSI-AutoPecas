@@ -179,6 +179,7 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 | 14/11/2026 | Retirada das restrições por perfil das declarações do MVP, mantendo a solução de acesso como pendência. Revisão de esforço de US01/US04 sinalizada sem atribuir novas estimativas; justificativas de entrega e dependências passam a ser apresentadas por US no catálogo. | Declarações do MVP, [US01](requisitos-de-software.md#us01), [US04](requisitos-de-software.md#us04) e apresentação do catálogo | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63); detalhamento remoto permanece nas issues |
 | 14/11/2026 | Correção da descrição de RF14 na ata de 05/10: de associação a anúncios do Mercado Livre para filtro do histórico por período. | [US14 / RF14](requisitos-de-software.md#rf14) | [Ata da Sprint 3](../atas/sprint-3.md), [issue #47](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/47) |
 | 16/11/2026 | Criação do RNF06, com backup diário criptografado no GitHub Actions, retenção de 30 dias, RPO de 24 horas e RTO de 8 horas, compatível com o plano gratuito do Supabase no lugar do PITR. | [RNF06](requisitos-de-software.md#rnf06-backup-e-recuperacao-de-dados), [D01](intervencao-social.md#d01) | Feedback do professor (issue #49) |
+| 16/11/2026 | Registro da validação com o cliente, em 04/11, das regras de acesso sem login, bloqueio de saída e venda acima do saldo, entrada sem fornecedor, histórico por período, ajuste sem saldo negativo e peças com mais de um código, o que resolve a pendência da solução de acesso registrada em 14/11. | [Priorização](priorizacao.md), [Cliente e negócio](cliente-e-negocio.md) | [Issue #53](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/53) |
 
 ## <span id="125-referencia-de-cada-entrega"></span>Referência de cada entrega {#referencia-de-cada-entrega}
 
@@ -204,3 +205,4 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 2.3 | 15/11/2026 | Revisão do fluxo de organização e atualização, adoção do nome Backlog e remoção da seção de pendências gerais de escopo. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.4 | 15/11/2026 | Registro das decisões de 14/11 e de suas relações com o MVP e a rastreabilidade. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.5 | 12/11/2026 | Registro das correções do RNF01 e do RNF02 e de sua origem na issue #49. | Equipe |
+| 2.6 | 16/11/2026 | Registro da validação de 04/11 com o cliente, que resolve a pendência da solução de acesso (issue #53). | [João Melo](https://github.com/jot4-ge) |
