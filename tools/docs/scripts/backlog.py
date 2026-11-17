@@ -11,12 +11,18 @@ from decimal import Decimal, ROUND_HALF_UP
 import json
 import os
 from pathlib import Path
+
 import re
 import sys
 import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from scripts.story_contract import DOR_ITEMS, DOD_ITEMS
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "data/backlog.json"
@@ -81,17 +87,60 @@ def sections(body):
     names = {"identificacao da us", "rf de origem", "epico", "narrativa", "criterios de aceitacao",
              "a refinar", "rnfs aplicaveis", "dependencias", "situacao do desenvolvimento",
              "confirmacao de conclusao", "evidencia de conclusao", "objetivo", "cp de origem",
-             "cp relacionado", "identificacao do epico", "us vinculadas"}
-    matches = [m for m in re.finditer(r"^#{2,4}\s+(.+?)\s*$", body or "", re.M)
-               if normalize(m[1]) in names]
+             "cp relacionado", "identificacao do epico", "us vinculadas",
+             "checklist de dor", "checklist de dod", "evidencias"}
+    matches = list(re.finditer(r"^(#{2,4})\s+(.+?)\s*$", body or "", re.M))
     for index, match in enumerate(matches):
-        key = normalize(match[1])
+        key = normalize(match[2])
+        if key not in names:
+            continue
         if key in result:
-            raise BacklogError(f"Seção duplicada na issue: {match[1]}.")
-        end = matches[index + 1].start() if index + 1 < len(matches) else len(body)
+            raise BacklogError(f"Seção duplicada na issue: {match[2]}.")
+        end = next((m.start() for m in matches[index + 1:]
+                    if len(m[1]) <= len(match[1]) or normalize(m[2]) in names), len(body))
         text = body[match.end():end].strip()
         result[key] = "" if text in ("_No response_", "_Sem resposta_", "Não informado") else text
     return result
+
+
+
+def checklist_key(value):
+    value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value).replace("**", "")
+    key = normalize(re.sub(r"\s+", " ", value))
+    aliases = {
+        normalize("O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?"):
+            normalize("O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito e seu objetivo de negócio está explícito na US?"),
+        normalize("As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre."):
+            normalize("As regras de negócio do contexto de autopeças estão suficientemente definidas na US? Exemplos: imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre."),
+        normalize("Todas as dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram resolvidas e acordadas antes do início do desenvolvimento?"):
+            normalize("As dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram esclarecidas e acordadas para o início do desenvolvimento?"),
+        normalize("Cada integrante envolvido (Product Owner, frontend, backend e QA) consegue explicar exatamente o que será construído, como será testado e o prazo estimado, sem perguntas adicionais?"):
+            normalize("Cada integrante envolvido (Product Owner, frontend, backend e QA) possui entendimento compartilhado suficiente sobre o que será construído, como será testado e o trabalho estimado para a sprint?"),
+    }
+    return aliases.get(key, key)
+
+
+def parse_checklist(value, expected):
+    items = [{"label": label.strip(), "checked": mark.lower() == "x"}
+             for mark, label in re.findall(r"^\s*[-*+]\s+\[([ xX])\]\s+(.+?)\s*$", value or "", re.M)]
+    keys = [checklist_key(i["label"]) for i in items]
+    missing = [s for s in expected if checklist_key(s) not in keys]
+    complete = (bool(items) and not missing and len(set(keys)) == len(keys)
+                and all(i["checked"] for i in items))
+    return {"items": items, "missing": missing, "complete": complete,
+            "checked": len({checklist_key(i["label"]) for i in items if i["checked"]}
+                           & {checklist_key(s) for s in expected}), "expected": len(expected)}
+
+
+def has_https_link(value):
+    for candidate in re.findall(r"https://[^\s<>]+", value or ""):
+        try:
+            url = urllib.parse.urlsplit(candidate.rstrip(".,)"))
+            if url.scheme == "https" and url.hostname and not url.username:
+                return True
+        except ValueError:
+            pass
+    return False
 
 
 def inline(body, label):
@@ -133,6 +182,10 @@ def parse_story(issue):
         raise BacklogError(f"Situação inválida na issue #{issue['number']}.")
     rnfs_text = fields.get("rnfs aplicaveis", "") or inline(body, "RNFs")
     dependencies = fields.get("dependencias", "") or inline(body, "Dependências")
+    checklist_format = any(k in fields for k in ("checklist de dor", "checklist de dod", "evidencias"))
+    dor = parse_checklist(fields.get("checklist de dor", ""), DOR_ITEMS)
+    dod = parse_checklist(fields.get("checklist de dod", ""), DOD_ITEMS)
+    evidence = fields.get("evidencias", "") if "evidencias" in fields else fields.get("evidencia de conclusao", "")
     return {"us": ids[0], "rf": rf[0], "number": issue["number"], "url": issue["html_url"],
             "title": issue["title"], "state": issue["state"], "state_reason": issue.get("state_reason"),
             "updated_at": issue["updated_at"], "narrative": narrative,
@@ -141,8 +194,9 @@ def parse_story(issue):
             "rnfs": identifiers(rnfs_text, "RNF") if rnfs_text else None,
             "epic": selected_epic[0] if selected_epic else None,
             "cp": (identifiers(origin, "CP") or [None])[0], "status": status,
-            "done": bool(re.search(r"\[x\]", fields.get("confirmacao de conclusao", ""), re.I)),
-            "completion_evidence": fields.get("evidencia de conclusao", ""),
+            "done": dod["complete"] if checklist_format else bool(re.search(r"\[x\]", fields.get("confirmacao de conclusao", ""), re.I)),
+            "checklist_format": checklist_format, "dor": dor, "dod": dod,
+            "completion_evidence": evidence,
             "assignees": [u["login"] for u in issue.get("assignees", [])],
             "milestone": (issue.get("milestone") or {}).get("title"),
             "labels": [l["name"] for l in issue.get("labels", [])], "structured": form}
@@ -170,7 +224,7 @@ class GitHub:
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
             raise BacklogError(f"Falha ao consultar {urllib.parse.urlsplit(url).path}: {exc}") from exc
         if isinstance(result, dict) and result.get("errors"):
-            raise BacklogError("Consulta ao Projects recusada ou inválida.")
+            raise BacklogError("Consulta GraphQL recusada ou inválida.")
         return result
 
     def pages(self, path):
@@ -194,6 +248,43 @@ def issue_references(text, repository):
     return refs
 
 
+
+def linked_pull_requests(client, repository, number):
+    """Vínculos atuais de Development; menções na timeline não são associações."""
+    owner, name = repository.split("/")
+    query = """query($owner:String!,$name:String!,$number:Int!,$cursor:String){
+      repository(owner:$owner,name:$name){issue(number:$number){
+        closedByPullRequestsReferences(first:100,after:$cursor,includeClosedPrs:true){
+          nodes{number repository{nameWithOwner}} pageInfo{hasNextPage endCursor}
+        }
+      }}
+    }"""
+    pulls = []
+    cursor = None
+    for _ in range(500):
+        response = client.request("graphql", {"query": query, "variables": {
+            "owner": owner, "name": name, "number": number, "cursor": cursor}})
+        try:
+            connection = response["data"]["repository"]["issue"]["closedByPullRequestsReferences"]
+            nodes, page = connection["nodes"], connection["pageInfo"]
+            if not isinstance(nodes, list) or not isinstance(page["hasNextPage"], bool):
+                raise ValueError("Conexão inválida")
+            for pr in nodes:
+                if (not isinstance(pr["number"], int) or pr["number"] <= 0
+                        or not re.fullmatch(r"[\w.-]+/[\w.-]+", pr["repository"]["nameWithOwner"])):
+                    raise ValueError("PR inválido")
+            pulls.extend(nodes)
+            if not page["hasNextPage"]:
+                return pulls
+            next_cursor = page["endCursor"]
+            if not isinstance(next_cursor, str) or not next_cursor or next_cursor == cursor:
+                raise ValueError("Cursor inválido")
+            cursor = next_cursor
+        except (KeyError, TypeError, ValueError) as exc:
+            raise BacklogError(f"Falha ao consultar os PRs vinculados à issue #{number}; coleta incompleta não será publicada.") from exc
+    raise BacklogError("Paginação de PRs vinculados excedida.")
+
+
 def project_statuses(client, project):
     statuses = {}
     cursor = None
@@ -212,6 +303,22 @@ def project_statuses(client, project):
         if not items["pageInfo"]["hasNextPage"]:
             return statuses
         cursor = items["pageInfo"]["endCursor"]
+
+
+
+def commit_checks(client, repository, sha):
+    """Checks do último commit do PR, paginados; nunca equivalem ao aceite da US."""
+    checks = []
+    for page in range(1, 501):
+        response = client.request(f"repos/{repository}/commits/{sha}/check-runs?filter=latest&per_page=100&page={page}")
+        values = response.get("check_runs") if isinstance(response, dict) else None
+        if not isinstance(values, list):
+            raise BacklogError("Resposta de checks inesperada; coleta incompleta não será publicada.")
+        checks.extend({"name": c["name"], "url": c.get("html_url", ""),
+                       "status": c["status"], "conclusion": c.get("conclusion")} for c in values)
+        if len(values) < 100:
+            return checks
+    raise BacklogError("Paginação de checks excedida.")
 
 
 def collect(base, client, project_client=None):
@@ -257,34 +364,29 @@ def collect(base, client, project_client=None):
                 if known[us]["epic"] != epic:
                     raise BacklogError(f"Parentesco de {us} diverge do épico previsto.")
                 parsed[us]["parent"] = epic
-    pulls = {}
-    associations = {us: set() for us in parsed}
+    sources = {}
     for source in base["implementation_repositories"]:
         if not re.fullmatch(r"[\w.-]+/[\w.-]+", source):
             raise BacklogError("Repositório de implementação inválido.")
-        for pr in client.pages(f"repos/{source}/pulls?state=all"):
-            key = f"{source}#{pr['number']}"
-            refs = issue_references(pr.get("body") or "", source)
-            pulls[key] = (source, pr)
-            for number, us in number_to_us.items():
-                if (repo, number) in refs:
-                    associations[us].add(key)
+        sources[source.casefold()] = source
+    pulls = {}
+    associations = {us: set() for us in parsed}
     for us, issue in parsed.items():
-        for event in client.pages(f"repos/{repo}/issues/{issue['number']}/timeline"):
-            src = (event.get("source") or {}).get("issue") or {}
-            if event.get("event") == "cross-referenced" and "pull_request" in src:
-                url = src.get("html_url", "")
-                match = re.fullmatch(r"https://github.com/([\w.-]+/[\w.-]+)/pull/(\d+)", url)
-                key = f"{match[1]}#{match[2]}" if match else ""
-                if key in pulls:
-                    associations[us].add(key)
+        for pr in linked_pull_requests(client, repo, issue["number"]):
+            source = sources.get(pr["repository"]["nameWithOwner"].casefold())
+            if source:
+                key = f"{source}#{pr['number']}"
+                pulls[key] = (source, pr["number"])
+                associations[us].add(key)
     evidence = {us: {"pulls": [], "commits": []} for us in parsed}
     for key in sorted(set().union(*associations.values()) if associations else []):
-        source, pr = pulls[key]
-        detail = client.request(f"repos/{source}/pulls/{pr['number']}")
+        source, number = pulls[key]
+        pr = client.request(f"repos/{source}/pulls/{number}")
         commits = client.pages(f"repos/{source}/pulls/{pr['number']}/commits")
         proof = {"number": pr["number"], "url": pr["html_url"], "repository": source,
-                 "title": pr["title"], "state": "Integrado" if detail.get("merged_at") else "Aberto" if pr["state"] == "open" else "Fechado sem integração"}
+                 "title": pr["title"], "state": "Integrado" if pr.get("merged_at") else "Aberto" if pr["state"] == "open" else "Fechado sem integração"}
+        sha = (pr.get("head") or {}).get("sha")
+        proof["checks"] = commit_checks(client, source, sha) if sha else []
         for us, keys in associations.items():
             if key in keys:
                 evidence[us]["pulls"].append(proof)
@@ -342,16 +444,26 @@ def merge(base, snapshot=None):
         project = (snapshot or {}).get("project_statuses", {}).get(f"{base['repository']}#{issue['number']}")
         project_map = {"todo": "Não iniciado", "backlog": "Não iniciado", "in progress": "Em andamento", "in review": "Em revisão", "done": "Concluído", "blocked": "Bloqueado"}
         status = project_map.get(normalize(project), project) if project else issue.get("status")
+        if issue.get("checklist_format"):
+            status = project_map.get(normalize(project), project) if project else None
+            if not project:
+                story["status"] = "Status do Projects indisponível"
+                story["status_source"] = "GitHub Projects"
+                story["warnings"].append("Status do Projects indisponível: configure BACKLOG_PROJECT_TOKEN e confira o item e o campo Status no quadro.")
+            if status in {"Em andamento", "Em revisão", "Concluído"} and not issue.get("dor", {}).get("complete"):
+                story["warnings"].append("DoR incompleto ou com itens ausentes; revisar a prontidão sem presumir aprovação retroativa.")
         if status:
             if status not in STATUSES:
                 story["warnings"].append(f"Status do Projects não reconhecido: {status}.")
                 story["status"] = "Situação não informada"
-            elif status == "Concluído" and not (issue.get("done") and re.search(r"https://", issue.get("completion_evidence", ""))):
+            elif status == "Concluído" and not (issue.get("done") and has_https_link(issue.get("completion_evidence", ""))):
                 story["status"] = "Conclusão a confirmar"
-                story["warnings"].append("Conclusão indicada sem confirmação da DoD e link de evidência; não contabilizada como concluída.")
+                story["warnings"].append("Conclusão indicada sem DoD completa e link HTTPS de evidências; não contabilizada como concluída.")
             else:
                 story["status"] = status
             story["status_source"] = "GitHub Projects" if project else "Issue"
+        elif issue.get("checklist_format"):
+            pass  # Formato novo: somente o Projects informa o andamento.
         elif issue["state"] == "closed":
             story["status"] = "Encerrada sem conclusão confirmada"
             story["status_source"] = "GitHub Issues"
@@ -383,7 +495,7 @@ def main():
             temporary.replace(args.cache)
             print(f"Coleta concluída: {len(snapshot['stories'])} issues de US; {len(base['stories'])} registros preservados.")
         else:
-            snapshot = json.loads(args.cache.read_text()) if args.cache.exists() else None
+            snapshot = json.loads(args.cache.read_text(encoding="utf-8")) if args.cache.exists() else None
             merge(base, snapshot)
             print(f"Base válida: {len(base['stories'])} USs, {len(base['epics'])} épicos e {len(base['non_functional'])} RNFs.")
     except (BacklogError, OSError, KeyError) as exc:

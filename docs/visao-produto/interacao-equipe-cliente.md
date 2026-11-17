@@ -40,11 +40,11 @@ A acumulação do papel de Gerente de projeto / Product Owner foi validada com o
 
 ## <span id="73-processo-de-validacao"></span>Processo de validação {#processo-de-validacao}
 
-O processo ocorre em três etapas, cobrindo tanto a qualidade interna do requisito/entrega quanto a confirmação de que o produto atende à necessidade real do cliente, reduzindo o esforço operacional da TSI Peças:
+O processo ocorre em três etapas, cobrindo tanto a qualidade interna do requisito/entrega quanto a confirmação de que o produto atende à necessidade real do cliente, reduzindo o esforço operacional da TSI Peças, em conformidade com o acordo detalhado em [DoR e DoD](dor-e-dod.md):
 
-1. **Definition of Ready (DoR) — verificação interna:** antes do início do desenvolvimento, a equipe verifica se as User Stories de uma funcionalidade estão escritas e claras o bastante para a sprint começar — isto é, se os requisitos, as regras de negócio e os critérios de aceitação já definidos foram registrados e compreendidos pela equipe. Protótipos e regras de negócio críticas são validados com o cliente antes do início da implementação, reduzindo o risco de retrabalho.
-2. **Definition of Done (DoD) — verificação interna:** checklist de qualidade técnica aplicado a cada funcionalidade antes de ser considerada concluída, abrangendo finalização e revisão do código, integração com o banco e testes internos sem bugs críticos. O deploy em ambiente de homologação — instância de pré-produção na Vercel (front-end) e no Render (back-end), conforme a stack definida em [Solução e Características](solucao-e-caracteristicas.md) — é parte da DoD e antecede a validação externa; o deploy em produção, usado pelos usuários finais, ocorre somente após o aceite do cliente.
-3. **Testes de aceitação com o cliente — validação externa:** ao final de cada sprint, o cliente valida se a entrega cumpre os critérios de aceitação previamente definidos e verificados no DoR, e se atende à necessidade real do negócio. Divergências identificadas resultam em ajustes no backlog da sprint seguinte.
+1. **Definition of Ready (DoR) - prontidão:** no planejamento da sprint, conferir objetivo, regras, critérios, dependências e tamanho do trabalho. Dúvidas impeditivas são discutidas nos comentários e incorporadas aos critérios antes do desenvolvimento, sem seção obrigatória de “A refinar”. Protótipos e regras críticas são validados com o cliente quando necessário.
+2. **Definition of Done (DoD) - parte técnica:** os itens 1 a 4 da [checklist](dor-e-dod.md#checklist-de-dod) abrangem critérios atendidos, revisão por outro integrante, testes sem regressões e padrões. CI, análise de cobertura e verificação em homologação (Vercel/Render) sustentam essas verificações; os registros ficam no PR, vinculado em Evidências.
+3. **Definition of Done (DoD) - validação com o cliente:** o item 5 corresponde à demonstração e à validação com Antônio Marcos, registradas em ata ou evidência equivalente. O Backlog contabiliza conclusão quando o Projects está em Done/Concluído, a DoD inteira está marcada e há link HTTPS em Evidências. Não existe confirmação adicional. A publicação em produção ocorre após as verificações técnicas e o aceite do cliente.
 
 ## <span id="74-rastreabilidade-das-atas"></span>Rastreabilidade das atas {#rastreabilidade-das-atas}
 
@@ -57,13 +57,15 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 | Sprint 2 | 30/09/2026 | Definição do valor de negócio dos requisitos com o cliente                 | [Sprint 2](../atas/sprint-2.md) |
 | Sprint 3 | 05/10/2026 | Validação de ajustes em requisitos e confirmação do MVP                    | [Sprint 3](../atas/sprint-3.md) |
 
+> A identificação “Sprint 3” e a data de 05/10/2026 reproduzem a ata original. Essa data antecede o período de 09/10 a 22/10 atribuído à Sprint 3 no cronograma; a equipe precisa esclarecer essa divergência no registro de origem.
+
 > Histórico completo, incluindo as atas das próximas sprints à medida que forem realizadas, em [Atas](../atas/index.md).
 
 ## <span id="75-evidencias"></span>Evidências {#evidencias}
 
 ### Evidência de software
 
-O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza os três épicos e suas 13 histórias de usuário. As histórias estão vinculadas aos respectivos épicos como sub-issues, permitindo acompanhar seu status e o progresso de cada épico.
+A evidência abaixo registra a organização original do quadro **TSI Peças - Backlog**, no GitHub Projects, com três épicos e 13 histórias de usuário vinculadas como sub-issues. O recorte vigente possui 12 histórias no MVP: a US14 foi retirada desse recorte e permanece condicionada, conforme a [base do catálogo](requisitos-de-software.md#rf14). A imagem preserva o registro histórico e não representa uma consulta atual ao status do quadro.
 
 [![Backlog no GitHub Projects com três épicos e suas histórias de usuário vinculadas como sub-issues.](../assets/images/visao-produto/evidencia_software.png)](../assets/images/visao-produto/evidencia_software.png)
 
@@ -85,3 +87,5 @@ O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza 
 |  1.9   | 12/10/2026 | Inclusão de evidência de software do GitHub Projects, com os épicos e as histórias de usuário vinculadas.                                                                                                                                                                                                                                              | [Thiago Gomes](https://github.com/thgomxs)       |
 | 1.10 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.11 | 09/11/2026 | Correção da identificação da Sprint 3 na tabela de rastreabilidade das atas. | [Bruno Ferreira](https://github.com/brunnf) |
+| 1.12 | 15/11/2026 | Unificação da descrição de DoR, DoD (incluindo relatório de cobertura de testes e homologação) e validação externa com o documento de DoR e DoD (issues #50 e #51). | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
+| 1.13 | 15/11/2026 | Descrição dos critérios de prontidão, das etapas da DoD e do registro de evidências nas histórias. | [Thiago Gomes](https://github.com/thgomxs) |

@@ -7,7 +7,7 @@ icon: material/format-list-checks
 Esta área reúne a **especificação e o escopo do produto**: requisitos, priorização, MVP,
 rastreabilidade, critérios de prontidão e conclusão e histórico de evolução.
 
-O [Catálogo de requisitos](../visao-produto/requisitos-de-software.md) concentra os registros
+O [Backlog](../visao-produto/requisitos-de-software.md) concentra os registros
 vigentes. As demais páginas explicam os critérios, os recortes e os vínculos usados para
 consultá-los e atualizá-los.
 
@@ -16,7 +16,7 @@ consultá-los e atualizá-los.
 <div class="section-grid">
   <a class="section-card" href="../visao-produto/requisitos-de-software/">
     <span class="section-card__number" aria-hidden="true">01</span>
-    <span class="section-card__title">Catálogo de requisitos</span>
+    <span class="section-card__title">Backlog</span>
     <span class="section-card__description">Consulte épicos e histórias com sua origem, narrativa, prioridade, recorte de entrega e evidências.</span>
     <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
   </a>
@@ -45,6 +45,11 @@ consultá-los e atualizá-los.
     <span class="section-card__action">Acessar documento <span aria-hidden="true">→</span></span>
   </a>
 </div>
+
+## Representação dos fluxos
+
+Os [cinco grupos de prototipação rápida](../prototipos/index.md) oferecem uma interface
+navegável e roteiros de avaliação das 12 US selecionadas para o MVP.
 
 ## Documentos relacionados
 

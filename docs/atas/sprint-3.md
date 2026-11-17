@@ -17,7 +17,7 @@
 - RF29 e RF30: mesmas respostas do RF28 — podem esperar.
 - RF31: não foi alterado nesta reunião, mantendo a classificação já definida anteriormente.
 - A equipe apresentou a lista final de requisitos selecionados para compor o MVP, revisando também o RF2 (importação de peças via planilha), cujo valor de negócio (1/4, apurado na reunião anterior pelas quatro perguntas) estava inconsistente com sua classificação como Must: o cliente reforçou que já possui cerca de 90% dos dados cadastrados em planilhas próprias e no Mercado Livre, defendendo a importância do reaproveitamento desses dados via importação; a equipe ajustou a resposta de frequência de uso do RF2 para "sim" (uso no dia a dia), elevando seu valor de negócio.
-- Lista final confirmada para o MVP: RF1 (cadastrar peça), RF2 (importar peças via planilha), RF3 (associar veículo à peça), RF4 (buscar peça), RF5 (editar peça), RF6 (alterar status da peça), RF8 (registrar entrada de peça), RF9 (registrar saída manual), RF10 (registrar ajuste de inventário), RF12 (consultar saldo de peça), RF14 (associar anúncios do Mercado Livre à peça), RF15 (registrar venda) e RF16 (cancelar venda). O cliente não manifestou objeções a essa lista.
+- Lista final confirmada para o MVP: RF1 (cadastrar peça), RF2 (importar peças via planilha), RF3 (associar veículo à peça), RF4 (buscar peça), RF5 (editar peça), RF6 (alterar status da peça), RF8 (registrar entrada de peça), RF9 (registrar saída manual), RF10 (registrar ajuste de inventário), RF12 (consultar saldo de peça), RF14 (filtrar histórico por período), RF15 (registrar venda) e RF16 (cancelar venda). O cliente não manifestou objeções a essa lista.
 
 ## Decisões
 
@@ -36,3 +36,4 @@
 | Ação | Responsável | Prazo |
 |---|---|---|
 | Registrar formalmente a lista final do MVP (RF1, RF2, RF3, RF4, RF5, RF6, RF8, RF9, RF10, RF12, RF14, RF15, RF16) no documento de requisitos | Equipe | A definir |
+| Correção de erro ao registrar RF14 na ata | Equipe | A definir |

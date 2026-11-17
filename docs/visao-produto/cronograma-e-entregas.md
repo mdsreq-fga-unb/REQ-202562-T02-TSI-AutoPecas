@@ -9,6 +9,8 @@ A partir da estratégia de desenvolvimento ágil estabelecida para o projeto **T
 
 O desenvolvimento do produto começa na Sprint 3 e é planejado por **histórias de usuário (US)**, que detalham os **12 requisitos funcionais (RFs) selecionados para o MVP** a partir da [priorização](priorizacao.md). Cada US mantém o número do RF de origem (por exemplo, US01 detalha o RF01) e está registrada no campo *Narrativa da US* do [registro do requisito](requisitos-de-software.md#registros-dos-requisitos-funcionais). A US14 (retirada do recorte do MVP), as USs dos RFs condicionados à capacidade da equipe e os demais RFs permanecem fora do cronograma, para evitar sobrecarga, como evolução futura. A declaração vigente de cada RF está no [Catálogo de requisitos](requisitos-de-software.md).
 
+As referências a 13 RFs nas Sprints 2 e 3 preservam o escopo histórico. O recorte vigente contém 12 RFs após a retirada da US14 do MVP, registrada na [base do catálogo](requisitos-de-software.md#rf14).
+
 Para separar o que foi planejado do que já foi executado e verificado, o detalhamento de cada sprint distingue **Atividades planejadas**, **Resultados comprovados e evidências** (com links diretos para documentos, PRs, workflows de CI, atas e identificação de quem acompanha cada entrega) e, nas sprints em andamento ou futuras, **Entregas previstas (a comprovar)**.
 
 <div class="schedule-page" markdown="1">

@@ -24,7 +24,7 @@ Explore as cinco áreas da documentação do projeto.
   <a class="section-card" href="requisitos/">
     <span class="section-card__number" aria-hidden="true">02</span>
     <span class="section-card__title">Requisitos</span>
-    <span class="section-card__description">Consulte o catálogo, a priorização, o MVP, a rastreabilidade e a evolução dos requisitos.</span>
+    <span class="section-card__description">Consulte o backlog, a priorização, o MVP, a rastreabilidade e a evolução dos requisitos.</span>
     <span class="section-card__action">Explorar seção <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="visao-produto/cronograma-e-entregas/">

@@ -1,42 +1,75 @@
-import { useEffect, useState } from 'react';
-import { getApiHealth } from './services/api.js';
-
-const statusMessages = {
-  checking: 'Verificando conexão com a API…',
-  ready: 'API disponível',
-  unavailable: 'API indisponível. Verifique se o back-end está em execução.',
-};
+import { useEffect, useMemo, useState } from 'react';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import AppShell from './layouts/AppShell.jsx';
+import DiscardChangesDialog from './components/DiscardChangesDialog.jsx';
+import PartRegistrationPage from './features/parts/PartRegistrationPage.jsx';
+import PartCatalogPage from './features/parts/PartCatalogPage.jsx';
+import PartEditPage from './features/parts/PartEditPage.jsx';
+import { buildTheme } from './theme/theme.js';
 
 export default function App() {
-  const [status, setStatus] = useState('checking');
-
+  const [view, setView] = useState({ page: 'new' });
+  const [navigationState, setNavigationState] = useState({ isDirty: false, isLocked: false });
+  const [pendingPage, setPendingPage] = useState(null);
   useEffect(() => {
-    const controller = new AbortController();
-    getApiHealth({ signal: controller.signal })
-      .then(() => setStatus('ready'))
-      .catch(() => {
-        if (!controller.signal.aborted) setStatus('unavailable');
-      });
-    return () => controller.abort();
-  }, []);
-
+    const title = { new: 'Nova peça', catalog: 'Catálogo', edit: 'Editar peça' }[view.page];
+    document.title = `${title} · TSI Peças`;
+  }, [view.page]);
+  const openCatalog = () => setView({ page: 'catalog' });
+  const openCreate = () => setView({ page: 'new' });
+  const openEdit = (partId) => setView({ page: 'edit', partId });
+  function navigate(page) {
+    if (page === view.page) return;
+    if (view.page === 'new' && navigationState.isLocked) return;
+    if (view.page === 'new' && navigationState.isDirty) {
+      setPendingPage(page);
+    } else {
+      setView({ page });
+    }
+  }
+  const [mode, setMode] = useState(() => {
+    try {
+      return localStorage.getItem('tsi-theme') === 'dark' ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  });
+  const theme = useMemo(() => buildTheme(mode), [mode]);
+  function toggleTheme() {
+    const next = mode === 'light' ? 'dark' : 'light';
+    setMode(next);
+    try {
+      localStorage.setItem('tsi-theme', next);
+    } catch {
+      // O tema continua funcionando quando o navegador bloqueia o armazenamento.
+    }
+  }
   return (
-    <main className="shell">
-      <header>
-        <span className="brand-mark" aria-hidden="true">
-          TSI
-        </span>
-        <span className="environment">Desenvolvimento</span>
-      </header>
-      <section className="welcome" aria-labelledby="welcome-title">
-        <p className="eyebrow">Catálogo e controle de estoque</p>
-        <h1 id="welcome-title">TSI Peças</h1>
-        <p>Base da aplicação preparada para o desenvolvimento das histórias do projeto.</p>
-        <div className={`api-status api-status--${status}`} role="status">
-          <span className="status-dot" aria-hidden="true" />
-          {statusMessages[status]}
-        </div>
-      </section>
-    </main>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppShell
+        mode={mode}
+        onToggleTheme={toggleTheme}
+        page={view.page}
+        onNavigate={navigate}
+        isNavigationLocked={view.page === 'new' && navigationState.isLocked}
+      >
+        {view.page === 'new' && (
+          <PartRegistrationPage onEdit={openEdit} onNavigationStateChange={setNavigationState} />
+        )}
+        {view.page === 'catalog' && <PartCatalogPage onEdit={openEdit} onCreate={openCreate} />}
+        {view.page === 'edit' && (
+          <PartEditPage key={view.partId} partId={view.partId} onDone={openCatalog} />
+        )}
+      </AppShell>
+      <DiscardChangesDialog
+        open={pendingPage !== null}
+        onContinue={() => setPendingPage(null)}
+        onDiscard={() => {
+          setView({ page: pendingPage });
+          setPendingPage(null);
+        }}
+      />
+    </ThemeProvider>
   );
 }

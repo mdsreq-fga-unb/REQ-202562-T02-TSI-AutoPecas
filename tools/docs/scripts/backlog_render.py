@@ -2,7 +2,7 @@
 from html import escape, unescape
 import re
 
-from scripts.backlog import WEIGHTS, priority
+from scripts.backlog import WEIGHTS, priority, normalize
 
 
 def link(url, label):
@@ -52,6 +52,46 @@ def aliases(*ids):
     return "".join(f'<span id="{escape(i)}" class="backlog-anchor"></span>' for i in ids)
 
 
+
+def render_rnf_relation(identifiers):
+    return ('<ul class="backlog-rnf-list">' + ''.join('<li>' + ref(i) + '</li>' for i in identifiers) + '</ul>') if identifiers else 'Nenhum vínculo registrado'
+
+
+def render_checklist(label, checklist):
+    checklist = checklist or {"items": [], "checked": 0, "expected": 0, "missing": []}
+    items = checklist["items"]
+    out = ['<details class="backlog-checklist"><summary>' + escape(label)
+           + f': {checklist["checked"]}/{checklist["expected"]} itens marcados</summary>']
+    if items:
+        out.append('<ul class="backlog-task-list">')
+        for item in items:
+            checked = ' checked' if item["checked"] else ''
+            out.append('<li><label><input type="checkbox" disabled' + checked + '><span>' + text(item["label"]) + '</span></label></li>')
+        out.append('</ul>')
+    else:
+        out.append('<p>Checklist ainda não preenchida na issue.</p>')
+    if checklist.get("missing"):
+        out.append('<p>Itens previstos ausentes: ' + str(len(checklist["missing"])) + '. Preserve a checklist completa do template.</p>')
+    out.append('</details>')
+    return ''.join(out)
+
+
+
+def dependency_key(value):
+    """Normaliza redações de ausência e aliases RF/US sem apagar condições distintas."""
+    value = re.sub(r"\b(?:RF|US)0*(\d+)\b", lambda m: f"US{int(m[1]):02}", value or "", flags=re.I)
+    key = normalize(re.sub(r"\s+", " ", value)).rstrip(". ")
+    if re.fullmatch(r"nenhuma(?: dependencia(?: funcional)?(?: identificada)?(?: na declaracao)?)?|sem dependencias(?: funcionais)?|nao (?:ha|existem) dependencias(?: funcionais)?", key):
+        return "none"
+    return key
+
+
+def dependency_text(value):
+    if dependency_key(value) == "none":
+        return "Nenhuma dependência funcional."
+    return text(re.sub(r"\bRF(\d{2,})\b", r"US\1", value))
+
+
 def render_story(story):
     p = story["priority"]
     et, score, quadrant = priority(p)
@@ -85,18 +125,25 @@ def render_story(story):
     out.append('<section class="backlog-text"><p class="backlog-label">Narrativa da US</p>' + paragraphs(story["narrative"], "Narrativa ainda não detalhada" if not issue else "Narrativa não informada na issue") + '</section>')
     out.append('<section class="backlog-text"><p class="backlog-label">Declaração de origem - ' + rf + '</p>' + paragraphs(story["declaration"]) + '</section>')
     out.append('<section class="backlog-text"><p class="backlog-label">Critérios de aceitação</p>' + paragraphs(story["criteria"], "A definir no refinamento, conforme a DoR.") + '</section>')
-    out.append('<dl class="backlog-facts">' + row("RNFs", " · ".join(ref(i) for i in story["rnfs"]) or "Nenhum vínculo registrado"))
-    out.append(row("Dependências", text(story["dependencies"])))
-    if issue and issue.get("dependencies") and issue["dependencies"].casefold().rstrip(".") != story["dependencies"].casefold().rstrip("."):
-        out.append(row("Issue: dependências", text(issue["dependencies"])))
+    out.append('<dl class="backlog-facts">' + row("RNFs", render_rnf_relation(story["rnfs"])))
+    out.append(row("Dependências", dependency_text(story["dependencies"])))
+    if issue and issue.get("dependencies") and dependency_key(issue["dependencies"]) != dependency_key(story["dependencies"]):
+        out.append(row("Issue: dependências", dependency_text(issue["dependencies"])))
     if issue and issue.get("rnfs") is not None and set(issue["rnfs"]) != set(story["rnfs"]):
-        out.append(row("Issue: RNFs", " · ".join(ref(i) for i in issue["rnfs"]) or "Nenhum informado"))
+        out.append(row("Issue: RNFs", render_rnf_relation(issue["rnfs"])))
     out.append('</dl>')
     out.append('<section class="backlog-priority"><p class="backlog-label">Priorização</p>'
                f'<p class="backlog-score">VN {p["vn"]} + {escape(p["moscow"])} ({WEIGHTS[p["moscow"]]}) - ET {et} = <strong>Score {score}</strong> · <strong>{quadrant}</strong></p>'
                f'<p><small>ET = arred(({p["ei"]} + {p["ca"]} + {p["lc"]}) / 3) = {et}. Notas: EI {p["ei"]}, CA {p["ca"]}, LC {p["lc"]}. '
-               + link('../priorizacao/', 'Critérios e escalas') + '</small></p></section>')
-    out.append('<section class="backlog-text"><p class="backlog-label">A refinar</p>' + paragraphs(story["refinement"], "Detalhamento pendente" if not issue else "Nenhum ponto informado na issue") + '</section>')
+               + link('../priorizacao/', 'Critérios e escalas') + '</small></p>'
+               + (paragraphs(story['priority_note']) if story.get('priority_note') else '')
+               + ('<dl class="backlog-facts">' + row('Decisão de entrega', text(story['delivery_reason'])) + '</dl>'
+                  if story.get('delivery_reason') else '') + '</section>')
+    if story["refinement"].strip():
+        out.append('<section class="backlog-text"><p class="backlog-label">A refinar</p>' + paragraphs(story["refinement"]) + '</section>')
+    if issue and issue.get("checklist_format"):
+        out.append('<div class="backlog-checklists">' + render_checklist("DoR", issue.get("dor"))
+                   + render_checklist("DoD", issue.get("dod")) + '</div>')
     if story["warnings"]:
         out.append('<aside class="backlog-pending"><strong>Alinhamentos pendentes</strong><ul>' + ''.join('<li>' + text(w) + '</li>' for w in story["warnings"]) + '</ul></aside>')
     proofs = story["evidence"]
@@ -107,10 +154,20 @@ def render_story(story):
         if issue.get("milestone"):
             out.append(row("Marco", escape(issue["milestone"])))
         if issue.get("completion_evidence"):
-            out.append(row("Aceite / DoD", text(issue["completion_evidence"])))
+            out.append(row("Evidências", paragraphs(issue["completion_evidence"])))
     else:
         out.append(row("GitHub", "Issue ainda não vinculada"))
     out.append(row("PRs", '<span class="backlog-links">' + (' · '.join(link(p["url"], '#' + str(p["number"]) + ' - ' + p["state"]) for p in proofs["pulls"]) or 'Nenhum vínculo registrado') + '</span>'))
+    checks = []
+    labels = {"success": "Aprovou", "failure": "Falhou", "cancelled": "Cancelado",
+              "timed_out": "Tempo esgotado", "skipped": "Ignorado", "neutral": "Neutro",
+              "action_required": "Ação necessária", "stale": "Desatualizado"}
+    for pr in proofs["pulls"]:
+        for check in pr.get("checks", []):
+            state = labels.get(check.get("conclusion"), "Em execução" if check.get("status") == "in_progress" else "Aguardando resultado")
+            checks.append('<li>' + link(check["url"], '#' + str(pr["number"]) + ' · ' + check["name"]) + ' · ' + escape(state) + '</li>')
+    if checks:
+        out.append(row("Checks dos PRs", '<ul class="backlog-ci-list">' + ''.join(checks) + '</ul><small>Resultados do último commit de cada PR na coleta; não comprovam todos os RNFs ou o aceite do cliente.</small>'))
     out.append(row("Commits", '<span class="backlog-links">' + (' · '.join(link(c["url"], c["sha"][:7]) for c in proofs["commits"]) or 'Nenhum vínculo registrado') + '</span>'))
     out.append('</dl>')
     if story["history"]:
@@ -198,7 +255,7 @@ def render_catalog(data, snapshot):
     out.extend(row(a, text(b)) for a, b in scope['rationale'])
     out.extend(['</dl>', paragraphs(scope['limits']), aliases('105-validacao-do-mvp', 'validacao-do-mvp'), '<dl class="backlog-facts">'])
     out.extend(row(a, text(b)) for a, b in scope['validation'])
-    out.extend(['</dl></details>', aliases('106-pontos-em-aberto-do-recorte'), '<h3 id="pontos-em-aberto-do-recorte">Pontos em aberto do recorte</h3>', '<ul>' + ''.join('<li>' + text(v) + '</li>' for v in scope['pending']) + '</ul>', '</div>'])
+    out.extend(['</dl></details>', '</div>'])
     output = '\n\n'.join(out)
     return re.sub(r'<h([23]) id="([^"]+)">(.*?)</h\1>',
                   lambda m: '\n\n' + '#' * int(m[1]) + ' ' + unescape(m[3]) + ' {#' + m[2] + '}\n\n', output)
