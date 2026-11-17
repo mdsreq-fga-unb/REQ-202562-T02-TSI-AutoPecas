@@ -65,7 +65,7 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 
 ### Evidência de software
 
-A evidência abaixo registra a organização original do quadro **TSI Peças - Backlog**, no GitHub Projects, com três épicos e 13 histórias de usuário vinculadas como sub-issues. O recorte vigente possui 12 histórias no MVP: a US14 foi retirada desse recorte e permanece condicionada, conforme a [base do catálogo](requisitos-de-software.md#rf14). A imagem preserva o registro histórico e não representa uma consulta atual ao status do quadro.
+A captura de 12/10/2026 abaixo registra a organização original do quadro **TSI Peças - Backlog**, no GitHub Projects, com três épicos e 13 histórias de usuário vinculadas como sub-issues. Desde a revisão do recorte em 10/11/2026, o MVP possui 12 histórias: a US14 foi retirada desse recorte e permanece condicionada, conforme a [base do catálogo](requisitos-de-software.md#rf14). A imagem preserva o registro histórico e não representa uma consulta atual ao status do quadro.
 
 [![Backlog no GitHub Projects com três épicos e suas histórias de usuário vinculadas como sub-issues.](../assets/images/visao-produto/evidencia_software.png)](../assets/images/visao-produto/evidencia_software.png)
 
@@ -89,3 +89,4 @@ A evidência abaixo registra a organização original do quadro **TSI Peças - B
 | 1.11 | 09/11/2026 | Correção da identificação da Sprint 3 na tabela de rastreabilidade das atas. | [Bruno Ferreira](https://github.com/brunnf) |
 | 1.12 | 15/11/2026 | Unificação da descrição de DoR, DoD (incluindo relatório de cobertura de testes e homologação) e validação externa com o documento de DoR e DoD (issues #50 e #51). | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
 | 1.13 | 15/11/2026 | Descrição dos critérios de prontidão, das etapas da DoD e do registro de evidências nas histórias. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.14 | 16/11/2026 | Atualização da evidência do GitHub Projects ao recorte de 12 histórias do MVP (issue #52). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |

@@ -271,7 +271,9 @@ Quitar os débitos técnicos e de implementação das Sprints 3 e 4, completar a
 - Quitação do débito de desenvolvimento da Sprint 4: associação por veículo ([US03](requisitos-de-software.md#rf03)), busca ([US04](requisitos-de-software.md#rf04)), importação via planilha `.xlsx` ([US02](requisitos-de-software.md#rf02)), entrada de peças ([US08](requisitos-de-software.md#rf08)), consulta de saldo ([US12](requisitos-de-software.md#rf12)) e ensaio da carga inicial
 - Escopo da Sprint 5: saída manual ([US09](requisitos-de-software.md#rf09)), ajuste de inventário ([US10](requisitos-de-software.md#rf10)), registro de venda com baixa automática ([US15](requisitos-de-software.md#rf15)) e cancelamento de venda com reversão ([US16](requisitos-de-software.md#rf16))
 - Testes unitários via TDD e testes de sistema do fluxo cadastro → entrada → venda → cancelamento → saldo
-- Preparação da configuração de produção, teste de backup e restauração e elaboração do manual preliminar do proprietário
+- Preparação da configuração de produção e das instruções de implantação, com verificação do procedimento pela equipe
+- Preparação da rotina de backup diária e teste de restauração antes da implantação, conforme o [RNF06](requisitos-de-software.md#rnf06-backup-e-recuperacao-de-dados)
+- Elaboração do manual preliminar do proprietário e da documentação técnica; refatoração final antes da implantação
 - Sessão de aceitação executada com o proprietário
 
 **Resultados já comprovados na sprint (evidências)**
@@ -285,7 +287,7 @@ Quitar os débitos técnicos e de implementação das Sprints 3 e 4, completar a
 - Catálogo de peças ([EP01](requisitos-de-software.md#ep01) — [US01](requisitos-de-software.md#rf01), [US02](requisitos-de-software.md#rf02), [US03](requisitos-de-software.md#rf03), [US04](requisitos-de-software.md#rf04), [US05](requisitos-de-software.md#rf05), [US06](requisitos-de-software.md#rf06)) — *Acompanhamento: Bruno Ferreira e Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end), Leonardo Lopes e Thiago Gomes (QA/Requisitos)*
 - Movimentações e saldo ([EP02](requisitos-de-software.md#ep02) — [US08](requisitos-de-software.md#rf08), [US09](requisitos-de-software.md#rf09), [US10](requisitos-de-software.md#rf10), [US12](requisitos-de-software.md#rf12)) — *Acompanhamento: Bruno Ferreira e Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end) e Leonardo Lopes (QA)*
 - Registro e cancelamento de vendas ([EP03](requisitos-de-software.md#ep03) — [US15](requisitos-de-software.md#rf15), [US16](requisitos-de-software.md#rf16)) — *Acompanhamento: Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end), Leonardo Lopes (QA) e João Melo (PO)*
-- Ensaio da carga inicial, procedimento de backup/restauração testado, instruções de implantação, manual preliminar e homologação do MVP — *Acompanhamento: Bruno Ferreira e Luiz Moreira (infraestrutura/backup), Thiago Gomes e Leonardo Lopes (manual e roteiro de aceitação) e João Melo (validação com o cliente)*
+- Ensaio da carga inicial, procedimento de backup/restauração testado (RNF06), instruções de implantação, manual preliminar e homologação do MVP — *Acompanhamento: Bruno Ferreira e Luiz Moreira (infraestrutura/backup), Thiago Gomes e Leonardo Lopes (manual e roteiro de aceitação) e João Melo (validação com o cliente)*
 
 **Validação com o cliente**
 
@@ -309,7 +311,7 @@ Implantar o MVP em produção, realizar a carga inicial dos cadastros de peças 
 **Atividades planejadas**
 
 - Deploy do MVP em produção no início da sprint, após os testes e a validação com o proprietário
-- Ativação e verificação da rotina de backup em produção
+- Ativação e verificação da rotina de backup em produção, com conferência da primeira cópia diária (RNF06)
 - Carga inicial dos cadastros de peças via US02, com correção de duplicidades e campos incompletos
 - Registro dos saldos iniciais conforme o procedimento validado nas sprints anteriores e conferência com o estoque físico junto ao proprietário antes do início da operação real
 - Treinamento do proprietário com o manual finalizado em linguagem simples
@@ -343,7 +345,7 @@ Conferência prevista dos cadastros e saldos iniciais, acompanhamento dos fluxos
 - **Validação do cliente foca em negócio:** o proprietário valida se o produto atende à operação da loja; decisões técnicas são responsabilidade da equipe.
 - **Carga inicial com escopo definido:** serão transferidos os cadastros de peças e estabelecidos os saldos iniciais de estoque. A US02 importa os cadastros; os saldos serão registrados pelas funcionalidades de entrada (US08) e, quando necessário, ajuste de inventário (US10), conforme procedimento ensaiado com dados de teste para evitar contagem duplicada. O proprietário confere os saldos antes do início da operação real. A importação do histórico de vendas e movimentações não integra essa carga inicial.
 - **Propriedade coletiva do código e acompanhamento nominal por tarefa:** conforme a prática de XP adotada em [Estratégias de engenharia de software](estrategias-engenharia-de-software.md#xp), qualquer desenvolvedor pode evoluir e revisar qualquer parte do código seguindo os [Padrões de codificação](padroes-de-codificacao.md). Essa propriedade coletiva não substitui a identificação nominal de quem acompanha cada tarefa: cada entregável da sprint registra os integrantes responsáveis pelo seu acompanhamento neste cronograma, e cada história de usuário possui seus responsáveis (*Assignees*) atribuídos nas issues do GitHub, refletidos no [Catálogo de requisitos](requisitos-de-software.md) e no quadro [GitHub Projects](interacao-equipe-cliente.md#evidencias). O Product Owner (João Melo) coordena as validações com o cliente ao final de cada sprint.
-- **Requisitos não funcionais transversais:** RNF01 a RNF05 (responsividade, tolerância a falhas de conexão, compatibilidade com navegadores, desempenho e segurança de dados) não ocupam uma sprint isolada; orientam as decisões técnicas e de interface em todas as sprints de desenvolvimento, garantindo consistência dos dados de estoque e uso adequado em diferentes dispositivos durante a operação da loja.
+- **Requisitos não funcionais transversais:** RNF01 a RNF06 (responsividade, tolerância a falhas de conexão, compatibilidade com navegadores, desempenho, segurança de dados e backup) não ocupam uma sprint isolada; orientam as decisões técnicas e de interface em todas as sprints de desenvolvimento, garantindo consistência dos dados de estoque e uso adequado em diferentes dispositivos durante a operação da loja.
 
 ## Versionamento
 
@@ -360,3 +362,4 @@ Conferência prevista dos cadastros e saldos iniciais, acompanhamento dos fluxos
 | 1.8 | 05/11/2026 | Acesso direto pela aba Cronograma, simplificação do título e inclusão de links para as atas preenchidas e a entrega citada no planejamento. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.9 | 09/11/2026 | Atualização do andamento até a Sprint 5, distinção entre atividades planejadas, resultados comprovados, débitos transferidos e entregas previstas, inclusão das evidências técnicas (padrão de codificação e CI da aplicação) e identificação nominal de acompanhamento por entrega. | [Bruno Ferreira](https://github.com/brunnf) |
 | 1.10 | 10/11/2026 | Retirada da US14 (filtro do histórico por período) da Sprint 5 e atualização da contagem de histórias do MVP no cronograma (12 US), após sua saída do escopo do MVP. | [Bruno Ferreira](https://github.com/brunnf) |
+| 1.11 | 16/11/2026 | Vínculo das atividades de backup das Sprints 5 e 6 ao RNF06 e inclusão do RNF06 entre os requisitos transversais (#49). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
