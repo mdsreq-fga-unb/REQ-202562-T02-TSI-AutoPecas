@@ -18,7 +18,7 @@ A consulta resultante reutiliza US12. Não há listagem geral nem filtro de hist
 ```mermaid
 flowchart LR
     A[Selecionar peça e conferir saldo] --> B[Escolher operação]
-    B --> C[Entrada: quantidade, data, fornecedor e custo]
+    B --> C[Entrada: quantidade, data e custo]
     B --> D[Saída manual: quantidade, data e motivo]
     B --> E[Ajuste: diferença positiva ou negativa e justificativa]
     C --> F[Resumo da operação e saldo atualizado]
@@ -31,7 +31,7 @@ flowchart LR
 
 | Cenário | Tarefa para o proprietário | O que observar | Referência |
 | --- | --- | --- | --- |
-| Entrada | Com PST-200 em 5 unidades, registre entrada de 3, data, fornecedor de exemplo e custo. | Dados da operação, saldo 8 e preservação das outras peças. | CA08.1–CA08.3 |
+| Entrada | Com PST-200 em 5 unidades, registre entrada de 3, data e custo. | Dados da operação, saldo 8 e preservação das outras peças. | CA08.1–CA08.3 |
 | Saída manual | Após a entrada, registre saída de 3 PST-200 por avaria. | Saldo 5 e identificação do motivo, sem criar uma venda. | CA09.1–CA09.3 |
 | Ajuste positivo | Reinicie; ajuste FLT-100 em +2 por diferença de contagem. | Saldo 10 → 12 e entendimento de “diferença”. | CA10.1 |
 | Ajuste negativo | Reinicie; ajuste FLT-100 em −3 com justificativa. | Saldo 10 → 7, em vez de interpretar −3 como saldo final. | CA10.2 |
@@ -40,8 +40,9 @@ flowchart LR
 
 ## Perguntas para refinamento
 
-- A US08 depende de um fornecedor identificado em US07, fora deste recorte. Como
-  resolver essa dependência na entrega? O protótipo usa somente uma opção fictícia.
+- **Resolvida:** a US08 não depende mais do cadastro de fornecedores (US07, evolução
+  futura). Pela decisão de escopo de 10/11/2026, a entrada registra peça, quantidade,
+  data e preço de custo unitário, sem fornecedor.
 - Quais campos e limites de quantidade, data e custo serão obrigatórios na entrada?
 - São permitidos saldos negativos? O aviso do protótipo interrompe esse cenário por
   falta de decisão, sem estabelecer uma proibição de negócio.
@@ -60,3 +61,4 @@ decisões pendentes, conforme o [registro sugerido](avaliacao.md#registro-sugeri
 | Versão | Data | Descrição | Autor(es/as) |
 | :----: | :--: | --- | --- |
 | 1.0 | 10/11/2026 | Criação do roteiro de prototipação de movimentação de estoque, contemplando US08, US09 e US10. | [Bruno Ferreira](https://github.com/brunnf) |
+| 1.1 | 16/11/2026 | Remoção do fornecedor da entrada de peças e registro da dependência com a US07 como resolvida, conforme a decisão de escopo da issue #52. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |

@@ -63,7 +63,7 @@ Cada reunião de sprint (revisão com o cliente, validação assíncrona ou alin
 
 ### Evidência de software
 
-O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza os três épicos e suas 13 histórias de usuário. As histórias estão vinculadas aos respectivos épicos como sub-issues, permitindo acompanhar seu status e o progresso de cada épico.
+O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza os três épicos e suas histórias de usuário. As histórias estão vinculadas aos respectivos épicos como sub-issues, permitindo acompanhar seu status e o progresso de cada épico. A captura abaixo é de 12/10/2026, quando o MVP tinha 13 histórias; desde a revisão do recorte em 10/11/2026, o MVP tem 12, e a US14 passou a ser condicionada à capacidade da equipe.
 
 [![Backlog no GitHub Projects com três épicos e suas histórias de usuário vinculadas como sub-issues.](../assets/images/visao-produto/evidencia_software.png)](../assets/images/visao-produto/evidencia_software.png)
 
@@ -86,3 +86,4 @@ O quadro de planejamento **TSI Peças - Backlog**, no GitHub Projects, organiza 
 | 1.10 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.11 | 15/11/2026 | Unificação da descrição de DoR, DoD (incluindo relatório de cobertura de testes e homologação) e validação externa com o documento de DoR e DoD (issues #50 e #51). | [Leonardo Lopes](https://github.com/LeonardoLopesJr) |
 | 1.12 | 15/11/2026 | Descrição dos critérios de prontidão, das etapas da DoD e do registro de evidências nas histórias. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.13 | 16/11/2026 | Atualização da evidência do GitHub Projects ao recorte de 12 histórias do MVP (issue #52). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
