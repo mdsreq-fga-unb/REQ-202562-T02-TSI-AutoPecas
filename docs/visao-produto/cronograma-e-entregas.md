@@ -44,7 +44,7 @@ Selecione uma sprint para consultar seu planejamento completo.
 <td data-label="Sprint"><a href="#sprint-3" data-sprint-link>Sprint 3</a></td>
 <td data-label="Período"><time datetime="2026-10-09">09/10/2026</time><br>a <time datetime="2026-10-22">22/10/2026</time></td>
 <td data-label="Foco">Cadastro, edição e status das peças</td>
-<td data-label="Status"><span class="delivery-status schedule-status--debt">Parcial</span></td>
+<td data-label="Status"><span class="delivery-status delivery-status--done">Concluída</span></td>
 </tr>
 <tr>
 <td data-label="Sprint"><a href="#sprint-4" data-sprint-link>Sprint 4</a></td>
@@ -145,7 +145,7 @@ Apresentação dos requisitos e funcionalidades levantados ao proprietário para
 
 **Objetivo**
 
-Consolidar os requisitos e o backlog priorizado e definir os padrões técnicos do projeto, sem desenvolvimento de funcionalidades
+Consolidar os requisitos e o backlog priorizado e definir os padrões técnicos do projeto, sem andamento de funcionalidades
 
 **Histórias previstas**
 
@@ -174,7 +174,7 @@ Validação do escopo e dos critérios de aceite do MVP com o proprietário — 
 </details>
 
 <details class="sprint-details" id="sprint-3" markdown="1">
-<summary><span class="sprint-details__title">Sprint 3</span><span class="sprint-details__period"><time datetime="2026-10-09">09/10/2026</time> a <time datetime="2026-10-22">22/10/2026</time></span><span class="delivery-status schedule-status--debt">Parcial</span></summary>
+<summary><span class="sprint-details__title">Sprint 3</span><span class="sprint-details__period"><time datetime="2026-10-09">09/10/2026</time> a <time datetime="2026-10-22">22/10/2026</time></span><span class="delivery-status delivery-status--done">Concluída</span></summary>
 <div class="sprint-details__body" markdown="1">
 
 **Objetivo**
@@ -199,13 +199,16 @@ Definir o DoR e o DoD; corrigir os apontamentos da Unidade 2; iniciar o catálog
 - Estruturação dos 3 épicos (`#41` a `#43`) e das 13 histórias de usuário do MVP (`#27` a `#39`) no [GitHub Issues e GitHub Projects](interacao-equipe-cliente.md#evidencias) — *Acompanhamento: Thiago Gomes, Rodrigo Barbosa e Luiz Moreira*
 - [Validação assíncrona do papel de Gerente de projeto / Product Owner com o cliente](../atas/validacao-papel-po.md) — *Acompanhamento: Luiz Moreira e João Melo*
 
-**Débito transferido para a Sprint 5**
+**Conclusão e acompanhamento**
 
-- A implementação de [US01](requisitos-de-software.md#rf01) ([Issue #27](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/27)), [US05](requisitos-de-software.md#rf05) ([Issue #31](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/31)) e [US06](requisitos-de-software.md#rf06) ([Issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32)), bem como a validação da cobertura de testes na CI e a demonstração dessas telas ao cliente, não foram concluídas no período e foram reprogramadas como débito para a [Sprint 5](#sprint-5) — *Acompanhamento: Bruno Ferreira, Luiz Moreira, Rodrigo Barbosa e Leonardo Lopes*
+- US01 (cadastro), US05 (edição) e US06 (alteração de status) implementadas e integradas pelo [PR #65](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/65), em 14/11/2026. Os débitos de implementação originalmente transferidos para a Sprint 5 foram atendidos após o período planejado da Sprint 3; o status atual registra sua conclusão, sem atribuir essas entregas ao período de outubro.
+- Testes automatizados, lint, formatação, build e contêineres aprovados, com relatórios de cobertura publicados na [execução de CI do PR #65](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/actions/runs/43621478818).
 
 **Validação com o cliente**
 
-Confirmação da lista final de 13 RFs do MVP ([Ata da Sprint 3](../atas/sprint-3.md)) e [validação do papel de PO](../atas/validacao-papel-po.md); demonstração das telas de cadastro, edição e status transferida como débito para a Sprint 5 — *Acompanhamento: João Melo (PO) e Luiz Moreira*
+Além da confirmação histórica da lista de 13 RFs do MVP ([Ata da Sprint 3](../atas/sprint-3.md)) e da [validação do papel de PO](../atas/validacao-papel-po.md), as funcionalidades de cadastro, edição e alteração de status foram validadas com o cliente em **ambiente local integrado**, com interface, API e banco de dados, conforme confirmação da equipe registrada nesta atualização. Para esta validação, foi adotado o ambiente local, sem exigir um ambiente de homologação separado neste momento — *Acompanhamento: João Melo (PO) e Luiz Moreira*.
+
+**Pendência documental:** anexar a comprovação da validação às [issues #27 (US01)](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/27), [#31 (US05)](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/31) e [#32 (US06)](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32), identificando a data da sessão, os participantes, a versão testada e o resultado. O registro de conclusão da sprint não substitui as evidências individuais da DoD.
 
 **Registro da sprint:** [Ata da Sprint 3](../atas/sprint-3.md) · [Validação assíncrona do papel de PO](../atas/validacao-papel-po.md)
 
@@ -244,6 +247,18 @@ Concluir o catálogo de peças, importar peças em lote e iniciar o controle de 
 
 - Como o esforço da sprint concentrou-se na reestruturação e automação do catálogo único e da rastreabilidade ([PR #56](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/56)), a implementação das histórias [US03](requisitos-de-software.md#rf03) ([Issue #29](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/29)), [US04](requisitos-de-software.md#rf04) ([Issue #30](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/30)), [US02](requisitos-de-software.md#rf02) ([Issue #28](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/28)), [US08](requisitos-de-software.md#rf08) ([Issue #33](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/33)) e [US12](requisitos-de-software.md#rf12) ([Issue #36](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/36)) e o ensaio da carga inicial foram transferidos como débito para a [Sprint 5](#sprint-5) — *Acompanhamento: Bruno Ferreira, Luiz Moreira, Rodrigo Barbosa e Leonardo Lopes*
 
+**Situação atual dos débitos**
+
+Conforme atualização informada pela equipe, as histórias transferidas para a Sprint 5 estão nas seguintes situações. O acompanhamento atual preserva o registro do que foi realizado no período original da Sprint 4.
+
+| História | Situação atual | Acompanhamento |
+| --- | --- | --- |
+| [US03 — Associar veículo à peça](requisitos-de-software.md#rf03) | Em andamento | [Issue #29](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/29) |
+| [US04 — Buscar peça](requisitos-de-software.md#rf04) | Em andamento | [Issue #30](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/30) |
+| [US08 — Registrar entrada de peças](requisitos-de-software.md#rf08) | Em andamento | [Issue #33](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/33) |
+| [US02 — Importar peças via planilha](requisitos-de-software.md#rf02) | Em andamento | [Issue #28](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/28) |
+| [US12 — Consultar saldo](requisitos-de-software.md#rf12) | Em andamento | [Issue #36](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/36) |
+
 **Validação com o cliente**
 
 A demonstração do catálogo completo, da importação e do saldo com amostra da planilha foi reprogramada para ocorrer junto à validação da Sprint 5 — *Acompanhamento: João Melo (PO)*
@@ -262,13 +277,14 @@ Quitar os débitos técnicos e de implementação das Sprints 3 e 4, completar a
 **Histórias previstas**
 
 - **Previstas na Sprint 5:** [US09](requisitos-de-software.md#rf09), [US10](requisitos-de-software.md#rf10), [US15](requisitos-de-software.md#rf15), [US16](requisitos-de-software.md#rf16)
-- **Débito recebido das Sprints 3 e 4:** [US01](requisitos-de-software.md#rf01), [US05](requisitos-de-software.md#rf05), [US06](requisitos-de-software.md#rf06), [US03](requisitos-de-software.md#rf03), [US04](requisitos-de-software.md#rf04), [US02](requisitos-de-software.md#rf02), [US08](requisitos-de-software.md#rf08), [US12](requisitos-de-software.md#rf12)
+- **Débitos concluídos:** [US01](requisitos-de-software.md#rf01), [US05](requisitos-de-software.md#rf05) e [US06](requisitos-de-software.md#rf06), acompanhadas na [Sprint 3](#sprint-3).
+- **Débitos em andamento:** [US02](requisitos-de-software.md#rf02), [US03](requisitos-de-software.md#rf03), [US04](requisitos-de-software.md#rf04), [US08](requisitos-de-software.md#rf08) e [US12](requisitos-de-software.md#rf12).
 
 **Atividades planejadas**
 
 - Estruturação do monorepo da aplicação (`frontend/` e `backend/`), containerização Docker e configuração do pipeline de CI da aplicação com cobertura de testes (quitação do débito técnico de infraestrutura)
-- Quitação do débito de desenvolvimento da Sprint 3: cadastro ([US01](requisitos-de-software.md#rf01)), edição ([US05](requisitos-de-software.md#rf05)) e alteração de status de peça ([US06](requisitos-de-software.md#rf06))
-- Quitação do débito de desenvolvimento da Sprint 4: associação por veículo ([US03](requisitos-de-software.md#rf03)), busca ([US04](requisitos-de-software.md#rf04)), importação via planilha `.xlsx` ([US02](requisitos-de-software.md#rf02)), entrada de peças ([US08](requisitos-de-software.md#rf08)), consulta de saldo ([US12](requisitos-de-software.md#rf12)) e ensaio da carga inicial
+- Quitação do débito de desenvolvimento da Sprint 3 (realizada; comprovação da validação local a anexar às issues): cadastro ([US01](requisitos-de-software.md#rf01)), edição ([US05](requisitos-de-software.md#rf05)) e alteração de status de peça ([US06](requisitos-de-software.md#rf06))
+- Quitação do débito de desenvolvimento da Sprint 4 (US03, US04 e US08 em andamento; US02 e US12 em andamento): associação por veículo ([US03](requisitos-de-software.md#rf03)), busca ([US04](requisitos-de-software.md#rf04)), importação via planilha `.xlsx` ([US02](requisitos-de-software.md#rf02)), entrada de peças ([US08](requisitos-de-software.md#rf08)), consulta de saldo ([US12](requisitos-de-software.md#rf12)) e ensaio da carga inicial
 - Escopo da Sprint 5: saída manual ([US09](requisitos-de-software.md#rf09)), ajuste de inventário ([US10](requisitos-de-software.md#rf10)), registro de venda com baixa automática ([US15](requisitos-de-software.md#rf15)) e cancelamento de venda com reversão ([US16](requisitos-de-software.md#rf16))
 - Testes unitários via TDD e testes de sistema do fluxo cadastro → entrada → venda → cancelamento → saldo
 - Preparação da configuração de produção e das instruções de implantação, com verificação do procedimento pela equipe
@@ -284,8 +300,8 @@ Quitar os débitos técnicos e de implementação das Sprints 3 e 4, completar a
 
 **Entregas em execução na sprint (a comprovar)**
 
-- Catálogo de peças ([EP01](requisitos-de-software.md#ep01) — [US01](requisitos-de-software.md#rf01), [US02](requisitos-de-software.md#rf02), [US03](requisitos-de-software.md#rf03), [US04](requisitos-de-software.md#rf04), [US05](requisitos-de-software.md#rf05), [US06](requisitos-de-software.md#rf06)) — *Acompanhamento: Bruno Ferreira e Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end), Leonardo Lopes e Thiago Gomes (QA/Requisitos)*
-- Movimentações e saldo ([EP02](requisitos-de-software.md#ep02) — [US08](requisitos-de-software.md#rf08), [US09](requisitos-de-software.md#rf09), [US10](requisitos-de-software.md#rf10), [US12](requisitos-de-software.md#rf12)) — *Acompanhamento: Bruno Ferreira e Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end) e Leonardo Lopes (QA)*
+- Complementação do catálogo de peças ([EP01](requisitos-de-software.md#ep01) — [US02](requisitos-de-software.md#rf02) em andamento); US03 e US04 em andamento; US01, US05 e US06 concluídas, registradas na [Sprint 3](#sprint-3) — *Acompanhamento: Bruno Ferreira e Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end), Leonardo Lopes e Thiago Gomes (QA/Requisitos)*
+- Movimentações e saldo ([EP02](requisitos-de-software.md#ep02) — [US09](requisitos-de-software.md#rf09), [US10](requisitos-de-software.md#rf10) e [US12](requisitos-de-software.md#rf12), esta última em andamento); [US08](requisitos-de-software.md#rf08) em andamento — *Acompanhamento: Bruno Ferreira e Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end) e Leonardo Lopes (QA)*
 - Registro e cancelamento de vendas ([EP03](requisitos-de-software.md#ep03) — [US15](requisitos-de-software.md#rf15), [US16](requisitos-de-software.md#rf16)) — *Acompanhamento: Luiz Moreira (Back-end), Rodrigo Barbosa (Front-end), Leonardo Lopes (QA) e João Melo (PO)*
 - Ensaio da carga inicial, procedimento de backup/restauração testado (RNF06), instruções de implantação, manual preliminar e homologação do MVP — *Acompanhamento: Bruno Ferreira e Luiz Moreira (infraestrutura/backup), Thiago Gomes e Leonardo Lopes (manual e roteiro de aceitação) e João Melo (validação com o cliente)*
 
@@ -363,3 +379,5 @@ Conferência prevista dos cadastros e saldos iniciais, acompanhamento dos fluxos
 | 1.9 | 09/11/2026 | Atualização do andamento até a Sprint 5, distinção entre atividades planejadas, resultados comprovados, débitos transferidos e entregas previstas, inclusão das evidências técnicas (padrão de codificação e CI da aplicação) e identificação nominal de acompanhamento por entrega. | [Bruno Ferreira](https://github.com/brunnf) |
 | 1.10 | 10/11/2026 | Retirada da US14 (filtro do histórico por período) da Sprint 5 e atualização da contagem de histórias do MVP no cronograma (12 US), após sua saída do escopo do MVP. | [Bruno Ferreira](https://github.com/brunnf) |
 | 1.11 | 16/11/2026 | Vínculo das atividades de backup das Sprints 5 e 6 ao RNF06 e inclusão do RNF06 entre os requisitos transversais (#49). | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 1.12 | 16/11/2026 | Registro da Sprint 3 como concluída, conforme confirmação da equipe, com validação em ambiente local integrado, evidências de CI e comprovação da validação a anexar às issues; atualização do acompanhamento dos débitos na Sprint 5. | [Bruno Ferreira](https://github.com/brunnf) |
+| 1.13 | 16/11/2026 | Atualização dos débitos da Sprint 4 acompanhados na Sprint 5, conforme informação da equipe: US03, US04 e US08 em andamento; US02 e US12 em andamento. | [Bruno Ferreira](https://github.com/brunnf) |
