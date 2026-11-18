@@ -24,8 +24,8 @@ Cada entrega do projeto **TSI Peças** reúne um vídeo de apresentação no You
   <a class="section-card" href="entrega-3/">
     <span class="section-card__number" aria-hidden="true">03</span>
     <span class="section-card__title">Entrega 3</span>
-    <span class="section-card__description">Vídeo de apresentação e alterações na documentação.</span>
-    <span class="delivery-status">Em preparação</span>
+    <span class="section-card__description">Representação, verificação e validação, organização e atualização dos requisitos e correções da Unidade 2.</span>
+    <span class="delivery-status delivery-status--done">Concluída</span>
     <span class="section-card__action">Acessar entrega <span aria-hidden="true">→</span></span>
   </a>
   <a class="section-card" href="entrega-4/">
@@ -46,3 +46,4 @@ Cada entrega do projeto **TSI Peças** reúne um vídeo de apresentação no You
 | 1.2 | 30/09/2026 | Atualização do status da Entrega 1 para concluída | Equipe |
 | 1.3 | 13/10/2026 | Atualização da Entrega 2 para concluída e descrição de seu escopo | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.4 | 04/11/2026 | Atualização dos links e das referências à numeração original do template, preservando o histórico das entregas. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.5 | 16/11/2026 | Atualização da Entrega 3 para concluída e identificação dos temas e das correções apresentados. | [Thiago Gomes](https://github.com/thgomxs) |

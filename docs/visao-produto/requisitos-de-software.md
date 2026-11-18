@@ -35,3 +35,6 @@ pendentes, conforme [Priorização](priorizacao.md#avaliacao-do-valor-de-negocio
 | 3.1 | 10/11/2026 | Revisão das declarações, dependências e priorização conforme decisões do cliente; MVP com 12 US, preservando US13 e US14 separadas e fora do recorte. Justificativas de entrega e pendências de esforço visíveis nos registros. | [Thiago Gomes](https://github.com/thgomxs) e [João Guilherme Amancio de Melo](https://github.com/jot4-ge) |
 | 3.2 | 15/11/2026 | Exibição das checklists de DoR/DoD e Evidências, com status pelo Projects e checks dos PRs vinculados. | [Thiago Gomes](https://github.com/thgomxs) |
 | 3.3 | 15/11/2026 | Renomeação da página para Backlog e remoção da seção geral de pontos em aberto do recorte. | [Thiago Gomes](https://github.com/thgomxs) |
+| 3.4 | 12/11/2026 | Correção da fundamentação WCAG do RNF01 e delimitação dos resultados e critérios verificáveis do RNF02, conforme issue #49, preservando o recorte de 12 US da versão 3.1. | Equipe |
+| 3.5 | 16/11/2026 | Criação do RNF06 (backup e recuperação de dados), conforme a issue #49. | [Rodrigo Barbosa](https://github.com/RodrigoCBarbosa) |
+| 3.6 | 17/11/2026 | Restrição do RNF05 à proteção do tráfego por HTTPS com TLS 1.2 ou superior, removendo a exigência de armazenamento de senhas no MVP sem login e mantendo correspondência com a D09. | [Thiago Gomes](https://github.com/thgomxs) |

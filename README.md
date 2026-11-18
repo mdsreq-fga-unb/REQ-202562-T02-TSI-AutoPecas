@@ -19,30 +19,30 @@ O produto propõe uma solução digital simples e confiável para:
 
 O escopo do MVP e o cronograma estão na documentação:
 
-| Documento | Conteúdo |
-| --- | --- |
-| [Visão do produto e projeto](docs/visao-produto/index.md) | Contexto, problema, solução e estratégias do projeto |
-| [Requisitos](docs/requisitos/index.md) | Especificação, priorização, MVP, rastreabilidade e evolução do escopo |
-| [Cronograma](docs/visao-produto/cronograma-e-entregas.md) | Períodos, objetivos, histórias previstas e validações de cada sprint |
-| [Backlog](docs/visao-produto/requisitos-de-software.md) | Épicos, histórias de usuário e RNFs, com origem, prioridade, entrega, situação e evidências |
-| [Priorização](docs/visao-produto/priorizacao.md) | Método de priorização e decisões gerais de escopo |
-| [Rastreabilidade](docs/visao-produto/rastreabilidade.md) | Tipos de vínculo entre os elementos do escopo |
-| [Organização e atualização](docs/visao-produto/historico-de-evolucao.md) | Rotina de atualização e decisões que alteraram o escopo |
-| [Atas](docs/atas/index.md) | Registro das reuniões de cada sprint |
-| [Entregas](docs/entregas/index.md) | Entregas da disciplina |
+| Documento                                                                | Conteúdo                                                                                    |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| [Visão do produto e projeto](docs/visao-produto/index.md)                | Contexto, problema, solução e estratégias do projeto                                        |
+| [Requisitos](docs/requisitos/index.md)                                   | Especificação, priorização, MVP, rastreabilidade e evolução do escopo                       |
+| [Cronograma](docs/visao-produto/cronograma-e-entregas.md)                | Períodos, objetivos, histórias previstas e validações de cada sprint                        |
+| [Backlog](docs/visao-produto/requisitos-de-software.md)                  | Épicos, histórias de usuário e RNFs, com origem, prioridade, entrega, situação e evidências |
+| [Priorização](docs/visao-produto/priorizacao.md)                         | Método de priorização e decisões gerais de escopo                                           |
+| [Rastreabilidade](docs/visao-produto/rastreabilidade.md)                 | Tipos de vínculo entre os elementos do escopo                                               |
+| [Organização e atualização](docs/visao-produto/historico-de-evolucao.md) | Rotina de atualização e decisões que alteraram o escopo                                     |
+| [Atas](docs/atas/index.md)                                               | Registro das reuniões de cada sprint                                                        |
+| [Entregas](docs/entregas/index.md)                                       | Entregas da disciplina                                                                      |
 
 ## Tecnologias
 
-| Componente | Tecnologia |
-| --- | --- |
-| Front-end | React com MUI, Vite e pnpm |
-| Back-end | Python com FastAPI, SQLAlchemy, Alembic e uv |
-| Banco de dados | PostgreSQL por meio do Supabase |
-| Publicação do front-end | Vercel |
-| Publicação do back-end | Render |
-| Ambiente de desenvolvimento | Docker |
-| Controle de versão | Git e GitHub |
-| Documentação | MkDocs com o tema Material |
+| Componente                  | Tecnologia                                   |
+| --------------------------- | -------------------------------------------- |
+| Front-end                   | React com MUI, Vite e pnpm                   |
+| Back-end                    | Python com FastAPI, SQLAlchemy, Alembic e uv |
+| Banco de dados              | PostgreSQL por meio do Supabase              |
+| Publicação do front-end     | Vercel                                       |
+| Publicação do back-end      | Render                                       |
+| Ambiente de desenvolvimento | Docker                                       |
+| Controle de versão          | Git e GitHub                                 |
+| Documentação                | MkDocs com o tema Material                   |
 
 ## Organização do repositório
 
@@ -124,12 +124,12 @@ são instaladas em ambientes separados.
 
 ## Publicação
 
-| Parte | Configuração |
-| --- | --- |
-| Documentação | GitHub Actions e GitHub Pages, mantendo `mkdocs.yml` na raiz |
-| Front-end | Vercel: diretório `frontend/`, Node 22, `ENABLE_EXPERIMENTAL_COREPACK=1` e `VITE_API_BASE_URL` com a URL HTTPS da API |
-| API | Render: Blueprint `render.yaml`, com build do Dockerfile de produção em `backend/` |
-| Banco | PostgreSQL no Supabase; conexão SQLAlchemy/psycopg e migrações Alembic em `backend/migrations/` |
+| Parte        | Configuração                                                                                                          |
+| ------------ | --------------------------------------------------------------------------------------------------------------------- |
+| Documentação | GitHub Actions e GitHub Pages, mantendo `mkdocs.yml` na raiz                                                          |
+| Front-end    | Vercel: diretório `frontend/`, Node 22, `ENABLE_EXPERIMENTAL_COREPACK=1` e `VITE_API_BASE_URL` com a URL HTTPS da API |
+| API          | Render: Blueprint `render.yaml`, com build do Dockerfile de produção em `backend/`                                    |
+| Banco        | PostgreSQL no Supabase; conexão SQLAlchemy/psycopg e migrações Alembic em `backend/migrations/`                       |
 
 No Render, informe `CORS_ORIGINS` como lista JSON dos domínios autorizados da Vercel
 e `DATABASE_URL` com a conexão do banco. A API respeita a variável `PORT` do serviço.
@@ -147,12 +147,12 @@ codificação abaixo. As instruções de [front-end](frontend/AGENTS.md),
 [back-end](backend/AGENTS.md) e [documentação](tools/docs/AGENTS.md) detalham cada área.
 As mesmas regras valem para desenvolvimento sem IA.
 
-| Skill | Uso |
-| --- | --- |
-| `tsi-tdd` | Implementar ou corrigir comportamentos pelo ciclo teste falhando, implementação mínima e refatoração |
-| `tsi-debugging` | Reproduzir falhas e investigar a causa antes da correção |
-| `tsi-requisitos` | Manter os campos nas fontes corretas e preservar a rastreabilidade do catálogo |
-| `tsi-revisao` | Revisar o diff, critérios, verificações e evidências de uma entrega |
+| Skill            | Uso                                                                                                  |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| `tsi-tdd`        | Implementar ou corrigir comportamentos pelo ciclo teste falhando, implementação mínima e refatoração |
+| `tsi-debugging`  | Reproduzir falhas e investigar a causa antes da correção                                             |
+| `tsi-requisitos` | Manter os campos nas fontes corretas e preservar a rastreabilidade do catálogo                       |
+| `tsi-revisao`    | Revisar o diff, critérios, verificações e evidências de uma entrega                                  |
 
 As fontes completas ficam em `.agents/skills/`, descobertas pelo Codex. As entradas
 em `.claude/skills/` usam o mesmo nome e descrição e orientam o Claude Code a ler
@@ -219,36 +219,37 @@ Estas regras valem para todo o código do projeto. O objetivo é que o código p
 
 ### 2. Nomenclatura
 
-| Elemento | Python (back-end) | JavaScript/React (front-end) |
-| --- | --- | --- |
-| Variáveis e funções | `snake_case` | `camelCase` |
-| Classes e tipos | `PascalCase` | `PascalCase` |
-| Componentes React | — | `PascalCase` (arquivo `PartForm.jsx`) |
-| Constantes | `UPPER_SNAKE_CASE` | `UPPER_SNAKE_CASE` |
-| Arquivos e módulos | `snake_case.py` | `camelCase.js` e `PascalCase.jsx` (componentes) |
-| Hooks | — | prefixo `use` (`usePartSearch`) |
-| Booleanos | prefixo `is_`, `has_`, `can_` | prefixo `is`, `has`, `can` |
+| Elemento            | Python (back-end)             | JavaScript/React (front-end)                    |
+| ------------------- | ----------------------------- | ----------------------------------------------- |
+| Variáveis e funções | `snake_case`                  | `camelCase`                                     |
+| Classes e tipos     | `PascalCase`                  | `PascalCase`                                    |
+| Componentes React   | —                             | `PascalCase` (arquivo `PartForm.jsx`)           |
+| Constantes          | `UPPER_SNAKE_CASE`            | `UPPER_SNAKE_CASE`                              |
+| Arquivos e módulos  | `snake_case.py`               | `camelCase.js` e `PascalCase.jsx` (componentes) |
+| Hooks               | —                             | prefixo `use` (`usePartSearch`)                 |
+| Booleanos           | prefixo `is_`, `has_`, `can_` | prefixo `is`, `has`, `can`                      |
 
 Termos do domínio mantêm um vocabulário único em todo o sistema:
 
-| Termo de negócio | Identificador |
-| --- | --- |
-| Peça | `part` |
-| Código do fabricante | `manufacturer_code` |
-| Aplicação por veículo | `vehicle_application` |
-| Saldo de estoque | `stock_balance` |
-| Movimentação | `stock_movement` (tipos: `entry`, `exit`, `adjustment`, `return`) |
-| Venda | `sale` |
+| Termo de negócio      | Identificador                                                     |
+| --------------------- | ----------------------------------------------------------------- |
+| Peça                  | `part`                                                            |
+| Código do fabricante  | `manufacturer_code`                                               |
+| Aplicação por veículo | `vehicle_application`                                             |
+| Saldo de estoque      | `stock_balance`                                                   |
+| Movimentação          | `stock_movement` (tipos: `entry`, `exit`, `adjustment`, `return`) |
+| Venda                 | `sale`                                                            |
 
 ### 3. Back-end (Python / FastAPI)
 
 - **Estilo:** PEP 8, com formatação e lint automáticos via `ruff` (`ruff format` e `ruff check`). Linhas com no máximo 100 caracteres.
-- **Tipagem:** *type hints* em todas as funções públicas. Modelos de entrada e saída da API com Pydantic.
+- **Tipagem:** _type hints_ em todas as funções públicas. Modelos de entrada e saída da API com Pydantic.
 - **Organização em camadas:** `routers` (HTTP) → `services` (regras de negócio) → `repositories` (acesso a dados) → `models`/`schemas`. Um router nunca acessa o banco diretamente.
 - **Valores monetários** com `Decimal`, nunca `float`. Quantidades de estoque como inteiros.
 - **Datas e horas** em UTC, no formato ISO 8601.
 - **Erros:** levantar exceções de domínio nas camadas internas e traduzi-las em respostas HTTP com status adequado (`400`, `404`, `409`, `422`). Nunca expor detalhes internos ao usuário.
-- **Operações de escrita** (entradas, saídas, vendas) executadas em transação, com suporte a chave de idempotência, para atender ao RNF02 (sem perda ou duplicidade de dados em falhas de conexão).
+- **Operações de escrita** (cadastros, edições, entradas, saídas, ajustes, vendas e cancelamentos) executadas em transação, com suporte a chave de idempotência, para atender ao RNF02: operações aceitas efetivadas uma única vez, operações rejeitadas sem efeitos de negócio e estado confirmado, não confirmado ou rejeitado informado ao usuário. O critério do RNF02 verifica os resultados; transação e idempotência são os mecanismos adotados pela equipe.
+- **Backup** diário do banco por um workflow agendado no GitHub Actions, com a cópia criptografada guardada como artefato por 30 dias (RNF06). O plano gratuito do Supabase não oferece backup automático nem PITR.
 - **Segurança:** segredos apenas em variáveis de ambiente, nunca no repositório. Senhas com hash `bcrypt` (RNF05). Toda comunicação por HTTPS.
 
 ### 4. Front-end (React / Vite)
@@ -257,7 +258,7 @@ Termos do domínio mantêm um vocabulário único em todo o sistema:
 - **Componentes funcionais** com hooks, um componente por arquivo. Componentes pequenos e reutilizáveis.
 - **Separação de responsabilidades:** componentes cuidam da apresentação; chamadas à API ficam em uma camada própria (`services/`), nunca espalhadas pelos componentes.
 - **Estado:** manter o estado o mais próximo possível de onde é usado. Evitar estado global sem necessidade.
-- **Interface:** responsiva a partir de 360 px, com áreas de toque de pelo menos 44×44 px (RNF01). Mensagens de erro e validação claras, em português.
+- **Interface:** responsiva a partir de 360 px, conforme WCAG 2.1 AA, com áreas de toque de pelo menos 44×44 px como decisão adicional do RNF01, baseada no critério 2.5.5 (AAA). Isso não exige conformidade com todo o nível AAA. Mensagens de erro e validação claras, em português; verificação automática complementada por avaliação manual.
 - **Compatibilidade** com Chrome, Firefox, Edge e Safari, nas duas versões mais recentes (RNF03).
 
 ### 5. API
@@ -288,15 +289,15 @@ Termos do domínio mantêm um vocabulário único em todo o sistema:
 
 **Branches**
 
-| Padrão | Uso |
-| --- | --- |
-| `main` | Versão estável e publicada. Não se faz push direto |
-| `dev` | Integração do trabalho em andamento |
-| `feat/<descricao>` | Nova funcionalidade |
-| `fix/<descricao>` | Correção. Para issues: `fix/issue-<n>-<descricao>` |
-| `docs/<descricao>` | Alteração de documentação |
+| Padrão             | Uso                                                |
+| ------------------ | -------------------------------------------------- |
+| `main`             | Versão estável e publicada. Não se faz push direto |
+| `dev`              | Integração do trabalho em andamento                |
+| `feat/<descricao>` | Nova funcionalidade                                |
+| `fix/<descricao>`  | Correção. Para issues: `fix/issue-<n>-<descricao>` |
+| `docs/<descricao>` | Alteração de documentação                          |
 
-**Commits**: mensagens em português, no formato *Conventional Commits*, no imperativo e referenciando a issue quando houver:
+**Commits**: mensagens em português, no formato _Conventional Commits_, no imperativo e referenciando a issue quando houver:
 
 ```text
 <tipo>(<escopo opcional>): <descrição curta> (#<issue>)
@@ -331,13 +332,13 @@ O revisor verifica, no mínimo, se:
 
 ## Equipe
 
-| Integrante | Papel | GitHub |
-| --- | --- | --- |
-| João Guilherme Amancio de Melo | Gerente de projeto / Product Owner | [@jot4-ge](https://github.com/jot4-ge) |
-| Luiz Henrique Tomaz Moreira | Desenvolvedor back-end / Scrum Master | [@luizhtmoreira](https://github.com/luizhtmoreira) |
-| Bruno Ferreira Dornelas | Desenvolvedor back-end | [@brunnf](https://github.com/brunnf) |
-| Rodrigo Carvalho Barbosa | Desenvolvedor front-end | [@RodrigoCBarbosa](https://github.com/RodrigoCBarbosa) |
-| Leonardo da Silva Lopes Júnior | Analista de QA | [@LeonardoLopesJr](https://github.com/LeonardoLopesJr) |
-| Thiago Gomes Pereira de Abreu | Analista de requisitos | [@thgomxs](https://github.com/thgomxs) |
+| Integrante                     | Papel                                 | GitHub                                                 |
+| ------------------------------ | ------------------------------------- | ------------------------------------------------------ |
+| João Guilherme Amancio de Melo | Gerente de projeto / Product Owner    | [@jot4-ge](https://github.com/jot4-ge)                 |
+| Luiz Henrique Tomaz Moreira    | Desenvolvedor back-end / Scrum Master | [@luizhtmoreira](https://github.com/luizhtmoreira)     |
+| Bruno Ferreira Dornelas        | Desenvolvedor back-end                | [@brunnf](https://github.com/brunnf)                   |
+| Rodrigo Carvalho Barbosa       | Desenvolvedor front-end               | [@RodrigoCBarbosa](https://github.com/RodrigoCBarbosa) |
+| Leonardo da Silva Lopes Júnior | Analista de QA                        | [@LeonardoLopesJr](https://github.com/LeonardoLopesJr) |
+| Thiago Gomes Pereira de Abreu  | Analista de requisitos                | [@thgomxs](https://github.com/thgomxs)                 |
 
 Todos os integrantes também atuam como analistas de requisitos.

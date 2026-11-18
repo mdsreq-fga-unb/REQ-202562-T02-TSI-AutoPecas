@@ -81,6 +81,7 @@ nav:
       - Estratégia e Engenharia:
           - Estratégias de engenharia de software: visao-produto/estrategias-engenharia-de-software.md
           - Engenharia de requisitos: visao-produto/engenharia-de-requisitos.md
+          - Padrões de codificação: visao-produto/padroes-de-codificacao.md
       - Equipe e Aprendizados:
           - Interação entre equipe e cliente: visao-produto/interacao-equipe-cliente.md
           - Lições aprendidas: visao-produto/licoes-aprendidas.md
@@ -107,6 +108,7 @@ nav:
       - Sprint 2: atas/sprint-2.md
       - Sprint 3: atas/sprint-3.md
       - Validação do papel de Gerente de projeto / PO: atas/validacao-papel-po.md
+      - Validação das funções iniciais do sistema: atas/validacao-us-cliente.md
   - Entregas:
       - entregas/index.md
       - Entrega 1: entregas/entrega-1.md

@@ -122,14 +122,14 @@ body:
     label: Checklist de DoR
     description: 'Referência: DoR e DoD do projeto. Preserve todos os itens; marque somente após verificar.'
     options:
-    - label: O usuário ou ator (Administrador ou Operador da loja) está identificado, seu papel está descrito
+    - label: O usuário ou ator (no MVP, o proprietário) está identificado, seu papel está descrito
         e seu objetivo de negócio está explícito na US?
     - label: O Score de priorização foi calculado (`Score = VN + Peso MoSCoW - ET`), a classificação MoSCoW
         foi registrada e a prioridade foi registrada no catálogo de requisitos, conforme o método de Priorização?
     - label: Os critérios de aceitação são verificáveis, estão escritos no formato Dado / Quando / Então,
         cobrem os fluxos de exceção e erro e estão explicitamente vinculados ao requisito funcional (RF),
         ao objetivo específico (OE) e à característica de produto (CP) correspondentes?
-    - label: 'As regras de negócio do contexto de autopeças estão completamente definidas na US? Exemplos:
+    - label: 'As regras de negócio do contexto de autopeças estão suficientemente definidas na US? Exemplos:
         imutabilidade do código do fabricante, política de duplicidade no cadastro e na importação de
         planilhas, atualização do saldo físico do estoque e canais de venda, como balcão e Mercado Livre.'
     - label: O validador (Antônio Marcos, proprietário), o canal de validação (reuniões quinzenais pelo
@@ -143,10 +143,10 @@ body:
         RNF02 para tolerância a falhas de conexão e prevenção de duplicidades; RNF04 para buscas com P95
         ≤ 3 s; RNF05 para segurança dos dados, nas condições definidas nos registros dos RNFs.'
     - label: O escopo da história cabe na sprint de 14 dias, considerando a capacidade da equipe?
-    - label: Todas as dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram
-        resolvidas e acordadas antes do início do desenvolvimento?
-    - label: Cada integrante envolvido (Product Owner, frontend, backend e QA) consegue explicar exatamente
-        o que será construído, como será testado e o prazo estimado, sem perguntas adicionais?
+    - label: As dúvidas que afetam o escopo, as regras de negócio e os critérios de aceitação foram
+        esclarecidas e acordadas para o início do desenvolvimento?
+    - label: Cada integrante envolvido (Product Owner, frontend, backend e QA) possui entendimento compartilhado
+        suficiente sobre o que será construído, como será testado e o trabalho estimado para a sprint?
     - label: As dependências entre itens, incluindo outras US necessárias, foram mapeadas e estão concluídas
         ou possuem uma sequência de entrega explicitamente acordada?
 - type: checkboxes

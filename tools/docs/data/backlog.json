@@ -271,8 +271,10 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Cadastro de fornecedor detalhado com nome obrigatório e CNPJ, telefone e e-mail opcionais; permanece como evolução futura (#48)."
-      ]
+        "- 10/11/2026 · Cadastro de fornecedor detalhado com nome obrigatório e CNPJ, telefone e e-mail opcionais; permanece como evolução futura (#48).",
+        "- 15/11/2026 · Registrado que os campos são proposta da equipe, sem validação do cliente. O detalhamento não foi ampliado além do necessário para responder ao apontamento de generalidade (#48)."
+      ],
+      "delivery_reason": "Fora do MVP, como evolução futura. Os campos desta declaração são uma proposta da equipe: o cadastro de fornecedor não foi discutido com o cliente, e seu detalhamento será validado quando o requisito entrar em escopo."
     },
     {
       "id": "RF08",
@@ -454,7 +456,8 @@
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
         "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
-        "- 10/11/2026 · Consulta de histórico mantida como história independente e condicionada, sem sprint, conforme decisão atual de escopo. Não absorve a US14; seus identificadores RF13/US13 são preservados (#47, #48, #52, #53)."
+        "- 10/11/2026 · Consulta de histórico mantida como história independente e condicionada, sem sprint, conforme decisão atual de escopo. Não absorve a US14; seus identificadores RF13/US13 são preservados (#47, #48, #52, #53).",
+        "- 15/11/2026 · Justificativa de granularidade da separação em relação à US14 registrada no registro da US14, em resposta a #48."
       ],
       "delivery_reason": "Fora do MVP e condicionada à capacidade da equipe, sem sprint atribuída. A consulta de histórico permanece separada do filtro de período da US14; não há fusão de histórias nem reutilização de identificadores."
     },
@@ -486,8 +489,10 @@
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
         "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
         "- 10/11/2026 · Retirada do MVP e da Sprint 5 por depender da US13, que está condicionada. Mantida separada, também como condicionada, sem aposentadoria nem fusão; RF14/US14 continuam significando filtrar histórico por período (#37, #47, #48, #52, #53). A divergência da descrição na ata de 05/10 permanece a retificar na origem.",
-        "- 14/11/2026 · Descrição de RF14 corrigida na ata de 05/10 para filtrar histórico por período."
+        "- 14/11/2026 · Descrição de RF14 corrigida na ata de 05/10 para filtrar histórico por período.",
+        "- 15/11/2026 · Registrada a justificativa de granularidade pedida em #48: o filtro continua sendo um requisito próprio, e não parte da US13."
       ],
+      "priority_note": "Granularidade do requisito (#48): o filtro por período permanece um registro próprio, separado da consulta de histórico da US13. A decisão preserva os identificadores já publicados, sem fusão nem aposentadoria de códigos, conforme o tratamento dado à rastreabilidade em #47; mantém um comportamento verificável em cada registro, com a US13 respondendo pela exibição do histórico e a US14 pela restrição do resultado a um intervalo de datas; e não altera a sequência de entrega, porque as duas histórias estão condicionadas e fora do MVP, com a US14 dependente da US13. A separação é decisão de recorte da equipe e não foi submetida ao cliente, que não priorizou nenhuma das duas para o MVP.",
       "delivery_reason": "Fora do MVP por decisão de escopo, apesar do Score 4: o filtro depende da consulta de histórico da US13, também condicionada. Permanece como história separada, sem sprint, e sua eventual entrega exige a disponibilidade da US13."
     },
     {
@@ -609,8 +614,10 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Comportamento de recebimento separado da escolha de componente de interface, conforme #48; permanece como evolução futura."
-      ]
+        "- 10/11/2026 · Comportamento de recebimento separado da escolha de componente de interface, conforme #48; permanece como evolução futura.",
+        "- 15/11/2026 · Registrado que a redação é proposta da equipe, sem validação do cliente (#48)."
+      ],
+      "delivery_reason": "Fora do MVP, como evolução futura. A redação desta declaração é uma proposta da equipe: o controle de recebimento não foi discutido com o cliente, e seu detalhamento será validado quando o requisito entrar em escopo."
     },
     {
       "id": "RF19",
@@ -787,8 +794,8 @@
     {
       "id": "RF25",
       "us": "US25",
-      "name": "Listar itens mais vendidos",
-      "declaration": "O sistema deve fornecer uma interface de consulta, permitindo filtrar e ordenar itens por: volume de vendas (maior/menor) e itens sem movimentação (indicando dias desde a última saída), com período de tempo configurável.",
+      "name": "Consultar giro de itens",
+      "declaration": "O sistema deve fornecer uma interface de consulta do giro dos itens, com período de tempo configurável, em duas visões: itens mais e menos vendidos, ordenados por volume de vendas; e itens sem movimentação, indicando os dias desde a última saída.",
       "cp": "CP4",
       "epic": "EP04",
       "oe": "4",
@@ -811,7 +818,8 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 13/10/2026 · Característica de origem realinhada à solução vigente, com a unificação de compras e análise na CP4.",
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 14/11/2026 · Nome e declaração esclarecidos para cobrir as duas visões (mais vendidos e itens sem movimentação), sem alterar escopo, prioridade nem identificadores RF25/US25 (monitoria)."
       ]
     },
     {
@@ -1058,8 +1066,10 @@
         "- 02/10/2026 · Corrigida a sobreposição entre os dados fiscais da peça e os da operação.",
         "- 13/10/2026 · Característica de origem realinhada à solução vigente, com a unificação de compras e análise na CP4.",
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Exclusividade da edição fiscal explicitada em relação à US05, conforme #48; permanece como evolução futura."
-      ]
+        "- 10/11/2026 · Exclusividade da edição fiscal explicitada em relação à US05, conforme #48; permanece como evolução futura.",
+        "- 15/11/2026 · Registrado que o detalhamento fiscal é proposta da equipe, sem validação do cliente (#48)."
+      ],
+      "delivery_reason": "Fora do MVP, como evolução futura. O detalhamento fiscal desta declaração é uma proposta da equipe, derivada do RF32: os campos e a restrição de perfil não foram validados com o cliente e serão confirmados quando o requisito entrar em escopo."
     },
     {
       "id": "RF34",
@@ -1276,23 +1286,25 @@
       "name": "Responsividade da interface em dispositivos móveis",
       "anchor": "rnf01-responsividade-da-interface-em-dispositivos-moveis",
       "declaration": "A interface web do sistema deve ser responsiva e operável por toque em dispositivos móveis com largura de viewport a partir de 360 pixels CSS em orientação retrato, cobrindo a faixa de 360px a 428px CSS, garantindo ergonomia para as rotinas operacionais da loja (consulta de saldo, registro de movimentação e consulta de vendas).",
-      "criterion": "Conformidade com WCAG 2.1 AA — área de toque mínima de 44×44 pixels CSS para todos os elementos interativos, nas larguras de viewport de 360px, 390px e 414px CSS em orientação retrato.",
+      "criterion": "Conformidade com a WCAG 2.1 nível AA nas larguras de viewport de 360px, 390px e 414px CSS em orientação retrato.\n\nComo decisão de projeto, todos os elementos interativos devem ter área de toque mínima de 44×44 pixels CSS, para favorecer a operação por toque no balcão. Esse valor é baseado no critério 2.5.5 (Tamanho do alvo), de nível AAA da WCAG 2.1; adotá-lo não significa exigir conformidade com todo o nível AAA. Referência: https://www.w3.org/WAI/WCAG21/Understanding/target-size.html\n\nA WCAG 2.2 introduziu o critério 2.5.8, de nível AA, com referência de 24×24 pixels CSS e exceções próprias. Essa comparação não altera a referência adotada pelo projeto: WCAG 2.1 AA e área de toque de 44×44 pixels CSS. Referência: https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html\n\nVerificação: auditoria automática com Lighthouse ou axe sem violações detectadas de nível A ou AA, complementada pela avaliação manual dos critérios aplicáveis não cobertos pela ferramenta e pela medição dos elementos interativos nas três larguras. A auditoria automática isolada não comprova a conformidade completa.",
       "classification": "Usabilidade (URPS+) / produto — usabilidade (Sommerville).",
       "cp": "CP8",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 12/11/2026 · Correção da issue #49: área de toque de 44×44 pixels CSS identificada como decisão de projeto baseada no critério 2.5.5 (AAA), preservando WCAG 2.1 AA como referência; verificação automática complementada por inspeção manual."
       ]
     },
     {
       "id": "RNF02",
       "name": "Tolerância a falhas de conexão",
       "anchor": "rnf02-tolerancia-a-falhas-de-conexao",
-      "declaration": "Em caso de perda de conexão de rede durante o processamento de uma operação entre cliente e servidor, o sistema deve garantir a recuperabilidade do estado e a tolerância a falhas sem perda ou duplicidade de dados.",
-      "criterion": "0% de perda ou duplicidade de dados em operações interrompidas por queda de conexão, garantido por chave de idempotência de requisição.",
+      "declaration": "Quando a conexão entre cliente e servidor falhar durante uma operação de escrita (como cadastro, edição, entrada, saída, ajuste, venda ou cancelamento), o sistema deve distinguir o resultado conhecido da operação de uma tentativa ainda sem confirmação e garantir que a operação seja efetivada no máximo uma vez, por completo ou de forma alguma. Os resultados esperados são:\n\nConfirmada: o servidor gravou a operação e respondeu com sucesso. A interface a apresenta como concluída, com os efeitos de saldo previstos quando aplicáveis. Reenvios da mesma tentativa não desfazem nem duplicam esses efeitos.\n\nPendente: a requisição foi enviada, mas a confirmação não chegou ao cliente. A interface informa que a operação ainda não foi confirmada, mantém os dados preenchidos e oferece o reenvio, sem apresentá-la como concluída. O registro pode já existir no servidor; a falta da resposta não significa que a gravação falhou.\n\nReenviada após falha: se a operação já havia sido gravada, o reenvio retorna o resultado da primeira gravação, sem criar outro registro nem reaplicar os efeitos no saldo. Se ela não havia sido gravada e for aceita, o reenvio a efetiva uma única vez.\n\nRejeitada: se o servidor recusar a operação, por exemplo por dados inválidos ou saldo insuficiente, nenhum efeito de negócio é persistido. O usuário recebe uma mensagem compreensível para corrigir os dados ou desistir.\n\nOperações iniciadas sem conexão não são aceitas pelo servidor; nesse caso vale o protocolo de contingência manual da intervenção social (D05).\n\nObservação de implementação: chave de idempotência por tentativa e gravação em transação são mecanismos para obter esses resultados. O critério de aceitação verifica o comportamento e a integridade dos dados, sem depender de um mecanismo específico.",
+      "criterion": "Testes devem simular perda de conexão antes do envio, durante o processamento e após a gravação sem entrega da resposta, seguidos de reconexão e reenvio. Em 100% dos cenários, uma operação aceita deve ter exatamente uma efetivação integral, sem duplicar registros de negócio, e cada efeito previsto no saldo deve ser aplicado uma única vez. Uma operação rejeitada não deve criar registros de negócio nem alterar o saldo.\n\nEnquanto não houver confirmação, a interface deve informar que a tentativa está pendente e permitir o reenvio dos mesmos dados sem indicar sucesso. Após uma resposta definitiva, o resultado apresentado deve corresponder ao resultado informado pelo servidor: sucesso para a operação efetivada ou rejeição sem efeitos de negócio. Nenhuma operação apresentada como confirmada pode estar ausente do banco.",
       "classification": "Confiabilidade (URPS+) / produto — confiabilidade (Sommerville).",
       "cp": "CP7",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 12/11/2026 · Correção da issue #49: resultados de operações confirmadas, pendentes, reenviadas e rejeitadas explicitados; critério separado dos mecanismos de implementação, distinguindo efetivação única de operações aceitas e ausência de efeitos nas rejeitadas."
       ]
     },
     {
@@ -1323,12 +1335,26 @@
       "id": "RNF05",
       "name": "Segurança de dados",
       "anchor": "rnf05-seguranca-de-dados",
-      "declaration": "As senhas dos usuários devem ser armazenadas obrigatoriamente utilizando função de hash criptográfico com salt (bcrypt), sendo vedado o armazenamento de credenciais em texto simples. Todo o tráfego de dados entre cliente e servidor deve ser protegido pelo protocolo HTTPS com TLS 1.2 ou superior em todos os ambientes operacionais.",
-      "criterion": "100% das senhas armazenadas com hash bcrypt com salt; todo o tráfego protegido por TLS 1.2 ou superior, sem fallback para HTTP.",
+      "declaration": "Todo o tráfego de dados entre cliente e servidor deve ser protegido pelo protocolo HTTPS com TLS 1.2 ou superior em todos os ambientes operacionais.",
+      "criterion": "Todo o tráfego entre cliente e servidor protegido por HTTPS com TLS 1.2 ou superior, sem fallback para HTTP.",
       "classification": "Segurança (URPS+) / produto — segurança da informação (Sommerville).",
       "cp": "CP7",
       "history": [
-        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar."
+        "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
+        "- 17/11/2026 · Exigência de armazenamento de senhas removida do RNF05, pois o MVP não possui login. Declaração e critério de verificação passam a tratar somente de HTTPS com TLS 1.2 ou superior, em correspondência com a D09, conforme orientação da monitoria e decisão da equipe."
+      ]
+    },
+    {
+      "id": "RNF06",
+      "name": "Backup e recuperação de dados",
+      "anchor": "rnf06-backup-e-recuperacao-de-dados",
+      "declaration": "O banco de dados de produção deve ter uma cópia de segurança completa gerada automaticamente uma vez por dia, criptografada com senha e guardada fora do Supabase, como artefato do GitHub Actions do repositório do projeto, para permitir a recuperação dos dados em caso de falha da infraestrutura, corrupção ou exclusão acidental.\n\nFrequência: uma cópia por dia.\nRetenção: as cópias dos últimos 30 dias, apagadas automaticamente depois desse prazo.\nPerda máxima de dados (RPO): 24 horas de registros.\nPrazo de recuperação (RTO): até 8 horas, contadas da decisão de restaurar até o sistema voltar a operar com os dados recuperados, seguindo o procedimento do Guia de Manutenção.\n\nObservação de infraestrutura: o plano gratuito do Supabase não realiza backups automáticos, e a recuperação em ponto no tempo (PITR) é um adicional disponível apenas em planos pagos. Por isso, a rotina usa uma exportação lógica do banco (pg_dump) agendada no GitHub Actions, sem custo. A criptografia é obrigatória porque o repositório é público. Arquivos guardados no Storage, como fotos das peças, não fazem parte da exportação do banco e precisam ser incluídos na rotina se forem usados. O PITR fica registrado como evolução possível caso o proprietário migre para um plano pago.",
+      "criterion": "Verificação: (1) histórico de execuções do workflow de backup sem mais de um dia consecutivo sem cópia concluída; (2) cópias dos últimos 30 dias disponíveis entre os artefatos do repositório; (3) teste de restauração em um projeto separado antes da implantação (Sprint 5) e, depois, ao menos uma vez por mês, concluído em até 8 horas, com a contagem de registros das tabelas principais e o saldo de uma amostra de peças iguais aos do momento da cópia.",
+      "classification": "Confiabilidade — recuperabilidade (URPS+) / organizacional — operacional (Sommerville).",
+      "cp": "CP7",
+      "applies_note": "Toda a base de dados de produção (requisito transversal de infraestrutura, sem vínculo com histórias específicas).",
+      "history": [
+        "- 16/11/2026 · Criação do requisito a partir do feedback da issue #49: backup com frequência, retenção, RPO e RTO próprios, compatível com o plano gratuito do Supabase, substituindo a previsão de PITR."
       ]
     }
   ],
@@ -1382,7 +1408,7 @@
       ]
     ],
     "pending": [
-      "As issues ainda precisam alinhar narrativa, critérios e dependências às declarações aprovadas: remover exigências de perfis do MVP, atualizar a entrada sem fornecedor e incorporar as regras de códigos, saldo e peças inativas (#48, #50, #52, #53).",
+      "As decisões do cliente de 04/11/2026 — efeito da peça inativa, bloqueio de saídas e vendas acima do saldo, ajuste sem saldo negativo, busca por código equivalente, entrada sem fornecedor e retirada dos perfis do MVP — foram tomadas de forma assíncrona por WhatsApp e já estão aplicadas nas declarações e nos critérios. Falta publicar o registro da decisão com a evidência da conversa, conforme o procedimento de registro assíncrono adotado pela equipe (#48, #50, #52, #53).",
       "US01 exige reestimativa de esforço e US04 exige revisão do impacto da busca por códigos equivalentes; as notas atuais foram preservadas até avaliação da equipe.",
       "US02: acordar o modelo da planilha e se haverá coluna de códigos equivalentes, sem assumir essa estrutura como aprovada.",
       "As demais pontuações de valor de negócio aguardam confirmação formal do proprietário.",

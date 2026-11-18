@@ -33,7 +33,7 @@ Esta seção reúne as atas das reuniões de cada sprint do projeto **TSI Peças
     <span class="section-card__number" aria-hidden="true">03</span>
     <span class="section-card__title">Sprint 3</span>
     <span class="section-card__description">Validação dos ajustes em requisitos e confirmação do MVP.</span>
-    <span class="delivery-status">Em andamento</span>
+    <span class="delivery-status">Concluída</span>
     <span class="section-card__action">Acessar ata <span aria-hidden="true">→</span></span>
   </a>
 </div>
@@ -45,6 +45,7 @@ As atas das próximas sprints serão adicionadas a esta página à medida que as
 Decisões validadas com o cliente de forma assíncrona (fora das reuniões de sprint), registradas conforme a seção [Comunicação](../visao-produto/interacao-equipe-cliente.md#comunicacao) de Interação entre equipe e cliente:
 
 - [Validação do papel de Gerente de projeto / Product Owner](validacao-papel-po.md) — 12/10/2026
+- [Validação das funções iniciais do sistema](validacao-us-cliente.md) — 16/11/2026
 
 ## Versionamento
 
@@ -53,3 +54,4 @@ Decisões validadas com o cliente de forma assíncrona (fora das reuniões de sp
 | 1.0 | 09/10/2026 | Criação do índice, preenchimento das atas das Sprints 0 a 3 e remoção dos cards de sprints futuras ainda sem ata (serão adicionados conforme as reuniões ocorrerem) | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.1 | 12/10/2026 | Adição da seção de evidências de validação assíncrona, com a validação do papel de Gerente de projeto / Product Owner | [Luiz Moreira](https://github.com/luizhtmoreira) |
 | 1.2 | 04/11/2026 | Atualização dos links e das referências à numeração original do template, preservando o histórico das entregas. | [Thiago Gomes](https://github.com/thgomxs) |
+| 1.3 | 16/11/2026 | Adição da validação das funções iniciais do sistema pelo cliente às evidências de validação assíncrona. | [João Melo](https://github.com/jot4-ge) |

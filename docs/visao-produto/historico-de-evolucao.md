@@ -171,25 +171,27 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 | 03/11/2026 | Adoção dos nomes das características definidos na Visão do Produto como versão vigente, corrigindo a divergência com os nomes usados na página de requisitos (CP1 e CP2). | [CP1](solucao-e-caracteristicas.md#cp1), [CP2](solucao-e-caracteristicas.md#cp2) e seus requisitos | Revisão de consistência |
 | 03/11/2026 | Registro das dependências entre requisitos, derivadas da leitura das declarações, com marcação explícita de que aguardam validação no refinamento. | Campo *Condições e avaliação* de 35 registros | Revisão de consistência |
 | 10/11/2026 | Consolidação do MVP com 12 US, mantendo US13 e US14 separadas e fora do recorte, com revisão das declarações e justificativas de entrega. | Backlog e recorte do MVP | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63) |
-
+| 12/11/2026 | Correção da fundamentação da área de toque do RNF01 (44×44 px como decisão adicional baseada no critério AAA) e delimitação do RNF02 por resultado: confirmação, pendência, reenvio e rejeição, sem impor o mecanismo no critério de aceitação. | [RNF01](requisitos-de-software.md#rnf01-responsividade-da-interface-em-dispositivos-moveis), [RNF02](requisitos-de-software.md#rnf02-tolerancia-a-falhas-de-conexao), [D04](intervencao-social.md#d04) | Feedback do professor (issue #49) |
 | 14/11/2026 | Integração do recorte consolidado em 10/11: MVP reduzido de 13 para 12 US. US13 e US14 permanecem separadas, condicionadas e sem sprint; US14 depende de US13. Entrada de peças deixa de exigir fornecedor e de depender de US07. | [US08](requisitos-de-software.md#us08), [US13](requisitos-de-software.md#us13), [US14](requisitos-de-software.md#us14), EP02 e recorte do MVP | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63), alterações registradas na base em 10/11/2026 |
 | 14/11/2026 | US02: VN corrigido de 4 para 2, Score 3 e Q3, mantida no MVP por exceção documentada como Must Have. US16: Should Have alterado para Must Have, com Score 5. Fórmula e notas de esforço preservadas. | [US02](requisitos-de-software.md#us02), [US16](requisitos-de-software.md#us16) e priorização | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63), com referências às atas nos registros das US |
 | 14/11/2026 | Consolidação das regras de códigos principais/equivalentes únicos, importação sem sobrescrita, busca por equivalentes, campos editáveis explícitos, código principal imutável e edição fiscal reservada à US33. Peças inativas permanecem visíveis e impedem novas movimentações e vendas. | [US01](requisitos-de-software.md#us01), [US02](requisitos-de-software.md#us02), [US04](requisitos-de-software.md#us04), [US05](requisitos-de-software.md#us05), [US06](requisitos-de-software.md#us06), US33 | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63) |
 | 14/11/2026 | Consolidação das regras de entrada sem fornecedor, bloqueio de saídas e vendas acima do saldo, ajuste sem saldo negativo e identificação dos canais e do preço unitário na venda. Dados obrigatórios/opcionais do fornecedor explicitados; recebimento descrito sem impor um componente de interface. | [US07](requisitos-de-software.md#us07), [US08](requisitos-de-software.md#us08), [US09](requisitos-de-software.md#us09), [US10](requisitos-de-software.md#us10), [US15](requisitos-de-software.md#us15), [US18](requisitos-de-software.md#us18) | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63) |
 | 14/11/2026 | Retirada das restrições por perfil das declarações do MVP, mantendo a solução de acesso como pendência. Revisão de esforço de US01/US04 sinalizada sem atribuir novas estimativas; justificativas de entrega e dependências passam a ser apresentadas por US no catálogo. | Declarações do MVP, [US01](requisitos-de-software.md#us01), [US04](requisitos-de-software.md#us04) e apresentação do catálogo | [PR #63](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/63); detalhamento remoto permanece nas issues |
 | 14/11/2026 | Correção da descrição de RF14 na ata de 05/10: de associação a anúncios do Mercado Livre para filtro do histórico por período. | [US14 / RF14](requisitos-de-software.md#rf14) | [Ata da Sprint 3](../atas/sprint-3.md), [issue #47](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/47) |
+| 16/11/2026 | Criação do RNF06, com backup diário criptografado no GitHub Actions, retenção de 30 dias, RPO de 24 horas e RTO de 8 horas, compatível com o plano gratuito do Supabase no lugar do PITR. | [RNF06](requisitos-de-software.md#rnf06-backup-e-recuperacao-de-dados), [D01](intervencao-social.md#d01) | Feedback do professor (issue #49) |
+| 16/11/2026 | Registro da validação com o cliente, em 04/11, das regras de acesso sem login, bloqueio de saída e venda acima do saldo, entrada sem fornecedor, histórico por período, ajuste sem saldo negativo e peças com mais de um código, o que resolve a pendência da solução de acesso registrada em 14/11. | [Priorização](priorizacao.md), [Cliente e negócio](cliente-e-negocio.md) | [Issue #53](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/53) |
 
 ## <span id="125-referencia-de-cada-entrega"></span>Referência de cada entrega {#referencia-de-cada-entrega}
 
-Cada entrega preserva uma referência do escopo naquele momento, permitindo comparar o que mudou sem
-congelar o documento. A referência é o estado do repositório na data da entrega.
+A tabela resume o escopo apresentado em cada unidade. As páginas de cada entrega reúnem o vídeo,
+os artefatos e as correções correspondentes; os registros anteriores preservam o contexto de sua época.
 
-| Entrega | Período | Estado do escopo registrado |
+| Entrega | Período | Escopo registrado |
 | --- | --- | --- |
-| [Entrega 1](../entregas/entrega-1.md) | Unidade 1 | Visão do produto: problema, objetivos e características, sem requisitos declarados |
-| [Entrega 2](../entregas/entrega-2.md) | Unidade 2 | 40 requisitos funcionais, 5 não funcionais, priorização aplicada e MVP de 13 requisitos definido |
-| [Entrega 3](../entregas/entrega-3.md) | Unidade 3 | Escopo consolidado no catálogo integrado; início da implementação do MVP |
-| [Entrega 4](../entregas/entrega-4.md) | Unidade 4 | A registrar |
+| [Entrega 1](../entregas/entrega-1.md) | Unidade 1 | Visão do produto e do projeto: contexto do cliente, problema, objetivos, características do produto, intervenção social, estratégia de desenvolvimento e planejamento inicial. |
+| [Entrega 2](../entregas/entrega-2.md) | Unidade 2 | Declaração dos requisitos funcionais e não funcionais, DoR/DoD, priorização e definição inicial do MVP com 13 histórias de usuário, além das correções da Unidade 1. |
+| [Entrega 3](../entregas/entrega-3.md) | Unidade 3 | Representação dos requisitos por protótipos; verificação e validação; organização do backlog e atualização automatizada; revisão do MVP para 12 US; incremento das US01, US05 e US06 e correções da Unidade 2. |
+| [Entrega 4](../entregas/entrega-4.md) | Unidade 4 | Escopo a registrar após a realização da entrega. |
 
 ## Versionamento
 
@@ -202,3 +204,6 @@ congelar o documento. A referência é o estado do repositório na data da entre
 | 2.2 | 15/11/2026 | Novo formato de US com DoR/DoD e Evidências, status pelo Projects, transição das issues legadas e coleta dos checks dos PRs. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.3 | 15/11/2026 | Revisão do fluxo de organização e atualização, adoção do nome Backlog e remoção da seção de pendências gerais de escopo. | [Thiago Gomes](https://github.com/thgomxs) |
 | 2.4 | 15/11/2026 | Registro das decisões de 14/11 e de suas relações com o MVP e a rastreabilidade. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.5 | 12/11/2026 | Registro das correções do RNF01 e do RNF02 e de sua origem na issue #49. | Equipe |
+| 2.6 | 16/11/2026 | Registro da validação de 04/11 com o cliente, que resolve a pendência da solução de acesso (issue #53). | [João Melo](https://github.com/jot4-ge) |
+| 2.7 | 16/11/2026 | Revisão do resumo do escopo de cada entrega, destacando os temas da Unidade 3 e preservando o recorte histórico da Unidade 2. | [Thiago Gomes](https://github.com/thgomxs) |

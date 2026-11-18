@@ -15,7 +15,7 @@ on:
     types: [completed]
   workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: write
@@ -25,7 +25,7 @@ permissions:
 
 concurrency:
   group: documentation-deployment
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -37,7 +37,7 @@ jobs:
           persist-credentials: true
       - uses: actions/setup-python@v7
         with:
-          python-version: '3.13'
+          python-version: "3.13"
       - name: Install documentation dependencies
         run: python -m pip install -r tools/docs/requirements.txt
       - name: Validate backlog and automation
