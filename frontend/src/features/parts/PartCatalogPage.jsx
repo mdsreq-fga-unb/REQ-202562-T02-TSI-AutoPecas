@@ -12,6 +12,7 @@ export default function PartCatalogPage({
   onCreate,
   onApplications,
   onEntry,
+  onBalance,
   searchState,
   onSearchStateChange,
 }) {
@@ -157,6 +158,13 @@ export default function PartCatalogPage({
                         onClick={() => onEntry(part.id)}
                       >
                         Registrar entrada
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        aria-label={`Consultar saldo de ${part.name}`}
+                        onClick={() => onBalance(part.id)}
+                      >
+                        Consultar saldo
                       </Button>
                       <Button
                         variant="outlined"

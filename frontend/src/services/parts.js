@@ -1,11 +1,12 @@
 import { apiBaseUrl } from './api.js';
 
-async function requestParts(path, { method = 'GET', data, idempotencyKey, signal } = {}) {
+async function requestParts(path, { method = 'GET', data, idempotencyKey, signal, cache } = {}) {
   const isWrite = method !== 'GET';
   let response;
   try {
     response = await fetch(`${apiBaseUrl}/parts${path}`, {
       method,
+      ...(cache && { cache }),
       ...(isWrite && {
         headers: { 'Content-Type': 'application/json', 'Idempotency-Key': idempotencyKey },
         body: JSON.stringify(data),
@@ -61,8 +62,15 @@ export function listParts(offset = 0, { signal } = {}) {
   return requestParts(`?offset=${offset}&limit=20`, { signal });
 }
 
-export function getStockBalance(id, { signal } = {}) {
-  return requestParts(`/${encodeURIComponent(id)}/stock-balance`, { signal });
+export async function getStockBalance(id, { signal } = {}) {
+  const result = await requestParts(`/${encodeURIComponent(id)}/stock-balance`, {
+    signal,
+    cache: 'no-store',
+  });
+  if (result?.part_id !== id || !Number.isSafeInteger(result.stock_balance)) {
+    throw new Error('Não foi possível confirmar o saldo da peça. Tente novamente.');
+  }
+  return result;
 }
 
 export function registerStockEntry(id, data, idempotencyKey) {

@@ -1,7 +1,7 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, Header, Request
+from fastapi import APIRouter, Depends, Header, Request, Response
 
 from app.core.errors import DomainError
 from app.schemas.stock import StockBalanceResponse, StockEntryCreate, StockEntryResponse
@@ -31,5 +31,6 @@ def create_entry(
 
 
 @router.get("/stock-balance", response_model=StockBalanceResponse)
-def get_balance(part_id: UUID, service: Service) -> StockBalanceResponse:
+def get_balance(part_id: UUID, service: Service, response: Response) -> StockBalanceResponse:
+    response.headers["Cache-Control"] = "no-store"
     return service.balance(part_id)

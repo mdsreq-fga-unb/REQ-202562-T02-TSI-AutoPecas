@@ -578,3 +578,61 @@ aguardar o botão ficar acessível após o fechamento do diálogo; a repetição
 `src/partStatus.test.jsx` aprovou seus 5 testes. Não houve nova execução completa
 após esse ajuste exclusivo do teste. `pnpm lint`, `pnpm format:check` e `pnpm build`
 foram aprovados. Os tempos dos testes foram maiores por pressão de memória local.
+
+## Consulta de saldo — US12 (Refs #36)
+
+No catálogo, **Consultar saldo** abre uma tela própria para qualquer peça, inclusive
+inativa. A tela MUI reutiliza tema, navegação e identificação de status existentes;
+exibe código, nome e quantidade física confirmada pela API. Saldo zero recebe a
+mensagem **Nenhuma unidade disponível**. A consulta não oferece ações de escrita.
+
+**Atualizar saldo** realiza novas consultas à peça e ao saldo. Durante o carregamento
+ou após uma falha, o valor anterior deixa de ser apresentado como saldo atual. A
+ação **Tentar novamente** permite recuperar a consulta. Respostas sem quantidade
+inteira confirmada ou pertencentes a outra peça são rejeitadas pelo serviço HTTP;
+o dado desconhecido nunca é convertido em zero. A requisição de saldo usa
+`cache: 'no-store'`. Sair durante o carregamento aborta as consultas e ignora
+respostas atrasadas. Voltar ao catálogo preserva filtros e página.
+
+`StockBalancePage` cuida da apresentação, `useStockBalance` do estado e cancelamento,
+e `services/parts.js` do contrato HTTP. Não foram adicionadas dependências.
+
+### Evidências — 18/11/2026
+
+Critérios usados: CA12.1–CA12.6 fornecidos na tarefa, vinculada à issue #36.
+Os ciclos observaram falhas por ausência do acesso à consulta, mensagem de saldo
+zero, atualização, ação de repetição, validação da resposta e política de cache,
+seguidas da implementação e aprovação. Os cenários de peça inativa, cancelamento,
+erros HTTP/JSON e preservação dos filtros são verificações complementares;
+não representam novos ciclos TDD quando já passaram na primeira execução.
+
+Inspeção no navegador integrado, com API local e SQLite temporário contendo apenas
+peças fictícias: saldo 5, saldo zero com mensagem explícita, peça inativa com saldo
+8, atualização e temas claro/escuro. Sem rolagem horizontal em 360, 390 e 414 px;
+controles medidos em 360 px com pelo menos 44×44 px. Console sem erros ou avisos
+nessa inspeção. O banco operacional não foi utilizado.
+
+Permanecem pendentes a matriz completa do RNF03, auditoria automática/manual de
+acessibilidade completa, RNF04 no ambiente e massa especificados, HTTPS/TLS do
+ambiente publicado, revisão por outro integrante e aceite do cliente. A consulta
+lê o saldo persistido; integração com importação, saídas, ajustes, vendas e
+cancelamentos será verificada quando esses módulos forem implementados.
+
+Verificação final com **Node 22.23.4**, baixado do site oficial em diretório
+temporário e conferido por SHA-256 contra `SHASUMS256.txt`, sem alterar o Node
+global. Com o executável temporário no início do `PATH` do processo:
+
+- `node node_modules/vitest/vitest.mjs run --coverage --maxWorkers=1 --testTimeout=60000`:
+  **78 testes aprovados em 9 arquivos**, incluindo 13 cenários da consulta de saldo
+  e retorno ao catálogo filtrado. Cobertura por linhas **93,43%**, ramificações
+  **92,88%**; lacunas incluem respostas de erro atrasadas após cancelamento e
+  fluxos anteriores de foto/navegação. Não há mínimo de cobertura acordado.
+- `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`: aprovados. Maior bundle **278,90 kB**,
+  sem aviso de tamanho.
+- A tentativa inicial com Node 24.15.0, cobertura e workers padrão teve 70
+  aprovações e 8 timeouts de 5 segundos em testes existentes. A repetição completa
+  com Node 22 e um worker passou em 185,60 s, sem alterar assertions nem a
+  configuração permanente do Vitest. A execução intermediária com um worker em
+  Node 24 foi interrompida sem resultado conclusivo.

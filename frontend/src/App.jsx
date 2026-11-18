@@ -7,6 +7,7 @@ import PartCatalogPage from './features/parts/PartCatalogPage.jsx';
 import PartEditPage from './features/parts/PartEditPage.jsx';
 import VehicleApplicationsPage from './features/parts/VehicleApplicationsPage.jsx';
 import StockEntryPage from './features/stock/StockEntryPage.jsx';
+import StockBalancePage from './features/stock/StockBalancePage.jsx';
 import { readPendingEntry } from './features/stock/pendingStockEntry.js';
 import { readPendingAssociation } from './features/parts/pendingVehicleAssociation.js';
 import { createCatalogSearchState } from './features/parts/partSearchState.js';
@@ -29,6 +30,7 @@ export default function App() {
       edit: 'Editar peça',
       applications: 'Aplicações por veículo',
       entry: 'Registrar entrada',
+      balance: 'Consultar saldo',
     }[view.page];
     document.title = `${title} · TSI Peças`;
   }, [view.page]);
@@ -85,6 +87,7 @@ export default function App() {
             onEdit={openEdit}
             onCreate={openCreate}
             onEntry={(partId) => setView({ page: 'entry', partId })}
+            onBalance={(partId) => setView({ page: 'balance', partId })}
             onApplications={(partId) => setView({ page: 'applications', partId })}
           />
         )}
@@ -93,6 +96,9 @@ export default function App() {
         )}
         {view.page === 'entry' && (
           <StockEntryPage key={view.partId} partId={view.partId} onDone={openCatalog} />
+        )}
+        {view.page === 'balance' && (
+          <StockBalancePage key={view.partId} partId={view.partId} onDone={openCatalog} />
         )}
         {view.page === 'edit' && (
           <PartEditPage key={view.partId} partId={view.partId} onDone={openCatalog} />

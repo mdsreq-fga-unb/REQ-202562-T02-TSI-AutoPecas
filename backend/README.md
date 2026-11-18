@@ -537,3 +537,36 @@ e 8 cenários de PostgreSQL ignorados nessa execução SQLite. Os 105 testes das
 US03/US04/US08 passaram separadamente no PostgreSQL. No banco operacional,
 `alembic current` indicou `0005_stock_entries (head)` e `alembic check` não
 identificou divergências. Os três serviços do Compose permaneceram saudáveis.
+
+## Consulta de saldo — US12 (Refs #36)
+
+Reutiliza `GET /parts/{id}/stock-balance`, que retorna `part_id` e `stock_balance`
+do registro persistido. A consulta funciona também para peças inativas, não muda
+status, não grava movimentações e não recalcula o saldo. Não exige migração nova.
+Respostas confirmadas passam a enviar `Cache-Control: no-store`, para impedir
+reutilização do saldo por caches HTTP. Peça inexistente retorna 404 e falha no
+banco retorna 503, sem representar a indisponibilidade como saldo zero.
+
+### Evidências — 18/11/2026
+
+`tests/test_stock_balance.py` verifica saldo inicial zero (CA12.2/CA12.4), consultas
+após entradas de 5 e 3 unidades (CA12.1/CA12.3), leitura repetida de peça inativa
+sem alteração de status/saldo e com entrada ainda rejeitada (CA12.5), peça ausente
+e falha de banco sem exposição de detalhes internos (CA12.6), e controle de cache.
+Os três primeiros testes protegem comportamento existente. O teste de cache
+falhou pela ausência do cabeçalho antes da alteração no router; depois, os quatro
+testes passaram com Python 3.13.14 e banco SQLite descartável migrado pela suíte.
+
+A UI foi integrada à API local usando outro SQLite temporário e peças fictícias.
+A consulta usa o mesmo saldo que a US08 atualiza na transação. Importação cadastral,
+saídas, ajustes, vendas e cancelamentos ainda não têm implementação nesta branch;
+seus testes de integração deverão garantir o saldo inicial zero ou a atualização
+desse mesmo campo, conforme CA12.3/CA12.4. Não foram simuladas essas funcionalidades
+como se estivessem entregues. RNF04 em produção, HTTPS/TLS, revisão da equipe e
+aceite do cliente permanecem pendentes; a DoD não foi declarada concluída.
+
+Regressão desta entrega: `.venv/Scripts/python.exe -m pytest -q --cov
+--cov-report=term-missing` aprovou **165 testes**, com **8 ignorados** que exigem
+PostgreSQL e cobertura combinada de **96%**. `ruff check .` e
+`ruff format --check .` aprovados. Permanece o aviso de depreciação do TestClient
+já existente. A integração PostgreSQL não foi reexecutada nesta entrega.

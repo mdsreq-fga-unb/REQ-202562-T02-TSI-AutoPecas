@@ -18,6 +18,7 @@ afterEach(() => {
 
 async function openCatalog(search = async () => response({ items: [PART], total: 1 })) {
   const request = vi.fn(async (url, options) => {
+    if (url.includes('/stock-balance')) return response({ part_id: PART.id, stock_balance: 5 });
     if (url.includes('/parts/search?')) return search(url, options);
     if (url.includes('vehicle-applications')) return response({ items: [], total: 0 });
     if (url.includes('?offset=')) return response({ items: [PART], total: 1 });
@@ -107,6 +108,7 @@ test('limpa os filtros e retorna ao catálogo geral sem busca vazia', async () =
 test.each([
   ['Editar Filtro de óleo', 'Cancelar'],
   ['Aplicações de Filtro de óleo', 'Voltar ao catálogo'],
+  ['Consultar saldo de Filtro de óleo', 'Voltar ao catálogo'],
 ])('preserva filtros e página ao abrir %s e voltar', async (action, back) => {
   const request = await openCatalog(async () => response({ items: [PART], total: 21 }));
   enterFilter('Nome', 'Filtro');
