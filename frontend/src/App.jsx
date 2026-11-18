@@ -5,6 +5,8 @@ import DiscardChangesDialog from './components/DiscardChangesDialog.jsx';
 import PartRegistrationPage from './features/parts/PartRegistrationPage.jsx';
 import PartCatalogPage from './features/parts/PartCatalogPage.jsx';
 import PartEditPage from './features/parts/PartEditPage.jsx';
+import PartImportPage from './features/parts/PartImportPage.jsx';
+import { readPendingImport } from './features/parts/pendingPartImport.js';
 import VehicleApplicationsPage from './features/parts/VehicleApplicationsPage.jsx';
 import StockEntryPage from './features/stock/StockEntryPage.jsx';
 import StockBalancePage from './features/stock/StockBalancePage.jsx';
@@ -19,7 +21,8 @@ export default function App() {
     const entry = readPendingEntry();
     if (entry) return { page: 'entry', partId: entry.partId };
     const pending = readPendingAssociation();
-    return pending ? { page: 'applications', partId: pending.partId } : { page: 'new' };
+    if (pending) return { page: 'applications', partId: pending.partId };
+    return readPendingImport() ? { page: 'import' } : { page: 'new' };
   });
   const [navigationState, setNavigationState] = useState({ isDirty: false, isLocked: false });
   const [pendingPage, setPendingPage] = useState(null);
@@ -31,6 +34,7 @@ export default function App() {
       applications: 'Aplicações por veículo',
       entry: 'Registrar entrada',
       balance: 'Consultar saldo',
+      import: 'Importar peças',
     }[view.page];
     document.title = `${title} · TSI Peças`;
   }, [view.page]);
@@ -73,6 +77,7 @@ export default function App() {
         onNavigate={navigate}
         isNavigationLocked={
           view.page === 'entry' ||
+          view.page === 'import' ||
           view.page === 'applications' ||
           (view.page === 'new' && navigationState.isLocked)
         }
@@ -86,6 +91,7 @@ export default function App() {
             onSearchStateChange={setCatalogSearch}
             onEdit={openEdit}
             onCreate={openCreate}
+            onImport={() => setView({ page: 'import' })}
             onEntry={(partId) => setView({ page: 'entry', partId })}
             onBalance={(partId) => setView({ page: 'balance', partId })}
             onApplications={(partId) => setView({ page: 'applications', partId })}
@@ -103,6 +109,7 @@ export default function App() {
         {view.page === 'edit' && (
           <PartEditPage key={view.partId} partId={view.partId} onDone={openCatalog} />
         )}
+        {view.page === 'import' && <PartImportPage onDone={openCatalog} />}
       </AppShell>
       <DiscardChangesDialog
         open={pendingPage !== null}

@@ -11,6 +11,7 @@ from app.core.config import Settings
 from app.core.database import create_session_factory
 from app.core.errors import DomainError
 from app.routers.health import router as health_router
+from app.routers.part_imports import router as part_imports_router
 from app.routers.parts import router as parts_router
 from app.routers.stock import router as stock_router
 from app.routers.vehicle_applications import router as vehicle_applications_router
@@ -79,6 +80,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(stock_router)
     app.include_router(health_router)
     app.include_router(parts_router)
+    app.include_router(part_imports_router)
     app.include_router(vehicle_applications_router)
     return app
 

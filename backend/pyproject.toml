@@ -5,7 +5,9 @@ description = "API da TSI Peças"
 requires-python = ">=3.13,<3.14"
 dependencies = [
     "alembic>=1.14,<2",
+    "defusedxml>=0.7.1,<1",
     "fastapi>=0.115,<1",
+    "openpyxl>=3.1.5,<4",
     "pillow>=11,<13",
     "psycopg[binary]>=3.2,<4",
     "pydantic-settings>=2,<3",

@@ -570,3 +570,114 @@ Regressão desta entrega: `.venv/Scripts/python.exe -m pytest -q --cov
 PostgreSQL e cobertura combinada de **96%**. `ruff check .` e
 `ruff format --check .` aprovados. Permanece o aviso de depreciação do TestClient
 já existente. A integração PostgreSQL não foi reexecutada nesta entrega.
+
+## US02 — Importação cadastral por planilha (Refs #28)
+
+Implementação vinculada a RF02 · CP1 · OE1, conforme os critérios fornecidos para
+a US02. Mantém router → service → repository, valida os registros com `PartCreate`
+da US01 e usa uma transação para gravar todo o lote. A implementação da US12 foi
+preservada; a importação agora cobre sua integração de saldo inicial zero.
+
+- `GET /part-imports/template`: baixa `modelo-pecas.xlsx`, com os cinco cabeçalhos
+  previstos e a coluna de códigos formatada como texto.
+- `POST /part-imports`, com `Idempotency-Key` UUID e JSON
+  `{ "filename": "pecas.xlsx", "content": "<arquivo em base64>" }`: retorna 201
+  com `{ "imported_count": 2 }` quando o lote inteiro é confirmado.
+- Erros de validação retornam 422 com `detail.message` e, quando aplicável,
+  `detail.issues`, contendo `row` (linha da planilha, iniciando em 1) e `message`.
+  Reutilizar uma chave confirmada com outros dados retorna 409. Falhas de banco
+  retornam 503 sem detalhes internos: o cliente deve reenviar a mesma tentativa.
+- A migração `0006_part_imports` cria `part_import_requests`. Sua chave única
+  serializa reenvios concorrentes; fingerprint e confirmação são persistidos no
+  mesmo commit das peças. Falhas revertem também essa confirmação. O resultado
+  pode ser recuperado após reinício da API; o arquivo não é armazenado no banco.
+
+Use `uv sync --locked` e `uv run alembic upgrade head` antes de iniciar a API.
+As dependências `openpyxl` e `defusedxml` estão registradas no `uv.lock`.
+A proteção XML segue a [orientação do openpyxl](https://openpyxl.readthedocs.io/en/stable/#security).
+Arquivos não são executados nem extraídos para o sistema de arquivos.
+
+### Critérios e limites da carga
+
+| Critério | Comportamento verificado em `tests/test_part_imports.py` |
+| --- | --- |
+| CA02.1 | Importação em lote; mesmos campos, limites e normalização da US01; zeros e separadores preservados. |
+| CA02.2 / CA02.3 | Conflitos com códigos principais/equivalentes e campos inválidos identificam linhas; nenhuma peça do lote é criada e o catálogo existente permanece intacto. |
+| CA02.5 | Cabeçalhos obrigatórios, colunas extras com dados e cabeçalhos repetidos são reportados; abas e linhas vazias são ignoradas; exige uma aba preenchida com registros. |
+| CA02.6 | Todas as linhas com códigos repetidos após trim são identificadas, inclusive quando uma delas tem outro campo inválido. |
+| CA02.7 / RNF02 | Rollback após falha na segunda gravação, conflito após validação, reenvio após reinício e concorrência real em PostgreSQL. |
+| CA02.8 | Rejeição de arquivo incompatível/corrompido, código numérico, booleano ou fórmula; sem conversão numérica silenciosa. |
+| CA02.9 / CA12.4 | Apenas os cinco campos cadastrais; sem equivalentes/foto e saldo inicial zero consultado pelo endpoint da US12. |
+
+O formato aceito para códigos é o valor textual da célula, mesmo que o editor
+mostre o estilo Geral; números com máscara de zeros continuam sendo números e
+são rejeitados. Fórmulas não são aceitas nos campos importados. A unicidade segue
+a US01, sem inventar normalização de maiúsculas/minúsculas.
+
+Limites técnicos por arquivo: 2 MiB compactados, 32 MiB após descompactação e
+200.000 células na leitura das abas com conteúdo, incluindo espaços entre registros
+e formatação. Abas sem conteúdo são ignoradas antes da expansão de células e do
+limite de dimensões, mesmo quando possuem formatação distante. Os limites de
+tamanho compactado e descompactado continuam valendo para o arquivo inteiro.
+Lotes que excedem esses limites são rejeitados com orientação, sem carga parcial.
+Metadados incorretos de dimensões não podem truncar silenciosamente os registros.
+Esses limites protegem memória/processamento; não alteram os limites dos campos
+nem representam uma regra de negócio aprovada pelo cliente.
+
+### Evidências de desenvolvimento e verificação — 18/11/2026
+
+Os ciclos TDD observaram, antes das implementações correspondentes: rota ausente
+(404), validação de campo sem relatório, colunas/abas sem validação, duplicidades
+não reportadas, formatos/códigos incompatíveis aceitos, reenvio rejeitado (422),
+conflito de gravação sem identificação (503), modelo ausente (404), ausência de
+limite de expansão e truncamento de duas linhas para uma. Após cada correção,
+os testes afetados passaram. Os testes de rollback e de concorrência real
+complementaram a cobertura de comportamento já implementado; não são apresentados
+como novos ciclos vermelho/verde.
+
+- `.venv/Scripts/python.exe -m pytest -q --cov --cov-report=term-missing`, com
+  `US03_TEST_DATABASE_URL` apontando para PostgreSQL 17 descartável local:
+  **209 aprovados**, sem skips, incluindo **36 testes da US02**; cobertura combinada
+  **96%**. O fixture cria e remove um schema exclusivo por teste.
+- `ruff check .` e `ruff format --check .`: aprovados.
+- Permanece o aviso preexistente de depreciação do TestClient/httpx.
+- A UI foi verificada contra outra API temporária no mesmo PostgreSQL isolado:
+  rejeição de duplicidades, importação válida de duas peças e consulta de saldo
+  zero pela US12. O banco da aplicação em uso não recebeu dados de teste.
+
+HTTPS/TLS em homologação, matriz completa de navegadores, revisão por outro
+integrante via PR e validação com Antônio Marcos permanecem pendentes. Estas
+evidências não declaram a DoD concluída nem substituem aceite do cliente.
+
+### Correção do CA02.5 — Abas vazias formatadas
+
+A revisão reproduziu uma rejeição indevida: uma aba sem valores, apenas com a
+célula `XFD20` formatada, fazia um arquivo de aproximadamente 5,4 KB atingir o
+limite de dimensões e retornar 422. Removendo essa aba, o mesmo cadastro era aceito.
+
+O ciclo TDD adicionou três cenários, com duas abas vazias formatadas em `XFD20`,
+`A200001` ou `XFD1048576`. Todos falharam com 422 antes da correção e passaram
+após o ajuste. O leitor agora inspeciona o XML de cada aba com `defusedxml`, sem
+expandir posições vazias, antes de aplicar os limites de células. O acesso à fonte
+XML do leitor openpyxl fica isolado em `_worksheet_has_content`.
+
+Quatro testes complementares garantem que zero, booleano, fórmula e espaço em
+outra aba não sejam confundidos com ausência de conteúdo. Os testes existentes
+continuam protegendo os limites de expansão/dimensões de abas preenchidas, erros
+por linha, idempotência e saldo inicial zero. Nenhum arquivo específico da US12
+foi alterado nesta correção.
+
+Verificação da correção em 18/11/2026:
+
+- `.venv/Scripts/python.exe -m pytest -q --cov --cov-report=term-missing`, com
+  `US03_TEST_DATABASE_URL` apontando para PostgreSQL 17 local descartável:
+  **216 testes aprovados**, sem skips, incluindo **43 da US02**; cobertura combinada
+  **96%**. Permanece somente o aviso preexistente do TestClient/httpx.
+- `ruff check .` e `ruff format --check .`: aprovados.
+- O próprio arquivo usado na revisão (`aba-vazia-formatada.xlsx`) foi reenviado
+  a uma API com SQLite temporário: retornou **201**, cadastrou uma peça e a consulta
+  da US12 confirmou **saldo zero**. Os bancos de teste foram encerrados após o uso.
+- Frontend com Node 22.23.4, `node node_modules/vitest/vitest.mjs run
+  --maxWorkers=1 --testTimeout=60000`: **89 testes aprovados em 10 arquivos**,
+  incluindo os **13 da US12**. Nenhum arquivo frontend precisou ser alterado para
+  esta correção.

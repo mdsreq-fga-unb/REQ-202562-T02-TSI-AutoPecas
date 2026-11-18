@@ -141,17 +141,19 @@ export default function AppShell({
               Catálogo
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {page === 'balance'
-                ? 'Consulta de saldo'
-                : page === 'entry'
-                  ? 'Entrada de estoque'
-                  : page === 'applications'
-                    ? 'Aplicações por veículo'
-                    : page === 'edit'
-                      ? 'Editar peça'
-                      : page === 'catalog'
-                        ? 'Peças cadastradas'
-                        : 'Cadastro de peça'}
+              {page === 'import'
+                ? 'Importação de peças'
+                : page === 'balance'
+                  ? 'Consulta de saldo'
+                  : page === 'entry'
+                    ? 'Entrada de estoque'
+                    : page === 'applications'
+                      ? 'Aplicações por veículo'
+                      : page === 'edit'
+                        ? 'Editar peça'
+                        : page === 'catalog'
+                          ? 'Peças cadastradas'
+                          : 'Cadastro de peça'}
             </Typography>
           </Breadcrumbs>
           <Stack direction="row" spacing={1} sx={{ ml: 'auto', alignItems: 'center' }}>
@@ -163,17 +165,19 @@ export default function AppShell({
               <Box component="span" sx={{ color: 'primary.main', mr: 1 }}>
                 ●
               </Box>
-              {page === 'balance'
-                ? 'Consulta de saldo'
-                : page === 'entry'
-                  ? 'Entrada de estoque'
-                  : page === 'applications'
-                    ? 'Compatibilidade de veículos'
-                    : page === 'edit'
-                      ? 'Edição manual'
-                      : page === 'catalog'
-                        ? 'Gestão de catálogo'
-                        : 'Cadastro manual'}
+              {page === 'import'
+                ? 'Importação de planilha'
+                : page === 'balance'
+                  ? 'Consulta de saldo'
+                  : page === 'entry'
+                    ? 'Entrada de estoque'
+                    : page === 'applications'
+                      ? 'Compatibilidade de veículos'
+                      : page === 'edit'
+                        ? 'Edição manual'
+                        : page === 'catalog'
+                          ? 'Gestão de catálogo'
+                          : 'Cadastro manual'}
             </Typography>
             <Tooltip title={themeLabel}>
               <IconButton aria-label={themeLabel} onClick={onToggleTheme}>

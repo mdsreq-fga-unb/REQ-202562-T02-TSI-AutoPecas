@@ -10,6 +10,7 @@ import PartStatusDialog from './PartStatusDialog.jsx';
 export default function PartCatalogPage({
   onEdit,
   onCreate,
+  onImport,
   onApplications,
   onEntry,
   onBalance,
@@ -65,9 +66,14 @@ export default function PartCatalogPage({
             Selecione uma peça para atualizar seu cadastro.
           </Typography>
         </Box>
-        <Button variant="contained" onClick={onCreate} sx={{ alignSelf: 'flex-start' }}>
-          Cadastrar peça
-        </Button>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ alignSelf: 'flex-start' }}>
+          <Button variant="outlined" onClick={onImport}>
+            Importar planilha
+          </Button>
+          <Button variant="contained" onClick={onCreate}>
+            Cadastrar peça
+          </Button>
+        </Stack>
       </Stack>
       <PartSearchForm
         draft={draft}

@@ -636,3 +636,72 @@ global. Com o executável temporário no início do `PATH` do processo:
   com Node 22 e um worker passou em 185,60 s, sem alterar assertions nem a
   configuração permanente do Vitest. A execução intermediária com um worker em
   Node 24 foi interrompida sem resultado conclusivo.
+
+## US02 — Importar peças por planilha (Refs #28)
+
+Acesse **Catálogo → Importar planilha**. A tela usa MUI, componentes responsivos
+e o mesmo tema da aplicação. `PartImportPage` apresenta instruções, modelo XLSX,
+seleção do arquivo, resultado e erros por linha. `usePartImport` controla o fluxo;
+chamadas HTTP ficam em `services/partImports.js`.
+
+Antes do envio, o arquivo e a chave da tentativa são preservados no navegador,
+com armazenamento separado por URL da API. Enquanto uma requisição está em curso
+ou sem confirmação, a seleção e a saída ficam bloqueadas. Depois de recarregar,
+a tentativa é recuperada sem envio automático; **Tentar novamente** reutiliza
+exatamente o arquivo e a chave originais. Uma rejeição definitiva libera a seleção
+para correção; uma confirmação remove a tentativa pendente.
+
+Se o navegador bloquear o armazenamento ou não tiver espaço, a solicitação não é
+enviada. Os limites de arquivo e células são apresentados antes do envio; o servidor
+repete a validação. O modelo importa somente os campos cadastrais previstos, com
+saldo inicial zero. O fluxo e os arquivos específicos da US12 foram preservados.
+
+### Roteiro manual
+
+1. Atualize as dependências e aplique a migração da API conforme o README do backend,
+   ou reconstrua o ambiente local com `docker compose up --build -d`. Acesse
+   `http://localhost:5173`, abra o catálogo e escolha **Importar planilha**.
+2. Baixe o modelo. Na primeira aba, preencha duas linhas com códigos novos como
+   `0001-AB` e `0002-AB`, mantendo as células como texto. Preencha Nome e Categoria;
+   teste também Descrição técnica e Localização física. Importe e confira a
+   confirmação, os dados no catálogo e **Consultar saldo → 0 unidades**.
+3. Em outro arquivo, repita um código com espaços nas extremidades ou use um
+   código principal/equivalente já cadastrado. O lote inteiro deve ser rejeitado,
+   com as linhas envolvidas, sem alterar o cadastro existente.
+4. Teste Nome vazio, cabeçalho Categoria ausente, coluna Saldo preenchida e duas
+   abas com dados. Cada caso deve rejeitar o lote. Uma aba totalmente vazia ou
+   uma coluna extra sem dados não deve impedir uma planilha válida.
+5. Teste arquivo `.csv` e código numérico, inclusive com máscara de zeros.
+   Eles devem ser rejeitados. O código textual `0001-AB` deve preservar seus zeros.
+6. Com outro lote válido, use o modo offline das ferramentas do navegador e envie.
+   Não deve aparecer sucesso; o arquivo deve permanecer bloqueado para alteração.
+   Recarregue, restaure a conexão e clique em **Tentar novamente**. A operação deve
+   ser confirmada uma única vez. Para simular perda da resposta após commit, use
+   os testes automatizados/API com a mesma chave de idempotência.
+7. Confira a tela em 360 px, nos temas claro e escuro, e navegue pelo teclado.
+   A confirmação e os erros devem ser legíveis sem rolagem horizontal.
+
+### Evidências — 18/11/2026
+
+Os testes em `src/partImport.test.jsx` foram escritos em ciclos antes dos fluxos
+de acesso/importação, relatório de linhas, validação de arquivo e recuperação de
+tentativa. A revisão também reproduziu e corrigiu a perda do estado pendente em
+uma resposta HTTP 503 com corpo JSON `null`. Os casos de duplo envio e demais
+respostas incertas complementam a proteção existente.
+
+- Node **22.23.4**, `node node_modules/vitest/vitest.mjs run --coverage
+--maxWorkers=1 --testTimeout=60000`: **89 testes aprovados em 10 arquivos**,
+  incluindo **11 da US02** e **13 da US12**; cobertura de linhas **93,75%** e de
+  ramificações **92,93%**. Nenhuma assertion ou configuração permanente foi relaxada.
+- `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`: aprovados.
+- Navegador: lote inválido rejeitado com linhas 2/3; lote válido confirmou duas
+  peças no catálogo; consulta da US12 retornou zero para a peça importada. Layout
+  conferido em desktop, 360 e 414 px, temas claro/escuro, sem overflow horizontal;
+  botões principais de 44 px. Sem erros/avisos de console no fluxo verificado.
+
+Os testes automatizados isolam a rede. A conferência integrada utilizou API e
+PostgreSQL locais descartáveis, sem alterar o banco em uso. Permanecem pendentes
+a matriz de duas versões de Chrome/Firefox/Edge/Safari, auditoria completa de
+acessibilidade, homologação HTTPS, revisão humana via PR e validação do cliente.
