@@ -9,16 +9,19 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { getPart, listVehicleApplications } from '../../services/parts.js';
-import DiscardChangesDialog from '../../components/DiscardChangesDialog.jsx';
-import PartStatusBadge from './PartStatusBadge.jsx';
+import { listVehicleApplications } from '../../services/parts.js';
 import useVehicleAssociation from './useVehicleAssociation.js';
+import useVehicleApplicationChange from './useVehicleApplicationChange.js';
+import VehicleApplicationDialog from './VehicleApplicationDialog.jsx';
 
-export default function VehicleApplicationsPage({ partId, onDone }) {
+export default function VehicleApplicationsSection({ partId, onNavigationStateChange }) {
   const [state, setState] = useState({ status: 'loading', items: [], total: 0 });
   const [offset, setOffset] = useState(0);
   const [retry, setRetry] = useState(0);
-  const [discardOpen, setDiscardOpen] = useState(false);
+  const change = useVehicleApplicationChange(partId, () => {
+    setState((current) => ({ ...current, status: 'loading' }));
+    setRetry((current) => current + 1);
+  });
   const association = useVehicleAssociation(partId, (application) => {
     if (state.items.some((item) => item.id === application.id)) return;
     if (offset + state.items.length === state.total && state.items.length < 20) {
@@ -35,17 +38,14 @@ export default function VehicleApplicationsPage({ partId, onDone }) {
   });
   useEffect(() => {
     const controller = new AbortController();
-    Promise.all([
-      getPart(partId, { signal: controller.signal }),
-      listVehicleApplications(partId, offset, { signal: controller.signal }),
-    ]).then(
-      ([part, data]) => {
+    listVehicleApplications(partId, offset, { signal: controller.signal }).then(
+      (data) => {
         if (controller.signal.aborted) return;
         if (offset > 0 && data.items.length === 0 && data.total > 0) {
           setOffset(Math.floor((data.total - 1) / 20) * 20);
           return;
         }
-        setState({ status: 'ready', part, ...data });
+        setState({ status: 'ready', ...data });
       },
       (error) => {
         if (!controller.signal.aborted)
@@ -58,30 +58,26 @@ export default function VehicleApplicationsPage({ partId, onDone }) {
     setState((current) => ({ ...current, status: 'loading' }));
     setOffset(next);
   }
-  function goBack() {
-    if (association.isLocked) return;
-    if (association.isDirty) setDiscardOpen(true);
-    else onDone();
-  }
+  const isLocked = association.isLocked || change.isLocked;
+  const isDirty = association.isDirty;
+  useEffect(() => {
+    onNavigationStateChange({ isLocked, isDirty });
+  }, [isLocked, isDirty, onNavigationStateChange]);
   const canSubmit = state.status === 'ready' && !association.isSaving;
   return (
-    <Stack spacing={3}>
+    <Stack component="section" aria-labelledby="part-applications-title" spacing={2}>
       <Box>
-        <Typography variant="h1" sx={{ fontSize: { xs: 36, sm: 48 } }}>
+        <Typography id="part-applications-title" variant="h2" sx={{ fontSize: 20 }}>
           Aplicações por veículo
         </Typography>
         <Typography color="text.secondary" sx={{ mt: 1 }}>
           Informe os veículos compatíveis com esta peça. Cadastre uma associação para cada ano.
         </Typography>
       </Box>
-      {state.part && (
-        <Paper variant="outlined" sx={{ p: 3, overflowWrap: 'anywhere' }}>
-          <Typography variant="overline">{state.part.manufacturer_code}</Typography>
-          <Typography variant="h2" sx={{ mb: 1 }}>
-            {state.part.name}
-          </Typography>
-          <PartStatusBadge status={state.part.status} />
-        </Paper>
+      {change.notice && (
+        <Alert severity="success" role="status">
+          {change.notice}
+        </Alert>
       )}
       {association.success && (
         <Alert severity="success" role="status">
@@ -119,7 +115,7 @@ export default function VehicleApplicationsPage({ partId, onDone }) {
         variant="outlined"
         sx={{ p: { xs: 2, sm: 3 } }}
       >
-        <Typography variant="h2" sx={{ mb: 3 }}>
+        <Typography variant="h2" component="h3" sx={{ mb: 3 }}>
           Associar veículo
         </Typography>
         <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
@@ -157,7 +153,7 @@ export default function VehicleApplicationsPage({ partId, onDone }) {
         </Button>
       </Paper>
       <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
-        <Typography variant="h2" sx={{ mb: 2 }}>
+        <Typography variant="h2" component="h3" sx={{ mb: 2 }}>
           Aplicações cadastradas
         </Typography>
         {state.status === 'loading' && <CircularProgress aria-label="Carregando aplicações" />}
@@ -166,7 +162,7 @@ export default function VehicleApplicationsPage({ partId, onDone }) {
             {state.items.length ? (
               <Stack component="ul" spacing={1} sx={{ p: 0, m: 0, listStyle: 'none' }}>
                 {state.items.map((item) => (
-                  <Typography
+                  <Stack
                     component="li"
                     key={item.id}
                     sx={{
@@ -176,8 +172,27 @@ export default function VehicleApplicationsPage({ partId, onDone }) {
                       overflowWrap: 'anywhere',
                     }}
                   >
-                    {item.brand} · {item.model} · {item.year}
-                  </Typography>
+                    <Typography>
+                      {item.brand} · {item.model} · {item.year}
+                    </Typography>
+                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mt: 1 }}>
+                      <Button
+                        aria-label={`Editar aplicação ${item.brand} ${item.model} ${item.year}`}
+                        disabled={association.isLocked || association.isDirty}
+                        onClick={() => change.startEdit(item)}
+                      >
+                        Editar
+                      </Button>
+                      <Button
+                        color="error"
+                        aria-label={`Remover aplicação ${item.brand} ${item.model} ${item.year}`}
+                        disabled={association.isLocked || association.isDirty}
+                        onClick={() => change.startRemove(item)}
+                      >
+                        Remover
+                      </Button>
+                    </Stack>
+                  </Stack>
                 ))}
               </Stack>
             ) : (
@@ -215,14 +230,7 @@ export default function VehicleApplicationsPage({ partId, onDone }) {
           </>
         )}
       </Paper>
-      <Button onClick={goBack} disabled={association.isLocked} sx={{ alignSelf: 'flex-start' }}>
-        Voltar ao catálogo
-      </Button>
-      <DiscardChangesDialog
-        open={discardOpen}
-        onContinue={() => setDiscardOpen(false)}
-        onDiscard={onDone}
-      />
+      <VehicleApplicationDialog change={change} />
     </Stack>
   );
 }

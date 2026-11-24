@@ -21,13 +21,14 @@ async function openBalance(
 ) {
   const request = vi.fn(async (url) => {
     if (url.includes('/stock-balance')) return balance();
+    if (url.includes('/vehicle-applications')) return response({ items: [], total: 0 });
     if (url.includes('?')) return response({ items: [part], total: 1 });
     return response(part);
   });
   vi.stubGlobal('fetch', request);
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo', exact: true }));
-  fireEvent.click(await screen.findByRole('button', { name: 'Consultar saldo de Filtro' }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro' }));
   return request;
 }
 
@@ -45,14 +46,12 @@ test('apresenta zero explicitamente sem indicar unidades disponíveis', async ()
   expect(screen.getByText('Nenhuma unidade disponível.')).toBeInTheDocument();
 });
 
-test('permite consultar peça inativa sem reativar ou oferecer novas operações', async () => {
+test('permite consultar peça inativa e mantém bloqueada a entrada', async () => {
   const request = await openBalance(undefined, { ...PART, status: 'inactive' });
   await screen.findByText('Saldo atual: 5 unidades');
   expect(screen.getByText('Inativo')).toBeInTheDocument();
   expect(request.mock.calls.every(([, options]) => options.method === 'GET')).toBe(true);
-  expect(
-    screen.queryByRole('button', { name: /Confirmar entrada|Ativar peça/ }),
-  ).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Registrar entrada de Filtro' })).toBeDisabled();
 });
 
 test('atualiza o saldo por nova consulta sem exibir o anterior durante o carregamento', async () => {
@@ -117,7 +116,7 @@ test('permite sair durante consulta lenta, aborta e ignora resposta atrasada', a
         finish = resolve;
       }),
   );
-  expect(screen.getByRole('progressbar', { name: 'Consultando saldo' })).toBeInTheDocument();
+  expect(await screen.findByRole('progressbar', { name: 'Consultando saldo' })).toBeInTheDocument();
   const [, options] = request.mock.calls.find(([url]) => url.includes('/stock-balance'));
   fireEvent.click(screen.getByRole('button', { name: 'Voltar ao catálogo' }));
   expect(options.signal.aborted).toBe(true);

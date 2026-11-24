@@ -1,7 +1,7 @@
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, expect, test, vi } from 'vitest';
 import App from './App.jsx';
-import VehicleApplicationsPage from './features/parts/VehicleApplicationsPage.jsx';
+import VehicleApplicationsSection from './features/parts/VehicleApplicationsSection.jsx';
 
 const PART = {
   id: 'part-1',
@@ -23,6 +23,7 @@ async function openApplications(
 ) {
   const request = vi.fn(async (url, options) => {
     if (options?.method === 'POST') return send(url, options);
+    if (url.includes('/stock-balance')) return response({ part_id: PART.id, stock_balance: 5 });
     if (url.includes('vehicle-applications')) return response({ items: [], total: 0 });
     if (url.includes('?offset=')) return response({ items: [PART], total: 1 });
     return response(PART);
@@ -30,7 +31,7 @@ async function openApplications(
   vi.stubGlobal('fetch', request);
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo' }));
-  fireEvent.click(await screen.findByRole('button', { name: 'Aplicações de Filtro' }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro' }));
   await screen.findByRole('heading', { name: 'Aplicações por veículo' });
   await waitFor(() =>
     expect(screen.getByRole('button', { name: 'Associar veículo' })).toBeEnabled(),
@@ -176,11 +177,10 @@ test('não envia quando o armazenamento da tentativa está indisponível', async
   }
 });
 
-test('protege o formulário ao sair e mantém a navegação lateral bloqueada', async () => {
+test('protege o rascunho ao trocar de seção ou voltar ao catálogo', async () => {
   await openApplications();
   fillApplication();
-  expect(screen.getByRole('button', { name: 'Catálogo' })).toBeDisabled();
-  fireEvent.click(screen.getByRole('button', { name: 'Voltar ao catálogo' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Editar Filtro' }));
   expect(screen.getByRole('dialog', { name: 'Descartar alterações?' })).toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: 'Continuar editando' }));
   expect(await screen.findByRole('textbox', { name: /^Modelo/ })).toHaveValue('Uno');
@@ -192,12 +192,11 @@ test('protege o formulário ao sair e mantém a navegação lateral bloqueada', 
 test('mostra carregamento, impede envio prematuro e aborta consultas ao sair', async () => {
   const request = vi.fn(() => new Promise(() => {}));
   vi.stubGlobal('fetch', request);
-  const done = vi.fn();
-  const { unmount } = render(<VehicleApplicationsPage partId={PART.id} onDone={done} />);
+  const { unmount } = render(
+    <VehicleApplicationsSection partId={PART.id} onNavigationStateChange={vi.fn()} />,
+  );
   expect(screen.getByRole('progressbar', { name: 'Carregando aplicações' })).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'Associar veículo' })).toBeDisabled();
-  fireEvent.click(screen.getByRole('button', { name: 'Voltar ao catálogo' }));
-  expect(done).toHaveBeenCalledOnce();
   unmount();
   expect(request.mock.calls.every(([, options]) => options.signal.aborted)).toBe(true);
 });
@@ -211,7 +210,7 @@ test('recupera falha ao carregar e informa lista vazia', async () => {
       return response(url.includes('vehicle-applications') ? { items: [], total: 0 } : PART);
     }),
   );
-  render(<VehicleApplicationsPage partId={PART.id} onDone={vi.fn()} />);
+  render(<VehicleApplicationsSection partId={PART.id} onNavigationStateChange={vi.fn()} />);
   expect(await screen.findByText('Consulta indisponível.')).toBeInTheDocument();
   offline = false;
   fireEvent.click(screen.getByRole('button', { name: 'Tentar carregar novamente' }));
@@ -237,7 +236,7 @@ test('pagina aplicações preservando o formulário e mostra a nova associação
     return response({ items: items.slice(offset, offset + 20), total: items.length });
   });
   vi.stubGlobal('fetch', request);
-  render(<VehicleApplicationsPage partId={PART.id} onDone={vi.fn()} />);
+  render(<VehicleApplicationsSection partId={PART.id} onNavigationStateChange={vi.fn()} />);
   await screen.findByText('Fiat · Uno · 2000');
   fillApplication();
   fireEvent.change(screen.getByRole('textbox', { name: /^Ano/ }), { target: { value: '2021' } });

@@ -12,7 +12,11 @@ pnpm dev
 No PowerShell, use `Copy-Item .env.example .env` para copiar o exemplo.
 O front-end atende em <http://localhost:5173>. Execute também a API para conferir
 a conexão. A página inicial implementa o cadastro manual da US01 (issue #27).
-O menu Catálogo permite selecionar peças e acessar a edição da US05 (issue #31).
+No **Catálogo**, use **Ver peça** para abrir o cadastro, as aplicações por veículo
+e o estoque da peça. As ações ficam junto aos dados que alteram. Os formulários
+de edição e entrada voltam à mesma peça. **Voltar ao catálogo** preserva os
+filtros e a página da busca. Uma associação preenchida pede confirmação antes
+de sair, e tentativas pendentes são recuperadas ao recarregar.
 
 ```bash
 pnpm test
@@ -29,6 +33,16 @@ definido; revise as lacunas dos comportamentos exigidos pela história.
 As chamadas HTTP ficam em `src/services/`. `VITE_API_BASE_URL` indica o endereço
 público da API, acessível pelo navegador. Variáveis com prefixo `VITE_` são públicas;
 credenciais do PostgreSQL/Supabase ficam exclusivamente no back-end.
+
+## Estado atual do incremento
+
+O catálogo oferece edição de peças, aplicações por veículo, busca, entrada de
+estoque e consulta de saldo, além da importação XLSX. Na tela de aplicações, a
+US05 permite **Editar** ou **Remover** uma associação existente. Saídas, ajustes,
+vendas e cancelamentos continuam previstos para os próximos incrementos.
+
+Os registros datados abaixo são históricos das respectivas etapas. O estado e as
+verificações da complementação estão em [edição e remoção de aplicações](#edição-e-remoção-de-aplicações--us05-refs-31).
 
 ## Arquitetura e identidade visual
 
@@ -263,18 +277,17 @@ inativa. A inativação preserva o cadastro, o saldo e os registros existentes,
 mas impede novas movimentações de estoque e vendas enquanto a peça estiver
 inativa. A reativação libera novamente essas operações.
 
-A interface atual implementa a alternância de status, o indicador e a edição
-cadastral de peças ativas e inativas. Peças novas e existentes começam ativas.
-Como os fluxos de estoque e vendas ainda não foram implementados, seus bloqueios
-serão integrados quando esses fluxos forem adicionados, com validação obrigatória
-na API e apresentação do motivo na interface. A preservação do saldo será testada
-quando o módulo de estoque existir.
+A interface implementa a alternância de status, o indicador e a edição cadastral de
+peças ativas e inativas. A busca mantém as inativas visíveis. A US08 rejeita novas
+entradas para elas, e a US12 permite consultar o saldo preservado. Os bloqueios de
+saídas, ajustes e vendas serão integrados com as US09, US10 e US15, com validação
+obrigatória na API e apresentação do motivo na interface.
 
 Alinhamento de escopo registrado em 12/11/2026. Os critérios de alternância estão
 na [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32),
 cujo texto de refinamento ainda aguarda atualização para refletir essa regra.
 
-O catálogo oferece Ativar/Inativar com confirmação MUI. `PartStatusBadge` é
+A seção **Dados cadastrais** oferece **Ativar peça** e **Inativar peça** com confirmação MUI. `PartStatusBadge` é
 compartilhado pelo catálogo e pela edição. `usePartStatusChange` envia apenas o
 status desejado no PATCH existente, com uma chave idempotente por tentativa.
 Durante o envio ou em resultado incerto, o diálogo impede fechamento e permite
@@ -407,13 +420,13 @@ O Dockerfile é destinado ao ambiente de desenvolvimento do Compose.
 
 ## Aplicações por veículo — US03
 
-O catálogo oferece a ação **Aplicações** para a peça selecionada. A tela mantém
+Ao abrir **Ver peça** no catálogo, a seção **Aplicações por veículo** mantém
 MUI, a logo e os temas existentes, identifica a peça e permite associar marca,
 modelo e um único ano de quatro dígitos. A lista apresenta 20 aplicações por
-página; uma nova associação preserva as anteriores. Não há edição ou remoção de
-aplicações neste incremento.
+página; uma nova associação preserva as anteriores. A edição e a remoção das
+aplicações são atendidas pela US05 na mesma tela.
 
-`VehicleApplicationsPage` apresenta formulário, paginação e estados de consulta;
+`VehicleApplicationsSection` apresenta formulário, paginação e estados de consulta;
 `useVehicleAssociation` controla validação/envio e `pendingVehicleAssociation`
 preserva tentativas. As chamadas HTTP permanecem em `src/services/parts.js`.
 O ano segue como string no JSON para preservar sua representação exata.
@@ -541,7 +554,7 @@ marcada concluída. Nenhum commit, push ou alteração da issue foi realizado.
 
 ## Entrada de estoque — US08 (Refs #33)
 
-No Catálogo, escolha **Registrar entrada** em uma peça ativa. Informe quantidade,
+Abra uma peça ativa no catálogo e escolha **Registrar entrada** na seção **Estoque**. Informe quantidade,
 data e custo unitário, inclusive zero. A interface usa MUI, a logo e o tema
 compartilhados. `features/stock/StockEntryPage.jsx` apresenta o formulário;
 `useStockEntry.js` controla estado e submissão; `services/parts.js` realiza HTTP.
@@ -581,12 +594,11 @@ foram aprovados. Os tempos dos testes foram maiores por pressão de memória loc
 
 ## Consulta de saldo — US12 (Refs #36)
 
-No catálogo, **Consultar saldo** abre uma tela própria para qualquer peça, inclusive
-inativa. A tela MUI reutiliza tema, navegação e identificação de status existentes;
-exibe código, nome e quantidade física confirmada pela API. Saldo zero recebe a
-mensagem **Nenhuma unidade disponível**. A consulta não oferece ações de escrita.
+A seção **Estoque** na página da peça exibe a quantidade física confirmada pela API,
+inclusive para peças inativas. Saldo zero recebe a mensagem **Nenhuma unidade disponível**.
+O botão de entrada abre o formulário da US08 e fica desabilitado para peças inativas.
 
-**Atualizar saldo** realiza novas consultas à peça e ao saldo. Durante o carregamento
+**Atualizar saldo** consulta novamente o saldo da peça aberta. Durante o carregamento
 ou após uma falha, o valor anterior deixa de ser apresentado como saldo atual. A
 ação **Tentar novamente** permite recuperar a consulta. Respostas sem quantidade
 inteira confirmada ou pertencentes a outra peça são rejeitadas pelo serviço HTTP;
@@ -594,7 +606,7 @@ o dado desconhecido nunca é convertido em zero. A requisição de saldo usa
 `cache: 'no-store'`. Sair durante o carregamento aborta as consultas e ignora
 respostas atrasadas. Voltar ao catálogo preserva filtros e página.
 
-`StockBalancePage` cuida da apresentação, `useStockBalance` do estado e cancelamento,
+`StockBalancePanel` cuida da apresentação, `useStockBalance` do estado e cancelamento,
 e `services/parts.js` do contrato HTTP. Não foram adicionadas dependências.
 
 ### Evidências — 18/11/2026
@@ -664,7 +676,7 @@ saldo inicial zero. O fluxo e os arquivos específicos da US12 foram preservados
 2. Baixe o modelo. Na primeira aba, preencha duas linhas com códigos novos como
    `0001-AB` e `0002-AB`, mantendo as células como texto. Preencha Nome e Categoria;
    teste também Descrição técnica e Localização física. Importe e confira a
-   confirmação, os dados no catálogo e **Consultar saldo → 0 unidades**.
+   confirmação, os dados no catálogo e **Ver peça → Estoque → 0 unidades**.
 3. Em outro arquivo, repita um código com espaços nas extremidades ou use um
    código principal/equivalente já cadastrado. O lote inteiro deve ser rejeitado,
    com as linhas envolvidas, sem alterar o cadastro existente.
@@ -705,3 +717,59 @@ Os testes automatizados isolam a rede. A conferência integrada utilizou API e
 PostgreSQL locais descartáveis, sem alterar o banco em uso. Permanecem pendentes
 a matriz de duas versões de Chrome/Firefox/Edge/Safari, auditoria completa de
 acessibilidade, homologação HTTPS, revisão humana via PR e validação do cliente.
+
+## Edição e remoção de aplicações — US05 (Refs #31)
+
+No **Catálogo**, abra **Ver peça** e use **Editar** ou **Remover** no vínculo desejado,
+na seção **Aplicações por veículo**. A edição permite corrigir marca, modelo e um único ano de quatro dígitos;
+a remoção exige confirmação e preserva o cadastro e as demais aplicações. Peças
+inativas também permitem essas correções cadastrais.
+
+`VehicleApplicationDialog` mantém os componentes MUI, temas e navegação existentes.
+`useVehicleApplicationChange` controla validação, confirmação e estados de envio.
+O serviço HTTP confirma a identidade da peça e da aplicação na resposta, sem
+apresentar uma resposta vazia ou divergente como sucesso.
+
+Antes de enviar, a tentativa é preservada em armazenamento separado por URL da API.
+Após resposta incerta, os dados e a saída permanecem bloqueados; recarregar abre a
+mesma operação, sem reenvio automático. **Tentar novamente** utiliza o mesmo corpo,
+alvo e chave. Se não for possível preservar os dados, nenhuma nova requisição é
+enviada. Respostas definitivas liberam o fluxo; sucesso atualiza a lista e a
+paginação, inclusive ao remover o último item da última página.
+
+### Desenvolvimento com TDD
+
+Os testes da interface falharam primeiro pela ausência das ações de edição e de
+remoção. Em seguida, os testes de recuperação após recarga falharam pela perda do
+diálogo e da tentativa. Por fim, respostas 503 com JSON nulo e respostas 200 vazias
+ou de outra aplicação evidenciaram a necessidade de manter a confirmação pendente.
+Cada grupo passou depois da implementação correspondente.
+
+Os testes complementares cobrem desistência da remoção, validação dos campos e do
+ano, conflitos de duplicidade, armazenamento indisponível, bloqueio de envio duplo
+e retorno à página anterior após remover o último vínculo. Os testes isolam a rede;
+a integração e a inspeção visual são registradas separadamente.
+
+### Verificação local — 23/11/2026
+
+- Node 22.23.4, `node node_modules/vitest/vitest.mjs run --coverage --pool=threads
+--maxWorkers=1 --testTimeout=60000`: **101 testes aprovados em 11 arquivos**, com
+  **12 novos cenários**; cobertura de linhas **94,54%** e de ramificações **93,44%**.
+  O pool de threads foi usado somente na execução local, sem alterar a configuração
+  da CI. Após o ajuste de contraste, os **14 testes** de aplicações/tema passaram.
+- ESLint, Prettier e build de produção: aprovados.
+- Edge 158, com API e PostgreSQL descartáveis: edição isolada, cancelamento e
+  confirmação de remoção, preservação de saldo e recuperação após recarga.
+  A resposta foi interrompida após a gravação real; a tentativa recuperada não foi
+  reenviada automaticamente e confirmou o resultado com a mesma chave e corpo.
+- Diálogo em **360, 390 e 414 px**, temas claro/escuro: sem rolagem horizontal,
+  controles com ao menos **44 × 44 px** e sem erros JavaScript no fluxo.
+- A inspeção detectou contraste insuficiente no tema escuro. A cor de texto foi
+  ajustada e o estilo vermelho escuro dos botões preenchidos passou a ser aplicado
+  pelo seletor atual do componente. A nova execução do axe não detectou violações
+  nas regras WCAG A/AA avaliadas; restaram verificações manuais indicadas pelo
+  próprio auditor para foco em conteúdo oculto e alguns contrastes.
+
+A inspeção automatizada não equivale a uma auditoria completa de acessibilidade.
+Permanecem pendentes a matriz completa de navegadores, homologação HTTPS, revisão
+humana via PR e validação do cliente; nenhuma aprovação foi registrada por ferramenta.

@@ -7,11 +7,11 @@ import PartCatalogPage from './features/parts/PartCatalogPage.jsx';
 import PartEditPage from './features/parts/PartEditPage.jsx';
 import PartImportPage from './features/parts/PartImportPage.jsx';
 import { readPendingImport } from './features/parts/pendingPartImport.js';
-import VehicleApplicationsPage from './features/parts/VehicleApplicationsPage.jsx';
+import PartDetailsPage from './features/parts/PartDetailsPage.jsx';
 import StockEntryPage from './features/stock/StockEntryPage.jsx';
-import StockBalancePage from './features/stock/StockBalancePage.jsx';
 import { readPendingEntry } from './features/stock/pendingStockEntry.js';
 import { readPendingAssociation } from './features/parts/pendingVehicleAssociation.js';
+import { readPendingVehicleChange } from './features/parts/pendingVehicleApplicationChange.js';
 import { createCatalogSearchState } from './features/parts/partSearchState.js';
 import { buildTheme } from './theme/theme.js';
 
@@ -20,20 +20,22 @@ export default function App() {
   const [view, setView] = useState(() => {
     const entry = readPendingEntry();
     if (entry) return { page: 'entry', partId: entry.partId };
+    const change = readPendingVehicleChange();
+    if (change) return { page: 'details', partId: change.partId };
     const pending = readPendingAssociation();
-    if (pending) return { page: 'applications', partId: pending.partId };
+    if (pending) return { page: 'details', partId: pending.partId };
     return readPendingImport() ? { page: 'import' } : { page: 'new' };
   });
   const [navigationState, setNavigationState] = useState({ isDirty: false, isLocked: false });
-  const [pendingPage, setPendingPage] = useState(null);
+  const [detailsNavigation, setDetailsNavigation] = useState({ isDirty: false, isLocked: false });
+  const [pendingView, setPendingView] = useState(null);
   useEffect(() => {
     const title = {
       new: 'Nova peça',
       catalog: 'Catálogo',
       edit: 'Editar peça',
-      applications: 'Aplicações por veículo',
+      details: 'Detalhes da peça',
       entry: 'Registrar entrada',
-      balance: 'Consultar saldo',
       import: 'Importar peças',
     }[view.page];
     document.title = `${title} · TSI Peças`;
@@ -41,14 +43,20 @@ export default function App() {
   const openCatalog = () => setView({ page: 'catalog' });
   const openCreate = () => setView({ page: 'new' });
   const openEdit = (partId) => setView({ page: 'edit', partId });
+  const openDetails = (partId) => setView({ page: 'details', partId });
+  function changeView(next) {
+    setDetailsNavigation({ isDirty: false, isLocked: false });
+    setView(next);
+  }
+  function requestNavigation(next) {
+    const current =
+      view.page === 'new' ? navigationState : view.page === 'details' ? detailsNavigation : null;
+    if (current?.isLocked) return;
+    if (current?.isDirty) setPendingView(next);
+    else changeView(next);
+  }
   function navigate(page) {
-    if (page === view.page) return;
-    if (view.page === 'new' && navigationState.isLocked) return;
-    if (view.page === 'new' && navigationState.isDirty) {
-      setPendingPage(page);
-    } else {
-      setView({ page });
-    }
+    if (page !== view.page) requestNavigation({ page });
   }
   const [mode, setMode] = useState(() => {
     try {
@@ -78,7 +86,7 @@ export default function App() {
         isNavigationLocked={
           view.page === 'entry' ||
           view.page === 'import' ||
-          view.page === 'applications' ||
+          (view.page === 'details' && detailsNavigation.isLocked) ||
           (view.page === 'new' && navigationState.isLocked)
         }
       >
@@ -89,34 +97,48 @@ export default function App() {
           <PartCatalogPage
             searchState={catalogSearch}
             onSearchStateChange={setCatalogSearch}
-            onEdit={openEdit}
+            onView={openDetails}
             onCreate={openCreate}
             onImport={() => setView({ page: 'import' })}
-            onEntry={(partId) => setView({ page: 'entry', partId })}
-            onBalance={(partId) => setView({ page: 'balance', partId })}
-            onApplications={(partId) => setView({ page: 'applications', partId })}
           />
         )}
-        {view.page === 'applications' && (
-          <VehicleApplicationsPage key={view.partId} partId={view.partId} onDone={openCatalog} />
+        {view.page === 'details' && (
+          <PartDetailsPage
+            key={view.partId}
+            partId={view.partId}
+            onBack={() => requestNavigation({ page: 'catalog' })}
+            onEdit={() =>
+              requestNavigation({ page: 'edit', partId: view.partId, fromDetails: true })
+            }
+            onEntry={() => requestNavigation({ page: 'entry', partId: view.partId })}
+            isNavigationLocked={detailsNavigation.isLocked}
+            onNavigationStateChange={setDetailsNavigation}
+          />
         )}
         {view.page === 'entry' && (
-          <StockEntryPage key={view.partId} partId={view.partId} onDone={openCatalog} />
-        )}
-        {view.page === 'balance' && (
-          <StockBalancePage key={view.partId} partId={view.partId} onDone={openCatalog} />
+          <StockEntryPage
+            key={view.partId}
+            partId={view.partId}
+            onDone={() => openDetails(view.partId)}
+            backLabel="Voltar à peça"
+          />
         )}
         {view.page === 'edit' && (
-          <PartEditPage key={view.partId} partId={view.partId} onDone={openCatalog} />
+          <PartEditPage
+            key={view.partId}
+            partId={view.partId}
+            onDone={view.fromDetails ? () => openDetails(view.partId) : openCatalog}
+            backLabel={view.fromDetails ? 'Voltar à peça' : 'Voltar ao catálogo'}
+          />
         )}
         {view.page === 'import' && <PartImportPage onDone={openCatalog} />}
       </AppShell>
       <DiscardChangesDialog
-        open={pendingPage !== null}
-        onContinue={() => setPendingPage(null)}
+        open={pendingView !== null}
+        onContinue={() => setPendingView(null)}
         onDiscard={() => {
-          setView({ page: pendingPage });
-          setPendingPage(null);
+          changeView(pendingView);
+          setPendingView(null);
         }}
       />
     </ThemeProvider>

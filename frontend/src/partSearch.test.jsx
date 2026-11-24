@@ -27,7 +27,7 @@ async function openCatalog(search = async () => response({ items: [PART], total:
   vi.stubGlobal('fetch', request);
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo', exact: true }));
-  await screen.findByRole('button', { name: 'Aplicações de Filtro de óleo' });
+  await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' });
   return request;
 }
 
@@ -65,7 +65,7 @@ test('envia os seis filtros somente ao buscar e mostra peças inativas', async (
     limit: '20',
   });
   expect(await screen.findByText('Inativo')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Editar Filtro de óleo' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Ver peça Filtro de óleo' })).toBeInTheDocument();
 });
 
 test('bloqueia busca vazia ou somente espaços e identifica ano inválido sem requisição', async () => {
@@ -88,7 +88,7 @@ test('informa ausência de correspondência sem apresentar as peças da consulta
   expect(
     await screen.findByText('Nenhuma peça corresponde aos filtros informados.'),
   ).toBeInTheDocument();
-  expect(screen.queryByRole('button', { name: 'Editar Filtro de óleo' })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Ver peça Filtro de óleo' })).not.toBeInTheDocument();
 });
 
 test('limpa os filtros e retorna ao catálogo geral sem busca vazia', async () => {
@@ -97,7 +97,7 @@ test('limpa os filtros e retorna ao catálogo geral sem busca vazia', async () =
   fireEvent.click(screen.getByRole('button', { name: 'Buscar', exact: true }));
   await screen.findByText('Nenhuma peça corresponde aos filtros informados.');
   fireEvent.click(screen.getByRole('button', { name: 'Limpar filtros' }));
-  await screen.findByRole('button', { name: 'Editar Filtro de óleo' });
+  await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' });
   expect(screen.getByRole('textbox', { name: 'Código principal ou equivalente' })).toHaveValue('');
   expect(request.mock.calls.filter(([url]) => url.includes('/search?'))).toHaveLength(1);
   expect(
@@ -105,11 +105,7 @@ test('limpa os filtros e retorna ao catálogo geral sem busca vazia', async () =
   ).toHaveLength(2);
 });
 
-test.each([
-  ['Editar Filtro de óleo', 'Cancelar'],
-  ['Aplicações de Filtro de óleo', 'Voltar ao catálogo'],
-  ['Consultar saldo de Filtro de óleo', 'Voltar ao catálogo'],
-])('preserva filtros e página ao abrir %s e voltar', async (action, back) => {
+test('preserva filtros e página ao abrir uma peça e voltar ao catálogo', async () => {
   const request = await openCatalog(async () => response({ items: [PART], total: 21 }));
   enterFilter('Nome', 'Filtro');
   fireEvent.click(screen.getByRole('button', { name: 'Buscar', exact: true }));
@@ -117,9 +113,10 @@ test.each([
     expect(screen.getByRole('button', { name: 'Próxima', exact: true })).toBeEnabled(),
   );
   fireEvent.click(screen.getByRole('button', { name: 'Próxima', exact: true }));
-  fireEvent.click(await screen.findByRole('button', { name: action }));
-  fireEvent.click(await screen.findByRole('button', { name: back, exact: true }));
-  await screen.findByRole('button', { name: action });
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' }));
+  await screen.findByRole('heading', { name: 'Dados cadastrais' });
+  fireEvent.click(screen.getByRole('button', { name: 'Voltar ao catálogo' }));
+  await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' });
   expect(screen.getByRole('textbox', { name: 'Nome', exact: true })).toHaveValue('Filtro');
   expect(screen.getByText('21 peça(s) · Página 2')).toBeInTheDocument();
   expect(request.mock.calls.at(-1)[0]).toContain('/parts/search?name=Filtro&offset=20&limit=20');
@@ -157,7 +154,7 @@ test('preserva filtros após erro e repete a consulta que falhou', async () => {
   enterFilter('Nome', 'ainda não aplicado');
   fail = false;
   fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
-  await screen.findByRole('button', { name: 'Editar Filtro de óleo' });
+  await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' });
   const calls = request.mock.calls.filter(([url]) => url.includes('/search?'));
   expect(calls).toHaveLength(2);
   expect(calls[1][0]).toBe(calls[0][0]);
@@ -181,9 +178,9 @@ test('aborta a busca anterior e ignora sua resposta atrasada', async () => {
   expect(screen.getByRole('progressbar', { name: 'Carregando catálogo' })).toBeInTheDocument();
   enterFilter('Nome', 'Pastilha');
   fireEvent.click(screen.getByRole('button', { name: 'Buscar', exact: true }));
-  await screen.findByRole('button', { name: 'Editar Pastilha' });
+  await screen.findByRole('button', { name: 'Ver peça Pastilha' });
   expect(signal.aborted).toBe(true);
   await act(async () => finish(response({ items: [PART], total: 1 })));
-  expect(screen.queryByRole('button', { name: 'Editar Filtro de óleo' })).not.toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Editar Pastilha' })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: 'Ver peça Filtro de óleo' })).not.toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Ver peça Pastilha' })).toBeInTheDocument();
 });

@@ -36,9 +36,9 @@ async function requestParts(path, { method = 'GET', data, idempotencyKey, signal
   }
   if (!response.ok) {
     throw Object.assign(
-      new Error(result.detail?.message || 'Não foi possível concluir a operação.'),
+      new Error(result?.detail?.message || 'Não foi possível concluir a operação.'),
       {
-        fields: result.detail?.fields,
+        fields: result?.detail?.fields,
         isUncertain: isWrite && response.status >= 500,
       },
     );
@@ -104,4 +104,45 @@ export function listVehicleApplications(id, offset = 0, { signal } = {}) {
   return requestParts(`/${encodeURIComponent(id)}/vehicle-applications?offset=${offset}&limit=20`, {
     signal,
   });
+}
+
+function confirmApplication(result, partId, applicationId) {
+  if (
+    result?.id !== applicationId ||
+    result?.part_id !== partId ||
+    !['brand', 'model', 'year'].every(
+      (field) => typeof result?.[field] === 'string' && result[field].trim(),
+    )
+  ) {
+    throw Object.assign(
+      new Error(
+        'Não foi possível confirmar a resposta da aplicação. Tente novamente com os mesmos dados.',
+      ),
+      { isUncertain: true },
+    );
+  }
+  return result;
+}
+
+export async function updateVehicleApplication(partId, applicationId, data, idempotencyKey) {
+  const result = await requestParts(
+    `/${encodeURIComponent(partId)}/vehicle-applications/${encodeURIComponent(applicationId)}`,
+    {
+      method: 'PATCH',
+      data,
+      idempotencyKey,
+    },
+  );
+  return confirmApplication(result, partId, applicationId);
+}
+
+export async function removeVehicleApplication(partId, applicationId, idempotencyKey) {
+  const result = await requestParts(
+    `/${encodeURIComponent(partId)}/vehicle-applications/${encodeURIComponent(applicationId)}`,
+    {
+      method: 'DELETE',
+      idempotencyKey,
+    },
+  );
+  return confirmApplication(result, partId, applicationId);
 }

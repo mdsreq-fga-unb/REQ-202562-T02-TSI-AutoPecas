@@ -33,12 +33,14 @@ async function openEntry(
   const request = vi.fn(async (url, options) => {
     if (options?.method === 'POST') return post(url, options);
     if (url.includes('/stock-balance')) return response({ part_id: PART.id, stock_balance: 5 });
+    if (url.includes('/vehicle-applications')) return response({ items: [], total: 0 });
     if (url.includes('?')) return response({ items: [PART], total: 1 });
     return response(PART);
   });
   vi.stubGlobal('fetch', request);
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo', exact: true }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro' }));
   fireEvent.click(await screen.findByRole('button', { name: 'Registrar entrada de Filtro' }));
   await screen.findByText('Saldo atual: 5 unidades');
   return request;
@@ -100,7 +102,7 @@ test('reenvia tentativa incerta com a mesma chave e bloqueia alterações', asyn
   fireEvent.click(screen.getByRole('button', { name: 'Confirmar entrada' }));
   await screen.findByText(/A conexão foi interrompida/);
   expect(screen.getByLabelText('Quantidade')).toBeDisabled();
-  expect(screen.getByRole('button', { name: 'Voltar ao catálogo' })).toBeDisabled();
+  expect(screen.getByRole('button', { name: 'Voltar à peça' })).toBeDisabled();
   fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
   await screen.findByText('Entrada registrada. Saldo após esta entrada: 8 unidades.');
   const posts = request.mock.calls.filter(([, o]) => o.method === 'POST');
@@ -220,12 +222,19 @@ test('encerra a entrada confirmada e consulta o saldo vigente', async () => {
   expect(screen.queryByRole('button', { name: 'Confirmar entrada' })).not.toBeInTheDocument();
 });
 
-test('não oferece entrada para peça inativa no catálogo', async () => {
+test('bloqueia entrada nos detalhes de uma peça inativa', async () => {
   vi.stubGlobal(
     'fetch',
-    vi.fn(async () => response({ items: [{ ...PART, status: 'inactive' }], total: 1 })),
+    vi.fn(async (url) => {
+      const inactive = { ...PART, status: 'inactive' };
+      if (url.includes('/vehicle-applications')) return response({ items: [], total: 0 });
+      if (url.includes('/stock-balance')) return response({ part_id: PART.id, stock_balance: 5 });
+      if (url.includes('?offset=')) return response({ items: [inactive], total: 1 });
+      return response(inactive);
+    }),
   );
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo', exact: true }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro' }));
   expect(await screen.findByRole('button', { name: 'Registrar entrada de Filtro' })).toBeDisabled();
 });

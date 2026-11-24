@@ -10,7 +10,7 @@ import {
 import PartStatusBadge from '../parts/PartStatusBadge.jsx';
 import useStockEntry from './useStockEntry.js';
 
-export default function StockEntryPage({ partId, onDone }) {
+export default function StockEntryPage({ partId, onDone, backLabel = 'Voltar ao catálogo' }) {
   const { state, form, setForm, result, error, isLocked, isSaving, submit } = useStockEntry(partId);
   return (
     <Stack spacing={3}>
@@ -86,7 +86,7 @@ export default function StockEntryPage({ partId, onDone }) {
         </>
       )}
       <Button onClick={onDone} disabled={isLocked}>
-        Voltar ao catálogo
+        {backLabel}
       </Button>
     </Stack>
   );
