@@ -63,3 +63,23 @@ banco, ambas ativas; a consulta HTTP voltou a responder 200. Uma gravação temp
 via serviço também foi validada e desfeita por rollback, mantendo a contagem em 2.
 Os detalhes e limites dessa verificação estão no
 [registro da correção](../README.md#correção-do-ambiente-docker--12112026-refs-32).
+
+## Entradas e saldo — US08 (Refs #33)
+
+A revisão `0005_stock_entries` adiciona `parts.stock_balance`, com zero como
+padrão, e as tabelas `stock_movements` e `stock_entry_requests`. O saldo inicial
+não representa uma contagem física: entradas posteriores estabelecem o saldo.
+A migração preserva os dados existentes do catálogo. A quantidade da movimentação
+possui restrição positiva no banco; a API valida também custo, data e status.
+
+O Compose aplica a revisão ao iniciar a API. Para um ambiente já em execução:
+
+```bash
+docker compose exec -T backend alembic upgrade head
+docker compose exec -T backend alembic current
+docker compose exec -T backend alembic check
+```
+
+Não remova volumes para atualizar a estrutura. O downgrade remove os registros de
+entrada, suas tentativas e a coluna de saldo; use-o somente em banco descartável
+ou em uma reversão planejada com backup. O teste da migração utiliza banco isolado.

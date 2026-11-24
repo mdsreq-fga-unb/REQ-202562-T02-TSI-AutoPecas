@@ -21,12 +21,15 @@ async function openCatalog(
 ) {
   const request = vi.fn(async (url, options) => {
     if (options?.method === 'PATCH') return save(url, options);
+    if (url.includes('/stock-balance')) return response({ part_id: PART.id, stock_balance: 5 });
+    if (url.includes('/vehicle-applications')) return response({ items: [], total: 0 });
     if (url.includes('?offset=')) return response({ items: [PART], total: 1 });
     return response(PART);
   });
   vi.stubGlobal('fetch', request);
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo' }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' }));
   await screen.findByRole('button', { name: 'Editar Filtro de óleo' });
   return request;
 }
@@ -40,10 +43,16 @@ test('inativa e reativa a peça enviando apenas o status e mantendo o cadastro v
   fireEvent.click(within(dialog).getByRole('button', { name: 'Confirmar inativação' }));
   await screen.findByText('Peça inativada com sucesso.');
   expect(screen.getByText('Inativo', { exact: true })).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Editar Filtro de óleo' })).toBeEnabled();
+  expect(
+    await screen.findByRole('button', { name: 'Registrar entrada de Filtro de óleo' }),
+  ).toBeDisabled();
+  expect(await screen.findByRole('button', { name: 'Editar Filtro de óleo' })).toBeEnabled();
   fireEvent.click(screen.getByRole('button', { name: 'Ativar Filtro de óleo' }));
   fireEvent.click(await screen.findByRole('button', { name: 'Confirmar ativação' }));
   await screen.findByText('Peça ativada com sucesso.');
+  expect(
+    await screen.findByRole('button', { name: 'Registrar entrada de Filtro de óleo' }),
+  ).toBeEnabled();
   const writes = request.mock.calls.filter(([, options]) => options?.method === 'PATCH');
   expect(writes.map(([, options]) => JSON.parse(options.body))).toEqual([
     { status: 'inactive' },

@@ -3,7 +3,7 @@ import { Alert, Button, CircularProgress, Stack, Typography } from '@mui/materia
 import { getPart } from '../../services/parts.js';
 import PartEditForm from './PartEditForm.jsx';
 
-export default function PartEditPage({ partId, onDone }) {
+export default function PartEditPage({ partId, onDone, backLabel = 'Voltar ao catálogo' }) {
   const [state, setState] = useState({ status: 'loading' });
   const [retry, setRetry] = useState(0);
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function PartEditPage({ partId, onDone }) {
       <Stack spacing={2} sx={{ alignItems: 'center' }}>
         <CircularProgress aria-label="Carregando peça" />
         <Typography>Carregando peça…</Typography>
-        <Button onClick={onDone}>Voltar ao catálogo</Button>
+        <Button onClick={onDone}>{backLabel}</Button>
       </Stack>
     );
   if (state.status === 'error')
@@ -39,8 +39,8 @@ export default function PartEditPage({ partId, onDone }) {
         >
           Tentar carregar novamente
         </Button>
-        <Button onClick={onDone}>Voltar ao catálogo</Button>
+        <Button onClick={onDone}>{backLabel}</Button>
       </Stack>
     );
-  return <PartEditForm part={state.part} onDone={onDone} />;
+  return <PartEditForm part={state.part} onDone={onDone} backLabel={backLabel} />;
 }

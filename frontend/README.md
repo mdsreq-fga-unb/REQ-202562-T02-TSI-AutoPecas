@@ -12,7 +12,11 @@ pnpm dev
 No PowerShell, use `Copy-Item .env.example .env` para copiar o exemplo.
 O front-end atende em <http://localhost:5173>. Execute também a API para conferir
 a conexão. A página inicial implementa o cadastro manual da US01 (issue #27).
-O menu Catálogo permite selecionar peças e acessar a edição da US05 (issue #31).
+No **Catálogo**, use **Ver peça** para abrir o cadastro, as aplicações por veículo
+e o estoque da peça. As ações ficam junto aos dados que alteram. Os formulários
+de edição e entrada voltam à mesma peça. **Voltar ao catálogo** preserva os
+filtros e a página da busca. Uma associação preenchida pede confirmação antes
+de sair, e tentativas pendentes são recuperadas ao recarregar.
 
 ```bash
 pnpm test
@@ -29,6 +33,16 @@ definido; revise as lacunas dos comportamentos exigidos pela história.
 As chamadas HTTP ficam em `src/services/`. `VITE_API_BASE_URL` indica o endereço
 público da API, acessível pelo navegador. Variáveis com prefixo `VITE_` são públicas;
 credenciais do PostgreSQL/Supabase ficam exclusivamente no back-end.
+
+## Estado atual do incremento
+
+O catálogo oferece edição de peças, aplicações por veículo, busca, entrada de
+estoque e consulta de saldo, além da importação XLSX. Na tela de aplicações, a
+US05 permite **Editar** ou **Remover** uma associação existente. Saídas, ajustes,
+vendas e cancelamentos continuam previstos para os próximos incrementos.
+
+Os registros datados abaixo são históricos das respectivas etapas. O estado e as
+verificações da complementação estão em [edição e remoção de aplicações](#edição-e-remoção-de-aplicações--us05-refs-31).
 
 ## Arquitetura e identidade visual
 
@@ -72,8 +86,8 @@ informa o problema e não envia a requisição. Um cadastro pendente de outra ab
 é sobrescrito por uma nova tentativa. Rascunhos que ainda não foram enviados
 continuam apenas em memória; limpar os dados do navegador remove a recuperação.
 
-O catálogo pagina os registros em grupos de 20 e oferece a ação Editar. Essa
-listagem é o acesso à US05; não implementa a busca e os filtros de outras histórias.
+O catálogo pagina os registros em grupos de 20 e oferece a ação Editar. A US04
+acrescenta os filtros descritos na seção de busca abaixo.
 Também é possível editar uma peça imediatamente após cadastrá-la. Nome, categoria,
 equivalentes, localização, descrição e foto podem ser alterados. O código do
 fabricante é somente leitura. O PATCH envia apenas os campos alterados em relação
@@ -263,18 +277,17 @@ inativa. A inativação preserva o cadastro, o saldo e os registros existentes,
 mas impede novas movimentações de estoque e vendas enquanto a peça estiver
 inativa. A reativação libera novamente essas operações.
 
-A interface atual implementa a alternância de status, o indicador e a edição
-cadastral de peças ativas e inativas. Peças novas e existentes começam ativas.
-Como os fluxos de estoque e vendas ainda não foram implementados, seus bloqueios
-serão integrados quando esses fluxos forem adicionados, com validação obrigatória
-na API e apresentação do motivo na interface. A preservação do saldo será testada
-quando o módulo de estoque existir.
+A interface implementa a alternância de status, o indicador e a edição cadastral de
+peças ativas e inativas. A busca mantém as inativas visíveis. A US08 rejeita novas
+entradas para elas, e a US12 permite consultar o saldo preservado. Os bloqueios de
+saídas, ajustes e vendas serão integrados com as US09, US10 e US15, com validação
+obrigatória na API e apresentação do motivo na interface.
 
 Alinhamento de escopo registrado em 12/11/2026. Os critérios de alternância estão
 na [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32),
 cujo texto de refinamento ainda aguarda atualização para refletir essa regra.
 
-O catálogo oferece Ativar/Inativar com confirmação MUI. `PartStatusBadge` é
+A seção **Dados cadastrais** oferece **Ativar peça** e **Inativar peça** com confirmação MUI. `PartStatusBadge` é
 compartilhado pelo catálogo e pela edição. `usePartStatusChange` envia apenas o
 status desejado no PATCH existente, com uma chave idempotente por tentativa.
 Durante o envio ou em resultado incerto, o diálogo impede fechamento e permite
@@ -404,3 +417,371 @@ contém a configuração de build e o encaminhamento das rotas para a aplicaçã
 Configure também `ENABLE_EXPERIMENTAL_COREPACK=1` na Vercel para utilizar a versão
 de pnpm fixada em `packageManager`, e selecione Node 22 nas configurações do projeto.
 O Dockerfile é destinado ao ambiente de desenvolvimento do Compose.
+
+## Aplicações por veículo — US03
+
+Ao abrir **Ver peça** no catálogo, a seção **Aplicações por veículo** mantém
+MUI, a logo e os temas existentes, identifica a peça e permite associar marca,
+modelo e um único ano de quatro dígitos. A lista apresenta 20 aplicações por
+página; uma nova associação preserva as anteriores. A edição e a remoção das
+aplicações são atendidas pela US05 na mesma tela.
+
+`VehicleApplicationsSection` apresenta formulário, paginação e estados de consulta;
+`useVehicleAssociation` controla validação/envio e `pendingVehicleAssociation`
+preserva tentativas. As chamadas HTTP permanecem em `src/services/parts.js`.
+O ano segue como string no JSON para preservar sua representação exata.
+
+A tentativa é salva no navegador antes do POST, separada por URL da API. Após
+falha de conexão ou resposta incerta, campos e saída ficam bloqueados até repetir
+a mesma tentativa. Recarregar recupera peça, campos e chave, sem envio automático.
+Falha de armazenamento impede iniciar um envio sem preservação; erro definitivo
+libera a correção. Dados ainda não enviados recebem confirmação de descarte ao
+voltar ao catálogo, mas não persistem após fechar a aba. O servidor é a autoridade
+para validação, duplicidade e idempotência.
+
+### Evidências — 16/11/2026
+
+Ciclos TDD em `src/vehicleApplications.test.jsx`, com falhas observadas antes de
+implementar cada comportamento:
+
+- Acesso à associação e envio: ação inexistente no catálogo.
+- Obrigatoriedade/formato: ausência das mensagens de campo.
+- Duplicidade: conflito sem tratamento e sem identificação da aplicação.
+- Recuperação na mesma tela: ausência de repetição e dois POSTs no clique duplo.
+- Recuperação após recarga e armazenamento indisponível: campos não restaurados
+  e envio realizado sem preservação.
+- Navegação, carregamento/erro e paginação: saída sem proteção, ausência do estado
+  de consulta, erro não tratado e ausência dos controles de página.
+
+Os **11 testes da US03** passaram após esses ciclos. A adaptação de um teste para
+aguardar a animação de fechamento do diálogo MUI corrigiu a sincronização do
+próprio teste, sem alteração adicional de comportamento.
+
+Verificação com Node **22.23.4**, binário definido em `.nvmrc` no `PATH`, sem
+alterar a instalação global ou os lockfiles:
+
+```text
+node node_modules/vitest/vitest.mjs run --coverage --maxWorkers=1 --testTimeout=20000
+node node_modules/eslint/bin/eslint.js .
+node node_modules/prettier/bin/prettier.cjs --check .
+node node_modules/vite/bin/vite.js build
+```
+
+- Regressão completa: **44 testes aprovados em 6 arquivos**, cobertura de linhas
+  **91,95%** e ramificações **91,74%**. Foram usados um worker e timeout de 20 s
+  na máquina Windows; a configuração padrão da CI não foi alterada. Uma tentativa
+  anterior não iniciou o worker e foi repetida; isso não foi contado como RED.
+- Os arquivos temporários de comparações visuais em `.cache/` foram excluídos
+  de ESLint/Prettier, preservando-os. Essa pasta já era ignorada pelo Git.
+- ESLint, Prettier e build final aprovados. Maior bundle: **278,90 kB**;
+  aplicação: **38,84 kB**, sem aviso de tamanho ou dependências novas.
+- Navegador integrado com API real e PostgreSQL 17 descartável: dois anos
+  associados, repetição com diferenças de caixa/espaços rejeitada, campos
+  obrigatórios e intervalo de anos identificados, descarte confirmado e lista
+  preservada após recarga. Não houve escrita no banco operacional.
+- Temas claro e escuro inspecionados. Sem transbordamento horizontal em
+  **360, 390 e 414 px**; inputs de **44 px**, botões de **46 px** e ícones de
+  **44×44 px**. Console sem erros ou avisos durante essa inspeção. Capturas locais:
+  `.cache/us03-desktop.jpg` e `.cache/us03-mobile.jpg`, na raiz do repositório.
+- Recuperação de conexão/recarga foi validada por Testing Library com rede
+  simulada e no serviço com PostgreSQL; não foi simulada queda de rede no navegador
+  integrado. A inspeção de DOM não substitui leitores de tela ou a matriz completa
+  de duas versões de Chrome, Firefox, Edge e Safari, que permanece pendente.
+
+Status: implementação verificada localmente; revisão por outro integrante e aceite
+do cliente pendentes. A nova migração precisa ser aplicada antes de usar a tela
+contra um banco existente; veja os [contratos e testes PostgreSQL](../backend/README.md#aplicações-por-veículo--us03).
+
+## Busca de peças — US04 (Refs #30)
+
+O menu **Catálogo** oferece filtros por código principal ou equivalente, nome,
+categoria, marca, modelo e ano. A tela reutiliza MUI, a logo e os temas existentes.
+Digite ao menos um filtro e pressione **Buscar** ou Enter. **Limpar filtros**
+retorna ao catálogo geral. Código/categoria/ano são exatos; nome/marca/modelo
+aceitam trechos. Espaços nas extremidades e caixa são ignorados pela consulta.
+
+Os campos em edição são separados dos filtros aplicados, exibidos acima dos
+resultados. Alterar um campo não dispara uma busca nem muda os filtros da
+paginação até confirmar. Cada busca começa na primeira página; rascunho, filtros
+aplicados e página são preservados ao abrir edição/aplicações e voltar. Esse
+estado dura a sessão da aplicação; não é persistido após recarregar a página.
+
+A interface identifica busca vazia e ano inválido antes de chamar a API, informa
+quando não há correspondência, preserva peças inativas com seu indicador e
+permite repetir uma consulta que falhou. Requisições antigas são canceladas e
+suas respostas atrasadas não substituem a pesquisa mais recente.
+
+### TDD e evidências — 16/11/2026
+
+- Primeiro, o teste de seis filtros falhou pela ausência dos campos; passou após
+  integrar formulário e serviço HTTP. Os testes de busca vazia/ano inválido,
+  ausência de resultado e limpeza falharam antes de cada comportamento ser
+  implementado. Os quatro cenários iniciais ficaram verdes.
+- Os dois testes de retorno da edição/aplicações falharam por perder o filtro,
+  e o teste de rascunho/paginação falhou pela ausência da indicação dos filtros
+  aplicados. O estado foi elevado para `App`, mantendo a mesma arquitetura de
+  navegação. Depois, **9 testes da US04 aprovados**. Falha de conexão e resposta
+  atrasada já estavam protegidas pelo fluxo reutilizado; seus testes são
+  complementares, sem alegação retroativa de TDD.
+- Node **22.23.4**: `node node_modules/vitest/vitest.mjs run --coverage --maxWorkers=1 --testTimeout=20000`:
+  **53 testes aprovados em 7 arquivos**; cobertura de linhas **92,60%** e de
+  ramificações **93,31%**. Cobertura não comprova TDD. Lacunas existentes incluem
+  navegação móvel automatizada e alguns caminhos de recuperação de cadastro/foto.
+- `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`: aprovados. O build emitiu apenas
+  diagnóstico de tempo de callbacks de plugins; não houve erro de compilação.
+- Navegador integrado, conectado à API e ao PostgreSQL reais do Docker: consulta
+  por código com caixa/espaços, busca por nome via Enter, validação vazia/ano,
+  ausência de resultados, limpeza e retorno da edição conferidos. Nenhum dado
+  de teste foi inserido no banco operacional. O banco local não tinha aplicações;
+  as buscas positivas por veículos foram verificadas no PostgreSQL descartável.
+- Temas claro/escuro inspecionados; larguras **360, 390 e 414 px** sem overflow
+  horizontal. Campos do formulário medidos em 44 px e botões em 46 px de altura.
+  Não foram encontrados erros/avisos de console durante essa inspeção. Capturas
+  locais em `.cache/us04-desktop.jpg` e `.cache/us04-mobile.jpg`, fora do Git.
+
+Projeto reconstruído com `docker compose up --build -d --wait --wait-timeout 180`:
+banco, API e front-end saudáveis, mantidos em execução. Acesse
+<http://localhost:5173/> e abra **Catálogo**. `alembic current` confirmou
+`0004_vehicle_applications (head)` e `alembic check` não encontrou diferenças.
+A peça existente foi preservada. Esta história não precisa de nova migração.
+
+A matriz completa das duas últimas versões de Chrome, Firefox, Edge e Safari,
+RNF04 nas condições de produção, revisão por outro integrante e aceite do cliente
+permanecem pendentes. A implementação foi verificada localmente; a DoD não foi
+marcada concluída. Nenhum commit, push ou alteração da issue foi realizado.
+
+## Entrada de estoque — US08 (Refs #33)
+
+Abra uma peça ativa no catálogo e escolha **Registrar entrada** na seção **Estoque**. Informe quantidade,
+data e custo unitário, inclusive zero. A interface usa MUI, a logo e o tema
+compartilhados. `features/stock/StockEntryPage.jsx` apresenta o formulário;
+`useStockEntry.js` controla estado e submissão; `services/parts.js` realiza HTTP.
+O saldo é calculado exclusivamente pela API.
+
+Antes do POST, a tentativa é preservada no navegador. Falha de conexão mantém
+campos bloqueados e permite **Tentar novamente** com a mesma chave e os mesmos
+dados, inclusive após recarregar. Sem armazenamento disponível, nenhum novo POST
+é enviado. Após sucesso, o formulário é encerrado e o saldo vigente é consultado
+separadamente da resposta histórica da entrada. Para outra entrada, volte ao
+catálogo e selecione a peça novamente.
+
+### Evidências da US08
+
+`src/stockEntry.test.jsx` foi desenvolvido com um comportamento por ciclo:
+registro; rejeição por campo; reenvio incerto; recuperação após recarregar;
+falha de armazenamento; quantidade; precisão do custo; data obrigatória;
+data futura em São Paulo; confirmação com consulta do saldo vigente; bloqueio
+da ação para peça inativa. Em cada ciclo foi observada a ausência do comportamento
+antes da implementação mínima e a aprovação depois. A extração do hook preservou
+os comportamentos cobertos. Falhas de inicialização por recursos do computador
+não foram contadas como RED.
+
+Conferência no navegador local: formulário, saldo vindo da API, erros de campos
+obrigatórios, retorno ao catálogo e larguras 360, 390 e 414 px, sem rolagem
+horizontal; campos e botões com área mínima de 44 px. Nenhuma movimentação de teste
+foi inserida no banco operacional. A matriz completa de navegadores do RNF03,
+TLS do ambiente publicado e o aceite do cliente não foram verificados localmente.
+
+Resultado final: os 11 testes da US08 passaram após a extração do hook. A execução
+completa (`vitest run --maxWorkers=1 --testTimeout=60000`) teve 63 aprovações e uma
+falha de sincronização no teste antigo de status. A consulta foi alterada para
+aguardar o botão ficar acessível após o fechamento do diálogo; a repetição de
+`src/partStatus.test.jsx` aprovou seus 5 testes. Não houve nova execução completa
+após esse ajuste exclusivo do teste. `pnpm lint`, `pnpm format:check` e `pnpm build`
+foram aprovados. Os tempos dos testes foram maiores por pressão de memória local.
+
+## Consulta de saldo — US12 (Refs #36)
+
+A seção **Estoque** na página da peça exibe a quantidade física confirmada pela API,
+inclusive para peças inativas. Saldo zero recebe a mensagem **Nenhuma unidade disponível**.
+O botão de entrada abre o formulário da US08 e fica desabilitado para peças inativas.
+
+**Atualizar saldo** consulta novamente o saldo da peça aberta. Durante o carregamento
+ou após uma falha, o valor anterior deixa de ser apresentado como saldo atual. A
+ação **Tentar novamente** permite recuperar a consulta. Respostas sem quantidade
+inteira confirmada ou pertencentes a outra peça são rejeitadas pelo serviço HTTP;
+o dado desconhecido nunca é convertido em zero. A requisição de saldo usa
+`cache: 'no-store'`. Sair durante o carregamento aborta as consultas e ignora
+respostas atrasadas. Voltar ao catálogo preserva filtros e página.
+
+`StockBalancePanel` cuida da apresentação, `useStockBalance` do estado e cancelamento,
+e `services/parts.js` do contrato HTTP. Não foram adicionadas dependências.
+
+### Evidências — 18/11/2026
+
+Critérios usados: CA12.1–CA12.6 fornecidos na tarefa, vinculada à issue #36.
+Os ciclos observaram falhas por ausência do acesso à consulta, mensagem de saldo
+zero, atualização, ação de repetição, validação da resposta e política de cache,
+seguidas da implementação e aprovação. Os cenários de peça inativa, cancelamento,
+erros HTTP/JSON e preservação dos filtros são verificações complementares;
+não representam novos ciclos TDD quando já passaram na primeira execução.
+
+Inspeção no navegador integrado, com API local e SQLite temporário contendo apenas
+peças fictícias: saldo 5, saldo zero com mensagem explícita, peça inativa com saldo
+8, atualização e temas claro/escuro. Sem rolagem horizontal em 360, 390 e 414 px;
+controles medidos em 360 px com pelo menos 44×44 px. Console sem erros ou avisos
+nessa inspeção. O banco operacional não foi utilizado.
+
+Permanecem pendentes a matriz completa do RNF03, auditoria automática/manual de
+acessibilidade completa, RNF04 no ambiente e massa especificados, HTTPS/TLS do
+ambiente publicado, revisão por outro integrante e aceite do cliente. A consulta
+lê o saldo persistido; integração com importação, saídas, ajustes, vendas e
+cancelamentos será verificada quando esses módulos forem implementados.
+
+Verificação final com **Node 22.23.4**, baixado do site oficial em diretório
+temporário e conferido por SHA-256 contra `SHASUMS256.txt`, sem alterar o Node
+global. Com o executável temporário no início do `PATH` do processo:
+
+- `node node_modules/vitest/vitest.mjs run --coverage --maxWorkers=1 --testTimeout=60000`:
+  **78 testes aprovados em 9 arquivos**, incluindo 13 cenários da consulta de saldo
+  e retorno ao catálogo filtrado. Cobertura por linhas **93,43%**, ramificações
+  **92,88%**; lacunas incluem respostas de erro atrasadas após cancelamento e
+  fluxos anteriores de foto/navegação. Não há mínimo de cobertura acordado.
+- `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`: aprovados. Maior bundle **278,90 kB**,
+  sem aviso de tamanho.
+- A tentativa inicial com Node 24.15.0, cobertura e workers padrão teve 70
+  aprovações e 8 timeouts de 5 segundos em testes existentes. A repetição completa
+  com Node 22 e um worker passou em 185,60 s, sem alterar assertions nem a
+  configuração permanente do Vitest. A execução intermediária com um worker em
+  Node 24 foi interrompida sem resultado conclusivo.
+
+## US02 — Importar peças por planilha (Refs #28)
+
+Acesse **Catálogo → Importar planilha**. A tela usa MUI, componentes responsivos
+e o mesmo tema da aplicação. `PartImportPage` apresenta instruções, modelo XLSX,
+seleção do arquivo, resultado e erros por linha. `usePartImport` controla o fluxo;
+chamadas HTTP ficam em `services/partImports.js`.
+
+Antes do envio, o arquivo e a chave da tentativa são preservados no navegador,
+com armazenamento separado por URL da API. Enquanto uma requisição está em curso
+ou sem confirmação, a seleção e a saída ficam bloqueadas. Depois de recarregar,
+a tentativa é recuperada sem envio automático; **Tentar novamente** reutiliza
+exatamente o arquivo e a chave originais. Uma rejeição definitiva libera a seleção
+para correção; uma confirmação remove a tentativa pendente.
+
+Se o navegador bloquear o armazenamento ou não tiver espaço, a solicitação não é
+enviada. Os limites de arquivo e células são apresentados antes do envio; o servidor
+repete a validação. O modelo importa somente os campos cadastrais previstos, com
+saldo inicial zero. O fluxo e os arquivos específicos da US12 foram preservados.
+
+### Roteiro manual
+
+1. Atualize as dependências e aplique a migração da API conforme o README do backend,
+   ou reconstrua o ambiente local com `docker compose up --build -d`. Acesse
+   `http://localhost:5173`, abra o catálogo e escolha **Importar planilha**.
+2. Baixe o modelo. Na primeira aba, preencha duas linhas com códigos novos como
+   `0001-AB` e `0002-AB`, mantendo as células como texto. Preencha Nome e Categoria;
+   teste também Descrição técnica e Localização física. Importe e confira a
+   confirmação, os dados no catálogo e **Ver peça → Estoque → 0 unidades**.
+3. Em outro arquivo, repita um código com espaços nas extremidades ou use um
+   código principal/equivalente já cadastrado. O lote inteiro deve ser rejeitado,
+   com as linhas envolvidas, sem alterar o cadastro existente.
+4. Teste Nome vazio, cabeçalho Categoria ausente, coluna Saldo preenchida e duas
+   abas com dados. Cada caso deve rejeitar o lote. Uma aba totalmente vazia ou
+   uma coluna extra sem dados não deve impedir uma planilha válida.
+5. Teste arquivo `.csv` e código numérico, inclusive com máscara de zeros.
+   Eles devem ser rejeitados. O código textual `0001-AB` deve preservar seus zeros.
+6. Com outro lote válido, use o modo offline das ferramentas do navegador e envie.
+   Não deve aparecer sucesso; o arquivo deve permanecer bloqueado para alteração.
+   Recarregue, restaure a conexão e clique em **Tentar novamente**. A operação deve
+   ser confirmada uma única vez. Para simular perda da resposta após commit, use
+   os testes automatizados/API com a mesma chave de idempotência.
+7. Confira a tela em 360 px, nos temas claro e escuro, e navegue pelo teclado.
+   A confirmação e os erros devem ser legíveis sem rolagem horizontal.
+
+### Evidências — 18/11/2026
+
+Os testes em `src/partImport.test.jsx` foram escritos em ciclos antes dos fluxos
+de acesso/importação, relatório de linhas, validação de arquivo e recuperação de
+tentativa. A revisão também reproduziu e corrigiu a perda do estado pendente em
+uma resposta HTTP 503 com corpo JSON `null`. Os casos de duplo envio e demais
+respostas incertas complementam a proteção existente.
+
+- Node **22.23.4**, `node node_modules/vitest/vitest.mjs run --coverage
+--maxWorkers=1 --testTimeout=60000`: **89 testes aprovados em 10 arquivos**,
+  incluindo **11 da US02** e **13 da US12**; cobertura de linhas **93,75%** e de
+  ramificações **92,93%**. Nenhuma assertion ou configuração permanente foi relaxada.
+- `node node_modules/eslint/bin/eslint.js .`,
+  `node node_modules/prettier/bin/prettier.cjs --check .` e
+  `node node_modules/vite/bin/vite.js build`: aprovados.
+- Navegador: lote inválido rejeitado com linhas 2/3; lote válido confirmou duas
+  peças no catálogo; consulta da US12 retornou zero para a peça importada. Layout
+  conferido em desktop, 360 e 414 px, temas claro/escuro, sem overflow horizontal;
+  botões principais de 44 px. Sem erros/avisos de console no fluxo verificado.
+
+Os testes automatizados isolam a rede. A conferência integrada utilizou API e
+PostgreSQL locais descartáveis, sem alterar o banco em uso. Permanecem pendentes
+a matriz de duas versões de Chrome/Firefox/Edge/Safari, auditoria completa de
+acessibilidade, homologação HTTPS, revisão humana via PR e validação do cliente.
+
+## Edição e remoção de aplicações — US05 (Refs #31)
+
+No **Catálogo**, abra **Ver peça** e use **Editar** ou **Remover** no vínculo desejado,
+na seção **Aplicações por veículo**. A edição permite corrigir marca, modelo e um único ano de quatro dígitos;
+a remoção exige confirmação e preserva o cadastro e as demais aplicações. Peças
+inativas também permitem essas correções cadastrais.
+
+`VehicleApplicationDialog` mantém os componentes MUI, temas e navegação existentes.
+`useVehicleApplicationChange` controla validação, confirmação e estados de envio.
+O serviço HTTP confirma a identidade da peça e da aplicação na resposta, sem
+apresentar uma resposta vazia ou divergente como sucesso.
+
+Antes de enviar, a tentativa é preservada em armazenamento separado por URL da API.
+Após resposta incerta, os dados e a saída permanecem bloqueados; recarregar abre a
+mesma operação, sem reenvio automático. **Tentar novamente** utiliza o mesmo corpo,
+alvo e chave. Se não for possível preservar os dados, nenhuma nova requisição é
+enviada. Respostas definitivas liberam o fluxo; sucesso atualiza a lista e a
+paginação, inclusive ao remover o último item da última página.
+
+### Desenvolvimento com TDD
+
+Os testes da interface falharam primeiro pela ausência das ações de edição e de
+remoção. Em seguida, os testes de recuperação após recarga falharam pela perda do
+diálogo e da tentativa. Por fim, respostas 503 com JSON nulo e respostas 200 vazias
+ou de outra aplicação evidenciaram a necessidade de manter a confirmação pendente.
+Cada grupo passou depois da implementação correspondente.
+
+Os testes complementares cobrem desistência da remoção, validação dos campos e do
+ano, conflitos de duplicidade, armazenamento indisponível, bloqueio de envio duplo
+e retorno à página anterior após remover o último vínculo. Os testes isolam a rede;
+a integração e a inspeção visual são registradas separadamente.
+
+### Verificação local — 23/11/2026
+
+- Node 22.23.4, `node node_modules/vitest/vitest.mjs run --coverage --pool=threads
+--maxWorkers=1 --testTimeout=60000`: **101 testes aprovados em 11 arquivos**, com
+  **12 novos cenários**; cobertura de linhas **94,54%** e de ramificações **93,44%**.
+  O pool de threads foi usado somente na execução local, sem alterar a configuração
+  da CI. Após o ajuste de contraste, os **14 testes** de aplicações/tema passaram.
+- ESLint, Prettier e build de produção: aprovados.
+- Edge 158, com API e PostgreSQL descartáveis: edição isolada, cancelamento e
+  confirmação de remoção, preservação de saldo e recuperação após recarga.
+  A resposta foi interrompida após a gravação real; a tentativa recuperada não foi
+  reenviada automaticamente e confirmou o resultado com a mesma chave e corpo.
+- Diálogo em **360, 390 e 414 px**, temas claro/escuro: sem rolagem horizontal,
+  controles com ao menos **44 × 44 px** e sem erros JavaScript no fluxo.
+- A inspeção detectou contraste insuficiente no tema escuro. A cor de texto foi
+  ajustada e o estilo vermelho escuro dos botões preenchidos passou a ser aplicado
+  pelo seletor atual do componente. A nova execução do axe não detectou violações
+  nas regras WCAG A/AA avaliadas; restaram verificações manuais indicadas pelo
+  próprio auditor para foco em conteúdo oculto e alguns contrastes.
+
+A inspeção automatizada não equivale a uma auditoria completa de acessibilidade.
+Permanecem pendentes a matriz completa de navegadores, homologação HTTPS, revisão
+humana via PR e validação do cliente; nenhuma aprovação foi registrada por ferramenta.
+
+## Confirmação de associação e entrada após falha — US03 e US08
+
+A interface confirma a escrita depois de verificar a peça e os dados da resposta.
+Uma resposta de sucesso vazia, nula ou incompatível mantém a tentativa pendente,
+assim como a perda de conexão. A pessoa pode recarregar e usar **Tentar novamente**
+com os mesmos dados e a mesma chave de idempotência.
+
+Na verificação de 24/11/2026, os testes reproduziram a ausência da opção de reenvio
+diante de respostas inválidas antes da correção. Após o ajuste, os cenários
+verificaram a recuperação do formulário, a ausência de reenvio automático e o uso
+da mesma chave e dos mesmos dados ao repetir a tentativa.

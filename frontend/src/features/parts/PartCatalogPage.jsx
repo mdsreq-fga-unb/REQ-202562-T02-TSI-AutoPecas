@@ -1,19 +1,27 @@
 import { useEffect, useState } from 'react';
 import { Alert, Box, Button, CircularProgress, Paper, Stack, Typography } from '@mui/material';
-import EditOutlined from '@mui/icons-material/EditOutlined';
-import { listParts } from '../../services/parts.js';
+import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
+import { listParts, searchParts } from '../../services/parts.js';
+import PartSearchForm from './PartSearchForm.jsx';
+import { createCatalogSearchState, searchFieldLabels } from './partSearchState.js';
 import PartStatusBadge from './PartStatusBadge.jsx';
-import PartStatusDialog from './PartStatusDialog.jsx';
 
-export default function PartCatalogPage({ onEdit, onCreate }) {
-  const [offset, setOffset] = useState(0);
+export default function PartCatalogPage({
+  onView,
+  onCreate,
+  onImport,
+  searchState,
+  onSearchStateChange,
+}) {
+  const { draft, filters, offset } = searchState;
   const [retry, setRetry] = useState(0);
   const [state, setState] = useState({ status: 'loading' });
-  const [selectedPart, setSelectedPart] = useState(null);
-  const [statusMessage, setStatusMessage] = useState('');
   useEffect(() => {
     const controller = new AbortController();
-    listParts(offset, { signal: controller.signal }).then(
+    (filters
+      ? searchParts(filters, offset, { signal: controller.signal })
+      : listParts(offset, { signal: controller.signal })
+    ).then(
       (data) => {
         if (!controller.signal.aborted) setState({ status: 'ready', ...data });
       },
@@ -22,20 +30,10 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
       },
     );
     return () => controller.abort();
-  }, [offset, retry]);
+  }, [offset, retry, filters]);
   function changePage(next) {
     setState({ status: 'loading' });
-    setOffset(next);
-  }
-  function finishStatusChange(part) {
-    setState((current) => ({
-      ...current,
-      items: current.items.map((item) => (item.id === part.id ? part : item)),
-    }));
-    setSelectedPart(null);
-    setStatusMessage(
-      part.status === 'active' ? 'Peça ativada com sucesso.' : 'Peça inativada com sucesso.',
-    );
+    onSearchStateChange((current) => ({ ...current, offset: next }));
   }
   return (
     <>
@@ -49,17 +47,37 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
             Catálogo de peças
           </Typography>
           <Typography color="text.secondary" sx={{ mt: 1 }}>
-            Selecione uma peça para atualizar seu cadastro.
+            Abra uma peça para consultar o cadastro, as aplicações e o saldo.
           </Typography>
         </Box>
-        <Button variant="contained" onClick={onCreate} sx={{ alignSelf: 'flex-start' }}>
-          Cadastrar peça
-        </Button>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ alignSelf: 'flex-start' }}>
+          <Button variant="outlined" onClick={onImport}>
+            Importar planilha
+          </Button>
+          <Button variant="contained" onClick={onCreate}>
+            Cadastrar peça
+          </Button>
+        </Stack>
       </Stack>
-      {statusMessage && (
-        <Alert severity="success" role="status" sx={{ mb: 2 }}>
-          {statusMessage}
-        </Alert>
+      <PartSearchForm
+        draft={draft}
+        onDraftChange={(next) => onSearchStateChange((current) => ({ ...current, draft: next }))}
+        onSearch={(next) => {
+          onSearchStateChange((current) => ({ ...current, filters: next, offset: 0 }));
+          setState({ status: 'loading' });
+        }}
+        onClear={() => {
+          onSearchStateChange(createCatalogSearchState());
+          setRetry((current) => current + 1);
+          setState({ status: 'loading' });
+        }}
+      />
+      {filters && (
+        <Typography role="status" color="text.secondary" sx={{ mb: 2, overflowWrap: 'anywhere' }}>
+          {`Filtros aplicados: ${Object.entries(filters)
+            .map(([name, value]) => `${searchFieldLabels[name]}: ${value}`)
+            .join(' · ')}`}
+        </Typography>
       )}
       {state.status === 'loading' && <CircularProgress aria-label="Carregando catálogo" />}
       {state.status === 'error' && (
@@ -84,16 +102,20 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
         <>
           {state.items.length === 0 ? (
             <Paper variant="outlined" sx={{ p: 4 }}>
-              <Typography>Nenhuma peça cadastrada.</Typography>
+              <Typography>
+                {filters
+                  ? 'Nenhuma peça corresponde aos filtros informados.'
+                  : 'Nenhuma peça cadastrada.'}
+              </Typography>
             </Paper>
           ) : (
             <Stack component="ul" spacing={2} sx={{ p: 0, listStyle: 'none' }}>
               {state.items.map((part) => (
                 <Paper component="li" variant="outlined" key={part.id} sx={{ p: 3 }}>
                   <Stack
-                    direction={{ xs: 'column', sm: 'row' }}
+                    direction={{ xs: 'column', lg: 'row' }}
                     spacing={2}
-                    sx={{ alignItems: { sm: 'center' } }}
+                    sx={{ alignItems: { lg: 'center' } }}
                   >
                     <Box sx={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>
                       <Typography variant="overline" color="text.secondary">
@@ -108,27 +130,14 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
                         {part.physical_location || 'Localização não informada'}
                       </Typography>
                     </Box>
-                    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
-                      <Button
-                        variant="outlined"
-                        startIcon={<EditOutlined />}
-                        aria-label={`Editar ${part.name}`}
-                        onClick={() => onEdit(part.id)}
-                      >
-                        Editar
-                      </Button>
-                      <Button
-                        color="secondary"
-                        variant="outlined"
-                        aria-label={`${part.status === 'inactive' ? 'Ativar' : 'Inativar'} ${part.name}`}
-                        onClick={() => {
-                          setStatusMessage('');
-                          setSelectedPart(part);
-                        }}
-                      >
-                        {part.status === 'inactive' ? 'Ativar' : 'Inativar'}
-                      </Button>
-                    </Stack>
+                    <Button
+                      variant="outlined"
+                      endIcon={<ArrowForwardRounded />}
+                      aria-label={`Ver peça ${part.name}`}
+                      onClick={() => onView(part.id)}
+                    >
+                      Ver peça
+                    </Button>
                   </Stack>
                 </Paper>
               ))}
@@ -150,14 +159,6 @@ export default function PartCatalogPage({ onEdit, onCreate }) {
             </Button>
           </Stack>
         </>
-      )}
-      {selectedPart && (
-        <PartStatusDialog
-          key={selectedPart.id}
-          part={selectedPart}
-          onClose={() => setSelectedPart(null)}
-          onSuccess={finishStatusChange}
-        />
       )}
     </>
   );

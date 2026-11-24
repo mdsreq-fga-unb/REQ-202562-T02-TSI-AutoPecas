@@ -7,7 +7,7 @@ import PartFormFields from './PartFormFields.jsx';
 import usePartEditing from './usePartEditing.js';
 import PartStatusBadge from './PartStatusBadge.jsx';
 
-export default function PartEditForm({ part, onDone }) {
+export default function PartEditForm({ part, onDone, backLabel = 'Voltar ao catálogo' }) {
   const editing = usePartEditing(part);
   const [isReadingPhoto, setIsReadingPhoto] = useState(false);
   const [isDiscardOpen, setIsDiscardOpen] = useState(false);
@@ -41,7 +41,7 @@ export default function PartEditForm({ part, onDone }) {
           As alterações foram salvas no mesmo cadastro.
         </Typography>
         <Button variant="contained" onClick={onDone} sx={{ mt: 3 }}>
-          Voltar ao catálogo
+          {backLabel}
         </Button>
       </Paper>
     );

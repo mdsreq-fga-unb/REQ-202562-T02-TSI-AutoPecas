@@ -1,9 +1,13 @@
+from __future__ import annotations
+
 from uuid import UUID
 
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.models.part import Part, PartCode, PartCreationRequest, PartUpdateRequest
+from app.models.vehicle_application import VehicleApplication
+from app.schemas.part_search import PartSearch
 
 
 class PartRepository:
@@ -48,6 +52,34 @@ class PartRepository:
 
     def get_update_request(self, key: UUID) -> PartUpdateRequest | None:
         return self.session.get(PartUpdateRequest, key)
+
+    def search(self, filters: PartSearch) -> tuple[list[Part], int]:
+        query = select(Part)
+        if filters.code:
+            query = query.where(Part.codes.any(func.lower(PartCode.code) == filters.code.lower()))
+        if filters.category:
+            query = query.where(func.lower(Part.category) == filters.category.lower())
+        if filters.name:
+            query = query.where(
+                func.lower(Part.name).contains(filters.name.lower(), autoescape=True)
+            )
+        if any((filters.brand, filters.model, filters.year)):
+            application = select(VehicleApplication.id).where(VehicleApplication.part_id == Part.id)
+            for name in ("brand", "model"):
+                if value := getattr(filters, name):
+                    application = application.where(
+                        getattr(VehicleApplication, f"{name}_key").contains(
+                            value.casefold(), autoescape=True
+                        )
+                    )
+            if filters.year:
+                application = application.where(VehicleApplication.year == filters.year)
+            query = query.where(application.exists())
+        total = self.session.scalar(select(func.count()).select_from(query.subquery()))
+        parts = self.session.scalars(
+            query.order_by(Part.created_at, Part.id).offset(filters.offset).limit(filters.limit)
+        ).all()
+        return list(parts), total
 
     def remember_update(self, key: UUID, fingerprint: str, response: dict) -> None:
         self.session.add(PartUpdateRequest(id=key, fingerprint=fingerprint, response=response))

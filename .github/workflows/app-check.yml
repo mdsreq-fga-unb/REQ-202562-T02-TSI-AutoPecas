@@ -59,6 +59,20 @@ jobs:
 
   backend:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: tsi
+          POSTGRES_PASSWORD: tsi_us03_local
+          POSTGRES_DB: tsi_us03_test
+        ports:
+          - 55433:5432
+        options: >-
+          --health-cmd "pg_isready -U tsi -d tsi_us03_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     defaults:
       run:
         working-directory: backend
@@ -76,6 +90,18 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pytest --cov --cov-report=term-missing --cov-report=html --cov-report=xml
+      - name: Validate catalog and stock with PostgreSQL
+        env:
+          US03_TEST_DATABASE_URL: postgresql+psycopg://tsi:tsi_us03_local@127.0.0.1:55433/tsi_us03_test
+        run: >-
+          uv run pytest
+          tests/test_vehicle_applications.py
+          tests/test_vehicle_application_updates.py
+          tests/test_part_search.py
+          tests/test_stock_entries.py
+          tests/test_stock_balance.py
+          tests/test_part_imports.py
+          -q
       - name: Publish backend coverage report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v7.0.2

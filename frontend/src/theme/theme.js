@@ -6,7 +6,7 @@ export function buildTheme(mode = 'light') {
     palette: {
       mode,
       primary: {
-        main: isDark ? '#ff5275' : '#c9002c',
+        main: isDark ? '#ff829d' : '#c9002c',
         dark: '#a80024',
         light: isDark ? '#38212b' : '#fff0f3',
         contrastText: '#ffffff',
@@ -43,11 +43,14 @@ export function buildTheme(mode = 'light') {
       MuiButton: {
         defaultProps: { disableElevation: true },
         styleOverrides: {
-          root: { minHeight: 46, paddingInline: 20 },
-          containedPrimary: {
-            backgroundColor: '#c9002c',
-            color: '#fff',
-            '&:hover': { backgroundColor: '#a80024' },
+          root: {
+            minHeight: 46,
+            paddingInline: 20,
+            '&.MuiButton-contained.MuiButton-colorPrimary': {
+              backgroundColor: '#c9002c',
+              color: '#fff',
+              '&:hover': { backgroundColor: '#a80024' },
+            },
           },
         },
       },

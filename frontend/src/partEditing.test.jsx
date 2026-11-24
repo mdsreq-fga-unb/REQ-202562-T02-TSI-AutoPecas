@@ -21,12 +21,15 @@ afterEach(() => vi.unstubAllGlobals());
 async function openEdit(save = async () => response(PART), part = PART) {
   const request = vi.fn(async (url, options) => {
     if (options?.method === 'PATCH') return save(url, options);
+    if (url.includes('/stock-balance')) return response({ part_id: PART.id, stock_balance: 5 });
+    if (url.includes('/vehicle-applications')) return response({ items: [], total: 0 });
     if (url.includes('?offset=')) return response({ items: [PART], total: 1 });
     return response(part);
   });
   vi.stubGlobal('fetch', request);
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo' }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' }));
   fireEvent.click(await screen.findByRole('button', { name: 'Editar Filtro de óleo' }));
   await screen.findByDisplayValue('FLT-100');
   return request;
@@ -190,9 +193,9 @@ test('mostra carregamento, permite repetir a consulta e pagina o catálogo', asy
   resolveFirst(response({ detail: { message: 'Serviço indisponível.' } }, 503));
   await screen.findByText('Serviço indisponível.');
   fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
-  await screen.findByRole('button', { name: 'Editar Filtro de óleo' });
+  await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' });
   fireEvent.click(screen.getByRole('button', { name: 'Próxima' }));
-  await screen.findByRole('button', { name: 'Editar Última peça' });
+  await screen.findByRole('button', { name: 'Ver peça Última peça' });
   expect(request.mock.calls[2][0]).toContain('offset=20&limit=20');
   expect(screen.getByRole('button', { name: 'Próxima' })).toBeDisabled();
 });
@@ -208,10 +211,10 @@ test('permite voltar ao catálogo quando a peça não pode ser carregada', async
   );
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo' }));
-  fireEvent.click(await screen.findByRole('button', { name: 'Editar Filtro de óleo' }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' }));
   await screen.findByText('Peça não encontrada.');
   fireEvent.click(screen.getByRole('button', { name: 'Voltar ao catálogo' }));
-  await screen.findByRole('button', { name: 'Editar Filtro de óleo' });
+  await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' });
 });
 
 test('permite sair durante o carregamento e cancela a consulta pendente', async () => {
@@ -226,10 +229,10 @@ test('permite sair durante o carregamento e cancela a consulta pendente', async 
   );
   render(<App />);
   fireEvent.click(screen.getByRole('button', { name: 'Catálogo' }));
-  fireEvent.click(await screen.findByRole('button', { name: 'Editar Filtro de óleo' }));
+  fireEvent.click(await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' }));
   expect(screen.getByRole('progressbar', { name: 'Carregando peça' })).toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: 'Voltar ao catálogo' }));
-  await screen.findByRole('button', { name: 'Editar Filtro de óleo' });
+  await screen.findByRole('button', { name: 'Ver peça Filtro de óleo' });
   expect(pendingSignal.aborted).toBe(true);
 });
 
