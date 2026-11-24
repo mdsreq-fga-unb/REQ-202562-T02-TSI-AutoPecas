@@ -42,3 +42,24 @@ def list_applications(
     limit: Annotated[int, Query(ge=1, le=100)] = 20,
 ) -> VehicleApplicationListResponse:
     return service.list(part_id, offset, limit)
+
+
+@router.patch("/{application_id}", response_model=VehicleApplicationResponse)
+def update_application(
+    part_id: UUID,
+    application_id: UUID,
+    data: VehicleApplicationCreate,
+    service: Service,
+    idempotency_key: Annotated[UUID, Header()],
+) -> VehicleApplicationResponse:
+    return service.update(part_id, application_id, data, idempotency_key)
+
+
+@router.delete("/{application_id}", response_model=VehicleApplicationResponse)
+def remove_application(
+    part_id: UUID,
+    application_id: UUID,
+    service: Service,
+    idempotency_key: Annotated[UUID, Header()],
+) -> VehicleApplicationResponse:
+    return service.remove(part_id, application_id, idempotency_key)

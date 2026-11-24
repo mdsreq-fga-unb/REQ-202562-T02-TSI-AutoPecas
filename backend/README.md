@@ -38,6 +38,18 @@ e `models`/`schemas` (persistência e contratos). `core` reúne configuração,
 conexões e erros compartilhados. `/health` confirma a aplicação, sem consultar
 o banco. Sem `DATABASE_URL`, o cadastro responde 503 e `/health` continua disponível.
 
+## Estado atual do incremento
+
+Nesta branch estão disponíveis cadastro e edição de peças, alteração de status,
+importação XLSX, aplicações por veículo, busca, entrada de estoque e consulta de saldo.
+A US05 também permite corrigir e remover aplicações existentes. US09, US10, US15 e
+US16 continuam previstas para os próximos incrementos.
+
+Os registros datados abaixo preservam as verificações de cada etapa; as referências
+antigas a funcionalidades ainda ausentes devem ser lidas no contexto dessas datas.
+Consulte a [complementação da US05](#correção-e-remoção-de-aplicações--us05-refs-31)
+para os contratos e os resultados da revisão de 23/11/2026.
+
 ## Persistência e cadastro de peças
 
 A US01 (issue #27) usa SQLAlchemy 2, driver psycopg e migrações Alembic para
@@ -179,11 +191,9 @@ Inativar preserva o cadastro, o saldo e os registros existentes; reativar permit
 novamente essas operações.
 
 A implementação atual contempla a alternância de status e a preservação dos dados
-já disponíveis. Peças novas e existentes começam ativas e a edição cadastral
-continua disponível para peças inativas. Os fluxos de estoque e vendas ainda não
-foram implementados: seus serviços deverão verificar o status e rejeitar novas
-operações para peças inativas quando esses fluxos forem adicionados. A preservação
-do saldo também deverá ser testada nessa integração.
+cadastrais. A US08 já bloqueia entradas para peças inativas, e a US12 permite
+consultar seu saldo sem reativá-las. Saídas, ajustes e vendas deverão aplicar o
+mesmo bloqueio quando as US09, US10 e US15 forem integradas.
 
 Alinhamento de escopo registrado em 12/11/2026, sem antecipar a implementação dos
 módulos dependentes. Os critérios de alternância estão na
@@ -303,7 +313,7 @@ do banco remoto foi realizado nesta entrega.
 
 Implementação dos critérios fornecidos pelo solicitante em 16/11/2026, vinculados
 a RF03, CP1, OE1 e EP01. A peça pode receber várias aplicações, cada uma com marca,
-modelo e um único ano. Correção e remoção dessas associações permanecem na US05.
+modelo e um único ano. Correção e remoção dessas associações são atendidas pela US05, descrita ao final deste documento.
 
 | Rota | Contrato |
 | --- | --- |
@@ -681,3 +691,58 @@ Verificação da correção em 18/11/2026:
   --maxWorkers=1 --testTimeout=60000`: **89 testes aprovados em 10 arquivos**,
   incluindo os **13 da US12**. Nenhum arquivo frontend precisou ser alterado para
   esta correção.
+
+
+## Correção e remoção de aplicações — US05 (Refs #31)
+
+Complementação dos critérios CA05.5 e CA05.7 em 23/11/2026. Os contratos usam a
+mesma validação de marca, modelo e ano da US03:
+
+| Rota | Contrato |
+| --- | --- |
+| `PATCH /parts/{part_id}/vehicle-applications/{application_id}` | Marca, modelo e ano completos, com `Idempotency-Key`; retorna 200 com a aplicação atualizada. |
+| `DELETE /parts/{part_id}/vehicle-applications/{application_id}` | Sem corpo, com `Idempotency-Key`; retorna 200 com os dados do vínculo removido. |
+
+A alteração exige que a aplicação pertença à peça informada. Editar não troca o
+identificador nem altera os outros vínculos; remover preserva a peça, seu saldo,
+status e demais aplicações. Aplicações de peças inativas continuam editáveis, pois
+essas operações não são movimentações de estoque. Duplicidades são comparadas por
+marca/modelo normalizados e ano, permitindo manter os próprios dados.
+
+A trava da peça e a transação serializam as operações. Os resultados confirmados
+são guardados na tabela existente de tentativas, com identificação da operação,
+peça, aplicação e dados. Repetir a chave retorna o resultado original, sem
+reaplicar uma edição antiga ou remover outra associação. Reutilizar a chave para
+outros dados ou operações retorna 409; falhas durante a gravação desfazem toda a
+transação. Não houve alteração de estrutura nem nova migração.
+
+### Desenvolvimento com TDD
+
+- Edição isolada: o primeiro teste retornou 404 antes da rota; passou após a implementação.
+- Duplicidade: o teste encontrou 503 antes do tratamento e passou com conflito 409, identificando a aplicação existente.
+- Remoção: o teste retornou 405 antes da rota; passou com remoção apenas do vínculo selecionado.
+- Reenvio após reiniciar a API: os testes detectaram reaplicação da edição e 404 na repetição da remoção; passaram após persistir o resultado da tentativa.
+- Restrição de unicidade no banco: a revisão reproduziu erro genérico quando a pré-verificação não encontrava o conflito; após rollback e nova consulta, o teste recebeu 409.
+
+Os testes complementares cobrem campos inválidos, isolamento entre peças, saldo e
+status preservados, rollback, chaves incompatíveis e concorrência em PostgreSQL.
+Falhas de diretório/configuração na preparação do ambiente não foram contadas como
+etapas de teste falhando do TDD. A CI inclui os testes de edição/remoção, importação
+e consulta de saldo na etapa PostgreSQL, além das histórias já verificadas.
+
+### Verificação local — 23/11/2026
+
+- Python 3.13.7, `pytest -q --cov --cov-report=term-missing`, com PostgreSQL 17
+  descartável em `US03_TEST_DATABASE_URL`: **238 testes aprovados**, sem skips,
+  incluindo **22 novos testes de edição/remoção**; cobertura combinada **96%**.
+- `ruff check .` e `ruff format --check .`: aprovados. Permanece o aviso
+  preexistente de depreciação do TestClient/httpx.
+- Interface e API foram exercitadas juntas com PostgreSQL isolado: edição,
+  desistência/remoção e recuperação após perda da resposta depois do commit.
+  A repetição devolveu o resultado original; os demais vínculos, a peça e o saldo
+  de cinco unidades foram preservados. O banco da aplicação em uso não foi alterado.
+
+A ampliação do workflow foi preparada e os cenários foram executados localmente;
+não há execução remota destas mudanças registrada. Revisão por outro integrante,
+validação com o cliente e verificação em homologação HTTPS continuam pendentes.
+Esses resultados não declaram a DoD concluída.

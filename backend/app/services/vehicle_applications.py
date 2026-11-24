@@ -56,6 +56,83 @@ class VehicleApplicationService:
                     self._check_duplicate(repo, part_id, brand_key, model_key, data.year)
                 raise
 
+    def update(
+        self, part_id: UUID, application_id: UUID, data: VehicleApplicationCreate, key: UUID
+    ) -> VehicleApplicationResponse:
+        fingerprint = self._mutation_fingerprint(
+            part_id, application_id, "update", data.model_dump()
+        )
+        with self.factory() as session:
+            repo = VehicleApplicationRepository(session)
+            try:
+                with session.begin():
+                    if PartRepository(session).get_for_update(part_id) is None:
+                        raise DomainError("Peça não encontrada.", 404)
+                    previous = self._existing_result(repo, key, fingerprint)
+                    if previous:
+                        return previous
+                    application = repo.get(part_id, application_id)
+                    if application is None:
+                        raise DomainError("Aplicação não encontrada para esta peça.", 404)
+                    self._check_duplicate(
+                        repo,
+                        part_id,
+                        data.brand.casefold(),
+                        data.model.casefold(),
+                        data.year,
+                        application_id,
+                    )
+                    for field, value in data.model_dump().items():
+                        setattr(application, field, value)
+                    application.brand_key = data.brand.casefold()
+                    application.model_key = data.model.casefold()
+                    repo.flush()
+                    response = VehicleApplicationResponse.model_validate(application)
+                    repo.remember(key, fingerprint, response.model_dump(mode="json"))
+                    return response
+
+            except IntegrityError:
+                with session.begin():
+                    previous = self._existing_result(repo, key, fingerprint)
+                    if previous:
+                        return previous
+                    self._check_duplicate(
+                        repo,
+                        part_id,
+                        data.brand.casefold(),
+                        data.model.casefold(),
+                        data.year,
+                        application_id,
+                    )
+                raise
+
+    def remove(self, part_id: UUID, application_id: UUID, key: UUID) -> VehicleApplicationResponse:
+        fingerprint = self._mutation_fingerprint(part_id, application_id, "remove")
+        with self.factory() as session, session.begin():
+            if PartRepository(session).get_for_update(part_id) is None:
+                raise DomainError("Peça não encontrada.", 404)
+            repo = VehicleApplicationRepository(session)
+            previous = self._existing_result(repo, key, fingerprint)
+            if previous:
+                return previous
+            application = repo.get(part_id, application_id)
+            if application is None:
+                raise DomainError("Aplicação não encontrada para esta peça.", 404)
+            response = VehicleApplicationResponse.model_validate(application)
+            repo.remove(application)
+            repo.remember(key, fingerprint, response.model_dump(mode="json"))
+            return response
+
+    def _mutation_fingerprint(
+        self, part_id: UUID, application_id: UUID, operation: str, data: dict | None = None
+    ) -> str:
+        serialized = json.dumps(
+            [operation, str(part_id), str(application_id), data],
+            sort_keys=True,
+            ensure_ascii=False,
+        )
+        return hashlib.sha256(serialized.encode()).hexdigest()
+
     def _existing_result(
         self, repo: VehicleApplicationRepository, key: UUID, fingerprint: str
     ) -> VehicleApplicationResponse | None:
@@ -64,7 +141,7 @@ class VehicleApplicationService:
             return None
         if previous.fingerprint != fingerprint:
             raise DomainError(
-                "Esta tentativa de associação já foi usada com outros dados ou outra peça.", 409
+                "Esta tentativa já foi usada com outros dados, aplicação, peça ou operação.", 409
             )
         return VehicleApplicationResponse.model_validate(previous.response)
 
@@ -75,9 +152,10 @@ class VehicleApplicationService:
         brand_key: str,
         model_key: str,
         year: str,
+        exclude_id: UUID | None = None,
     ) -> None:
         existing = repo.find_existing(part_id, brand_key, model_key, year)
-        if existing:
+        if existing and existing.id != exclude_id:
             raise DomainError(
                 f"A aplicação {existing.brand} · {existing.model} · {existing.year} "
                 "já está vinculada a esta peça.",

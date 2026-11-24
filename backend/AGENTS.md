@@ -12,8 +12,9 @@ ficam no [README desta área](README.md) e configurações no [pyproject.toml](p
   permissões ausentes nos critérios da US.
 - Escritas que afetem saldo precisam preservar atomicidade e idempotência previstas
   nos requisitos. Teste falhas, repetição e concorrência quando pertinentes à regra.
-- Alterações de banco devem ter migrações versionadas em `migrations/`. A ferramenta
-  ainda será definida na primeira história de persistência; não há ORM adotado implicitamente.
+- A persistência usa SQLAlchemy 2 e migrações Alembic versionadas em `migrations/versions/`.
+  Crie novas migrações para mudanças de estrutura e preserve as revisões já aplicadas.
+  Não introduza outro ORM ou mecanismo de migração para implementar uma US.
 - Preserve CORS e configuração por ambiente. `/health` confirma a aplicação,
   não a conexão com o banco nem a disponibilidade de uma funcionalidade do MVP.
 

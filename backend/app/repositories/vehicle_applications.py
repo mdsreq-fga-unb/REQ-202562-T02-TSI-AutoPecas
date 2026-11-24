@@ -14,6 +14,21 @@ class VehicleApplicationRepository:
         self.session.add(application)
         self.session.flush()
 
+    def get(self, part_id: UUID, application_id: UUID) -> VehicleApplication | None:
+        return self.session.scalar(
+            select(VehicleApplication).where(
+                VehicleApplication.id == application_id,
+                VehicleApplication.part_id == part_id,
+            )
+        )
+
+    def remove(self, application: VehicleApplication) -> None:
+        self.session.delete(application)
+        self.session.flush()
+
+    def flush(self) -> None:
+        self.session.flush()
+
     def get_request(self, key: UUID) -> VehicleApplicationRequest | None:
         return self.session.get(VehicleApplicationRequest, key)
 
