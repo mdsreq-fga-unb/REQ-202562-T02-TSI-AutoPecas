@@ -773,3 +773,15 @@ a integração e a inspeção visual são registradas separadamente.
 A inspeção automatizada não equivale a uma auditoria completa de acessibilidade.
 Permanecem pendentes a matriz completa de navegadores, homologação HTTPS, revisão
 humana via PR e validação do cliente; nenhuma aprovação foi registrada por ferramenta.
+
+## Confirmação de associação e entrada após falha — US03 e US08
+
+A interface confirma a escrita depois de verificar a peça e os dados da resposta.
+Uma resposta de sucesso vazia, nula ou incompatível mantém a tentativa pendente,
+assim como a perda de conexão. A pessoa pode recarregar e usar **Tentar novamente**
+com os mesmos dados e a mesma chave de idempotência.
+
+Na verificação de 24/11/2026, os testes reproduziram a ausência da opção de reenvio
+diante de respostas inválidas antes da correção. Após o ajuste, os cenários
+verificaram a recuperação do formulário, a ausência de reenvio automático e o uso
+da mesma chave e dos mesmos dados ao repetir a tentativa.

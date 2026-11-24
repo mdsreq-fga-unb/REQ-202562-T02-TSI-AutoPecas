@@ -100,7 +100,10 @@ test('repete a tentativa incerta com a mesma chave e bloqueia alterações', asy
   let calls = 0;
   const request = await openApplications(async () => {
     if (++calls === 1) throw new TypeError('offline');
-    return response({ id: 'app-1', brand: 'Fiat', model: 'Uno', year: '2010' }, 201);
+    return response(
+      { id: 'app-1', part_id: PART.id, brand: 'Fiat', model: 'Uno', year: '2010' },
+      201,
+    );
   });
   fillApplication();
   fireEvent.click(screen.getByRole('button', { name: 'Associar veículo' }));
@@ -130,37 +133,55 @@ test('envia somente uma associação durante cliques repetidos', async () => {
   expect(request.mock.calls.filter(([, options]) => options?.method === 'POST')).toHaveLength(1);
   expect(button).toBeDisabled();
   await act(async () =>
-    finish(response({ id: 'app-1', brand: 'Fiat', model: 'Uno', year: '2010' }, 201)),
+    finish(
+      response({ id: 'app-1', part_id: PART.id, brand: 'Fiat', model: 'Uno', year: '2010' }, 201),
+    ),
   );
 });
 
-test('recupera a peça, os dados e a chave após recarregar sem reenvio automático', async () => {
-  let calls = 0;
-  const request = await openApplications(async () => {
-    if (++calls === 1) throw new TypeError('offline');
-    return response({ id: 'app-1', brand: 'Fiat', model: 'Uno', year: '2010' }, 201);
-  });
-  fillApplication();
-  fireEvent.click(screen.getByRole('button', { name: 'Associar veículo' }));
-  await screen.findByRole('button', { name: 'Tentar novamente' });
-  cleanup();
-  render(<App />);
-  expect(await screen.findByRole('textbox', { name: /^Marca/ })).toHaveValue('Fiat');
-  expect(screen.getByRole('textbox', { name: /^Ano/ })).toBeDisabled();
-  expect(request.mock.calls.filter(([, options]) => options?.method === 'POST')).toHaveLength(1);
-  await waitFor(() =>
-    expect(screen.getByRole('button', { name: 'Tentar novamente' })).toBeEnabled(),
-  );
-  fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
-  await screen.findByText('Aplicação associada com sucesso.');
-  const posts = request.mock.calls.filter(([, options]) => options?.method === 'POST');
-  expect(posts[1][0]).toBe(posts[0][0]);
-  expect(posts[1][1].body).toBe(posts[0][1].body);
-  expect(posts[1][1].headers['Idempotency-Key']).toBe(posts[0][1].headers['Idempotency-Key']);
-  cleanup();
-  render(<App />);
-  expect(screen.getByRole('heading', { name: /Nova peça/ })).toBeInTheDocument();
-});
+test.each([
+  ['rede interrompida', undefined],
+  ['resposta vazia', {}],
+  ['resposta nula', null],
+  ['outra peça', { id: 'app-1', part_id: 'other', brand: 'Fiat', model: 'Uno', year: '2010' }],
+  ['outro ano', { id: 'app-1', part_id: PART.id, brand: 'Fiat', model: 'Uno', year: '2011' }],
+])(
+  'recupera associação após %s sem indicar sucesso nem reenviar automaticamente',
+  async (_, body) => {
+    let calls = 0;
+    const request = await openApplications(async () => {
+      if (++calls === 1) {
+        if (body === undefined) throw new TypeError('offline');
+        return response(body, 201);
+      }
+      return response(
+        { id: 'app-1', part_id: PART.id, brand: 'Fiat', model: 'Uno', year: '2010' },
+        201,
+      );
+    });
+    fillApplication();
+    fireEvent.click(screen.getByRole('button', { name: 'Associar veículo' }));
+    await screen.findByRole('button', { name: 'Tentar novamente' });
+    expect(screen.queryByText('Aplicação associada com sucesso.')).not.toBeInTheDocument();
+    cleanup();
+    render(<App />);
+    expect(await screen.findByRole('textbox', { name: /^Marca/ })).toHaveValue('Fiat');
+    expect(screen.getByRole('textbox', { name: /^Ano/ })).toBeDisabled();
+    expect(request.mock.calls.filter(([, options]) => options?.method === 'POST')).toHaveLength(1);
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: 'Tentar novamente' })).toBeEnabled(),
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
+    await screen.findByText('Aplicação associada com sucesso.');
+    const posts = request.mock.calls.filter(([, options]) => options?.method === 'POST');
+    expect(posts[1][0]).toBe(posts[0][0]);
+    expect(posts[1][1].body).toBe(posts[0][1].body);
+    expect(posts[1][1].headers['Idempotency-Key']).toBe(posts[0][1].headers['Idempotency-Key']);
+    cleanup();
+    render(<App />);
+    expect(screen.getByRole('heading', { name: /Nova peça/ })).toBeInTheDocument();
+  },
+);
 
 test('não envia quando o armazenamento da tentativa está indisponível', async () => {
   const request = await openApplications();
@@ -227,7 +248,7 @@ test('pagina aplicações preservando o formulário e mostra a nova associação
   }));
   const request = vi.fn(async (url, options) => {
     if (options?.method === 'POST') {
-      const item = { id: 'new', ...JSON.parse(options.body) };
+      const item = { id: 'new', part_id: PART.id, ...JSON.parse(options.body) };
       items.push(item);
       return response(item, 201);
     }

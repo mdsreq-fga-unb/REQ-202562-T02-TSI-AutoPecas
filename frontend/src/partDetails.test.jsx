@@ -29,8 +29,9 @@ test('abre uma peça com cadastro, aplicações e estoque e retorna a ela após 
         current = { ...current, ...JSON.parse(options.body) };
         body = current;
       } else if (options.method === 'POST') {
-        balance += JSON.parse(options.body).quantity;
-        body = { id: 'entry-1', part_id: part.id, stock_balance: balance };
+        const entry = JSON.parse(options.body);
+        balance += entry.quantity;
+        body = { ...entry, id: 'entry-1', part_id: part.id, stock_balance: balance };
       } else if (url.includes('/stock-balance')) {
         body = { part_id: part.id, stock_balance: balance };
       } else if (url.includes('/vehicle-applications')) {

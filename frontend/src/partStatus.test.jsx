@@ -44,13 +44,15 @@ test('inativa e reativa a peça enviando apenas o status e mantendo o cadastro v
   await screen.findByText('Peça inativada com sucesso.');
   expect(screen.getByText('Inativo', { exact: true })).toBeInTheDocument();
   expect(
-    screen.getByRole('button', { name: 'Registrar entrada de Filtro de óleo' }),
+    await screen.findByRole('button', { name: 'Registrar entrada de Filtro de óleo' }),
   ).toBeDisabled();
   expect(await screen.findByRole('button', { name: 'Editar Filtro de óleo' })).toBeEnabled();
   fireEvent.click(screen.getByRole('button', { name: 'Ativar Filtro de óleo' }));
   fireEvent.click(await screen.findByRole('button', { name: 'Confirmar ativação' }));
   await screen.findByText('Peça ativada com sucesso.');
-  expect(screen.getByRole('button', { name: 'Registrar entrada de Filtro de óleo' })).toBeEnabled();
+  expect(
+    await screen.findByRole('button', { name: 'Registrar entrada de Filtro de óleo' }),
+  ).toBeEnabled();
   const writes = request.mock.calls.filter(([, options]) => options?.method === 'PATCH');
   expect(writes.map(([, options]) => JSON.parse(options.body))).toEqual([
     { status: 'inactive' },

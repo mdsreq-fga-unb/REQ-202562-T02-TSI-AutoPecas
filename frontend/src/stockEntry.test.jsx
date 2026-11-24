@@ -16,23 +16,17 @@ afterEach(() => {
   vi.unstubAllGlobals();
   localStorage.clear();
 });
-async function openEntry(
-  post = async () =>
-    response(
-      {
-        id: 'entry-1',
-        part_id: PART.id,
-        quantity: 3,
-        entry_date: '2026-01-01',
-        unit_cost: '12.50',
-        stock_balance: 8,
-      },
-      201,
-    ),
-) {
+async function openEntry(post) {
+  let balance = 5;
   const request = vi.fn(async (url, options) => {
-    if (options?.method === 'POST') return post(url, options);
-    if (url.includes('/stock-balance')) return response({ part_id: PART.id, stock_balance: 5 });
+    if (options?.method === 'POST') {
+      if (post) return post(url, options);
+      const data = JSON.parse(options.body);
+      balance += data.quantity;
+      return response({ ...data, id: 'entry-1', part_id: PART.id, stock_balance: balance }, 201);
+    }
+    if (url.includes('/stock-balance'))
+      return response({ part_id: PART.id, stock_balance: balance });
     if (url.includes('/vehicle-applications')) return response({ items: [], total: 0 });
     if (url.includes('?')) return response({ items: [PART], total: 1 });
     return response(PART);
@@ -111,21 +105,45 @@ test('reenvia tentativa incerta com a mesma chave e bloqueia alterações', asyn
   expect(posts[1][1].body).toBe(posts[0][1].body);
 });
 
-test('recupera a entrada pendente após recarregar a aplicação', async () => {
-  const request = await openEntry(async () => {
-    throw new TypeError('offline');
+test.each([
+  ['rede interrompida', undefined],
+  ['resposta vazia', {}],
+  ['resposta nula', null],
+  ['outra peça', { id: 'entry-1', part_id: 'other', stock_balance: 8 }],
+  [
+    'saldo inválido',
+    { id: 'entry-1', part_id: PART.id, quantity: 3, entry_date: '2026-01-01', stock_balance: '8' },
+  ],
+  [
+    'outra quantidade',
+    { id: 'entry-1', part_id: PART.id, quantity: 2, entry_date: '2026-01-01', stock_balance: 8 },
+  ],
+])('recupera entrada após %s sem indicar sucesso nem reenviar automaticamente', async (_, body) => {
+  let calls = 0;
+  const request = await openEntry(async (_url, options) => {
+    if (++calls === 1) {
+      if (body === undefined) throw new TypeError('offline');
+      return response(body, 201);
+    }
+    return response(
+      { id: 'entry-1', part_id: PART.id, stock_balance: 8, ...JSON.parse(options.body) },
+      201,
+    );
   });
   fillEntry();
   fireEvent.click(screen.getByRole('button', { name: 'Confirmar entrada' }));
-  await screen.findByText(/A conexão foi interrompida/);
+  await screen.findByRole('button', { name: 'Tentar novamente' });
+  expect(screen.queryByText(/Entrada registrada/)).not.toBeInTheDocument();
   const original = request.mock.calls.find(([, o]) => o.method === 'POST')[1];
   cleanup();
   render(<App />);
   await screen.findByRole('heading', { name: 'Registrar entrada' });
   await screen.findByText('Saldo atual: 5 unidades');
   expect(screen.getByLabelText('Quantidade')).toHaveValue('3');
+  expect(screen.getByLabelText('Quantidade')).toBeDisabled();
+  expect(request.mock.calls.filter(([, o]) => o.method === 'POST')).toHaveLength(1);
   fireEvent.click(screen.getByRole('button', { name: 'Tentar novamente' }));
-  await screen.findByText(/A conexão foi interrompida/);
+  await screen.findByText('Entrada registrada. Saldo após esta entrada: 8 unidades.');
   const posts = request.mock.calls.filter(([, o]) => o.method === 'POST');
   expect(posts).toHaveLength(2);
   expect(posts[1][1].body).toBe(original.body);
@@ -144,7 +162,7 @@ test('não envia sem armazenamento e permite corrigir a entrada antes de tentar 
   storage.mockRestore();
   fireEvent.change(screen.getByLabelText('Quantidade'), { target: { value: '4' } });
   fireEvent.click(screen.getByRole('button', { name: 'Confirmar entrada' }));
-  await screen.findByText('Entrada registrada. Saldo após esta entrada: 8 unidades.');
+  await screen.findByText('Entrada registrada. Saldo após esta entrada: 9 unidades.');
   expect(JSON.parse(request.mock.calls.find(([, o]) => o.method === 'POST')[1].body).quantity).toBe(
     4,
   );

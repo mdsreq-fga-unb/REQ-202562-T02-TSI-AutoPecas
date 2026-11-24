@@ -1,5 +1,11 @@
 import { apiBaseUrl } from './api.js';
 
+const isNonEmptyString = (value) => typeof value === 'string' && value.trim().length > 0;
+
+function unconfirmedResponse(message) {
+  return Object.assign(new Error(message), { isUncertain: true });
+}
+
 async function requestParts(path, { method = 'GET', data, idempotencyKey, signal, cache } = {}) {
   const isWrite = method !== 'GET';
   let response;
@@ -73,12 +79,25 @@ export async function getStockBalance(id, { signal } = {}) {
   return result;
 }
 
-export function registerStockEntry(id, data, idempotencyKey) {
-  return requestParts(`/${encodeURIComponent(id)}/stock-entries`, {
+export async function registerStockEntry(id, data, idempotencyKey) {
+  const result = await requestParts(`/${encodeURIComponent(id)}/stock-entries`, {
     method: 'POST',
     data,
     idempotencyKey,
   });
+  if (
+    result?.part_id !== id ||
+    !isNonEmptyString(result.id) ||
+    result.quantity !== data.quantity ||
+    result.entry_date !== data.entry_date ||
+    !Number.isSafeInteger(result.stock_balance) ||
+    result.stock_balance < data.quantity
+  ) {
+    throw unconfirmedResponse(
+      'Não foi possível confirmar a entrada. Tente novamente com os mesmos dados.',
+    );
+  }
+  return result;
 }
 
 export function searchParts(filters, offset = 0, { signal } = {}) {
@@ -92,12 +111,13 @@ export function getPartPhotoUrl(part) {
     : null;
 }
 
-export function associateVehicle(id, data, idempotencyKey) {
-  return requestParts(`/${encodeURIComponent(id)}/vehicle-applications`, {
+export async function associateVehicle(id, data, idempotencyKey) {
+  const result = await requestParts(`/${encodeURIComponent(id)}/vehicle-applications`, {
     method: 'POST',
     data,
     idempotencyKey,
   });
+  return confirmApplication(result, id, { expected: data });
 }
 
 export function listVehicleApplications(id, offset = 0, { signal } = {}) {
@@ -106,19 +126,18 @@ export function listVehicleApplications(id, offset = 0, { signal } = {}) {
   });
 }
 
-function confirmApplication(result, partId, applicationId) {
+function confirmApplication(result, partId, { applicationId, expected } = {}) {
   if (
-    result?.id !== applicationId ||
     result?.part_id !== partId ||
+    !isNonEmptyString(result.id) ||
+    (applicationId !== undefined && result.id !== applicationId) ||
     !['brand', 'model', 'year'].every(
-      (field) => typeof result?.[field] === 'string' && result[field].trim(),
+      (field) =>
+        isNonEmptyString(result[field]) && (!expected || result[field] === expected[field]),
     )
   ) {
-    throw Object.assign(
-      new Error(
-        'Não foi possível confirmar a resposta da aplicação. Tente novamente com os mesmos dados.',
-      ),
-      { isUncertain: true },
+    throw unconfirmedResponse(
+      'Não foi possível confirmar a resposta da aplicação. Tente novamente com os mesmos dados.',
     );
   }
   return result;
@@ -133,7 +152,7 @@ export async function updateVehicleApplication(partId, applicationId, data, idem
       idempotencyKey,
     },
   );
-  return confirmApplication(result, partId, applicationId);
+  return confirmApplication(result, partId, { applicationId });
 }
 
 export async function removeVehicleApplication(partId, applicationId, idempotencyKey) {
@@ -144,5 +163,5 @@ export async function removeVehicleApplication(partId, applicationId, idempotenc
       idempotencyKey,
     },
   );
-  return confirmApplication(result, partId, applicationId);
+  return confirmApplication(result, partId, { applicationId });
 }
