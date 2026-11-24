@@ -478,17 +478,24 @@ Use o banco descartável descrito na US03, nunca o banco operacional. Na pasta
 uv run python -m tools.benchmark_part_search
 ```
 
-O script cria um schema exclusivo, aplica migrações, insere 5.000 peças, 15.000
-códigos e 15.000 aplicações e inicia uma API temporária. Mede 200 requisições HTTP
-com dois usuários concorrentes e dez cenários (filtros individuais, combinados,
-paginação e resultado vazio), além de registrar `EXPLAIN (ANALYZE, BUFFERS)`.
-Ao terminar, encerra a API e remove apenas seu schema. O relatório local fica em
-`.cache/us04-performance.json`, fora do Git.
+O script cria um schema exclusivo, aplica migrações e insere 5.000 peças, 15.000
+códigos, 15.000 aplicações e 20.000 movimentações. A API temporária recebe
+200 requisições de busca (US04) e 200 consultas de saldo (US12), com dois usuários
+concorrentes em cada medição. O ensaio verifica o saldo retornado para cada peça
+consultada, incluindo ativas, inativas e peças com saldo zero, e registra os planos
+de execução da busca.
 
-Resultado observado: **P95 140,64 ms**, máximo **247,15 ms**, sem falhas. O acesso
-foi por loopback, com PostgreSQL em Docker local. Isso verifica o recorte do
-catálogo, mas não comprova integralmente RNF04 em produção/rede de 10 Mbps; o
-módulo de movimentações e sua massa de 20.000 registros ainda não existem.
+| Consulta | P95 local (24/11/2026) | Maior tempo observado |
+| --- | ---: | ---: |
+| Busca de peças (US04) | 48,54 ms | 81,71 ms |
+| Saldo de estoque (US12) | 33,31 ms | 36,64 ms |
+
+As 400 requisições foram concluídas em HTTP por loopback, com PostgreSQL 17 em
+Docker. Para verificar o RNF04 de ponta a ponta, ainda é necessário repetir o
+ensaio no ambiente publicado, sob a condição de rede definida no requisito.
+O relatório fica em `.cache/us04-performance.json`, fora do Git. Ao terminar,
+o script encerra a API temporária e remove somente o schema do ensaio.
+
 TLS em produção, matriz completa de navegadores, revisão por outro integrante
 e aceite do cliente permanecem pendentes. A DoD não é declarada concluída.
 

@@ -1,4 +1,4 @@
-"""Medição HTTP da US04 em PostgreSQL descartável, com dois usuários concorrentes."""
+"""Medição HTTP da US04 e US12 em PostgreSQL descartável, com dois usuários concorrentes."""
 
 import json
 import math
@@ -8,6 +8,8 @@ import subprocess
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date
+from decimal import Decimal
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import urlopen
@@ -20,6 +22,7 @@ from sqlalchemy.engine import make_url
 from sqlalchemy.schema import CreateSchema, DropSchema
 
 from app.models.part import Part, PartCode
+from app.models.stock import StockMovement
 from app.models.vehicle_application import VehicleApplication
 
 
@@ -39,10 +42,21 @@ def main() -> None:
         os.environ["DATABASE_URL"] = scoped.render_as_string(hide_password=False)
         command.upgrade(Config("alembic.ini"), "head")
         engine = create_engine(scoped)
-        parts, codes, applications = [], [], []
+        parts, codes, applications, movements = [], [], [], []
         for index in range(5000):
             part_id = uuid4()
             code = f"BENCH-{index:05}"
+            movement_count = 0 if index % 5 == 1 else 5
+            quantity = index % 13 + 1
+            movements.extend(
+                {
+                    "part_id": part_id,
+                    "quantity": quantity,
+                    "entry_date": date(2026, 1, day),
+                    "unit_cost": Decimal("10.00"),
+                }
+                for day in range(1, movement_count + 1)
+            )
             parts.append(
                 {
                     "id": part_id,
@@ -50,6 +64,7 @@ def main() -> None:
                     "name": f"Filtro de óleo {index}" if index % 2 == 0 else f"Pastilha {index}",
                     "category": "Filtros" if index % 2 == 0 else "Freios",
                     "status": "inactive" if index % 10 == 0 else "active",
+                    "stock_balance": movement_count * quantity,
                 }
             )
             codes.extend(
@@ -72,7 +87,8 @@ def main() -> None:
             connection.execute(insert(Part), parts)
             connection.execute(insert(PartCode), codes)
             connection.execute(insert(VehicleApplication), applications)
-            for table in ("parts", "part_codes", "vehicle_applications"):
+            connection.execute(insert(StockMovement), movements)
+            for table in ("parts", "part_codes", "vehicle_applications", "stock_movements"):
                 connection.execute(text(f"ANALYZE {table}"))
         with socket.socket() as listener:
             listener.bind(("127.0.0.1", 0))
@@ -132,6 +148,22 @@ def main() -> None:
         cold = [measure(filters) for filters in scenarios]
         with ThreadPoolExecutor(max_workers=2) as pool:
             measurements = list(pool.map(measure, scenarios * 20))
+
+        def measure_balance(part):
+            part_id = str(part["id"])
+            start = time.perf_counter()
+            with urlopen(f"{base}/parts/{part_id}/stock-balance", timeout=30) as response:
+                result = json.load(response)
+            elapsed_ms = (time.perf_counter() - start) * 1000
+            assert result == {"part_id": part_id, "stock_balance": part["stock_balance"]}
+            return elapsed_ms
+
+        # Peças ativas, inativas, com saldo e sem movimentos.
+        balance_scenarios = [parts[index] for index in range(0, len(parts), 499)]
+        balance_scenarios.append(parts[1])
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            balance_times = sorted(pool.map(measure_balance, (balance_scenarios * 20)[:200]))
+        balance_p95 = balance_times[math.ceil(len(balance_times) * 0.95) - 1]
         times = sorted(item["ms"] for item in measurements)
         p95 = times[math.ceil(len(times) * 0.95) - 1]
         plans = {}
@@ -154,12 +186,20 @@ def main() -> None:
         report = {
             "parts": 5000,
             "codes": 15000,
-            "applications": 15000,
+            "applications": len(applications),
+            "movements": len(movements),
             "concurrency": 2,
             "requests": len(times),
             "p95_ms": round(p95, 2),
             "max_ms": round(max(times), 2),
             "local_target_met": p95 <= 3000,
+            "stock_balance": {
+                "requests": len(balance_times),
+                "p95_ms": round(balance_p95, 2),
+                "max_ms": round(max(balance_times), 2),
+                "local_target_met": balance_p95 <= 3000,
+                "measurements_ms": balance_times,
+            },
             "conditions": (
                 "HTTP real por loopback; PostgreSQL em Docker local. "
                 "Não representa produção ou rede limitada a 10 Mbps."
@@ -176,12 +216,23 @@ def main() -> None:
                 {
                     key: value
                     for key, value in report.items()
-                    if key not in {"first_requests", "measurements", "plans"}
+                    if key not in {"first_requests", "measurements", "plans", "stock_balance"}
                 },
                 ensure_ascii=False,
             )
         )
-        if p95 > 3000:
+        print(
+            json.dumps(
+                {
+                    "stock_balance": {
+                        key: value
+                        for key, value in report["stock_balance"].items()
+                        if key != "measurements_ms"
+                    }
+                }
+            )
+        )
+        if max(p95, balance_p95) > 3000:
             raise SystemExit("P95 local excedeu 3 segundos; examine o relatório.")
     finally:
         if server is not None:
