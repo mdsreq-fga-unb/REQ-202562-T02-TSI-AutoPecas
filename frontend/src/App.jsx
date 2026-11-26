@@ -9,6 +9,8 @@ import PartImportPage from './features/parts/PartImportPage.jsx';
 import { readPendingImport } from './features/parts/pendingPartImport.js';
 import PartDetailsPage from './features/parts/PartDetailsPage.jsx';
 import StockEntryPage from './features/stock/StockEntryPage.jsx';
+import SaleRegistrationPage from './features/sales/SaleRegistrationPage.jsx';
+import { readPendingSale } from './features/sales/pendingSale.js';
 import { readPendingEntry } from './features/stock/pendingStockEntry.js';
 import { readPendingAssociation } from './features/parts/pendingVehicleAssociation.js';
 import { readPendingVehicleChange } from './features/parts/pendingVehicleApplicationChange.js';
@@ -20,6 +22,7 @@ export default function App() {
   const [view, setView] = useState(() => {
     const entry = readPendingEntry();
     if (entry) return { page: 'entry', partId: entry.partId };
+    if (readPendingSale()) return { page: 'sale' };
     const change = readPendingVehicleChange();
     if (change) return { page: 'details', partId: change.partId };
     const pending = readPendingAssociation();
@@ -28,6 +31,7 @@ export default function App() {
   });
   const [navigationState, setNavigationState] = useState({ isDirty: false, isLocked: false });
   const [detailsNavigation, setDetailsNavigation] = useState({ isDirty: false, isLocked: false });
+  const [saleNavigation, setSaleNavigation] = useState({ isDirty: false, isLocked: false });
   const [pendingView, setPendingView] = useState(null);
   useEffect(() => {
     const title = {
@@ -36,6 +40,7 @@ export default function App() {
       edit: 'Editar peça',
       details: 'Detalhes da peça',
       entry: 'Registrar entrada',
+      sale: 'Registrar venda',
       import: 'Importar peças',
     }[view.page];
     document.title = `${title} · TSI Peças`;
@@ -46,11 +51,18 @@ export default function App() {
   const openDetails = (partId) => setView({ page: 'details', partId });
   function changeView(next) {
     setDetailsNavigation({ isDirty: false, isLocked: false });
+    setSaleNavigation({ isDirty: false, isLocked: false });
     setView(next);
   }
   function requestNavigation(next) {
     const current =
-      view.page === 'new' ? navigationState : view.page === 'details' ? detailsNavigation : null;
+      view.page === 'new'
+        ? navigationState
+        : view.page === 'details'
+          ? detailsNavigation
+          : view.page === 'sale'
+            ? saleNavigation
+            : null;
     if (current?.isLocked) return;
     if (current?.isDirty) setPendingView(next);
     else changeView(next);
@@ -87,6 +99,7 @@ export default function App() {
           view.page === 'entry' ||
           view.page === 'import' ||
           (view.page === 'details' && detailsNavigation.isLocked) ||
+          (view.page === 'sale' && saleNavigation.isLocked) ||
           (view.page === 'new' && navigationState.isLocked)
         }
       >
@@ -132,6 +145,9 @@ export default function App() {
           />
         )}
         {view.page === 'import' && <PartImportPage onDone={openCatalog} />}
+        {view.page === 'sale' && (
+          <SaleRegistrationPage onNavigationStateChange={setSaleNavigation} />
+        )}
       </AppShell>
       <DiscardChangesDialog
         open={pendingView !== null}

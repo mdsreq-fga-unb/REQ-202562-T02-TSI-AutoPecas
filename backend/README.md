@@ -42,8 +42,9 @@ o banco. Sem `DATABASE_URL`, o cadastro responde 503 e `/health` continua dispon
 
 Nesta branch estão disponíveis cadastro e edição de peças, alteração de status,
 importação XLSX, aplicações por veículo, busca, entrada de estoque e consulta de saldo.
-A US05 também permite corrigir e remover aplicações existentes. US09, US10, US15 e
-US16 continuam previstas para os próximos incrementos.
+A US05 também permite corrigir e remover aplicações existentes. A US15 registra
+vendas, descritas na seção [Registro de venda](#registro-de-venda--us15-refs-38).
+US09, US10 e US16 continuam previstas para os próximos incrementos.
 
 Os registros datados abaixo preservam as verificações de cada etapa; as referências
 antigas a funcionalidades ainda ausentes devem ser lidas no contexto dessas datas.
@@ -753,3 +754,32 @@ A ampliação do workflow foi preparada e os cenários foram executados localmen
 não há execução remota destas mudanças registrada. Revisão por outro integrante,
 validação com o cliente e verificação em homologação HTTPS continuam pendentes.
 Esses resultados não declaram a DoD concluída.
+
+## Registro de venda — US15 (Refs #38)
+
+A venda tem um canal de origem e um ou mais itens, cada um com peça, quantidade e
+preço unitário. O registro baixa o saldo de cada peça na mesma transação.
+
+| Rota | Contrato |
+| --- | --- |
+| `POST /sales` | JSON da venda e cabeçalho `Idempotency-Key` UUID; retorna 201 |
+| `GET /sales/{id}` | Consulta uma venda registrada, ou retorna 404 |
+
+O corpo do `POST` tem `channel` (`counter`, `mercado_livre` ou `direct_contact`) e
+`items`, de 1 a 100 itens com `part_id`, `quantity` (inteiro maior que zero) e
+`unit_price` (decimal não negativo com até duas casas). A resposta traz `id`,
+`channel`, `status` (`registered`), `total` e, para cada item, o saldo da peça após
+a venda em `stock_balance`. Na consulta, `stock_balance` é o saldo atual da peça.
+
+- **Bloqueio por saldo:** a quantidade vendida de uma peça não pode superar o saldo
+  atual. Linhas repetidas da mesma peça são somadas antes da conferência. Se qualquer
+  item falhar, nenhuma peça é baixada e a resposta 422 lista `items` com `part_id`,
+  `requested` e `stock_balance`.
+- **Peças inativas e inexistentes** impedem a venda inteira (422).
+- **Atomicidade e concorrência:** as peças são bloqueadas em ordem estável
+  (`SELECT … FOR UPDATE`), o que serializa vendas simultâneas da mesma peça.
+- **Idempotência:** repetir a mesma chave com os mesmos dados devolve a resposta
+  original sem nova baixa; a mesma chave com outros dados retorna 409.
+  `sale_requests` guarda a chave, a impressão dos dados e a resposta.
+- **Fora desta entrega:** cancelamento (US16), movimentações de estoque (histórico),
+  recebimentos, emissão fiscal e integração com marketplaces.

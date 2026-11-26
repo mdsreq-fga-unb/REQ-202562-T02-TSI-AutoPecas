@@ -12,6 +12,7 @@ import {
 import Inventory2Outlined from '@mui/icons-material/Inventory2Outlined';
 import MenuRounded from '@mui/icons-material/MenuRounded';
 import AddRounded from '@mui/icons-material/AddRounded';
+import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined';
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 import logo from '../assets/tsi-pecas-logo.png';
@@ -81,6 +82,22 @@ export default function AppShell({
           Nova peça
         </Typography>
       </Button>
+      <Button
+        aria-current={page === 'sale' ? 'page' : undefined}
+        disabled={page === 'edit' || isNavigationLocked}
+        onClick={() => {
+          onNavigate('sale');
+          setIsMenuOpen(false);
+        }}
+        variant={page === 'sale' ? 'contained' : 'text'}
+        color={page === 'sale' ? 'primary' : 'secondary'}
+        sx={{ flexDirection: 'column', gap: 1, py: 2.5, mt: 1.5, px: 1, minWidth: 0 }}
+      >
+        <ShoppingCartOutlined />
+        <Typography component="span" variant="body2">
+          Venda
+        </Typography>
+      </Button>
       <Box sx={{ mt: 'auto', pt: 5, px: 1 }}>
         <Box sx={{ width: 24, height: 4, bgcolor: 'primary.main', mb: 2 }} />
         <Typography sx={{ fontSize: 23, lineHeight: 1.2, color: 'text.secondary' }}>TSI</Typography>
@@ -147,11 +164,13 @@ export default function AppShell({
                   ? 'Detalhes da peça'
                   : page === 'entry'
                     ? 'Entrada de estoque'
-                    : page === 'edit'
-                      ? 'Editar peça'
-                      : page === 'catalog'
-                        ? 'Peças cadastradas'
-                        : 'Cadastro de peça'}
+                    : page === 'sale'
+                      ? 'Registro de venda'
+                      : page === 'edit'
+                        ? 'Editar peça'
+                        : page === 'catalog'
+                          ? 'Peças cadastradas'
+                          : 'Cadastro de peça'}
             </Typography>
           </Breadcrumbs>
           <Stack direction="row" spacing={1} sx={{ ml: 'auto', alignItems: 'center' }}>
@@ -169,11 +188,13 @@ export default function AppShell({
                   ? 'Detalhes da peça'
                   : page === 'entry'
                     ? 'Entrada de estoque'
-                    : page === 'edit'
-                      ? 'Edição manual'
-                      : page === 'catalog'
-                        ? 'Gestão de catálogo'
-                        : 'Cadastro manual'}
+                    : page === 'sale'
+                      ? 'Venda'
+                      : page === 'edit'
+                        ? 'Edição manual'
+                        : page === 'catalog'
+                          ? 'Gestão de catálogo'
+                          : 'Cadastro manual'}
             </Typography>
             <Tooltip title={themeLabel}>
               <IconButton aria-label={themeLabel} onClick={onToggleTheme}>
