@@ -16,6 +16,7 @@ export default function PartDetailsPage({
   onBack,
   onEdit,
   onEntry,
+  onExit,
   isNavigationLocked,
   onNavigationStateChange,
 }) {
@@ -111,6 +112,7 @@ export default function PartDetailsPage({
             <StockBalancePanel
               part={part}
               onEntry={onEntry}
+              onExit={onExit}
               isNavigationLocked={isNavigationLocked}
             />
           </Box>
