@@ -149,7 +149,8 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
+        "- 27/11/2026 · Levantamento de 26/11: perguntado se cadastrar um ano por associação serve ou atrapalha, o cliente respondeu \"Isso teria que ver uma forma fácil de cadastrar ano e modelo. É a parte que mais se gasta tempo\". O CA03.4 permanece como está, com um único ano numérico de quatro dígitos por associação, e a dificuldade de cadastrar ano e modelo fica registrada como pendência aberta, já que o cliente não definiu uma forma mais fácil e a equipe não decide por ele. O levantamento foi assíncrono, não validou critério de aceitação e não equivale ao item de validação com o cliente da Definição de Pronto (#85)."
       ]
     },
     {
@@ -180,7 +181,9 @@
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
         "- 10/11/2026 · Busca também pelo código equivalente, conforme decisão do cliente de 04/11 (US04: #30).",
-        "- 10/11/2026 · Revisão do esforço sinalizada para a busca por códigos equivalentes; notas atuais preservadas até avaliação da equipe (#30)."
+        "- 10/11/2026 · Revisão do esforço sinalizada para a busca por códigos equivalentes; notas atuais preservadas até avaliação da equipe (#30).",
+        "- 27/11/2026 · Levantamento de 26/11: o cliente respondeu que a primeira informação que tem no atendimento é o \"Nome da peça\" e que o resultado da busca precisa mostrar \"Nome e código\". Os critérios atendem às duas respostas e seguem sem alteração: o CA04.1 permite pesquisar só pelo nome, verificado por test_ca041_each_identification_filter_works_alone; o CA04.4 admite trecho do nome, verificado por test_ca044_normalizes_case_and_edges_and_matches_name_substring; o CA04.6 exige apenas um filtro preenchido, verificado por test_ca046_empty_search_does_not_query_repository; e a lista de resultados do catálogo apresenta o código do fabricante e o nome da peça. O levantamento foi assíncrono, não validou critério de aceitação e não equivale ao item de validação com o cliente da Definição de Pronto (#85).",
+        "- 27/11/2026 · Levantamento de 26/11: o cliente confirmou que marca e modelo são escritos de formas diferentes na operação. A correspondência definida no CA04.4 cobre esse caso apenas em parte, pois compara trecho do texto desconsiderando maiúsculas/minúsculas e espaços nas extremidades, verificado por test_ca044_normalizes_case_and_edges_and_matches_name_substring, e não reconhece abreviações nem grafias diferentes do mesmo modelo. A regra de correspondência aplicável a essas variações fica como pendência aberta, a definir com o cliente; nenhum critério da US04 foi alterado nem o protótipo de busca (#85)."
       ],
       "priority_note": "Revisão de esforço pendente: avaliar o impacto da busca por códigos equivalentes. EI, CA e LC atuais foram preservados até essa avaliação pela equipe."
     },
