@@ -15,9 +15,13 @@ EXIT_REASON = "movement_type <> 'exit' OR (reason IS NOT NULL AND length(trim(re
 def movements(*, reason: bool, optional_cost: bool) -> sa.Table:
     """Declara stock_movements para o modo batch.
 
-    O SQLAlchemy não reflete constraints CHECK do SQLite, então o modo batch
-    derrubaria `ck_stock_quantity` ao recriar a tabela. Reafirmar colunas,
-    índice e constraints aqui preserva a invariante da US08.
+    Reafirmar colunas, índice e constraints aqui dispensa a reflexão: o modo
+    batch recria a tabela no SQLite, e a declaração explícita garante que
+    `ck_stock_quantity`, a invariante da US08, sobreviva independentemente do
+    que a versão do SQLAlchemy em uso consiga refletir de um CHECK. Nesta
+    versão a reflexão preserva a constraint mesmo sem `copy_from`, conferido
+    por `test_database_rejects_nonpositive_movement_quantity`; a declaração
+    permanece como garantia, não como correção de um defeito observado.
     """
     columns = [
         sa.Column("id", sa.Uuid(), primary_key=True),
