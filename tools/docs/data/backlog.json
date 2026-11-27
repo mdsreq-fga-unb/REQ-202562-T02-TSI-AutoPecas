@@ -211,7 +211,8 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Campos editáveis explicitados, código principal imutável e dados fiscais reservados à US33, eliminando a sobreposição apontada em #48 (US05: #31)."
+        "- 10/11/2026 · Campos editáveis explicitados, código principal imutável e dados fiscais reservados à US33, eliminando a sobreposição apontada em #48 (US05: #31).",
+        "- 27/11/2026 · Atendimento da história completado pelo PR #77, e não pelo PR #65: a correção e a remoção de aplicações por veículo (CA05.5 e CA05.7) vieram dos commits fa7d613, na API, e 53fe514, na interface, ambos com Refs #31. A evidência por critério está em backend/tests/test_vehicle_application_updates.py, nos testes test_ca055_updates_only_selected_application_preserving_part_and_other_links, test_ca055_rejects_duplicate_but_allows_own_application e test_ca057_removes_only_selected_link_preserving_part_and_other_links. O PR #65 comprova apenas a edição dos demais campos cadastrais (#81)."
       ]
     },
     {
@@ -241,7 +242,8 @@
       "planned_status": "Não iniciado",
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
-        "- 10/11/2026 · Peça inativa permanece nas buscas, identificada, sem novas movimentações ou vendas e sem alteração dos registros existentes, conforme cliente em 04/11 e issue #48 (US06: #32)."
+        "- 10/11/2026 · Peça inativa permanece nas buscas, identificada, sem novas movimentações ou vendas e sem alteração dos registros existentes, conforme cliente em 04/11 e issue #48 (US06: #32).",
+        "- 27/11/2026 · Atendimento parcial registrado: o CA06.5 exige impedir entrada, saída manual, ajuste de inventário e venda de peça inativa, e apenas um dos quatro bloqueios existe no código — a entrada de estoque, em backend/app/services/stock.py:35. A saída manual depende da US09, em implementação; o ajuste de inventário depende da US10, não implementada; a venda depende da US15, cujo PR #96 permanece aberto. A visibilidade da peça inativa (CA06.4) está verificada por test_ca047_inactive_parts_remain_searchable_and_pagination_is_filtered. Enquanto esses fluxos não forem verificados, o requisito é parcialmente implementado, não integralmente atendido (#81)."
       ]
     },
     {
