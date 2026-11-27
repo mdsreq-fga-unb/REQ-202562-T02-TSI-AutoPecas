@@ -335,7 +335,8 @@
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
         "- 10/11/2026 · Saída acima do saldo bloqueada com informação do saldo disponível, sem restrição por perfil no MVP, conforme cliente em 04/11 e issues #48 e #53 (US09: #34).",
-        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
+        "- 27/11/2026 · Comportamento implementado na API e na interface: registro com peça, quantidade, data não futura no calendário da loja e motivo não vazio; baixa do saldo na mesma transação e uma única vez, conforme o RNF02; retirada acima do saldo impedida com o saldo disponível informado, e retirada do saldo exato permitida, resultando em zero; peça inativa impedida de receber saída. A saída não cria registro de venda. Verificado por testes por critério em backend/tests/test_stock_exits.py e em frontend/src/stockExit.test.jsx, incluindo concorrência em PostgreSQL. Revisão por outro integrante e validação com o cliente seguem pendentes, e a Definição de Pronto não foi declarada (#34)."
       ]
     },
     {
