@@ -1,8 +1,9 @@
 from datetime import date
 from decimal import Decimal
+from typing import Annotated, Literal
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field, field_serializer
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints, field_serializer
 
 
 class StockEntryCreate(BaseModel):
@@ -20,6 +21,22 @@ class StockEntryResponse(StockEntryCreate):
     @field_serializer("unit_cost")
     def serialize_cost(self, value: Decimal) -> str:
         return format(value, ".2f")
+
+
+class StockExitCreate(BaseModel):
+    quantity: int = Field(gt=0, strict=True)
+    exit_date: date
+    # strip_whitespace roda antes de min_length, então "   " vira "" e é recusado;
+    # o valor aparado é o que entra no fingerprint e na persistência.
+    reason: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=120)]
+
+
+class StockExitResponse(StockExitCreate):
+    model_config = ConfigDict(from_attributes=True)
+    movement_type: Literal["exit"] = "exit"
+    stock_balance: int
+    id: UUID
+    part_id: UUID
 
 
 class StockBalanceResponse(BaseModel):

@@ -41,8 +41,9 @@ o banco. Sem `DATABASE_URL`, o cadastro responde 503 e `/health` continua dispon
 ## Estado atual do incremento
 
 Nesta branch estão disponíveis cadastro e edição de peças, alteração de status,
-importação XLSX, aplicações por veículo, busca, entrada de estoque e consulta de saldo.
-A US05 também permite corrigir e remover aplicações existentes. US09, US10, US15 e
+importação XLSX, aplicações por veículo, busca, entrada de estoque, saída manual de
+estoque e consulta de saldo.
+A US05 também permite corrigir e remover aplicações existentes. US10, US15 e
 US16 continuam previstas para os próximos incrementos.
 
 Os registros datados abaixo preservam as verificações de cada etapa; as referências
@@ -191,9 +192,9 @@ Inativar preserva o cadastro, o saldo e os registros existentes; reativar permit
 novamente essas operações.
 
 A implementação atual contempla a alternância de status e a preservação dos dados
-cadastrais. A US08 já bloqueia entradas para peças inativas, e a US12 permite
-consultar seu saldo sem reativá-las. Saídas, ajustes e vendas deverão aplicar o
-mesmo bloqueio quando as US09, US10 e US15 forem integradas.
+cadastrais. A US08 já bloqueia entradas para peças inativas, a US09 bloqueia
+saídas manuais e a US12 permite consultar seu saldo sem reativá-las. Ajustes e
+vendas deverão aplicar o mesmo bloqueio quando as US10 e US15 forem integradas.
 
 Alinhamento de escopo registrado em 12/11/2026, sem antecipar a implementação dos
 módulos dependentes. Os critérios de alternância estão na
@@ -753,3 +754,159 @@ A ampliação do workflow foi preparada e os cenários foram executados localmen
 não há execução remota destas mudanças registrada. Revisão por outro integrante,
 validação com o cliente e verificação em homologação HTTPS continuam pendentes.
 Esses resultados não declaram a DoD concluída.
+
+## Saída manual de estoque — US09 (Refs #34)
+
+`POST /parts/{id}/stock-exits` recebe `quantity` (inteiro positivo), `exit_date`
+(data ISO não futura) e `reason` (texto não vazio, até 120 caracteres). O cabeçalho
+`Idempotency-Key` deve conter um UUID. A resposta 201 traz exatamente `id`,
+`part_id`, `movement_type` (sempre `"exit"`), `quantity`, `exit_date`, `reason` e
+`stock_balance`. O motivo é ecoado e o tipo é explícito, de modo que o resultado
+identifica a saída sem nenhum campo de venda, canal, preço ou total (CA09.3).
+
+### Decisões de modelagem
+
+A tabela `stock_movements` foi **reusada**, não duplicada: `parts.stock_balance`
+é a fonte única do saldo, lida pela US08 e pela US12, e uma segunda tabela de
+movimentos bifurcaria o histórico que as US16 e US33 precisarão ler como uma
+linha do tempo única.
+
+Para acomodar a saída, `unit_cost` passou a aceitar nulo — gravar `0.00` numa
+saída fabricaria dado financeiro e corromperia qualquer relatório de custo futuro.
+A invariante que o `NOT NULL` garantia foi preservada explicitamente, por tipo de
+movimento, por duas restrições condicionais:
+
+- `ck_stock_entry_cost`: `movement_type <> 'entry' OR unit_cost IS NOT NULL`
+- `ck_stock_exit_reason`: `movement_type <> 'exit' OR (reason IS NOT NULL AND length(trim(reason)) > 0)`
+
+Não foi adicionada uma restrição `movement_type IN ('entry','exit')`: a US10
+(ajuste) precisaria de uma migração só para incluir um valor, e as duas checagens
+condicionais já cobrem todas as invariantes existentes hoje.
+
+A coluna **`entry_date` não foi renomeada**, porque o código da US08 e
+`tests/test_stock_entries.py` dependem dela. O contrato da API usa `exit_date` e o
+serviço mapeia `data.exit_date -> StockMovement.entry_date`. Essa divergência de
+nome é **intencional**; não a "corrija" sem migrar a US08 junto.
+
+As requisições idempotentes de saída ficam em `stock_exit_requests`, **separada**
+de `stock_entry_requests`. Compartilhar a tabela faria uma retentativa desserializar
+payload de saída no schema de entrada e faria uma entrada e uma saída que por acaso
+usassem a mesma chave colidirem em 409 falso. Consequência documentada e fixada em
+teste: a mesma `Idempotency-Key` usada uma vez para entrada e uma vez para saída é
+aceita nas duas (operações e escopos diferentes).
+
+### Regras e atomicidade
+
+A ordem das regras é **peça existente (404) -> retentativa conhecida -> peça
+inativa -> data futura -> saldo insuficiente**, e está fixada em teste para que
+uma refatoração não troque silenciosamente o erro que o operador vê. A checagem de
+retentativa vem **antes** da de saldo, de modo que repetir uma saída já bem-sucedida
+devolve o 201 original mesmo depois de o saldo ter caído a zero.
+
+Saldo insuficiente retorna 422 com a mensagem humana contendo o número disponível,
+`fields.quantity` e `stock_balance` como forma legível por máquina. Retirar
+exatamente o saldo disponível é permitido e resulta em zero. Nenhum detalhe interno
+de SQL é exposto (RNF05).
+
+O serviço bloqueia a peça com `SELECT FOR UPDATE`, compartilhando a ordem de
+serialização com a inativação e com a entrada da US08. Movimento, decremento do
+saldo e resposta idempotente são confirmados na mesma transação; uma falha desfaz
+os três. Uma saída retroativa usa o saldo vigente na confirmação, sem reprocessar
+movimentos passados. A data máxima usa o calendário `America/Sao_Paulo`.
+
+`reason` é normalizado com `strip_whitespace` antes de `min_length`, então `"   "`
+é recusado na validação e o valor já aparado é o que entra no fingerprint e na
+persistência — uma retentativa que envie `" Descarte "` reusa a requisição de
+`"Descarte"` em vez de gerar 409.
+
+### Migração e nota das duas cabeças
+
+A revisão `0007_stock_exits` encadeia em `0006_part_imports`. Ela cria
+`stock_exit_requests`, acrescenta `reason`, torna `unit_cost` anulável e cria as
+duas restrições condicionais. O `batch_alter_table` recebe `copy_from=` com uma
+`sa.Table` declarada explicitamente, que reafirma colunas, índice e
+`ck_stock_quantity`; isso não depende da reflexão de CHECK do SQLite para preservar
+a invariante da US08, verificada por
+`test_stock_entries.py::test_database_rejects_nonpositive_movement_quantity`.
+
+O **downgrade é destrutivo**: ele apaga as linhas `movement_type = 'exit'`, porque
+saídas são irrepresentáveis em `0006` (onde `unit_cost` volta a ser obrigatório),
+e **não recalcula saldos**. Use-o apenas em desenvolvimento.
+
+**Nota das duas cabeças.** A US15 (PR #96) também encadeia sua revisão `0007_sales`
+em `0006_part_imports`. Depois dos dois merges, `alembic upgrade head` falha com
+"Multiple heads", e `test_migrations_have_a_single_head` dispara. A correção de uma
+linha pertence a **quem integrar em segundo**: trocar seu `down_revision` pelo id da
+outra revisão (`down_revision = "0007_sales"` se a US09 for a segunda;
+`down_revision = "0007_stock_exits"` se a US15 for a segunda). Se nenhum ambiente
+aplicou a segunda revisão ainda, renomeie também o arquivo e o id `revision` para
+`0008_<nome>`, mantendo a numeração honesta; se algum ambiente já a aplicou, deixe
+o id e apenas reaponte o `down_revision`; se as duas já foram aplicadas em algum
+lugar, rode `alembic merge -m "une vendas e saídas" 0007_sales 0007_stock_exits`.
+
+### Evidências TDD da US09
+
+Cada comportamento foi trabalhado individualmente: o teste foi executado e a falha
+observada antes da implementação, e só então o mínimo necessário foi escrito.
+Os ciclos com VERMELHO real foram:
+
+- Migração sem a coluna de motivo: `sqlite3.OperationalError: table stock_movements
+  has no column named reason` no insert cru de uma saída.
+- Rota ausente: `assert 404 == 201` no primeiro registro válido.
+- Saldo insuficiente aceito: `assert 201 == 422` ao retirar 9 de um saldo de 8,
+  antes da checagem de saldo.
+- Data futura aceita: `assert 201 == 422` para `exit_date = "2999-01-01"`.
+- Peça inexistente: `AttributeError` em `NoneType.stock_balance` (erro interno)
+  antes da checagem que retorna 404.
+- Peça inativa aceita: `assert 201 == 422` antes do bloqueio por status.
+
+Os cenários que passaram na primeira execução são **verificação complementar**, não
+evidência de ciclo VERMELHO/VERDE: redução do saldo e preservação das outras peças,
+retirada do saldo inteiro, validações de schema (quantidade zero/negativa/fracionária/
+booleana, motivo vazio ou só com espaços, data inexistente, campos ausentes), ordem
+das regras, fuso da loja, saída retroativa, contrato do cabeçalho e do OpenAPI,
+ausência de venda na resposta, idempotência (retentativa, 409, representação
+equivalente do motivo, reinício da API, inativação, queda de saldo), rollback,
+independência das chaves de entrada e saída, invariantes de banco e cabeça única do
+Alembic. Eles passaram porque o mínimo prescrito para os ciclos anteriores já os
+contemplava.
+
+Para não apresentar testes verdes como prova vazia, os guardas mais importantes
+foram confirmados por mutação deliberada do código, verificando que falham quando
+a regra é removida: trocar `>` por `>=` na checagem de saldo quebra
+`test_taking_the_whole_balance_is_allowed`; inverter a ordem das regras quebra
+`test_inactive_part_is_reported_before_insufficient_balance`; apontar
+`get_exit_request`/`remember_exit` para a tabela de entradas quebra
+`test_entry_and_exit_keys_are_independent`; remover o retorno antecipado da
+retentativa quebra `test_retry_after_balance_drop_returns_original_response`;
+substituir `get_for_update` por `get` em `create_exit` quebra
+`test_concurrent_exits_with_exact_balance_accept_only_one` com `[201, 201]`.
+
+Refatoração com testes verdes: `StockService` passou a compartilhar `_fingerprint`
+e `_remembered` entre entrada e saída. Os 29 testes da US08 em
+`tests/test_stock_entries.py` são a prova de que o comportamento foi preservado; o
+serializador de `unit_cost` de `StockEntryResponse` ficou intocado.
+
+### Verificação local — 27/11/2026
+
+- `uv run pytest` em SQLite descartável: **257 aprovados, 18 ignorados** (os
+  ignorados exigem PostgreSQL). Antes da US09 a mesma execução dava 224/14.
+- `US03_TEST_DATABASE_URL=postgresql+psycopg://...@127.0.0.1:55433/tsi_us03_test
+  uv run pytest`: **275 aprovados, sem skips**, com schema exclusivo por teste em
+  PostgreSQL 17 descartável. Antes da US09 eram 238. Os quatro testes de
+  concorrência da US09 executaram de fato — saídas simultâneas com saldo exato,
+  retentativas de mesma chave, chave reusada em peças diferentes e lock compartilhado
+  com a inativação.
+- `uv run ruff check .` e `uv run ruff format --check .`: aprovados.
+- A migração foi aplicada e revertida nos **dois** backends. Em SQLite o
+  `batch_alter_table` recria a tabela, e a inspeção de `sqlite_master` confirmou que
+  as três restrições CHECK e `ix_stock_movements_part_id` sobrevivem ao upgrade e que
+  o downgrade restaura exatamente a estrutura de `0006`.
+- `alembic check` não identificou divergências entre modelos e migrações.
+
+Não verificado localmente: a metade de `sales` do CA09.3 só executa de verdade
+depois de a US15 integrar (a guarda `has_table` a deixa inerte até lá); a resolução
+das duas cabeças não pode ser exercitada antes de os dois branches estarem na `main`;
+a matriz de navegadores do RNF03 e o TLS do RNF05 em ambiente publicado. Revisão por
+outro integrante, validação com o cliente e a DoD seguem sendo etapas humanas e não
+são declaradas aqui.
