@@ -102,16 +102,16 @@ equivale ao aceite do cliente; a conclusão depende dos itens da
 ### Correções da Unidade 3
 
 A tabela relaciona os documentos revisados, as issues do professor e os PRs
-correspondentes. Nenhum PR desta unidade foi aberto até a publicação desta
-versão.
+correspondentes. A integração segue a ordem dos PRs #99, #100 e #101, depois do
+incremento da US09 no PR #98.
 
 <div class="delivery-corrections" markdown="1">
 
 | Documentação e correção | Issue | PRs e evidências |
 | --- | :---: | :---: |
-| [Processo de ER](../visao-produto/engenharia-de-requisitos.md): seção de resultados das práticas declaradas, com a análise documental e a análise de tarefas derivadas da [ata de 26/11/2026](../atas/levantamento-dados-loja.md) e a avaliação DEEP do backlog; registro da decisão no histórico do RF02. | [#79](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/79) | a preencher na abertura do PR |
-| [Backlog](../visao-produto/requisitos-de-software.md): revisão das regras de aplicação por veículo e de busca, com registro no histórico do [RF03](../visao-produto/requisitos-de-software.md#rf03) e do [RF04](../visao-produto/requisitos-de-software.md#rf04). | [#85](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/85) | a preencher na abertura do PR |
-| [Backlog](../visao-produto/requisitos-de-software.md): consistência do atendimento dos RFs. No [RF05](../visao-produto/requisitos-de-software.md#rf05), atribuição do atendimento do CA05.5 e do CA05.7 ao PR #77 e aos testes por critério, e não ao PR #65. No [RF06](../visao-produto/requisitos-de-software.md#rf06), registro do atendimento parcial do CA06.5, com o inventário dos quatro bloqueios e a dependência das US09, US10 e US15. | [#81](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/81) | a preencher na abertura do PR |
+| [Processo de ER](../visao-produto/engenharia-de-requisitos.md): seção de resultados das práticas declaradas, com a análise documental e a análise de tarefas derivadas da [ata de 26/11/2026](../atas/levantamento-dados-loja.md) e a avaliação DEEP do backlog; registro da decisão no histórico do RF02. | [#79](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/79) | [#99](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/99) |
+| [Backlog](../visao-produto/requisitos-de-software.md): revisão das regras de aplicação por veículo e de busca, com registro no histórico do [RF03](../visao-produto/requisitos-de-software.md#rf03) e do [RF04](../visao-produto/requisitos-de-software.md#rf04). | [#85](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/85) | [#100](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/100) |
+| [Backlog](../visao-produto/requisitos-de-software.md): consistência do atendimento dos RFs. No [RF05](../visao-produto/requisitos-de-software.md#rf05), atribuição do atendimento do CA05.5 e do CA05.7 ao PR #77 e aos testes por critério, e não ao PR #65. No [RF06](../visao-produto/requisitos-de-software.md#rf06), registro do atendimento parcial do CA06.5, com o inventário dos quatro bloqueios e a dependência das US09, US10 e US15. | [#81](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/81) | [#101](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/pull/101) |
 
 </div>
 
