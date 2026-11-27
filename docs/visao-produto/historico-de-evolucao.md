@@ -180,6 +180,7 @@ indica a data, a decisão, os elementos afetados e a origem da mudança.
 | 14/11/2026 | Correção da descrição de RF14 na ata de 05/10: de associação a anúncios do Mercado Livre para filtro do histórico por período. | [US14 / RF14](requisitos-de-software.md#rf14) | [Ata da Sprint 3](../atas/sprint-3.md), [issue #47](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/47) |
 | 16/11/2026 | Criação do RNF06, com backup diário criptografado no GitHub Actions, retenção de 30 dias, RPO de 24 horas e RTO de 8 horas, compatível com o plano gratuito do Supabase no lugar do PITR. | [RNF06](requisitos-de-software.md#rnf06-backup-e-recuperacao-de-dados), [D01](intervencao-social.md#d01) | Feedback do professor (issue #49) |
 | 16/11/2026 | Registro da validação com o cliente, em 04/11, das regras de acesso sem login, bloqueio de saída e venda acima do saldo, entrada sem fornecedor, histórico por período, ajuste sem saldo negativo e peças com mais de um código, o que resolve a pendência da solução de acesso registrada em 14/11. | [Priorização](priorizacao.md), [Cliente e negócio](cliente-e-negocio.md) | [Issue #53](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/53) |
+| 27/11/2026 | Registro da decisão de manter o MVP sem autenticação, com uso na loja por um operador e endereço não divulgado. O cliente foi informado do risco de acesso e respondeu "Sem senha por enquanto."; a equipe verifica uma restrição simples antes do deploy em produção. | [RNF05](requisitos-de-software.md#rnf05-seguranca-de-dados), [Cliente e negócio](cliente-e-negocio.md#acesso-ao-mvp) | [Complemento do levantamento (27/11)](../atas/levantamento-dados-loja-27-11.md), issue #83 |
 
 ## <span id="125-referencia-de-cada-entrega"></span>Referência de cada entrega {#referencia-de-cada-entrega}
 
@@ -207,3 +208,4 @@ os artefatos e as correções correspondentes; os registros anteriores preservam
 | 2.5 | 12/11/2026 | Registro das correções do RNF01 e do RNF02 e de sua origem na issue #49. | Equipe |
 | 2.6 | 16/11/2026 | Registro da validação de 04/11 com o cliente, que resolve a pendência da solução de acesso (issue #53). | [João Melo](https://github.com/jot4-ge) |
 | 2.7 | 16/11/2026 | Revisão do resumo do escopo de cada entrega, destacando os temas da Unidade 3 e preservando o recorte histórico da Unidade 2. | [Thiago Gomes](https://github.com/thgomxs) |
+| 2.8 | 27/11/2026 | Registro da decisão de acesso ao MVP sem autenticação (issue #83). | [João Melo](https://github.com/jot4-ge) |

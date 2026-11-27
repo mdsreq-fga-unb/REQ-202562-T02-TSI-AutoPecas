@@ -43,7 +43,7 @@ Os termos do domínio mantêm um vocabulário único em todo o sistema:
 - **Datas e horas** em UTC, no formato ISO 8601.
 - **Erros:** levantar exceções de domínio nas camadas internas e traduzi-las em respostas HTTP com status adequado (`400`, `404`, `409`, `422`). Nunca expor detalhes internos ao usuário.
 - **Operações de escrita** (entradas, saídas, vendas) executadas em transação, com suporte a chave de idempotência, para atender ao [RNF02](requisitos-de-software.md#rnf02) (sem perda ou duplicidade de dados em falhas de conexão).
-- **Segurança:** segredos apenas em variáveis de ambiente, nunca no repositório. Senhas com hash `bcrypt` ([RNF05](requisitos-de-software.md#rnf05)). Toda comunicação por HTTPS.
+- **Segurança:** segredos apenas em variáveis de ambiente, nunca no repositório. Toda comunicação por HTTPS ([RNF05](requisitos-de-software.md#rnf05)). Quando houver autenticação (evolução futura, fora do MVP), senhas com hash `bcrypt`.
 
 ## 4. Front-end (React / Vite) {#front-end}
 
@@ -129,3 +129,4 @@ O revisor verifica, no mínimo, se:
 | :----: | :--: | --- | --- |
 | 1.0 | 05/10/2026 | Definição dos padrões de codificação, nomenclatura, arquitetura, testes (TDD) e fluxo Git no README do repositório. | Equipe |
 | 1.1 | 09/11/2026 | Publicação dos padrões de codificação na documentação do projeto (MkDocs), com vínculos para os RNFs, RF05, DoD e pipeline de CI. | [Bruno Ferreira](https://github.com/brunnf) |
+| 1.2 | 27/11/2026 | Esclarecimento de que o hash de senhas se aplica apenas à futura autenticação, fora do MVP, e de que o RNF05 trata somente do tráfego por HTTPS (issue #83). | [João Melo](https://github.com/jot4-ge) |

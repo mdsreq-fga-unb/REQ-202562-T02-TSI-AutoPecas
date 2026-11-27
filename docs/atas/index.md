@@ -47,6 +47,7 @@ Decisões validadas com o cliente de forma assíncrona (fora das reuniões de sp
 - [Validação do papel de Gerente de projeto / Product Owner](validacao-papel-po.md) — 12/10/2026
 - [Validação das funções iniciais do sistema](validacao-us-cliente.md) — 16/11/2026
 - [Levantamento de dados da loja](levantamento-dados-loja.md) — 26/11/2026
+- [Levantamento de dados da loja, complemento de 27/11](levantamento-dados-loja-27-11.md)
 
 ## Versionamento
 
@@ -57,3 +58,4 @@ Decisões validadas com o cliente de forma assíncrona (fora das reuniões de sp
 | 1.2 | 04/11/2026 | Atualização dos links e das referências à numeração original do template, preservando o histórico das entregas. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.3 | 16/11/2026 | Adição da validação das funções iniciais do sistema pelo cliente às evidências de validação assíncrona. | [João Melo](https://github.com/jot4-ge) |
 | 1.4 | 26/11/2026 | Adição do levantamento de dados da loja (planilhas, estoque e regras de uso) às evidências de validação assíncrona. | [João Melo](https://github.com/jot4-ge) |
+| 1.5 | 27/11/2026 | Adição do complemento do levantamento de dados da loja (acesso ao MVP e importação da planilha) às evidências de validação assíncrona. | [João Melo](https://github.com/jot4-ge) |

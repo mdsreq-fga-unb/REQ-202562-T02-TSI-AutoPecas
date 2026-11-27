@@ -45,6 +45,20 @@ Em 04/11/2026, a equipe validou com o cliente, pelo WhatsApp, as regras que fech
 
 *Figura — Validação sobre histórico por período, ajuste de inventário e códigos de peças.*
 
+## Acesso ao MVP {#acesso-ao-mvp}
+
+Em 04/11/2026, o cliente validou, pelo WhatsApp, o acesso ao sistema sem login. Em 26/11/2026, informou que usará o sistema no computador da loja, que no momento é o único usuário e que a primeira versão sem senha atende ([Levantamento de dados da loja](../atas/levantamento-dados-loja.md)). A confirmação final veio em resposta a uma pergunta sugerida pela equipe.
+
+**Onde será disponibilizado.** O plano prevê front-end na Vercel, back-end na Render e banco no Supabase ([Solução e características](solucao-e-caracteristicas.md)). O deploy em produção ainda não foi realizado.
+
+**Quem acessa.** A aplicação é usada por Antônio Marcos, como único operador; a equipe a acessa para manutenção e integrações futuras. O acesso às contas da infraestrutura passa ao cliente na Sprint 6 ([Intervenção social](intervencao-social.md#d09)).
+
+**Decisão.** Na primeira versão, o sistema abre sem autenticação e o endereço não é divulgado. A proteção por HTTPS ([RNF05](requisitos-de-software.md#rnf05-seguranca-de-dados)) protege o tráfego, mas não define quem pode acessar.
+
+**Risco.** Enquanto não houver autenticação, quem conhecer o endereço do front-end ou da API pode cadastrar, alterar, movimentar e registrar vendas. Em 27/11/2026, a equipe explicou isso ao cliente e perguntou se ele concordava ou preferia uma senha única de acesso; ele respondeu "Sem senha por enquanto." ([Levantamento de dados da loja, complemento de 27/11](../atas/levantamento-dados-loja-27-11.md)).
+
+**Evolução futura.** Autenticação e gestão de usuários ficam fora do MVP e dependem de nova decisão ([CP9](solucao-e-caracteristicas.md#cp9)). Antes do deploy em produção, a equipe verifica se uma restrição simples de acesso, como uma senha única do ambiente, é viável sem custo adicional e registra o resultado.
+
 ## Versionamento
 
 | Versão | Data | Descrição | Autor(es/as) |
@@ -54,3 +68,4 @@ Em 04/11/2026, a equipe validou com o cliente, pelo WhatsApp, as regras que fech
 | 1.2 | 09/09/2026 | Inclusão das evidências de validação do cliente | [João Melo](https://github.com/jot4-ge) |
 | 1.3 | 04/11/2026 | Remoção da numeração estrutural e ajuste da hierarquia dos títulos, com links estáveis e preservação das âncoras anteriores. | [Thiago Gomes](https://github.com/thgomxs) |
 | 1.4 | 15/11/2026 | Inclusão das evidências da validação das decisões de escopo do MVP com o cliente (04/11/2026), no contexto da issue #53. | [João Melo](https://github.com/jot4-ge) |
+| 1.5 | 27/11/2026 | Registro da decisão de acesso ao MVP sem autenticação, do uso previsto, do risco, da resposta do cliente e da evolução futura, no contexto da issue #83. | [João Melo](https://github.com/jot4-ge) |
