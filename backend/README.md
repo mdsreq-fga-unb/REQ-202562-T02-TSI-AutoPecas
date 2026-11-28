@@ -44,8 +44,10 @@ Nesta branch estão disponíveis cadastro e edição de peças, alteração de s
 importação XLSX, aplicações por veículo, busca, entrada de estoque, saída manual de
 estoque e consulta de saldo.
 A US05 também permite corrigir e remover aplicações existentes. A US15 registra
-vendas, descritas na seção [Registro de venda](#registro-de-venda--us15-refs-38).
-US10 e US16 continuam previstas para os próximos incrementos.
+vendas, descritas na seção [Registro de venda](#registro-de-venda--us15-refs-38),
+e a US16 lista e cancela vendas, descrita em
+[Cancelamento de venda](#cancelamento-de-venda--us16-refs-39).
+A US10 continua prevista para os próximos incrementos.
 
 Os registros datados abaixo preservam as verificações de cada etapa; as referências
 antigas a funcionalidades ainda ausentes devem ser lidas no contexto dessas datas.
@@ -935,3 +937,35 @@ a venda em `stock_balance`. Na consulta, `stock_balance` é o saldo atual da pe�
   `sale_requests` guarda a chave, a impressão dos dados e a resposta.
 - **Fora desta entrega:** cancelamento (US16), movimentações de estoque (histórico),
   recebimentos, emissão fiscal e integração com marketplaces.
+
+## Cancelamento de venda — US16 (Refs #39)
+
+O cancelamento marca a venda como `cancelled` e devolve ao saldo de cada peça a
+quantidade daquele item, na mesma transação. A venda, seus itens, preços e canal
+permanecem registrados (CA16.5).
+
+| Rota | Contrato |
+| --- | --- |
+| `GET /sales` | Lista vendas, da mais recente para a mais antiga; `offset` e `limit` (1 a 100, padrão 20) |
+| `POST /sales/{id}/cancellation` | Sem corpo, com cabeçalho `Idempotency-Key` UUID; retorna 200 |
+
+A lista traz `items` e `total`; cada venda tem `id`, `channel`, `status`, `total`,
+`created_at` e itens com `part_id`, `name`, `manufacturer_code`, `quantity` e
+`unit_price`. O cancelamento responde no formato de `GET /sales/{id}`, com
+`status` `cancelled` e o saldo de cada peça após a reversão em `stock_balance`.
+
+- **Reversão por diferença (CA16.1 e CA16.2):** o saldo recebe a quantidade do item,
+  sem voltar a um valor anterior; entradas, saídas e vendas posteriores são preservadas.
+- **Cancelamento repetido (CA16.4):** uma venda já cancelada retorna 409 sem nova
+  reversão.
+- **Peças inativas (CA16.7):** se alguma peça da venda estiver inativa, o cancelamento
+  inteiro retorna 422 com `items` (`part_id`, `name`, `manufacturer_code`) das peças
+  a reativar; nada é alterado. Reativar a peça não cancela a venda.
+- **Venda inexistente (CA16.8):** 404, sem alterações.
+- **Atomicidade, concorrência e idempotência (CA16.6, RNF02):** a venda e depois as
+  peças, em ordem estável, são bloqueadas com `SELECT … FOR UPDATE`. Repetir a
+  chave devolve a resposta original sem nova reversão; a mesma chave para outra
+  venda retorna 409. `sale_cancellation_requests` (migração
+  `0008_sale_cancellations`) guarda a chave, a impressão da venda e a resposta.
+- **Fora desta entrega:** cancelamento parcial, motivo do cancelamento, estorno,
+  emissão fiscal e integração com marketplaces, que não constam dos critérios.
