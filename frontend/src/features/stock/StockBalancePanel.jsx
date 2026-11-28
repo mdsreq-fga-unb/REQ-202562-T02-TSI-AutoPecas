@@ -2,7 +2,7 @@ import { Alert, Button, CircularProgress, Paper, Stack, Typography } from '@mui/
 import LockOutlined from '@mui/icons-material/LockOutlined';
 import useStockBalance from './useStockBalance.js';
 
-export default function StockBalancePanel({ part, onEntry, isNavigationLocked }) {
+export default function StockBalancePanel({ part, onEntry, onExit, isNavigationLocked }) {
   const { state, refresh } = useStockBalance(part.id);
   const entryBlockedReason =
     part.status === 'inactive'
@@ -10,6 +10,14 @@ export default function StockBalancePanel({ part, onEntry, isNavigationLocked })
       : isNavigationLocked
         ? 'Conclua a operação em Aplicações por veículo para liberar a entrada.'
         : null;
+  const exitBlockedReason =
+    part.status === 'inactive'
+      ? 'Peça inativa. Ative-a em Dados cadastrais para registrar uma saída.'
+      : isNavigationLocked
+        ? 'Conclua a operação em Aplicações por veículo para liberar a saída.'
+        : state.status === 'ready' && state.balance.stock_balance === 0
+          ? 'Nenhuma unidade disponível para saída.'
+          : null;
   return (
     <Paper
       component="section"
@@ -61,6 +69,22 @@ export default function StockBalancePanel({ part, onEntry, isNavigationLocked })
           >
             Registrar entrada
           </Button>
+          <Button
+            variant="outlined"
+            aria-label={`Registrar saída de ${part.name}`}
+            onClick={onExit}
+            disabled={Boolean(exitBlockedReason)}
+            aria-describedby={exitBlockedReason ? 'part-exit-block-reason' : undefined}
+            sx={{
+              '&.Mui-disabled': {
+                color: 'text.secondary',
+                cursor: 'not-allowed',
+                pointerEvents: 'auto',
+              },
+            }}
+          >
+            Registrar saída
+          </Button>
           <Button onClick={refresh} disabled={state.status === 'loading'}>
             {state.status === 'error' ? 'Tentar novamente' : 'Atualizar saldo'}
           </Button>
@@ -73,6 +97,16 @@ export default function StockBalancePanel({ part, onEntry, isNavigationLocked })
             role="status"
           >
             {entryBlockedReason}
+          </Typography>
+        )}
+        {exitBlockedReason && (
+          <Typography
+            id="part-exit-block-reason"
+            variant="body2"
+            color="text.secondary"
+            role="status"
+          >
+            {exitBlockedReason}
           </Typography>
         )}
       </Stack>

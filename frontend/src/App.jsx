@@ -12,6 +12,8 @@ import StockEntryPage from './features/stock/StockEntryPage.jsx';
 import SaleRegistrationPage from './features/sales/SaleRegistrationPage.jsx';
 import { readPendingSale } from './features/sales/pendingSale.js';
 import { readPendingEntry } from './features/stock/pendingStockEntry.js';
+import StockExitPage from './features/stock/StockExitPage.jsx';
+import { readPendingExit } from './features/stock/pendingStockExit.js';
 import { readPendingAssociation } from './features/parts/pendingVehicleAssociation.js';
 import { readPendingVehicleChange } from './features/parts/pendingVehicleApplicationChange.js';
 import { createCatalogSearchState } from './features/parts/partSearchState.js';
@@ -20,6 +22,8 @@ import { buildTheme } from './theme/theme.js';
 export default function App() {
   const [catalogSearch, setCatalogSearch] = useState(createCatalogSearchState);
   const [view, setView] = useState(() => {
+    const pendingExit = readPendingExit();
+    if (pendingExit) return { page: 'exit', partId: pendingExit.partId };
     const entry = readPendingEntry();
     if (entry) return { page: 'entry', partId: entry.partId };
     if (readPendingSale()) return { page: 'sale' };
@@ -40,6 +44,7 @@ export default function App() {
       edit: 'Editar peça',
       details: 'Detalhes da peça',
       entry: 'Registrar entrada',
+      exit: 'Registrar saída',
       sale: 'Registrar venda',
       import: 'Importar peças',
     }[view.page];
@@ -97,6 +102,7 @@ export default function App() {
         onNavigate={navigate}
         isNavigationLocked={
           view.page === 'entry' ||
+          view.page === 'exit' ||
           view.page === 'import' ||
           (view.page === 'details' && detailsNavigation.isLocked) ||
           (view.page === 'sale' && saleNavigation.isLocked) ||
@@ -124,12 +130,21 @@ export default function App() {
               requestNavigation({ page: 'edit', partId: view.partId, fromDetails: true })
             }
             onEntry={() => requestNavigation({ page: 'entry', partId: view.partId })}
+            onExit={() => requestNavigation({ page: 'exit', partId: view.partId })}
             isNavigationLocked={detailsNavigation.isLocked}
             onNavigationStateChange={setDetailsNavigation}
           />
         )}
         {view.page === 'entry' && (
           <StockEntryPage
+            key={view.partId}
+            partId={view.partId}
+            onDone={() => openDetails(view.partId)}
+            backLabel="Voltar à peça"
+          />
+        )}
+        {view.page === 'exit' && (
+          <StockExitPage
             key={view.partId}
             partId={view.partId}
             onDone={() => openDetails(view.partId)}

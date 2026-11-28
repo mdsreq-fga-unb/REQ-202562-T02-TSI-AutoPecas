@@ -37,9 +37,10 @@ credenciais do PostgreSQL/Supabase ficam exclusivamente no back-end.
 ## Estado atual do incremento
 
 O catálogo oferece edição de peças, aplicações por veículo, busca, entrada de
-estoque e consulta de saldo, além da importação XLSX. Na tela de aplicações, a
-US05 permite **Editar** ou **Remover** uma associação existente. Saídas, ajustes,
-vendas e cancelamentos continuam previstos para os próximos incrementos.
+estoque, saída manual de estoque e consulta de saldo, além da importação XLSX. Na
+tela de aplicações, a US05 permite **Editar** ou **Remover** uma associação
+existente. Ajustes, vendas e cancelamentos continuam previstos para os próximos
+incrementos.
 
 Os registros datados abaixo são históricos das respectivas etapas. O estado e as
 verificações da complementação estão em [edição e remoção de aplicações](#edição-e-remoção-de-aplicações--us05-refs-31).
@@ -279,9 +280,9 @@ inativa. A reativação libera novamente essas operações.
 
 A interface implementa a alternância de status, o indicador e a edição cadastral de
 peças ativas e inativas. A busca mantém as inativas visíveis. A US08 rejeita novas
-entradas para elas, e a US12 permite consultar o saldo preservado. Os bloqueios de
-saídas, ajustes e vendas serão integrados com as US09, US10 e US15, com validação
-obrigatória na API e apresentação do motivo na interface.
+entradas para elas, a US09 bloqueia saídas manuais e a US12 permite consultar o
+saldo preservado. Os bloqueios de ajustes e vendas serão integrados com as US10 e
+US15, com validação obrigatória na API e apresentação do motivo na interface.
 
 Alinhamento de escopo registrado em 12/11/2026. Os critérios de alternância estão
 na [issue #32](https://github.com/mdsreq-fga-unb/REQ-202562-T02-TSI-AutoPecas/issues/32),
@@ -785,3 +786,92 @@ Na verificação de 24/11/2026, os testes reproduziram a ausência da opção de
 diante de respostas inválidas antes da correção. Após o ajuste, os cenários
 verificaram a recuperação do formulário, a ausência de reenvio automático e o uso
 da mesma chave e dos mesmos dados ao repetir a tentativa.
+
+## Saída manual de estoque — US09 (Refs #34)
+
+O painel **Estoque** dos detalhes da peça ganhou **Registrar saída** ao lado de
+**Registrar entrada**. O botão fica desabilitado, com o motivo visível e associado
+por `aria-describedby`, em três situações: peça inativa, operação pendente em
+**Aplicações por veículo** e saldo carregado igual a zero ("Nenhuma unidade
+disponível para saída."). A entrada continua liberada quando o saldo é zero; só a
+saída é bloqueada.
+
+A página **Registrar saída** mostra o resumo da peça com código do fabricante,
+nome, situação e saldo atual, e um formulário com **Quantidade**, **Data da saída**
+e **Motivo**. Os alvos de toque usam 44 px e os paddings seguem `{ xs, sm }`, como
+na entrada da US08 (RNF01). A confirmação exibe `Saída registrada. Saldo após esta
+saída: N unidades. Motivo: <motivo>.`, de modo que o motivo é identificável no
+resultado (CA09.3), e o formulário desaparece. Em seguida o saldo vigente é
+consultado novamente; se essa consulta falhar, a interface diz que a saída foi
+registrada mas o saldo não pôde ser atualizado, sem desfazer nada.
+
+A validação no cliente espelha a da API, na mesma ordem: quantidade inteira maior
+que zero, data real e não posterior a hoje no fuso `America/Sao_Paulo`, motivo não
+vazio com até 120 caracteres. O primeiro campo com problema recebe foco e nenhuma
+requisição é enviada. O motivo é **aparado** antes do envio, para o corpo casar com
+o fingerprint normalizado do back-end. Quando a API recusa por saldo insuficiente,
+a mensagem com o saldo disponível aparece no alerta e o erro de campo em
+**Quantidade**, com os valores digitados preservados (CA09.4).
+
+Tolerância a falhas (RNF02): a tentativa é preservada em `localStorage` sob a chave
+`tsi:stock-exit:v1:<apiBaseUrl>` **antes** do POST, com uma chave idempotente por
+tentativa. Uma chave de armazenamento distinta da entrada garante que uma entrada
+pendente e uma saída pendente nunca se atropelem. Enquanto o resultado é incerto,
+os campos e o botão de voltar ficam travados e o botão vira **Tentar novamente**,
+reenviando o **mesmo corpo com a mesma chave**. Reabrir a aplicação com uma saída
+pendente reabre a página de saída com os valores restaurados, sem reenviar
+automaticamente e sem indicar sucesso. A pendência só é descartada em desfecho
+definitivo. Se o armazenamento estiver bloqueado, nada é enviado e a mensagem
+explica que nenhuma solicitação foi feita.
+
+`registerStockExit` confirma a resposta antes de tratá-la como sucesso: mesma peça,
+`id` não vazio, `movement_type === 'exit'`, quantidade, data e motivo iguais aos
+enviados, e `stock_balance` inteiro não negativo. A checagem de `movement_type` é o
+que impede o cliente de tratar payload de venda ou de entrada como saída. **Não** há
+aritmética `saldoAnterior - quantidade`: o saldo em cache pode estar legitimamente
+defasado por uma venda ou saída concorrente, e um "não confirmado" falso trancaria
+o operador fora de uma saída correta e já persistida.
+
+### Evidências da US09
+
+O primeiro ciclo foi VERMELHO real: `TestingLibraryElementError: Unable to find
+role="button" and name "Registrar saída de Filtro"`, antes de existirem a página,
+o hook, o serviço e o botão do painel. Depois de o fluxo mínimo ficar verde, os
+doze comportamentos restantes de `src/stockExit.test.jsx` passaram na primeira
+execução — eles são **verificação complementar**, não ciclos VERMELHO/VERDE novos,
+porque o mínimo escrito para o primeiro ciclo já os contemplava. Esta é uma
+limitação honesta deste incremento: a construção da página inteira num único ciclo
+reduziu o número de reds genuínos no front-end.
+
+Para que esses testes verdes não fossem prova vazia, cada guarda central foi
+confirmada por mutação deliberada, verificando que o teste correspondente falha
+quando a regra é removida:
+
+- remover `result.movement_type !== 'exit'` de `registerStockExit` quebra
+  `recupera saída após tipo divergente ...`;
+- remover `result.stock_balance < 0` quebra `recupera saída após saldo negativo ...`;
+- remover a validação de motivo vazio quebra `impede motivo apenas com espaços`;
+- remover o bloqueio por saldo zero do painel quebra
+  `bloqueia saída quando o saldo é zero`.
+
+Os treze blocos de teste cobrem: registro com corpo e chave idempotente conferidos
+(CA09.1/CA09.2/CA09.3); saldo insuficiente da API com campos preservados (CA09.4);
+reenvio de tentativa incerta com a mesma chave e campos travados (RNF02); seis
+variantes de recuperação após falha ou resposta não confirmável (RNF02); bloqueio
+quando o armazenamento falha; quantidade zero, motivo só com espaços, data ausente
+e data futura em São Paulo (CA09.5/CA09.6); encerramento com consulta do saldo
+vigente (CA09.6); bloqueios por peça inativa e por saldo zero; e a ausência de
+qualquer dado de venda no envio (CA09.3).
+
+### Verificação local — 27/11/2026
+
+- `pnpm test`: **127 aprovados em 13 arquivos** (antes da US09: 109 em 12).
+  `stockEntry.test.jsx`, `stockBalance.test.jsx` e `partDetails.test.jsx` continuam
+  aprovados, o que mostra que o botão novo do painel e o ramo novo em `App.jsx` não
+  causaram regressão na US08/US12.
+- `pnpm lint`, `pnpm format:check` e `pnpm build`: aprovados.
+- Node 22.23.4, conforme `.nvmrc`, com pnpm 10.34.9.
+
+Não verificado: a matriz de navegadores do RNF03, leitores de tela e a conferência
+manual de 360/390/414 px não foram automatizadas nesta entrega. Revisão por outro
+integrante e validação com o cliente seguem pendentes; a DoD não é declarada aqui.
