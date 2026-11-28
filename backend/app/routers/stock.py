@@ -5,6 +5,8 @@ from fastapi import APIRouter, Depends, Header, Request, Response
 
 from app.core.errors import DomainError
 from app.schemas.stock import (
+    StockAdjustmentCreate,
+    StockAdjustmentResponse,
     StockBalanceResponse,
     StockEntryCreate,
     StockEntryResponse,
@@ -44,6 +46,16 @@ def create_exit(
     idempotency_key: Annotated[UUID, Header()],
 ) -> StockExitResponse:
     return service.create_exit(part_id, data, idempotency_key)
+
+
+@router.post("/stock-adjustments", response_model=StockAdjustmentResponse, status_code=201)
+def create_adjustment(
+    part_id: UUID,
+    data: StockAdjustmentCreate,
+    service: Service,
+    idempotency_key: Annotated[UUID, Header()],
+) -> StockAdjustmentResponse:
+    return service.create_adjustment(part_id, data, idempotency_key)
 
 
 @router.get("/stock-balance", response_model=StockBalanceResponse)
