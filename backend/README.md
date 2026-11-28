@@ -43,8 +43,9 @@ o banco. Sem `DATABASE_URL`, o cadastro responde 503 e `/health` continua dispon
 Nesta branch estão disponíveis cadastro e edição de peças, alteração de status,
 importação XLSX, aplicações por veículo, busca, entrada de estoque, saída manual de
 estoque e consulta de saldo.
-A US05 também permite corrigir e remover aplicações existentes. US10, US15 e
-US16 continuam previstas para os próximos incrementos.
+A US05 também permite corrigir e remover aplicações existentes. A US15 registra
+vendas, descritas na seção [Registro de venda](#registro-de-venda--us15-refs-38).
+US10 e US16 continuam previstas para os próximos incrementos.
 
 Os registros datados abaixo preservam as verificações de cada etapa; as referências
 antigas a funcionalidades ainda ausentes devem ser lidas no contexto dessas datas.
@@ -833,16 +834,11 @@ O **downgrade é destrutivo**: ele apaga as linhas `movement_type = 'exit'`, por
 saídas são irrepresentáveis em `0006` (onde `unit_cost` volta a ser obrigatório),
 e **não recalcula saldos**. Use-o apenas em desenvolvimento.
 
-**Nota das duas cabeças.** A US15 (PR #96) também encadeia sua revisão `0007_sales`
-em `0006_part_imports`. Depois dos dois merges, `alembic upgrade head` falha com
-"Multiple heads", e `test_migrations_have_a_single_head` dispara. A correção de uma
-linha pertence a **quem integrar em segundo**: trocar seu `down_revision` pelo id da
-outra revisão (`down_revision = "0007_sales"` se a US09 for a segunda;
-`down_revision = "0007_stock_exits"` se a US15 for a segunda). Se nenhum ambiente
-aplicou a segunda revisão ainda, renomeie também o arquivo e o id `revision` para
-`0008_<nome>`, mantendo a numeração honesta; se algum ambiente já a aplicou, deixe
-o id e apenas reaponte o `down_revision`; se as duas já foram aplicadas em algum
-lugar, rode `alembic merge -m "une vendas e saídas" 0007_sales 0007_stock_exits`.
+**Duas cabeças resolvidas.** A US15 (PR #96) encadeia sua revisão `0007_sales` em
+`0007_stock_exits`, que já está na `main`, e o repositório volta a ter uma única
+cabeça (`test_migrations_have_a_single_head`). O id `0007_sales` foi mantido e só o
+`down_revision` mudou, porque ambientes de desenvolvimento já podem tê-lo aplicado.
+Nesse caso, recrie o banco local antes de subir a API.
 
 ### Evidências TDD da US09
 
@@ -910,3 +906,32 @@ das duas cabeças não pode ser exercitada antes de os dois branches estarem na 
 a matriz de navegadores do RNF03 e o TLS do RNF05 em ambiente publicado. Revisão por
 outro integrante, validação com o cliente e a DoD seguem sendo etapas humanas e não
 são declaradas aqui.
+
+## Registro de venda — US15 (Refs #38)
+
+A venda tem um canal de origem e um ou mais itens, cada um com peça, quantidade e
+preço unitário. O registro baixa o saldo de cada peça na mesma transação.
+
+| Rota | Contrato |
+| --- | --- |
+| `POST /sales` | JSON da venda e cabeçalho `Idempotency-Key` UUID; retorna 201 |
+| `GET /sales/{id}` | Consulta uma venda registrada, ou retorna 404 |
+
+O corpo do `POST` tem `channel` (`counter`, `mercado_livre` ou `direct_contact`) e
+`items`, de 1 a 100 itens com `part_id`, `quantity` (inteiro maior que zero) e
+`unit_price` (decimal não negativo com até duas casas). A resposta traz `id`,
+`channel`, `status` (`registered`), `total` e, para cada item, o saldo da peça após
+a venda em `stock_balance`. Na consulta, `stock_balance` é o saldo atual da peça.
+
+- **Bloqueio por saldo:** a quantidade vendida de uma peça não pode superar o saldo
+  atual. Linhas repetidas da mesma peça são somadas antes da conferência. Se qualquer
+  item falhar, nenhuma peça é baixada e a resposta 422 lista `items` com `part_id`,
+  `requested` e `stock_balance`.
+- **Peças inativas e inexistentes** impedem a venda inteira (422).
+- **Atomicidade e concorrência:** as peças são bloqueadas em ordem estável
+  (`SELECT … FOR UPDATE`), o que serializa vendas simultâneas da mesma peça.
+- **Idempotência:** repetir a mesma chave com os mesmos dados devolve a resposta
+  original sem nova baixa; a mesma chave com outros dados retorna 409.
+  `sale_requests` guarda a chave, a impressão dos dados e a resposta.
+- **Fora desta entrega:** cancelamento (US16), movimentações de estoque (histórico),
+  recebimentos, emissão fiscal e integração com marketplaces.
