@@ -17,6 +17,7 @@ export default function PartDetailsPage({
   onEdit,
   onEntry,
   onExit,
+  onAdjustment,
   isNavigationLocked,
   onNavigationStateChange,
 }) {
@@ -113,6 +114,7 @@ export default function PartDetailsPage({
               part={part}
               onEntry={onEntry}
               onExit={onExit}
+              onAdjustment={onAdjustment}
               isNavigationLocked={isNavigationLocked}
             />
           </Box>

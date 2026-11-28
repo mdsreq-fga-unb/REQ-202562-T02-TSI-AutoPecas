@@ -2,7 +2,12 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
-from app.models.stock import StockEntryRequest, StockExitRequest, StockMovement
+from app.models.stock import (
+    StockAdjustmentRequest,
+    StockEntryRequest,
+    StockExitRequest,
+    StockMovement,
+)
 
 
 class StockRepository:
@@ -25,4 +30,11 @@ class StockRepository:
 
     def remember_exit(self, key: UUID, fingerprint: str, response: dict) -> None:
         self.session.add(StockExitRequest(id=key, fingerprint=fingerprint, response=response))
+        self.session.flush()
+
+    def get_adjustment_request(self, key: UUID) -> StockAdjustmentRequest | None:
+        return self.session.get(StockAdjustmentRequest, key)
+
+    def remember_adjustment(self, key: UUID, fingerprint: str, response: dict) -> None:
+        self.session.add(StockAdjustmentRequest(id=key, fingerprint=fingerprint, response=response))
         self.session.flush()

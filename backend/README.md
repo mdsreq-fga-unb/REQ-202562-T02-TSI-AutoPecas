@@ -910,3 +910,41 @@ das duas cabeças não pode ser exercitada antes de os dois branches estarem na 
 a matriz de navegadores do RNF03 e o TLS do RNF05 em ambiente publicado. Revisão por
 outro integrante, validação com o cliente e a DoD seguem sendo etapas humanas e não
 são declaradas aqui.
+
+## Ajuste de inventário — US10 (Refs #35)
+
+`POST /parts/{part_id}/stock-adjustments` recebe `quantity_delta` (inteiro positivo
+ou negativo diferente de zero) e `justification` (1 a 120 caracteres após remoção de
+espaços nas extremidades), além do cabeçalho `Idempotency-Key` (UUID), e devolve 201
+com `id`, `part_id`, `movement_type: "adjustment"`, `quantity_delta`, `justification`,
+`adjustment_date` (data corrente no calendário da loja `America/Sao_Paulo`) e
+`stock_balance` atualizado.
+
+### Persistência e regras
+
+A tabela `stock_movements` armazena ajustes com `movement_type = 'adjustment'`,
+`quantity = quantity_delta`, `reason = justification` e `entry_date = store_today()`.
+A migração `0008_stock_adjustments` (encadeada em `0007_stock_exits`):
+
+- cria `stock_adjustment_requests` para idempotência independente de entradas e saídas;
+- atualiza `ck_stock_quantity` para `(movement_type = 'adjustment' AND quantity <> 0) OR (movement_type <> 'adjustment' AND quantity > 0)`;
+- acrescenta `ck_stock_adjustment_reason`: `movement_type <> 'adjustment' OR (reason IS NOT NULL AND length(trim(reason)) > 0)`.
+
+A ordem das regras no serviço é **peça existente (404) -> retentativa conhecida ->
+peça inativa (422) -> saldo resultante negativo (422)**, sob lock `SELECT FOR UPDATE`
+da peça. Diferença que leve o saldo exatamente a zero e ajuste positivo sobre saldo
+zero são permitidos; diferença que resulte em saldo negativo é recusada com 422
+informando o saldo vigente em `message` e `stock_balance`.
+
+### Verificação local — 28/11/2026
+
+- `python -m uv run pytest` em SQLite descartável: **287 aprovados, 21 ignorados**
+  (os ignorados exigem PostgreSQL). Os 30 testes da US10 em
+  `tests/test_stock_adjustments.py` cobrem CA10.1, CA10.2, CA10.4, CA10.5, CA10.6,
+  CA10.7, CA10.8, migração `0008_stock_adjustments` (upgrade, downgrade e `alembic check`),
+  invariantes CHECK do banco e contrato OpenAPI.
+- `python -m uv run ruff check .` e `python -m uv run ruff format --check .`: aprovados.
+
+Não verificado localmente: os 3 testes de concorrência em PostgreSQL da US10 dependem
+de instância PostgreSQL ativa (executados na CI). Revisão por outro integrante,
+validação com o cliente e DoD seguem pendentes e não são declaradas aqui.

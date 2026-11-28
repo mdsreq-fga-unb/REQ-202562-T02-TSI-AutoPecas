@@ -367,7 +367,8 @@
       "history": [
         "- 03/11/2026 · Registro consolidado no catálogo integrado: declaração, origem, condições, priorização, entrega e situação passaram a ser mantidas em um único lugar.",
         "- 10/11/2026 · Ajuste não pode produzir saldo negativo; restrição por perfil retirada do MVP, conforme cliente em 04/11 e issues #48 e #53 (US10: #35).",
-        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55)."
+        "- 10/11/2026 · Terminologia padronizada para português brasileiro, sem alteração do comportamento (#55).",
+        "- 28/11/2026 · Comportamento implementado na API e na interface: registro de ajuste de inventário com peça, diferença de quantidade inteira diferente de zero (positiva ou negativa) e justificativa obrigatória; atualização atômica do saldo na mesma transação e uma única vez conforme o RNF02; bloqueio de ajuste que resultaria em saldo negativo com informação do saldo vigente, permitindo resultado igual a zero e ajuste positivo sobre saldo zero; bloqueio para peça inativa. Verificado por testes por critério em backend/tests/test_stock_adjustments.py e em frontend/src/stockAdjustment.test.jsx. Revisão por outro integrante e validação com o cliente seguem pendentes, e a Definição de Pronto não foi declarada (#35)."
       ]
     },
     {

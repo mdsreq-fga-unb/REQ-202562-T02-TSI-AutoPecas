@@ -126,6 +126,32 @@ export async function registerStockExit(id, data, idempotencyKey) {
   return result;
 }
 
+export async function registerStockAdjustment(id, data, idempotencyKey) {
+  const result = await requestParts(`/${encodeURIComponent(id)}/stock-adjustments`, {
+    method: 'POST',
+    data,
+    idempotencyKey,
+  });
+  // Sem aritmética sobre o saldo anterior: ele pode estar legitimamente defasado
+  // por outra movimentação concorrente, e um "não confirmado" falso trancaria o operador
+  // fora de um ajuste correto e já persistido.
+  if (
+    result?.part_id !== id ||
+    !isNonEmptyString(result.id) ||
+    result.movement_type !== 'adjustment' ||
+    result.quantity_delta !== data.quantity_delta ||
+    result.justification !== data.justification ||
+    !isNonEmptyString(result.adjustment_date) ||
+    !Number.isSafeInteger(result.stock_balance) ||
+    result.stock_balance < 0
+  ) {
+    throw unconfirmedResponse(
+      'Não foi possível confirmar o ajuste. Tente novamente com os mesmos dados.',
+    );
+  }
+  return result;
+}
+
 export function searchParts(filters, offset = 0, { signal } = {}) {
   const query = new URLSearchParams({ ...filters, offset: String(offset), limit: '20' });
   return requestParts(`/search?${query}`, { signal });

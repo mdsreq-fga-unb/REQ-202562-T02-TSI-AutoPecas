@@ -2,7 +2,13 @@ import { Alert, Button, CircularProgress, Paper, Stack, Typography } from '@mui/
 import LockOutlined from '@mui/icons-material/LockOutlined';
 import useStockBalance from './useStockBalance.js';
 
-export default function StockBalancePanel({ part, onEntry, onExit, isNavigationLocked }) {
+export default function StockBalancePanel({
+  part,
+  onEntry,
+  onExit,
+  onAdjustment,
+  isNavigationLocked,
+}) {
   const { state, refresh } = useStockBalance(part.id);
   const entryBlockedReason =
     part.status === 'inactive'
@@ -18,6 +24,12 @@ export default function StockBalancePanel({ part, onEntry, onExit, isNavigationL
         : state.status === 'ready' && state.balance.stock_balance === 0
           ? 'Nenhuma unidade disponível para saída.'
           : null;
+  const adjustmentBlockedReason =
+    part.status === 'inactive'
+      ? 'Peça inativa. Ative-a em Dados cadastrais para registrar um ajuste.'
+      : isNavigationLocked
+        ? 'Conclua a operação em Aplicações por veículo para liberar o ajuste.'
+        : null;
   return (
     <Paper
       component="section"
@@ -56,7 +68,6 @@ export default function StockBalancePanel({ part, onEntry, onExit, isNavigationL
             aria-label={`Registrar entrada de ${part.name}`}
             onClick={onEntry}
             disabled={Boolean(entryBlockedReason)}
-
             aria-describedby={entryBlockedReason ? 'part-entry-block-reason' : undefined}
             sx={{
               '&.MuiButton-contained.MuiButton-colorPrimary.Mui-disabled': {
@@ -85,6 +96,22 @@ export default function StockBalancePanel({ part, onEntry, onExit, isNavigationL
           >
             Registrar saída
           </Button>
+          <Button
+            variant="outlined"
+            aria-label={`Registrar ajuste de ${part.name}`}
+            onClick={onAdjustment}
+            disabled={Boolean(adjustmentBlockedReason)}
+            aria-describedby={adjustmentBlockedReason ? 'part-adjustment-block-reason' : undefined}
+            sx={{
+              '&.Mui-disabled': {
+                color: 'text.secondary',
+                cursor: 'not-allowed',
+                pointerEvents: 'auto',
+              },
+            }}
+          >
+            Registrar ajuste
+          </Button>
           <Button onClick={refresh} disabled={state.status === 'loading'}>
             {state.status === 'error' ? 'Tentar novamente' : 'Atualizar saldo'}
           </Button>
@@ -107,6 +134,16 @@ export default function StockBalancePanel({ part, onEntry, onExit, isNavigationL
             role="status"
           >
             {exitBlockedReason}
+          </Typography>
+        )}
+        {adjustmentBlockedReason && (
+          <Typography
+            id="part-adjustment-block-reason"
+            variant="body2"
+            color="text.secondary"
+            role="status"
+          >
+            {adjustmentBlockedReason}
           </Typography>
         )}
       </Stack>
