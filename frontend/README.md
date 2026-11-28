@@ -875,3 +875,34 @@ qualquer dado de venda no envio (CA09.3).
 Não verificado: a matriz de navegadores do RNF03, leitores de tela e a conferência
 manual de 360/390/414 px não foram automatizadas nesta entrega. Revisão por outro
 integrante e validação com o cliente seguem pendentes; a DoD não é declarada aqui.
+
+## Ajuste de inventário — US10 (Refs #35)
+
+O painel **Estoque** nos detalhes da peça passa a exibir **Registrar ajuste** ao lado
+de **Registrar entrada** e **Registrar saída**. O botão fica bloqueado (com motivo
+visível via `aria-describedby`) quando a peça está inativa ou há operação pendente em
+**Aplicações por veículo**, permanecendo liberado quando o saldo é zero para permitir
+ajustes positivos.
+
+A página `StockAdjustmentPage` (`useStockAdjustment` e `pendingStockAdjustment`) exibe
+o resumo da peça com o saldo atual e um formulário com **Diferença de quantidade**
+(indicando explicitamente que se trata da diferença positiva ou negativa em relação ao
+saldo atual, e não do saldo final) e **Justificativa** (até 120 caracteres). Os campos
+seguem alvos de toque mínimos de 44 px (RNF01) e validação no cliente antes do envio.
+
+Tolerância a falhas (RNF02): a tentativa é preservada em `localStorage` sob a chave
+`tsi:stock-adjustment:v1:<apiBaseUrl>` antes do POST. Em falhas de rede ou respostas
+não confirmáveis por `registerStockAdjustment`, os campos e o retorno permanecem
+travados e a retomada manual usa **Tentar novamente** com o mesmo corpo e a mesma
+`Idempotency-Key`.
+
+### Verificação local — 28/11/2026
+
+- `pnpm test`: **147 aprovados em 14 arquivos** (20 novos testes em
+  `src/stockAdjustment.test.jsx` cobrindo CA10.1, CA10.2, CA10.4, CA10.5, CA10.6,
+  CA10.7, CA10.8 e RNF02).
+- `pnpm lint`, `pnpm format:check` e `pnpm build`: aprovados.
+
+Não verificado: matriz de navegadores do RNF03, leitores de tela e inspeção visual em
+dispositivos físicos. Revisão por outro integrante e validação com o cliente seguem
+pendentes; a DoD não é declarada aqui.
