@@ -10,6 +10,7 @@ import { readPendingImport } from './features/parts/pendingPartImport.js';
 import PartDetailsPage from './features/parts/PartDetailsPage.jsx';
 import StockEntryPage from './features/stock/StockEntryPage.jsx';
 import SaleRegistrationPage from './features/sales/SaleRegistrationPage.jsx';
+import SaleListPage from './features/sales/SaleListPage.jsx';
 import { readPendingSale } from './features/sales/pendingSale.js';
 import { readPendingEntry } from './features/stock/pendingStockEntry.js';
 import StockExitPage from './features/stock/StockExitPage.jsx';
@@ -36,6 +37,7 @@ export default function App() {
   const [navigationState, setNavigationState] = useState({ isDirty: false, isLocked: false });
   const [detailsNavigation, setDetailsNavigation] = useState({ isDirty: false, isLocked: false });
   const [saleNavigation, setSaleNavigation] = useState({ isDirty: false, isLocked: false });
+  const [salesNavigation, setSalesNavigation] = useState({ isDirty: false, isLocked: false });
   const [pendingView, setPendingView] = useState(null);
   useEffect(() => {
     const title = {
@@ -46,6 +48,7 @@ export default function App() {
       entry: 'Registrar entrada',
       exit: 'Registrar saída',
       sale: 'Registrar venda',
+      sales: 'Vendas registradas',
       import: 'Importar peças',
     }[view.page];
     document.title = `${title} · TSI Peças`;
@@ -57,6 +60,7 @@ export default function App() {
   function changeView(next) {
     setDetailsNavigation({ isDirty: false, isLocked: false });
     setSaleNavigation({ isDirty: false, isLocked: false });
+    setSalesNavigation({ isDirty: false, isLocked: false });
     setView(next);
   }
   function requestNavigation(next) {
@@ -67,7 +71,9 @@ export default function App() {
           ? detailsNavigation
           : view.page === 'sale'
             ? saleNavigation
-            : null;
+            : view.page === 'sales'
+              ? salesNavigation
+              : null;
     if (current?.isLocked) return;
     if (current?.isDirty) setPendingView(next);
     else changeView(next);
@@ -106,6 +112,7 @@ export default function App() {
           view.page === 'import' ||
           (view.page === 'details' && detailsNavigation.isLocked) ||
           (view.page === 'sale' && saleNavigation.isLocked) ||
+          (view.page === 'sales' && salesNavigation.isLocked) ||
           (view.page === 'new' && navigationState.isLocked)
         }
       >
@@ -163,6 +170,7 @@ export default function App() {
         {view.page === 'sale' && (
           <SaleRegistrationPage onNavigationStateChange={setSaleNavigation} />
         )}
+        {view.page === 'sales' && <SaleListPage onNavigationStateChange={setSalesNavigation} />}
       </AppShell>
       <DiscardChangesDialog
         open={pendingView !== null}
