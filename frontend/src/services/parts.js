@@ -100,6 +100,32 @@ export async function registerStockEntry(id, data, idempotencyKey) {
   return result;
 }
 
+export async function registerStockExit(id, data, idempotencyKey) {
+  const result = await requestParts(`/${encodeURIComponent(id)}/stock-exits`, {
+    method: 'POST',
+    data,
+    idempotencyKey,
+  });
+  // Sem aritmética sobre o saldo anterior: ele pode estar legitimamente defasado
+  // por outra saída ou venda, e um "não confirmado" falso trancaria o operador
+  // fora de uma saída correta e já persistida.
+  if (
+    result?.part_id !== id ||
+    !isNonEmptyString(result.id) ||
+    result.movement_type !== 'exit' ||
+    result.quantity !== data.quantity ||
+    result.exit_date !== data.exit_date ||
+    result.reason !== data.reason ||
+    !Number.isSafeInteger(result.stock_balance) ||
+    result.stock_balance < 0
+  ) {
+    throw unconfirmedResponse(
+      'Não foi possível confirmar a saída. Tente novamente com os mesmos dados.',
+    );
+  }
+  return result;
+}
+
 export function searchParts(filters, offset = 0, { signal } = {}) {
   const query = new URLSearchParams({ ...filters, offset: String(offset), limit: '20' });
   return requestParts(`/search?${query}`, { signal });
