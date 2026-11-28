@@ -12,7 +12,14 @@ from app.models.part import Part
 from app.models.sale import Sale, SaleItem
 from app.repositories.parts import PartRepository
 from app.repositories.sales import SaleRepository
-from app.schemas.sale import SaleCreate, SaleItemResponse, SaleResponse
+from app.schemas.sale import (
+    SaleCreate,
+    SaleItemResponse,
+    SaleListResponse,
+    SaleResponse,
+    SaleSummary,
+    SaleSummaryItem,
+)
 
 
 class SaleService:
@@ -80,6 +87,102 @@ class SaleService:
                 parts[entry.part_id] = part_repo.get(entry.part_id)
             return self._response(sale, parts)
 
+    def list(self, offset: int, limit: int) -> SaleListResponse:
+        with self.factory() as session:
+            sales, total = SaleRepository(session).list(offset, limit)
+            part_repo = PartRepository(session)
+            parts = {
+                part_id: part_repo.get(part_id)
+                for part_id in {entry.part_id for sale in sales for entry in sale.items}
+            }
+            return SaleListResponse(
+                items=[
+                    SaleSummary(
+                        id=sale.id,
+                        channel=sale.channel,
+                        status=sale.status,
+                        total=self._total(sale),
+                        created_at=sale.created_at,
+                        items=[
+                            SaleSummaryItem(
+                                part_id=entry.part_id,
+                                name=parts[entry.part_id].name,
+                                manufacturer_code=parts[entry.part_id].manufacturer_code,
+                                quantity=entry.quantity,
+                                unit_price=entry.unit_price,
+                            )
+                            for entry in sale.items
+                        ],
+                    )
+                    for sale in sales
+                ],
+                total=total,
+            )
+
+    def cancel(self, sale_id: UUID, key: UUID) -> SaleResponse:
+        fingerprint = hashlib.sha256(str(sale_id).encode()).hexdigest()
+        with self.factory() as session:
+            repo = SaleRepository(session)
+            try:
+                with session.begin():
+                    sale = repo.get_for_update(sale_id)
+                    if sale is None:
+                        raise DomainError("Venda não encontrada.", 404)
+                    previous = self._existing_cancellation(repo, key, fingerprint)
+                    if previous:
+                        return previous
+                    if sale.status == "cancelled":
+                        raise DomainError(
+                            "Esta venda já está cancelada; o estoque já foi restabelecido.", 409
+                        )
+                    parts = self._lock_sale_parts(session, sale)
+                    for entry in sale.items:
+                        parts[entry.part_id].stock_balance += entry.quantity
+                    sale.status = "cancelled"
+                    session.flush()
+                    response = self._response(sale, parts)
+                    repo.remember_cancellation(key, fingerprint, response.model_dump(mode="json"))
+                return response
+            except IntegrityError:
+                with session.begin():
+                    previous = self._existing_cancellation(repo, key, fingerprint)
+                    if previous:
+                        return previous
+                raise
+
+    def _lock_sale_parts(self, session: Session, sale: Sale) -> dict[UUID, Part]:
+        repo = PartRepository(session)
+        parts = {
+            part_id: repo.get_for_update(part_id)
+            for part_id in sorted({entry.part_id for entry in sale.items}, key=str)
+        }
+        inactive = [
+            {
+                "part_id": str(part.id),
+                "name": part.name,
+                "manufacturer_code": part.manufacturer_code,
+            }
+            for part in (parts[part_id] for part_id in dict.fromkeys(e.part_id for e in sale.items))
+            if part.status == "inactive"
+        ]
+        if inactive:
+            raise DomainError(
+                "A venda tem peças inativas. Reative-as antes de cancelar a venda.",
+                422,
+                items=inactive,
+            )
+        return parts
+
+    def _existing_cancellation(
+        self, repo: SaleRepository, key: UUID, fingerprint: str
+    ) -> SaleResponse | None:
+        previous = repo.get_cancellation_request(key)
+        if previous is None:
+            return None
+        if previous.fingerprint != fingerprint:
+            raise DomainError("Esta tentativa já foi usada para cancelar outra venda.", 409)
+        return SaleResponse.model_validate(previous.response)
+
     def _lock_parts(self, session: Session, data: SaleCreate) -> dict[UUID, Part]:
         repo = PartRepository(session)
         parts: dict[UUID, Part] = {}
@@ -123,13 +226,16 @@ class SaleService:
                 items=short,
             )
 
+    @staticmethod
+    def _total(sale: Sale) -> Decimal:
+        return sum((entry.quantity * entry.unit_price for entry in sale.items), Decimal("0"))
+
     def _response(self, sale: Sale, parts: dict[UUID, Part]) -> SaleResponse:
-        total = sum((entry.quantity * entry.unit_price for entry in sale.items), Decimal("0"))
         return SaleResponse(
             id=sale.id,
             channel=sale.channel,
             status=sale.status,
-            total=total,
+            total=self._total(sale),
             items=[
                 SaleItemResponse(
                     part_id=entry.part_id,

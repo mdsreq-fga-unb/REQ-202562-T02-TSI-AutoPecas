@@ -44,3 +44,11 @@ class SaleRequest(Timestamps, Base):
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
     fingerprint: Mapped[str] = mapped_column(String(64))
     response: Mapped[dict] = mapped_column(JSON)
+
+
+class SaleCancellationRequest(Timestamps, Base):
+    __tablename__ = "sale_cancellation_requests"
+
+    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True)
+    fingerprint: Mapped[str] = mapped_column(String(64))
+    response: Mapped[dict] = mapped_column(JSON)

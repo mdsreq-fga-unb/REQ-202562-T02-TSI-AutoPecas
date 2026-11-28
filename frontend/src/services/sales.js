@@ -54,3 +54,61 @@ export async function registerSale(data, idempotencyKey) {
   }
   return result;
 }
+
+export async function listSales({ offset = 0, limit = 20 } = {}) {
+  const response = await fetch(`${apiBaseUrl}/sales?offset=${offset}&limit=${limit}`, {
+    signal: AbortSignal.timeout(30000),
+  });
+  const result = await response.json().catch(() => null);
+  if (!response.ok || !Array.isArray(result?.items) || !Number.isInteger(result.total)) {
+    throw new Error('Não foi possível carregar as vendas.');
+  }
+  return result;
+}
+
+export async function cancelSale(sale, idempotencyKey) {
+  let response;
+  try {
+    response = await fetch(`${apiBaseUrl}/sales/${encodeURIComponent(sale.id)}/cancellation`, {
+      method: 'POST',
+      headers: { 'Idempotency-Key': idempotencyKey },
+      signal: AbortSignal.timeout(30000),
+    });
+  } catch {
+    throw uncertain(
+      'A conexão foi interrompida e o cancelamento ainda não foi confirmado. Tente novamente.',
+    );
+  }
+  let result;
+  try {
+    result = await response.json();
+  } catch {
+    throw uncertain('O cancelamento ainda não foi confirmado. Tente novamente.');
+  }
+  if (!response.ok) {
+    throw Object.assign(
+      new Error(result?.detail?.message || 'Não foi possível cancelar a venda.'),
+      {
+        status: response.status,
+        items: result?.detail?.items,
+        isUncertain: response.status >= 500,
+      },
+    );
+  }
+  if (
+    result?.id !== sale.id ||
+    result.status !== 'cancelled' ||
+    !Array.isArray(result.items) ||
+    result.items.length !== sale.items.length ||
+    !result.items.every(
+      (item, index) =>
+        item?.part_id === sale.items[index].part_id &&
+        item.quantity === sale.items[index].quantity &&
+        Number.isSafeInteger(item.stock_balance) &&
+        item.stock_balance >= 0,
+    )
+  ) {
+    throw uncertain('O cancelamento ainda não foi confirmado. Tente novamente.');
+  }
+  return result;
+}
